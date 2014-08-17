@@ -5,11 +5,8 @@
 Instruction for the Users
 ==================================
 
-********************************************************
 
-  Welcome to n3He DAQ Control Program v1.0
-     
-********************************************************
+               Welcome to n3He DAQ Control Program v1.0
                        The Help Session
                 report bug to: latifulkabir@uky.edu
 
@@ -40,11 +37,11 @@ From the terminal do the following:
 
     Where, MODULE= The DAQ module you want to run. It acn be either 21,23,24,30.
     
-           LENGTH = The length of each run in Megabyte, RUN= the number of runs to be taken. 
+     LENGTH = The length of each run in Megabyte, RUN= the number of runs to be taken. 
            
     This will take data only for the DAQ module number 'MODULE' for 'RUN' number of runs of length 'LENGTH' each.
     
-    If MODULE, RUN and LENGTH are not specified the default values are, MODULE=21, RUN=continuous runs and LENGTH = default run length.       
+    If MODULE, RUN and LENGTH are not specified the default values are, MODULE=21, RUN=continuous runs and LENGTH =         default run length.       
 
 * `n3he config `:
 
@@ -63,13 +60,10 @@ To quit the program while in continuous data taking mode :
 
 
 A Typical run with command "n3he start" will look as follows:
+--------------------------------------------------------------
 
-*********************************************************
 
-   Welcome to n3He DAQ Control Program v1.0  
- 
-*********************************************************
- 
+        Welcome to n3He DAQ Control Program v1.0  
            report bug to: latifulkabir@uky.edu
   
 --------Initializing Run number: 88 on Aug 17 2014 at 00:30:45------------
