@@ -5,11 +5,6 @@
 Instruction for the Users
 ==================================
 
-
-               Welcome to n3He DAQ Control Program v1.0
-                       The Help Session
-                report bug to: latifulkabir@uky.edu
-
 From the terminal do the following:
  
 * `n3he start` :
@@ -110,12 +105,12 @@ Note: The source code uses some c++11 features requiring your compiler to be c++
 -------------------------------
 The DAQ to control computer data transfer situation can be mocked up on you own lapton easily in the following way:
  * Choose a big enough (say 500 MB) file on your computer to be transferred via localhost.
- * From the terminal do: "nc -l 1234 < to_be_sent_filename"
+ * From the terminal do: `nc -l 1234 < to_be_sent_filename`
    This will be streaming that file to the port 1234 via localhost (IP: 127.0.0.1) to be read by client Socket.
  * Change the n3HeDAQ source for appropriate IP and Port (here 127.0.0.1 and 1234) and do `make`
  * running `n3he` will make an exact copy of the file sent.
  * This procedure can be replicated to mock up more thn one DAQ running simultaneously. 
 
- * If you enable cout.write() (L67 in Socket.cpp) , then if you do :" n3He | pv > filename", then it will also show the data transfer rate.
+ * If you enable cout.write() (L67 in Socket.cpp) , then if you do :` n3He | pv > filename`, then it will also show the data transfer rate.
 
 
