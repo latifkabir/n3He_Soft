@@ -5,10 +5,11 @@
 Instruction for the Users
 ==================================
 
+********************************************************
 
-`/========================================================`
-`||      Welcome to n3He DAQ Control Program v1.0        ||`
-`/=========================================================`
+  Welcome to n3He DAQ Control Program v1.0
+     
+********************************************************
                        The Help Session
                 report bug to: latifulkabir@uky.edu
 
@@ -62,26 +63,32 @@ To quit the program while in continuous data taking mode :
 
 
 A Typical run with command "n3he start" will look as follows:
-`-----------------------------------------------------------------------------------------------------`
 
+*********************************************************
 
-`  ================================================`
- ` ||  Welcome to n3He DAQ Control Program v1.0   ||`
- ` ==================================================`
-                 `report bug to: latifulkabir@uky.edu`
+   Welcome to n3He DAQ Control Program v1.0  
+ 
+*********************************************************
+ 
+           report bug to: latifulkabir@uky.edu
   
-`=======Initializing Run number: 88 on Aug 17 2014 at 00:30:45=======`
+--------Initializing Run number: 88 on Aug 17 2014 at 00:30:45------------
 
-`Run 88 in progress ... ... `
+Run 88 in progress ... ... 
 
-`data_file-21 has been renamed to run88data_file-21`
-`data_file-22 has been renamed to run88data_file-22`
-`data_file-23 has been renamed to run88data_file-23`
-`data_file-30 has been renamed to run88data_file-30`
+datafile-21 has been renamed to run88data_file-21
 
-`Phew!!! Done with run number : 88`
+datafile-22 has been renamed to run88data_file-22
 
-`----->DAQ is now sleeping for 5 seconds, Press Crtl+C if no further run is expected<------ `
+datafile-23 has been renamed to run88data_file-23
+
+datafile-30 has been renamed to run88data_file-30
+
+
+Phew!!! Done with run number : 88
+
+
+----->DAQ is now sleeping for 5 seconds, Press Crtl+C if no further run is expected<-----
 
 
 
