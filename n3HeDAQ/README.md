@@ -111,6 +111,6 @@ The DAQ to control computer data transfer situation can be mocked up on you own 
  * running `n3he` will make an exact copy of the file sent.
  * This procedure can be replicated to mock up more thn one DAQ running simultaneously. 
 
- * If you enable cout.write() (L67 in Socket.cpp) , then if you do :` n3He | pv > filename`, then it will also show the data transfer rate.
+ * If you enable cout.write() (L67 in Socket.cpp) , then if you do :` n3he start | pv > filename`, then it will also show the data transfer rate.
 
 
