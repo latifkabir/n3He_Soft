@@ -1,0 +1,6 @@
+N3HEBIN=$(dirname $BASH_ARGV[0])
+N3HEROOT=$(cd $N3HEBIN/..;pwd)
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$N3HEROOT/lib
+export PATH=$PATH:$N3HEROOT/bin
+
