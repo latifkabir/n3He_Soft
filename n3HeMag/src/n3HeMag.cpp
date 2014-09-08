@@ -67,7 +67,7 @@ int main(void)
     {
 
 //------------------Null Scan------------------------
-	usleep(4000000);
+	usleep(2000000);
 	p.Write("\1"); //Polled mode command token
         usleep(200000);
 	p.Write("\000"); //Channele 0 * 16 in Octal
