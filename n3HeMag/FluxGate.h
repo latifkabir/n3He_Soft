@@ -3,6 +3,7 @@
 //Date:09.5.14
 //Version:1.0
 
+#include<fstream>
 #include"Serial.h"
 
 using namespace std;
@@ -13,8 +14,10 @@ public:
     int btod[4];
     int ADC_Count;
     double mVolt;
+    ofstream magData;
     int ReadFG(int ch);
     void WriteFG(int ch);
+    void CurrentTime();
     FluxGate(const char *portName,int sspeed);
     ~FluxGate();
 };
