@@ -24,6 +24,10 @@ n3HeMag
  Driver for FluxGate in C++ source code. 
 
 
+n3HeScan
+---------
+  * field : Software for magnetic field scan
+  * beam : Software for beam scan
 
 In any case please read the REAME file in the corresponding section first.
 
