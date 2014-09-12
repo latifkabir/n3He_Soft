@@ -14,6 +14,7 @@ public:
     int btod[4];
     int ADC_Count;
     double mVolt;
+    double gauss;
     ofstream magData;
     int ReadFG(int ch);
     void WriteFG(int ch);

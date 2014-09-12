@@ -1,10 +1,11 @@
 Software for the n3He Experiment
 ================================== 
 This is my backup reporitory for my developed software for the n3He experiment at SNS.
-This repository is divided into two sub directories based on the category:
+This repository is divided into several sub directories based on the category:
 * n3HeDAQ --- Contains software for the n3He DAQ.
 * libn3he --- Contains the analysis library for the n3He experiment.
-* n3HeMag ---Contains 'driver for FluxGate' source code 
+* n3HeMag ---Contains 'driver for FluxGate' in C++ source code 
+* n3HeScan --- Software for field and beam scan 
 
 
 n3HeDAQ
