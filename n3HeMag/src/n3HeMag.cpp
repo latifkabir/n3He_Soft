@@ -10,16 +10,18 @@
 
 using namespace std;
 
-int main(void)
-{
+char response;
+int sleep_time=200000;
 
-    bool signon=false;
+int SignOn(bool &signon);
+void ReadField();
+
+int SignOn(bool &signon)
+{
     bool sleep=true;
     bool failed=false;
     int counter_sleep=0;
     int counter_signon=0;
-    char response;
-    int sleep_time=200000;
 
     while(!signon && !failed)
     {
@@ -77,8 +79,11 @@ int main(void)
 	}
     }
 
-    if(signon)
-    {
+}
+
+void ReadField()
+{
+
 	FluxGate p("/dev/ttyUSB0",9600);
 	if(p.CheckStatus()!=1);
 	{
@@ -163,7 +168,7 @@ int main(void)
 	    p.Write("\220"); //Checksum Value
 	    usleep(sleep_time);
 	    response=p.ReadFG(3);
-    	
+	    
 //------------------Channel 4 Scan------------------------ 
 	    p.Write("\1"); //Polled mode command token
 	    usleep(sleep_time);
@@ -229,8 +234,31 @@ int main(void)
 	    response=p.ReadFG(7);
 
 	}
+
+
+}
+
+int main(void)
+{
+
+    bool signon=false;
+    char cont;
+    bool continuous=true;
+
+    SignOn(signon);
+    if(signon)
+    {
+	while(continuous)
+	{
+	    ReadField();
+	    cout<<"To continue with another run press 'c' then enter"<<endl;
+            cin>>cont;
+	    if(cont!='c')
+	    {
+		continuous=false;
+	    }
+	}
     }
- 
     return(0);
 
 }
