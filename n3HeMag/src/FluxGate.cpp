@@ -47,8 +47,8 @@ int FluxGate::ReadFG(int ch)
     ADC_Count=btod[1]+256*btod[2]+65536*btod[3];
     mVolt=(ADC_Count*0.0005960464)-5000;
     gauss=mVolt*0.002;
-    cout<<"Channel:"<<ch<<" ADC Count :"<<ADC_Count<<endl;
-    cout<<"Channel:"<<ch<<" Gauss : "<<gauss<<endl<<endl;
+    cout<<"Channel:"<<ch+1<<" ADC Count :"<<ADC_Count<<endl;
+    cout<<"Channel:"<<ch+1<<" Gauss : "<<gauss<<endl<<endl;
     magData <<setw(10); 
     magData << setprecision(8)<<gauss<<"	";
     if(ch==7)

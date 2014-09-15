@@ -43,7 +43,6 @@ int SignOn(bool &signon)
 		{
 		    cout<<"Failed to awake up Flux Gate, exiting..."<<endl;
 		    failed=true;
-		    break;
 		    return(1);
 		}
 		counter_sleep++;
@@ -71,13 +70,14 @@ int SignOn(bool &signon)
 		else if(counter_signon>=3)
 		{
 		    cout<<"Failed to Sign on with requested baud rate, exiting..."<<endl;
-		    break;
 		    return(1);
 		}
 	    }
 
 	}
     }
+
+    return(0);
 
 }
 
@@ -244,19 +244,30 @@ int main(void)
     bool signon=false;
     char cont;
     bool continuous=true;
+    int status;
 
-    SignOn(signon);
-    if(signon)
+    while(continuous)
     {
-	while(continuous)
+	status=SignOn(signon);
+	if(signon)
 	{
+
 	    ReadField();
+	}
+	signon=false;
+	if(status)
+	{
+	    continuous=false;
+	}
+	else
+	{
 	    cout<<"To continue with another run press 'c' then enter"<<endl;
-            cin>>cont;
+	    cin>>cont;
 	    if(cont!='c')
 	    {
 		continuous=false;
 	    }
+
 	}
     }
     return(0);
