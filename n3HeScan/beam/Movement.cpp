@@ -67,14 +67,15 @@ int main(void)
 	BeamData <<setw(10);
 	BeamData << setprecision(8)<<X<<"    "<<Y<<"    "<<intensity<<endl;
 
+	X=X+unit_x;
+	Y=Y+unit_y;
 	cout<<"Now moving to X: "<<X<<" & Y: "<<Y<<"... ..."<<endl;
 	xy.Write(move_x);
 	sleep(sleep_time);
 	xy.Write(move_y);
 	sleep(sleep_time);
 	cout<<"Now at X: "<<X<<" & Y: "<<Y<<endl;
-	X=X+unit_x;
-	Y=Y+unit_y;
+
 	cout<<"Recording the beam ... ..."<<endl;
         //Call to TakeData() here;
         //Calculate the mean here

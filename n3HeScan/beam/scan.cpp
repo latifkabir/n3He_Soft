@@ -22,7 +22,7 @@ int main(void)
 
 
 //Movement using string with additive properties
-    string incre="800";
+    string incre="-800";
     string move2="CI1M" + incre + "\rR";
 
     Serial xy("/dev/ttyUSB0",9600);
@@ -32,6 +32,17 @@ int main(void)
 	xy.Write(move2.c_str());
 	sleep(2);
 	xy.Write(move1);
+	sleep(2);
+
+	xy.Write("X"); //Request X position
+	sleep(3);  
+	xy.Read();    //Read requested position
+
+	xy.Write("N"); //Null absolute position resister
+
+	// xy.Write("Y"); // Request Y position
+        //sleep(3);
+	// xy.Read(); //Read requested position
     }
     return(0);
 }
