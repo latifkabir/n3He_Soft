@@ -12,9 +12,18 @@
 
 using namespace std;
 
+int GetPosition(char *read_buf)
+{
+    int position;
+    position=(1e6)*read_buf[3]+(1e5)*read_buf[4]+(1e4)*read_buf[5]+(1e3)*read_buf[6]+(1e2)*read_buf[7]
+	+10*read_buf[8]+read_buf[9];
+    return(position);
+}
+
 int main(void)
 {
 
+    char read_buf[10];
 //Movement using char array with increment from user
     char move1[200];
     int increment=-800;
@@ -36,10 +45,11 @@ int main(void)
 
 	xy.Write("X"); //Request X position
 	sleep(3);  
-	xy.Read();    //Read requested position
+	xy.Read(read_buf);    //Read requested position
+	int pos=GetPosition(read_buf);
+	cout<<"Position: "<<pos<<endl;
 
 	xy.Write("N"); //Null absolute position resister
-
 	// xy.Write("Y"); // Request Y position
         //sleep(3);
 	// xy.Read(); //Read requested position
