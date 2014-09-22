@@ -14,6 +14,7 @@ public:
     char move_x[200];
     char move_y[200];
     ofstream BeamData;
+    int sleep_time;
     void MoveXY(char axis,int increment);
     int GetPosition(char axis);
     void CurrentTime();

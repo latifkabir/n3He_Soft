@@ -9,6 +9,7 @@
 #include<iostream>
 #include<time.h>
 #include<iomanip>
+#include<cmath>
 #include"SerialXY.h"
 
 
@@ -25,18 +26,24 @@ SerialXY::~SerialXY()
 }
 
 void SerialXY::MoveXY( char axis,int increment)
-{ 
+{
+    sleep_time=abs((int)(0.005*increment));
+ 
     sprintf(move_x,"CI1M%d\rR",increment);
     sprintf(move_y,"CI2M%d\rR",increment);
 
     if(axis=='X')
     {
+	cout<<"Moving "<<increment<<" Steps along X axis ....."<<endl;
 	Write(move_x);
     }
     else if(axis=='Y')
     {
+	cout<<"Moving "<<increment<<" Steps along Y axis ....."<<endl;
 	Write(move_y);
     }
+
+    sleep(sleep_time);
 
     
 }
@@ -97,20 +104,3 @@ void SerialXY::CurrentTime()
 	cout<<"-------------------------"<<endl<<endl;
 }
 
-
-int main()
-{
-    SerialXY test("/dev/ttyUSB0",9600);
-    if(test.CheckStatus()!=1)
-    {
-	test.Write("N");
-	sleep(3);
-	test.MoveXY('X',20000);
-	sleep(30);
-	test.MoveXY('Y',400);
-	int x=test.GetPosition('X');
-	int y=test.GetPosition('Y');
-	cout<<"X:"<<x<<" Y:"<<y<<endl;
-    }
-    return(0);
-}

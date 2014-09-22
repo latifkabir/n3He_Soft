@@ -121,10 +121,10 @@ int Serial::Write(const char *txt)
 int Serial::Read()
 {
     nout = read(serial_fd,buf,256);
-    for(int i=0;i<nout;i++)
-    {
-	cout<<"byte"<<i<<":"<<buf[i]<<endl;
-    }
+    // for(int i=0;i<nout;i++)
+    // {
+    // 	cout<<"byte"<<i<<":"<<buf[i]<<endl;
+    // }
     return(buf[0]);
 }
 
