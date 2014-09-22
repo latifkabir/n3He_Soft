@@ -30,7 +30,7 @@ public:
     ~Serial();
     int CheckStatus();
     int Write(const char *txt);
-    int Read(char *read_buf);
+    int Read();
 
 };
 
