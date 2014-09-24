@@ -1,7 +1,7 @@
-//The basic XY movement program
+//The XY movement program for beam scan
 //Author: Latiful Kabir
-//Version:0.0
-//Date:09.12.14
+//Version:1.0
+//Date:09.23.14
 
 
 #include<iostream>
@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include<iomanip>
 #include"SerialXY.h"
+#include"TakeRun.h"
+#include"CalAverage.h"
 
 using namespace std;
 
@@ -87,12 +89,16 @@ int main(void)
 		cout<<"Now at Y: "<<Y_m<<" & X: "<<X_m<<endl;
 
 		cout<<"Recording the beam ... ..."<<endl;
-		//Call to TakeData() here;
+	        
+		TakeData(21,1e8,1);
+
 		//Calculate the mean here
+		intensity=CalAverage();
+
 		cout<<"Y_req : "<<Y_r<<"    "<<"Y_moved : "<<Y_m<<"    "<<"X_req : "<<X_r<<"    "<<"X_moved : "<<X_m<<"    "<<"intensity : "<<intensity<<endl<<endl;
 		//Save to Data File
-		xy.BeamData <<setprecision(8);
-		xy.BeamData <<setw(10)<<Y_r<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<X_r<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<intensity<<"        "<<endl;
+		xy.BeamData <<setprecision(10);
+		xy.BeamData <<setw(10)<<Y_r<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<X_r<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<setprecision(10)<<intensity<<"        "<<endl;
 	    }
 	    xy.MoveXY('X',-X_m);
 	    X_m=xy.GetPosition('X');

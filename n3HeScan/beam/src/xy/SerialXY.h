@@ -1,6 +1,6 @@
 //The SerialXY derived class with Serial as base class
 //Author: Latiful Kabir
-//Date:09.5.14
+//Date:09.22.14
 //Version:1.0
 
 #include<fstream>
