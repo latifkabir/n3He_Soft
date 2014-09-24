@@ -19,24 +19,35 @@ void PlotCh(int ch=0,int init=0){
   ReadBinary fa("/home/daq/DATA/ACQ2006/bigrawfile");
   //1.Getting the data in arrays
 
-  const long filesize=18410897408 ;//In Byte
+  const long filesize=fa.GetFileSize() ;//In Byte
   const long entries=(long)(8*filesize)/(32*64);
   const int start=init;
 
- //2.Plotting the Sync pulse and pre-amp pick pick-up signal
+ if(entries==0)
+  {
+      cout<<"No data file or file is empty... Exiting!!!"<<endl;
+  }
+  else if(init>entries)
+  {
+      cout<<"Requested entries exceed total number of entries. Exiting!!!"<<endl;
+  }
+  else
+  {
 
-   TCanvas *c1 = new TCanvas("c1","Plot for the channel");
+      //2.Plotting the Sync pulse and pre-amp pick pick-up signal
 
-   TGraph *gr1 = new TGraph((entries-start));
-   for(long i=start;i<entries;i++)
-   {
-       gr1->SetPoint(i,i,fa.GetValue(ch,i));
-   }   
-   gr1->Draw("AP");
-   gr1->SetTitle("Plot for the channel");
-   gr1->GetXaxis()->SetTitle("Entry$");
-   gr1->GetYaxis()->SetTitle("ADC Count");
- 
+      TCanvas *c1 = new TCanvas("c1","Plot for the channel");
+
+      TGraph *gr1 = new TGraph((entries-start));
+      for(long i=start;i<entries;i++)
+      {
+	  gr1->SetPoint(i,i,fa.GetValue(ch,i));
+      }   
+      gr1->Draw("AP");
+      gr1->SetTitle("Plot for the channel");
+      gr1->GetXaxis()->SetTitle("Entry$");
+      gr1->GetYaxis()->SetTitle("ADC Count");
+  }
 }
 
 int main(int argc, char** argv)

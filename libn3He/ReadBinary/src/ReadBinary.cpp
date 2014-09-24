@@ -1,18 +1,31 @@
 #include<iostream>
 #include<cstdio>
+#include<string>
+#include <sys/stat.h>
 #include"ReadBinary.h"
 
 using namespace std;
 
 ReadBinary::ReadBinary(const char* filename)
 {
-  
-     ptr_myfile=fopen(filename,"rb");
+    myfile=filename;
+    ptr_myfile=fopen(filename,"rb");
 }
 
 ReadBinary::~ReadBinary()
 {
- fclose(ptr_myfile);
+    fclose(ptr_myfile);
+}
+
+size_t ReadBinary::GetFileSize()
+{
+    const string fname = string(myfile);
+    struct stat st;
+    if(stat(fname.c_str(), &st) != 0) 
+    {
+	return 0;
+    }
+    return st.st_size;
 }
 
 int ReadBinary::GetValue(int channel,long point)
