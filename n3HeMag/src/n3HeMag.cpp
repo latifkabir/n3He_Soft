@@ -251,8 +251,9 @@ int main(void)
 	status=SignOn(signon);
 	if(signon)
 	{
-
-	    ReadField();
+          //Not a good practice to declare object in a loop, 
+          //but it's necessary to calibrate FulxGate before any new measurement in Pooled mode.
+	    ReadField();  
 	}
 	signon=false;
 	if(status)

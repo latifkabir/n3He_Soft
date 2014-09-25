@@ -1,3 +1,3 @@
 
 
-double CalAverage(int ch=0)
+double CalAverage(int ch);

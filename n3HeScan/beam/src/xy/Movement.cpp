@@ -8,7 +8,7 @@
 #include<string>
 #include<cstdio>
 #include<fstream>
-#include <unistd.h>
+#include<unistd.h>
 #include<iomanip>
 #include"SerialXY.h"
 #include"TakeRun.h"
@@ -90,10 +90,10 @@ int main(void)
 
 		cout<<"Recording the beam ... ..."<<endl;
 	        
-		TakeData(21,1e8,1);
+		RunSingle(21,1e8,1);
 
 		//Calculate the mean here
-		intensity=CalAverage();
+		intensity=CalAverage(0);
 
 		cout<<"Y_req : "<<Y_r<<"    "<<"Y_moved : "<<Y_m<<"    "<<"X_req : "<<X_r<<"    "<<"X_moved : "<<X_m<<"    "<<"intensity : "<<intensity<<endl<<endl;
 		//Save to Data File
