@@ -75,6 +75,13 @@ void Socket::WriteData()
    // cout.write(buffer, retVal); //Uncomment this if you also want realtime data manipulation and plotting
 }
 
+int Socket::WriteToSocket(const char *txt)
+{
+    string str=txt;
+    nout=write(s, str.c_str(), str.length());
+    return(0);
+}
+
 size_t Socket::GetFileSize()
 {
     const string fname = string(filename);
