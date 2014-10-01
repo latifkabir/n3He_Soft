@@ -27,7 +27,7 @@ SerialXY::~SerialXY()
 
 void SerialXY::MoveXY( char axis,int increment)
 {
-    sleep_time=abs((int)(0.005*increment));
+    sleep_time=abs((int)(0.0006*increment));
  
     sprintf(move_x,"CI1M%d\rR",increment);
     sprintf(move_y,"CI2M%d\rR",increment);
@@ -44,6 +44,7 @@ void SerialXY::MoveXY( char axis,int increment)
     }
 
     sleep(sleep_time);
+    sleep(3);
 
     
 }

@@ -11,10 +11,10 @@
 using namespace std;
 double CalAverage(int ch=0)
 {
-    if(fstream("../data/000"))
+    if(fstream("../data/run0data_file-21"))
     {
 	   
-	ReadBinary fa("../data/000");
+	ReadBinary fa("../data/run0data_file-21");
 	int entries=(int)(8*fa.GetFileSize()/(64*32));                
 	double multiplier=4.65661287e-9; //Convert ADC count to Volt
 	double total=0.0;

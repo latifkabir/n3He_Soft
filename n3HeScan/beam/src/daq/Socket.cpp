@@ -29,7 +29,7 @@ Socket::Socket(const char *ip,const char *port,int module)
     hints.ai_protocol = AF_UNSPEC;
 
     //Generate file name for corresponding DAQ module
-    sprintf(filename,"data_file-%d",daq);
+    sprintf(filename,"../data/data_file-%d",daq);
     data.open(filename,ofstream::binary);
 }
 

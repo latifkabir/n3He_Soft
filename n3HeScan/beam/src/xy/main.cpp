@@ -19,10 +19,10 @@ using namespace std;
 
 int main(void)
 {
-    int unit_x=400;
-    int unit_y=400;
-    int max_x=1000;
-    int max_y=1000;
+    int unit_x=4000;
+    int unit_y=4000;
+    int max_x=6e4;      //For 14 Inches(40355 actual steps)
+    int max_y=6e4;
     int short_sleep=3;
     int X_r,Y_r;  //Requested X,Y Coordinate
     int X_m,Y_m;  //X,Y Coord actually moved
@@ -42,8 +42,8 @@ int main(void)
     	sleep(3);
 
 	cout<<"Now going Sweet Home!!!"<<endl;
-	xy.MoveXY('X',-1*max_x);
-	xy.MoveXY('Y',-1*max_y);
+	xy.MoveXY('X',max_x);
+	xy.MoveXY('Y',max_y);
 
 
 	xy.Write("N"); //Null absolute position resister
@@ -59,7 +59,7 @@ int main(void)
 	{
 	    if(Y_r!=0)
 	    {
-		xy.MoveXY('Y',unit_y);
+		xy.MoveXY('Y',-1*unit_y);
 		Y_l=Y_m;
 		Y_m=xy.GetPosition('Y');
 
@@ -72,10 +72,10 @@ int main(void)
 
 	    for(X_r=0;X_r<=max_x;X_r=X_r+unit_x)
 	    {
-		cout<<"Now moving to Y: "<<Y_r<<" & X: "<<X_r<<"... ..."<<endl;
+		cout<<"Now moving to Y: "<<-1*Y_r<<" & X: "<<-1*X_r<<"... ..."<<endl;
 		if(X_r!=0)
 		{	
-		    xy.MoveXY('X',unit_x);
+		    xy.MoveXY('X',-1*unit_x);
 		    X_l=X_m;
 		    X_m=xy.GetPosition('X');
 
@@ -86,7 +86,7 @@ int main(void)
 	
 		}
 	   
-		cout<<"Now at Y: "<<Y_m<<" & X: "<<X_m<<endl;
+		cout<<"Now at Y: "<<-1*Y_m<<" & X: "<<-1*X_m<<endl;
 
 		cout<<"Recording the beam ... ..."<<endl;
 	        
@@ -95,12 +95,12 @@ int main(void)
 		//Calculate the mean here
 		intensity=CalAverage(0);
 
-		cout<<"Y_req : "<<Y_r<<"    "<<"Y_moved : "<<Y_m<<"    "<<"X_req : "<<X_r<<"    "<<"X_moved : "<<X_m<<"    "<<"intensity : "<<intensity<<endl<<endl;
+		cout<<"Y_req : "<<-1*Y_r<<"    "<<"Y_moved : "<<Y_m<<"    "<<"X_req : "<<-1*X_r<<"    "<<"X_moved : "<<X_m<<"    "<<"intensity : "<<intensity<<endl<<endl;
 		//Save to Data File
 		xy.BeamData <<setprecision(10);
-		xy.BeamData <<setw(10)<<Y_r<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<X_r<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<setprecision(10)<<intensity<<"        "<<endl;
+		xy.BeamData <<setw(10)<<-1*Y_r<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<-1*X_r<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<setprecision(10)<<intensity<<"        "<<endl;
 	    }
-	    xy.MoveXY('X',-X_m);
+	    xy.MoveXY('X',-1*X_m);
 	    X_m=xy.GetPosition('X');
 	}
     }

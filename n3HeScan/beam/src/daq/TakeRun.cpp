@@ -47,8 +47,8 @@ void Rename(int run,int module)
     char file_old[200];
     char file_new[200];
 
-    sprintf(file_old,"data_file-%d",module);
-    sprintf(file_new,"run%ddata_file-%d",run,module);
+    sprintf(file_old,"../data/data_file-%d",module);
+    sprintf(file_new,"../data/run%ddata_file-%d",run,module);
 
     if(rename(file_old, file_new) == 0)
     {
@@ -71,13 +71,13 @@ void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
     int counter=0;
     int stime=15; //Sleep time in second
     const char *ip;
-    const char *port="1234";
+    const char *port="4210";
 
     switch(module)
     {
     case 21:
     {
-	ip="127.0.0.1";
+	ip="192.168.0.21";
 	break;
     }
     case 22:
@@ -130,9 +130,9 @@ void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
          {
              counter=counter+1;
          }
-         cout<<"----->DAQ is now sleeping for "<<stime<<" seconds, Press Crtl+C if no further run is expected<------"<<endl<<endl;
+         // cout<<"----->DAQ is now sleeping for "<<stime<<" seconds, Press Crtl+C if no further run is expected<------"<<endl<<endl;
 
-	 sleep(stime);
+	 // sleep(stime);
     }    
 }
 
@@ -188,9 +188,9 @@ void RunAll (int runlength=100000000,int runNumber=0)
 	{
 	    counter=counter+1;
 	}
-	cout<<"----->DAQ is now sleeping for "<<stime<<" seconds, Press Crtl+C if no further run is expected<------"<<endl<<endl;
+	// cout<<"----->DAQ is now sleeping for "<<stime<<" seconds, Press Crtl+C if no further run is expected<------"<<endl<<endl;
 
-	sleep(stime);
+	// sleep(stime);
     }
    
 }
