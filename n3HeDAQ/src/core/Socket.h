@@ -36,6 +36,7 @@ public:
     int bufferSize=0x100000;
     char *buffer = new char[bufferSize]; //Require c++11
     ssize_t retVal;
+    ssize_t totRet;
     int nout;
 
     Socket(const char *ip,const char *port,int module);

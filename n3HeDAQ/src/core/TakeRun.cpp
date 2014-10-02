@@ -52,7 +52,7 @@ void Rename(int run,int module)
 
     if(rename(file_old, file_new) == 0)
     {
-	cout<< file_old<<" has been renamed to "<<file_new<<endl;
+	cout<<"\n \n"<< file_old<<" has been renamed to "<<file_new<<endl;
     }
     else
     {
@@ -69,15 +69,15 @@ void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
-    int stime=15; //Sleep time in second
+    int stime=5; //Sleep time in second
     const char *ip;
-    const char *port="1234";
+    const char *port="4210";
 
     switch(module)
     {
     case 21:
     {
-	ip="127.0.0.1";
+	ip="192.168.0.21";
 	break;
     }
     case 22:
@@ -91,9 +91,9 @@ void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
 	break;
     }
 
-    case 30:
+    case 24:
     {
-	ip="127.0.0.1";
+	ip="192.168.0.24";
 	break;
     }
     default:
@@ -115,9 +115,15 @@ void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
 	      if(!daq.CheckStatus())
 	      {
 	          RunList();
-	          daq.SaveData();
+		  cout<<"Run "<<newrun<<" in progress ... ... "<<endl<<endl;
+	          daq.SaveData(true);
+		  if(daq.GetFileSize()<daq.filesize)
+		  {
+		      cout<<"\n??PROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE??"<<endl;
+		      break;
+		  }
 	          Rename(newrun,module);
-	          cout<<"Phew!!! Done with run number : "<<newrun<<endl;
+	          cout<<"\nPhew!!! Done with run number : "<<newrun<<endl<<endl;
                }
 	       else
                {
@@ -141,7 +147,7 @@ void RunAll (int runlength=100000000,int runNumber=0)
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
-    int stime=15; //Sleep time in second
+    int stime=5; //Sleep time in second
 
     if(runNumber==0)
     {
@@ -151,29 +157,34 @@ void RunAll (int runlength=100000000,int runNumber=0)
     {
 	if(ready)
 	{
-	    Daq daq21("127.0.0.1","1234",21,runlength);
-	    Daq daq22("127.0.0.1","1235",22,runlength);
-	    Daq daq23("127.0.0.1","1236",23,runlength);
-	    Daq daq30("127.0.0.1","1237",30,runlength);
+	    Daq daq21("192.168.0.21","4210",21,runlength);
+	    Daq daq22("192.168.0.22","4210",22,runlength);
+	    Daq daq23("192.168.0.23","4210",23,runlength);
+	    Daq daq24("192.168.0.24","4210",24,runlength);
 
-	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq30.CheckStatus())
+	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq24.CheckStatus())
 	    {
 		RunList();
-                 cout<<"Run "<<newrun<<" in progress ... ... "<<endl<<endl;
-		thread t21(&Daq::SaveData,&daq21);
-		thread t22(&Daq::SaveData,&daq22);
-		thread t23(&Daq::SaveData,&daq23);
-		thread t30(&Daq::SaveData,&daq30);
+		cout<<"Run "<<newrun<<" in progress ... ... "<<endl<<endl;
+		thread t21(&Daq::SaveData,&daq21,true);
+		thread t22(&Daq::SaveData,&daq22,false);
+		thread t23(&Daq::SaveData,&daq23,false);
+		thread t24(&Daq::SaveData,&daq24,false);
 
 		t21.join();
 		t22.join();
 		t23.join();
-		t30.join();
+		t24.join();
 
+		if(daq21.GetFileSize()<daq21.filesize || daq22.GetFileSize()<daq22.filesize || daq23.GetFileSize()<daq23.filesize ||daq24.GetFileSize()<daq24.filesize)
+		{
+		    cout<<"\n??PROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE??"<<endl;
+		    break;
+		}
 		Rename(newrun,21);
 		Rename(newrun,22);
 		Rename(newrun,23);
-		Rename(newrun,30);
+		Rename(newrun,24);
 
 		cout<<"\nPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }

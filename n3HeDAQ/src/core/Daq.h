@@ -13,7 +13,7 @@ class Daq : public Socket //Derived Daq class from Socket
 {
 public:
     int filesize;
-    void SaveData();
+    void SaveData(bool pStatus);
     Daq(const char *ip,const char *port,int module,int length);
     ~Daq();
 };

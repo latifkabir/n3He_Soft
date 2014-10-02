@@ -4,6 +4,7 @@
 //Version:1.0
 
 #include"Daq.h"
+#include"Progress.h"
 
 using namespace std;
 
@@ -20,17 +21,19 @@ Daq::~Daq()
 }
 
 
-void Daq::SaveData()
+void Daq::SaveData(bool pStatus)
 {
 
 
     int sleepCount = 0;
     bool condn=true;  //Flip it to stop the run
+    totRet=0;
 
     //Implement condition when Socket to be terminated or data taking is finished.For the time being up to desired data file size.
     while ((retVal = read(s,buffer,bufferSize)) > -1 && condn)
     {
 	WriteData();
+	totRet=totRet+retVal;
 	//Terminate if server does not respond more than 2 sec
 	if (retVal == 0) 
 	{
@@ -44,8 +47,12 @@ void Daq::SaveData()
 	} 
 	else
 	    sleepCount = 0;
+	if(pStatus)
+	{
+	    printProgBar((int)(100*totRet/filesize));
+	}
 	//Stop after the desied run length
-	if(GetFileSize()>=filesize)
+	if(totRet>=filesize)
 	{
 	    condn=false;
 	}
