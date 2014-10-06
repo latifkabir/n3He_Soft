@@ -23,7 +23,7 @@ private:
     const char *SERVER_NAME; //IP address for the socket
     const char *PORT;       //Port number of the socket
     int daq;               //DAQ module number
-    char filename[200];
+    char *filename=new char[200];
 
     addrinfo hints;
     addrinfo* servInfo;

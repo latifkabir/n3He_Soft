@@ -3,11 +3,8 @@
 //Date:08.15.14
 //Version:1.0
 
-//#include<iostream>
 
-//Default getting help instruction
-
-#include<iostream>
+//Default help instruction
 
 void DefaultIns();
 void Title();

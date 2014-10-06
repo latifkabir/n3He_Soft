@@ -8,6 +8,7 @@
 #include<cstdio>
 #include<thread>
 #include<unistd.h>
+#include<stdio.h>
 #include"Daq.h"
 
 using namespace std;
@@ -18,6 +19,15 @@ int newrun=0;
 
 void RunList()
 {
+    //Generate current date and time of the run
+    time_t time_now;
+    time(&time_now);
+    struct tm my_time;
+    localtime_r (&time_now,&my_time);
+    int strlen=100;
+    char *strname=new char[100];
+    snprintf(strname,strlen,"%04d-%02d-%02d-%02d-%02d-%02d",my_time.tm_year+1900,my_time.tm_mon+1,my_time.tm_mday,my_time.tm_hour,my_time.tm_min,my_time.tm_sec);
+
  
     // Read last run number and generate run number for current run
     fstream runRecord("LastRun.txt",ios::in | ios::out);
@@ -34,21 +44,21 @@ void RunList()
     ofstream runlist("RunList.txt",ofstream::app);
     if(runlist)
     {
-	runlist<<__DATE__<<"    "<<__TIME__<<"    "<<newrun<<endl;
+	runlist<<strname<<"          "<<newrun<<endl;
 	runlist.close();
     }
-    cout<<"=======Initializing Run number: "<<newrun<<" on "<<__DATE__<<" at "<<__TIME__<<"======="<<endl<<endl; 
+    cout<<"=======Initializing Run number: "<<newrun<<"  Date & Time: "<<strname<<"======="<<endl<<endl; 
    
 }
 
 //Rename all the data files (just taken) adding the run number
 void Rename(int run,int module)
 {
-    char file_old[200];
-    char file_new[200];
+    char *file_old=new char[200];
+    char *file_new=new char[200];
 
-    sprintf(file_old,"data_file-%d",module);
-    sprintf(file_new,"run%ddata_file-%d",run,module);
+    sprintf(file_old,"../data/data_file-%d",module);
+    sprintf(file_new,"../data/run%ddata_file-%d",run,module);
 
     if(rename(file_old, file_new) == 0)
     {
@@ -119,7 +129,7 @@ void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
 	          daq.SaveData(true);
 		  if(daq.GetFileSize()<daq.filesize)
 		  {
-		      cout<<"\n??PROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE??"<<endl;
+		      cout<<"\nPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		      break;
 		  }
 	          Rename(newrun,module);
@@ -178,7 +188,7 @@ void RunAll (int runlength=100000000,int runNumber=0)
 
 		if(daq21.GetFileSize()<daq21.filesize || daq22.GetFileSize()<daq22.filesize || daq23.GetFileSize()<daq23.filesize ||daq24.GetFileSize()<daq24.filesize)
 		{
-		    cout<<"\n??PROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE??"<<endl;
+		    cout<<"\nPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		    break;
 		}
 		Rename(newrun,21);

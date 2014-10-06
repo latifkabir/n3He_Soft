@@ -65,6 +65,8 @@ A Typical run with command "n3he start" will look as follows:
 
 Run 88 in progress ... ... 
 
+`[==================================================] 100% `
+
 datafile-21 has been renamed to run88data_file-21
 
 datafile-22 has been renamed to run88data_file-22
