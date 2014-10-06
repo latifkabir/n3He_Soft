@@ -19,7 +19,7 @@ int newrun=0;
 
 void RunList()
 {
-    //Generate current date and time of the run
+    //Generate current date and time of the run in desired format
     time_t time_now;
     time(&time_now);
     struct tm my_time;
@@ -47,7 +47,7 @@ void RunList()
 	runlist<<strname<<"          "<<newrun<<endl;
 	runlist.close();
     }
-    cout<<"=======Initializing Run number: "<<newrun<<"  Date & Time: "<<strname<<"======="<<endl<<endl; 
+    cout<<"=======Initializing Run number: "<<newrun<<"  Date & Time: "<<ctime(&time_now)<<"======="<<endl<<endl; 
    
 }
 
