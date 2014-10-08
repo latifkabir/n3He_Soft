@@ -12,6 +12,7 @@
 #include<fstream>
 #include <sys/stat.h>
 #include"Socket.h"
+#include"Constants.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ Socket::Socket(const char *ip,const char *port,int module)
     hints.ai_protocol = AF_UNSPEC;
 
     //Generate file name for corresponding DAQ module
-    sprintf(filename,"../data/data_file-%d",daq);
+    sprintf(filename,OLD_FILE,daq);
     data.open(filename,ofstream::binary);
 }
 

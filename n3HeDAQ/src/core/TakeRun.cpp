@@ -10,6 +10,7 @@
 #include<unistd.h>
 #include<stdio.h>
 #include"Daq.h"
+#include"Constants.h"
 
 using namespace std;
 
@@ -57,8 +58,8 @@ void Rename(int run,int module)
     char *file_old=new char[200];
     char *file_new=new char[200];
 
-    sprintf(file_old,"../data/data_file-%d",module);
-    sprintf(file_new,"../data/run%ddata_file-%d",run,module);
+    sprintf(file_old,OLD_FILE,module);
+    sprintf(file_new,NEW_FILE,run,module);
 
     if(rename(file_old, file_new) == 0)
     {
@@ -74,41 +75,41 @@ void Rename(int run,int module)
 
 
 //Routine to run a single DAQ module only 
-void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
+void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 {
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
-    int stime=5; //Sleep time in second
+    int stime=SLEEP_TIME; //Sleep time in second
     const char *ip;
-    const char *port="4210";
+    const char *port=DAQ_PORT1;
 
     switch(module)
     {
     case 21:
     {
-	ip="192.168.0.21";
+	ip=DAQ21_IP;
 	break;
     }
     case 22:
     {
-	ip="192.168.0.22";
+	ip=DAQ22_IP;
 	break;
     }
     case 23:
     {
-	ip="192.168.0.23";
+	ip=DAQ23_IP;
 	break;
     }
 
     case 24:
     {
-	ip="192.168.0.24";
+	ip=DAQ24_IP;
 	break;
     }
     default:
     {
-	ip="192.168.0.21";
+	ip=DAQ21_IP;
     }
     }
 
@@ -152,7 +153,7 @@ void RunSingle(int module=21,int runlength=100000000,int runNumber=0)
 }
 
 //Running all the DAQ module
-void RunAll (int runlength=100000000,int runNumber=0)
+void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 {
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
@@ -167,10 +168,10 @@ void RunAll (int runlength=100000000,int runNumber=0)
     {
 	if(ready)
 	{
-	    Daq daq21("192.168.0.21","4210",21,runlength);
-	    Daq daq22("192.168.0.22","4210",22,runlength);
-	    Daq daq23("192.168.0.23","4210",23,runlength);
-	    Daq daq24("192.168.0.24","4210",24,runlength);
+	    Daq daq21(DAQ21_IP,DAQ_PORT1,DAQ21,runlength);
+	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
+	    Daq daq23(DAQ23_IP,DAQ_PORT1,DAQ23,runlength);
+	    Daq daq24(DAQ24_IP,DAQ_PORT1,DAQ24,runlength);
 
 	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq24.CheckStatus())
 	    {
@@ -191,10 +192,10 @@ void RunAll (int runlength=100000000,int runNumber=0)
 		    cout<<"\nPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		    break;
 		}
-		Rename(newrun,21);
-		Rename(newrun,22);
-		Rename(newrun,23);
-		Rename(newrun,24);
+		Rename(newrun,DAQ21);
+		Rename(newrun,DAQ22);
+		Rename(newrun,DAQ23);
+		Rename(newrun,DAQ24);
 
 		cout<<"\nPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }

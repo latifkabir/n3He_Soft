@@ -1,6 +1,8 @@
 #include<iostream>
 #include"Config.h"
 #include"Daq.h"
+#include"Constants.h"
+
 using namespace std;
 
 int DaqConfig()
@@ -8,7 +10,7 @@ int DaqConfig()
 {
     string change_config;
 
-    Daq daq("192.168.0.23","4221",23,10e6);
+    Daq daq(DAQ23_IP,DAQ_PORT2,DAQ23,RUN_LENGTH);
     if(!daq.CheckStatus())
     {
 	cout<<"Enter DAQ configuration change: "<<endl;
