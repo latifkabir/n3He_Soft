@@ -31,7 +31,7 @@ void RunList()
 
  
     // Read last run number and generate run number for current run
-    fstream runRecord("LastRun.txt",ios::in | ios::out);
+    fstream runRecord(LAST_RUN,ios::in | ios::out);
     if(runRecord)
     {
 	runRecord>>lastrun;	
@@ -42,7 +42,7 @@ void RunList()
     }
 
     //Save Date and time of current run to the file RunList.txt
-    ofstream runlist("RunList.txt",ofstream::app);
+    ofstream runlist(RUN_LIST,ofstream::app);
     if(runlist)
     {
 	runlist<<strname<<"          "<<newrun<<endl;
