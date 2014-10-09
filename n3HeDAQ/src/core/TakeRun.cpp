@@ -48,7 +48,7 @@ void RunList()
 	runlist<<strname<<"          "<<newrun<<endl;
 	runlist.close();
     }
-    cout<<"=======Initializing Run number: "<<newrun<<"  Date & Time: "<<ctime(&time_now)<<"======="<<endl<<endl; 
+    cout<<"====================Initializing Run number: "<<newrun<<"====================="<<"\n\t\tDate & Time: "<<ctime(&time_now)<<endl<<endl; 
    
 }
 
