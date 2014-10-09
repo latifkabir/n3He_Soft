@@ -36,7 +36,7 @@ From the terminal do the following:
            
     This will take data only for the DAQ module number 'MODULE' for 'RUN' number of runs of length 'LENGTH' each.
     
-    If MODULE, RUN and LENGTH are not specified the default values are, MODULE=21, RUN=continuous runs and LENGTH =         default run length.       
+    If MODULE, RUN and LENGTH are not specified the default values are, MODULE=21, RUN=continuous runs and LENGTH =default run length.       
 
 * `n3he config `:
 
@@ -49,8 +49,7 @@ From the terminal do the following:
 
 To quit the program while in continuous data taking mode :
 
-- At first let the current run finish.
-- When the run finishes and it sleeps a while, press Ctrl+C to quit the program. 
+- Press Ctrl+C any time, The DAQ program will finish the current run first, then it will quit.
 
 
 
@@ -77,9 +76,6 @@ datafile-30 has been renamed to run88data_file-30
 
 
 Phew!!! Done with run number : 88
-
-
------>DAQ is now sleeping for 5 seconds, Press Crtl+C if no further run is expected<-----
 
 
 

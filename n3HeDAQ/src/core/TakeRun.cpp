@@ -1,14 +1,14 @@
 //The program to take the data
 //Author: Latiful Kabir
-//Date:08.15.14
-//Version:1.0
+//Date:10.9.14
+//Version:2.0
 
 #include<iostream>
 #include<fstream>
 #include<cstdio>
 #include<thread>
-#include<unistd.h>
 #include<stdio.h>
+#include<csignal>
 #include"Daq.h"
 #include"Constants.h"
 
@@ -16,7 +16,7 @@ using namespace std;
 
 int lastrun=0;
 int newrun=0; 
-  
+bool stop=false;  //Flip if Ctrl+C is pressed
 
 void RunList()
 {
@@ -71,6 +71,17 @@ void Rename(int run,int module)
     }
 }
 
+//Handling ctrl+C signal to stop DAQ program smoothly/after finishing current run
+void signalHandler( int signum )
+{
+    cout << "\n\nRequest to stop DAQ received.Program will stop once current run finishes.Wait please ...\n\n";
+    stop=true;
+
+    // cleanup and close up stuff here  
+    // terminate program  
+    // exit(signum);  
+
+}
 
 
 
@@ -83,6 +94,8 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
     int stime=SLEEP_TIME; //Sleep time in second
     const char *ip;
     const char *port=DAQ_PORT1;
+
+    signal(SIGINT, signalHandler); //Handle Ctrl+C Signal
 
     switch(module)
     {
@@ -117,7 +130,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
     {
 	continuous=true;
     }
-    while(continuous || (counter <runNumber))
+    while(!stop && (continuous || (counter <runNumber)))
     {
 
          if(ready)
@@ -146,9 +159,6 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
          {
              counter=counter+1;
          }
-         cout<<"----->DAQ is now sleeping for "<<stime<<" seconds, Press Crtl+C if no further run is expected<------"<<endl<<endl;
-
-	 sleep(stime);
     }    
 }
 
@@ -160,11 +170,14 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     int counter=0;
     int stime=5; //Sleep time in second
 
+    signal(SIGINT, signalHandler); //Handle Ctrl+C Signal  
+
+
     if(runNumber==0)
     {
 	continuous=true;
     }
-    while(continuous || (counter <runNumber))
+    while(!stop && (continuous || (counter <runNumber)))
     {
 	if(ready)
 	{
@@ -209,9 +222,6 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	{
 	    counter=counter+1;
 	}
-	cout<<"----->DAQ is now sleeping for "<<stime<<" seconds, Press Crtl+C if no further run is expected<------"<<endl<<endl;
-
-	sleep(stime);
     }
    
 }

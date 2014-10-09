@@ -36,8 +36,7 @@ n3he help :
    This will bring this help session. 
 
 To quit the program while in continuous data taking mode :
--- At first let the current run finish.
--- When the run finishes and it sleeps a while, press Ctrl+C to quit the program. 
+-- Press Ctrl+C to quit the program. The DAQ program will finish the current run, then it will quit.  
 
 
 
@@ -63,7 +62,6 @@ data_file-30 has been renamed to run88data_file-30
 
 Phew!!! Done with run number : 88
 
------>DAQ is now sleeping for 5 seconds, Press Crtl+C if no further run is expected<------
 
 
 
