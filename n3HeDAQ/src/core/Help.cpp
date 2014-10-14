@@ -83,8 +83,8 @@ void Instruction()
     cout<<"\n    This will bring this help session. ";
     cout<<"\n";
     cout<<"\n To quit the program while in continuous data taking mode :";
-    cout<<"\n   -- At first let the current run finish.";
-    cout<<"\n   -- When the run finishes and it sleeps a while, press Ctrl+C to quit the program."<<endl;
+    cout<<"\n   -- Anytime press ctrl+C";
+    cout<<"\n   -- The DAQ will finish the current run first defore it quits."<<endl;
 
 }
 
