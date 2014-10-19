@@ -32,4 +32,4 @@ n3HeScan
 
 In any case please read the REAME file in the corresponding section first.
 
-[1]: n3he.wikicpaces.com
+[1]: http://n3he.wikicpaces.com
