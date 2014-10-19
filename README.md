@@ -1,6 +1,6 @@
 Software for the n3He Experiment
 ================================== 
-This is my backup reporitory for my developed software for the n3He experiment at SNS.
+This is the official reporitory for any developed software for the [n3He experiment at SNS][1].
 This repository is divided into several sub directories based on the category:
 * n3HeDAQ --- Contains software for the n3He DAQ.
 * libn3he --- Contains the analysis library for the n3He experiment.
@@ -32,4 +32,4 @@ n3HeScan
 
 In any case please read the REAME file in the corresponding section first.
 
-
+[1]: n3he.wikicpaces.com
