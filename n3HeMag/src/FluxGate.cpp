@@ -10,13 +10,13 @@
 #include<time.h>
 #include<iomanip>
 #include"FluxGate.h"
-
+#include"Constants.h"
 
 using namespace std;
 
 FluxGate::FluxGate(const char *portName,int sspeed):Serial(portName,sspeed)
 {
-    magData.open("magData.txt",ofstream::app);  
+    magData.open(DATA_FILE,ofstream::app);  
 }
 
 FluxGate::~FluxGate()
@@ -47,8 +47,8 @@ int FluxGate::ReadFG(int ch)
     ADC_Count=btod[1]+256*btod[2]+65536*btod[3];
     mVolt=(ADC_Count*0.0005960464)-5000;
     gauss=mVolt*0.002;
-    cout<<"Channel:"<<ch+1<<" ADC Count :"<<ADC_Count<<endl;
-    cout<<"Channel:"<<ch+1<<" Gauss : "<<gauss<<endl<<endl;
+    cout<<"Channel:"<<ch+1<<" ADC Count :"<<ADC_Count<<"          ";
+    cout<<"Channel:"<<ch+1<<" Gauss : "<<gauss<<endl;
     magData <<setw(10); 
     magData << setprecision(8)<<gauss<<"	";
     if(ch==7)
@@ -70,11 +70,13 @@ void FluxGate::CurrentTime()
 	struct tm my_time;
 	localtime_r (&time_now,&my_time);
 	int strlen=100;
-	char strname[strlen];
+	char *strname=new char[strlen];
 	snprintf(strname,strlen,"%04d-%02d-%02d-%02d-%02d-%02d",my_time.tm_year+1900,my_time.tm_mon+1,my_time.tm_mday,my_time.tm_hour,my_time.tm_min,my_time.tm_sec);
 	magData<<strname<<"	";
 	cout<<"\n";
 	cout<<"-------------------------"<<endl;
 	cout<<strname<<":"<<endl;
 	cout<<"-------------------------"<<endl<<endl;
+
+	delete[] strname;
 }

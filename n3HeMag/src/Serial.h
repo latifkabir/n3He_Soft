@@ -20,9 +20,6 @@ protected:
     int speed;
     int bspeed;
     struct termios term, saved_term;
-    // int bufferSize = 0x100000;
-    // char *buffer = new char[bufferSize];
-
     unsigned char buf[256];
     int nout;
     int i,j;
