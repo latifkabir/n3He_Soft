@@ -6,7 +6,7 @@ This repository is divided into several sub directories based on the category:
 * libn3He --- Contains the analysis library for the n3He experiment.
 * n3HeMag ---Contains 'driver for FluxGate' in C++ source code 
 * n3HeScan --- Software for field and beam scan 
-
+* DAQFirmware --- This directory contain DAQ Firmware related Software update.
 
 n3HeDAQ
 -------
@@ -29,6 +29,11 @@ n3HeScan
 ---------
   * field : Software for magnetic field scan
   * beam : Software for beam scan
+
+DAQFormware
+----------
+This directory contain DAQ Firmware related Software update.
+
 
 In any case please read the REAME file in the corresponding section first.
 
