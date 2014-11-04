@@ -71,6 +71,30 @@ void Rename(int run,int module)
     }
 }
 
+//Synchronize with T_0 at the start of DAQ by enabling and disabling Trigger
+int Sync(bool status)
+{
+    
+    Daq daq(DAQ30_IP,DAQ_PORT2,DAQ30,RUN_LENGTH);
+    if(!daq.CheckStatus())
+    {
+	{
+	    if(status)
+	    {
+		cout<<"Trigger Enabled"<<endl<<endl;
+		daq.WriteToSocket("do4_3 1");
+	    }
+	    else if(!status)
+	    {
+		cout<<"Trigger Disabled"<<endl<<endl;
+		daq.WriteToSocket("do4_3 0");
+	    }
+	}
+    }
+    return(0);
+}
+
+
 //Handling ctrl+C signal to stop DAQ program smoothly/after finishing current run
 void signalHandler( int signum )
 {
@@ -120,6 +144,12 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 	ip=DAQ24_IP;
 	break;
     }
+    case 30:
+    {
+	ip=DAQ30_IP;
+	break;
+    }
+
     default:
     {
 	ip=DAQ21_IP;
@@ -130,6 +160,8 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
     {
 	continuous=true;
     }
+
+    Sync(true); //Enable the Trigger
     while(!stop && (continuous || (counter <runNumber)))
     {
 
@@ -159,7 +191,9 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
          {
              counter=counter+1;
          }
-    }    
+    }
+
+    Sync(false);//Disable the trigger    
 }
 
 //Running all the DAQ module
@@ -177,6 +211,8 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     {
 	continuous=true;
     }
+
+    Sync(true); //Enable the Trigger
     while(!stop && (continuous || (counter <runNumber)))
     {
 	if(ready)
@@ -223,5 +259,5 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    counter=counter+1;
 	}
     }
-   
+    Sync(false);//Disable the trigger      
 }
