@@ -7,6 +7,7 @@ This repository is divided into several sub directories based on the category:
 * n3HeMag ---Contains 'driver for FluxGate' in C++ source code 
 * n3HeScan --- Software for field and beam scan 
 * DAQFirmware --- This directory contain DAQ Firmware related Software update.
+* DemoScripts --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 
 n3HeDAQ
 -------
@@ -17,7 +18,7 @@ Contains
 libn3He
 -------
 Contains
-   *  TBranchBinary : A Root friendly analysis library.
+   * TBranchBinary : A Root friendly analysis library.
    * ReadBinary : An independent analysis library
 
 n3HeMag
@@ -34,6 +35,9 @@ DAQFormware
 ----------
 This directory contain DAQ Firmware related Software update.
 
+DemoScripts
+-----------
+Contains analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 
 In any case please read the REAME file in the corresponding section first.
 
