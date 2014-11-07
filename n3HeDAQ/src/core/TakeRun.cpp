@@ -102,7 +102,7 @@ void signalHandler( int signum )
 {
     if(!fexit)
     {
-        cout <<"\n\nRequest to stop DAQ received.\nProgram will stop once current run         finishes.Please wait...\nTo quit program forcefully press Ctrl+C again.\n\n";
+        cout <<"\n\nRequest to stop DAQ received.\nProgram will stop once current run finishes.Please wait...\nTo quit program forcefully press Ctrl+C again.\n\n";
 	stop=true;
 	fexit=true;
     }

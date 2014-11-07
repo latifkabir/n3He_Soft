@@ -1,8 +1,10 @@
 #include<iostream>
+#include<unistd.h>
 #include"Config.h"
 #include"Daq.h"
 #include"Constants.h"
 
+#define SLEEP 15e5
 using namespace std;
 
 int DaqConfig(unsigned int *param)
@@ -10,7 +12,7 @@ int DaqConfig(unsigned int *param)
     string change_config="set.site 1 ";
     char *command=new char[100];
 
-    Daq daq(DAQ23_IP,DAQ_PORT2,DAQ23,RUN_LENGTH);
+    Daq daq(DAQ30_IP,DAQ_PORT2,DAQ30,RUN_LENGTH);
     if(!daq.CheckStatus())
     {
         //Change Frequency
@@ -18,8 +20,8 @@ int DaqConfig(unsigned int *param)
 	{
             //Set the external clock
 	    sprintf(command,"fpmux xclk");
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+	    // change_config=change_config+command;
+	    daq.WriteToSocket(command);
 
 	    //Set the clock
 	    sprintf(command,"clk 1,1,0");
@@ -33,8 +35,8 @@ int DaqConfig(unsigned int *param)
          
             //Set the mb_clock
 	    sprintf(command,"mb_clk 64000 %d",param[1]);
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+	    // change_config=change_config+command;
+	    daq.WriteToSocket(command);
 	}
 
         //Change Running Mode
@@ -71,6 +73,7 @@ int DaqConfig(unsigned int *param)
 	   
 	    change_config=change_config+command;
 	    daq.WriteToSocket(change_config.c_str());
+	    usleep(SLEEP);
 
           //rgm=MODE,line (0=d0, front panel), edge
           //MODE :0=OFF, 2=RGM, 3=RTM, 1=SRTM
@@ -86,6 +89,7 @@ int DaqConfig(unsigned int *param)
 	    sprintf(command,"rtm_translen=%d",param[3]);
 	    change_config=change_config+command;
 	    daq.WriteToSocket(change_config.c_str());
+	    usleep(SLEEP);
 	}
 
        //Change Hi_Res_Mode (Averaging and Decimation)
@@ -94,6 +98,7 @@ int DaqConfig(unsigned int *param)
 	    sprintf(command,"hi_res_mode=%d",param[4]-1);
 	    change_config=change_config+command;
 	    daq.WriteToSocket(change_config.c_str());
+	    usleep(SLEEP);
 	}
 
         //Change nacc (Averaging and Decimation)
@@ -102,6 +107,7 @@ int DaqConfig(unsigned int *param)
 	    sprintf(command,"nacc=%d,%d",param[5],param[6]);
 	    change_config=change_config+command;
 	    daq.WriteToSocket(change_config.c_str());
+	    usleep(SLEEP);
 	}
     }
     delete[] command;
@@ -146,7 +152,7 @@ int ChangeConfig(void)
 	cout<<"Invalid mode. Check Syntax"<<endl;
         return(1);
     }
-    if(param[3]<39)
+    if(param[3]<39 && param[3]!=0)
     {
 	cout<<"Invalid Event Length.Must be greater than 39."<<endl;
         return(1);
@@ -156,14 +162,14 @@ int ChangeConfig(void)
 	cout<<"Invalid Hi_Res_Mode"<<endl;
         return(1);
     }
-    if(param[5] < 0 || param[5] > 64 || ((param[5] & (param[5] - 1))))
+    if(param[5] < 0 || param[5] > 64 )
     {
-	cout<<"Invalid Averaging.Note it should be power of 2."<<endl;
+	cout<<"Invalid Averaging."<<endl;
         return(1);
     }
-    if(!(param[6]==1 || param[6]==param[6]) || param[6]!=0)
+    if((param[6]!=1 && param[6]!=param[6] && param[6]!=0)|| ((param[6] & (param[6] - 1))) || param[6]<0)
     {
-        cout <<"Invalid Decimation" <<endl; 
+        cout <<"Invalid Decimation.Note it should be power of 2." <<endl; 
         return(1);
     }
     DaqConfig(param);
