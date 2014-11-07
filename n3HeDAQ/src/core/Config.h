@@ -1,1 +1,1 @@
-int DaqConfig();
+int DaqConfig(unsigned int *param);

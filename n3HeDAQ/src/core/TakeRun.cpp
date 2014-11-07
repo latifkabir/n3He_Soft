@@ -9,6 +9,7 @@
 #include<thread>
 #include<stdio.h>
 #include<csignal>
+#include<cstdlib>
 #include"Daq.h"
 #include"Constants.h"
 
@@ -17,6 +18,7 @@ using namespace std;
 int lastrun=0;
 int newrun=0; 
 bool stop=false;  //Flip if Ctrl+C is pressed
+bool fexit=false;
 
 void RunList()
 {
@@ -98,9 +100,16 @@ int Sync(bool status)
 //Handling ctrl+C signal to stop DAQ program smoothly/after finishing current run
 void signalHandler( int signum )
 {
-    cout << "\n\nRequest to stop DAQ received.Program will stop once current run finishes.Wait please ...\n\n";
-    stop=true;
-
+    if(!fexit)
+    {
+        cout <<"\n\nRequest to stop DAQ received.\nProgram will stop once current run         finishes.Please wait...\nTo quit program forcefully press Ctrl+C again.\n\n";
+	stop=true;
+	fexit=true;
+    }
+    else
+    {
+	exit(signum);
+    }
     // cleanup and close up stuff here  
     // terminate program  
     // exit(signum);  
