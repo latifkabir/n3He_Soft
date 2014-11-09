@@ -51,7 +51,8 @@ void RunList()
 	runlist.close();
     }
     cout<<"====================Initializing Run number: "<<newrun<<"====================="<<"\n\t\tDate & Time: "<<ctime(&time_now)<<endl<<endl; 
-   
+
+    delete[] strname;   
 }
 
 //Rename all the data files (just taken) adding the run number
@@ -71,6 +72,8 @@ void Rename(int run,int module)
     {
         cout<<"Error renaming "<<file_old<<endl;
     }
+    delete[] file_old;
+    delete[] file_new;
 }
 
 //Synchronize with T_0 at the start of DAQ by enabling and disabling Trigger
