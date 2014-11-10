@@ -1,3 +1,9 @@
+//The Ncurses Menu for GUI mode
+//Author: Latiful Kabir
+//Date:11.9.14
+//Version:1.0
+
+
 #include"TakeRunGui.h"
 extern "C"
 {

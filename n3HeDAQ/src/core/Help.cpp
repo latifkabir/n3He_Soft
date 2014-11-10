@@ -79,6 +79,9 @@ void Instruction()
     cout<<"\n   \t\t mode etc.) for all the DAQ module.";
     cout<<"\n   ";
     cout<<"\n";
+    cout<<"\n\t\t n3he gui: ";
+    cout<<"\n   \t\t Run this program in GUI mode. ";
+    cout<<"\n";
     cout<<"\n\t\t n3he help : ";
     cout<<"\n   \t\t This will bring this help session. ";
     cout<<"\n";

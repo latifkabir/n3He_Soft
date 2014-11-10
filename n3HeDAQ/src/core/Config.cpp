@@ -7,36 +7,48 @@
 #define SLEEP 15e5
 using namespace std;
 
-int DaqConfig(unsigned int *param)
+int MakeChange(int module,char *command)
 {
     string change_config="set.site 1 ";
-    char *command=new char[100];
-
+    change_config=change_config+command;
+	    
     Daq daq(DAQ30_IP,DAQ_PORT2,DAQ30,RUN_LENGTH);
     if(!daq.CheckStatus())
     {
+  	    daq.WriteToSocket(change_config.c_str());
+    }
+    return(0);
+}
+int DaqConfig(unsigned int *param)
+{
+    char *command=new char[100];
+
         //Change Frequency
 	if(param[1]!=0)
 	{
             //Set the external clock
 	    sprintf(command,"fpmux xclk");
+	    MakeChange(21,command);	   
 	    // change_config=change_config+command;
-	    daq.WriteToSocket(command);
+	    // daq.WriteToSocket(command);
 
 	    //Set the clock
 	    sprintf(command,"clk 1,1,0");
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+	    MakeChange(21,command);	   
+	    // change_config=change_config+command;
+	    // daq.WriteToSocket(change_config.c_str());
           
             //Divide the clock
 	    sprintf(command,"clkdiv 1");
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+	    MakeChange(21,command);	   
+	    // change_config=change_config+command;
+	    // daq.WriteToSocket(change_config.c_str());
          
             //Set the mb_clock
 	    sprintf(command,"mb_clk 64000 %d",param[1]);
+	    MakeChange(21,command);	   
 	    // change_config=change_config+command;
-	    daq.WriteToSocket(command);
+	    // daq.WriteToSocket(command);
 	}
 
         //Change Running Mode
@@ -70,9 +82,10 @@ int DaqConfig(unsigned int *param)
 	    {
 		sprintf(command,"rgm=3,0,0");//Triggered & Continuous,d0,Falling 
 	    }
-	   
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+
+	    MakeChange(21,command);	   
+	    // change_config=change_config+command;
+	    // daq.WriteToSocket(change_config.c_str());
 	    usleep(SLEEP);
 
           //rgm=MODE,line (0=d0, front panel), edge
@@ -87,8 +100,9 @@ int DaqConfig(unsigned int *param)
 	if(param[3]!=0)
 	{
 	    sprintf(command,"rtm_translen=%d",param[3]);
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+	    MakeChange(21,command);	   
+	    // change_config=change_config+command;
+	    // daq.WriteToSocket(change_config.c_str());
 	    usleep(SLEEP);
 	}
 
@@ -96,8 +110,9 @@ int DaqConfig(unsigned int *param)
 	if(param[4]!=0)
 	{
 	    sprintf(command,"hi_res_mode=%d",param[4]-1);
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+	    MakeChange(21,command);	   
+	    // change_config=change_config+command;
+	    // daq.WriteToSocket(change_config.c_str());
 	    usleep(SLEEP);
 	}
 
@@ -105,11 +120,12 @@ int DaqConfig(unsigned int *param)
 	if(param[5]!=0 && param[6]!=0)
 	{
 	    sprintf(command,"nacc=%d,%d",param[5],param[6]);
-	    change_config=change_config+command;
-	    daq.WriteToSocket(change_config.c_str());
+	    MakeChange(21,command);	   
+	    // change_config=change_config+command;
+	    // daq.WriteToSocket(change_config.c_str());
 	    usleep(SLEEP);
 	}
-    }
+    
     delete[] command;
     return(0);
 }
