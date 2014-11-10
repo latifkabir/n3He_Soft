@@ -26,7 +26,7 @@ void printProgBar( int percent )
 	}
     }
 
-    std::cout<< "\r" "[" << bar << "] ";
+    std::cout<< "\r" "\t\t\t[" << bar << "] ";
     std::cout.width( 3 );
     std::cout<< percent << "%     " << std::flush;
 }

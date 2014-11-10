@@ -1,2 +1,6 @@
-All GUI codes will reside here
-==============================
+n3He DAQ Program GUI
+======================
+1.All GUI codes will reside here
+2.The current GUI is based on Ncurses library.
+3.Ncurses terminal based gui library is based on C,
+4.So be careful in mixing core C++(with some c++11 support) with old Ncurses C codes.

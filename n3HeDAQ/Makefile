@@ -3,8 +3,9 @@
 #Latiful Kabir
 
 CC        := g++
+GC        := gcc
 LD        := g++
-CFLAG     := -std=c++11 -pthread
+CFLAG     := -std=c++11 -pthread -lncurses -lmenu
 
 EXE	  :=n3he
 MODULES   := core gui lib
@@ -16,17 +17,20 @@ OBJ       := $(patsubst src/%.cpp,bin/%.o,$(SRC))
 INCLUDES  := $(addprefix -I,$(SRC_DIR))
 
 vpath %.cpp $(SRC_DIR)
+vpath %.c $(SRC_DIR)
 
 define make-goal
 $1/%.o: %.cpp
 	$(CC) $(INCLUDES) $(CFLAG) -c $$< -o $$@
+$1/libmenu.o: libmenu.c
+	$(GC) $(INCLUDES) -lncurses -lmenu -c $$< -o $$@
 endef
 
 .PHONY: all checkdirs clean
 
 all: checkdirs bin/$(EXE)
 
-bin/$(EXE): $(OBJ)
+bin/$(EXE): $(OBJ) bin/lib/libmenu.o
 		$(LD) $^ $(CFLAG) -o $@
 		@echo Finished Making Successfully!!!
 

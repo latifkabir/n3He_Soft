@@ -12,6 +12,10 @@
 #include<string>
 #include "Help.h"
 #include "TakeRun.h"
+extern "C"
+{
+#include "Menu.h"
+}
 
 using namespace std;
 
@@ -39,10 +43,10 @@ int main(int argc,char *argv[])
     }
 
 //make a list of all available options and command and assign a number for that
-    string list[]={"help","start","daq","config"};
+    string list[]={"help","start","daq","config","gui"};
     if(argc>1)
     {
-	for(int i=0;i<4;i++)
+	for(int i=0;i<5;i++)
 	{
 	    if(list[i]==argv[1])
 	    {
@@ -114,7 +118,11 @@ int main(int argc,char *argv[])
 	    Config();
 	    break;
 	}
-       
+	case 4 :
+	{
+            Menu();
+            break;
+	}
 	default:
 	{
 	    DefaultIns();

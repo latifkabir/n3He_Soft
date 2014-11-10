@@ -42,6 +42,8 @@ From the terminal do the following:
 
     This will display the current configuration (Sample rate,Averaging, Hi Resolution mode etc.) for all the DAQ module.
     This option is yet to be implemented.
+* `n3he gui` :
+    This will run n3he DAQ control program in gui mode. Note it is a Ncurses terminal based gui.
 
 * `n3he help` :
  
@@ -90,16 +92,23 @@ n3He DAQ Control Program  Version: 1.0
 The makefile is configured to put the corresponding object files in newly created corresponding directory (named core,gui,lib) inside "bin" while compiling. The "core" directory contains all core sources for running from the terminal(command line) mode.
 
  1. From n3HeDAQ directory just do: `make`
-Note: The source code uses some c++11 features requiring your compiler to be c++11 supported.
 
- 2. To remove the object files but keeping the binary do: `make clean`
+ 2. The source code uses some c++11 features requiring your compiler to be c++11 supported.
 
+ 3. The GUI requires Ncurses. If you are trying to compile on your computer make sure you have Ncurses installed.
 
+ 4. The core sources are mostly using c++ syntax, but the Ncurses GUI uses C. So caution is required to make sure you are using correct 
+    compiler.
 
- 3. The binary file (named 'n3he') will be produced inside */n3He/n3HeDAQ/bin
+ 4. The command line mode and GUI mode codes are completely separate, works independently. This is done to keep command line version 
+    as clean as possible suitable for quick changes.
 
+ 5. To remove the object files but keeping the binary do: `make clean`
 
- 4. Testing the program:
+ 6. The binary file (named 'n3he') will be produced inside */n3He/n3HeDAQ/bin
+
+ 
+ 5. Testing the program:
 -------------------------------
 The DAQ to control computer data transfer situation can be mocked up on you own lapton easily in the following way:
  * Choose a big enough (say 500 MB) file on your computer to be transferred via localhost.

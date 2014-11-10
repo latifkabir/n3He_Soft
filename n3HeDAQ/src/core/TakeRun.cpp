@@ -1,4 +1,4 @@
-//The program to take the data
+//The program to take the data in command line mode
 //Author: Latiful Kabir
 //Date:10.9.14
 //Version:2.0
@@ -15,12 +15,12 @@
 
 using namespace std;
 
-int lastrun=0;
-int newrun=0; 
-bool stop=false;  //Flip if Ctrl+C is pressed
+extern int lastrun;
+extern int newrun; 
+extern bool stop;  //Flip if Ctrl+C is pressed
 bool fexit=false;
 
-void RunList()
+void RunList(bool gui_mode)
 {
     //Generate current date and time of the run in desired format
     time_t time_now;
@@ -50,13 +50,16 @@ void RunList()
 	runlist<<strname<<"          "<<newrun<<endl;
 	runlist.close();
     }
-    cout<<"====================Initializing Run number: "<<newrun<<"====================="<<"\n\t\tDate & Time: "<<ctime(&time_now)<<endl<<endl; 
 
+    if(!gui_mode)
+    {
+	cout<<"\t\t====================Initializing Run number: "<<newrun<<"====================="<<"\n\t\t\t\tDate & Time: "<<ctime(&time_now)<<endl<<endl; 
+    }
     delete[] strname;   
 }
 
 //Rename all the data files (just taken) adding the run number
-void Rename(int run,int module)
+int Rename(int run,int module,bool gui_mode)
 {
     char *file_old=new char[200];
     char *file_new=new char[200];
@@ -66,11 +69,19 @@ void Rename(int run,int module)
 
     if(rename(file_old, file_new) == 0)
     {
-	cout<<"\n \n"<< file_old<<" has been renamed to "<<file_new<<endl;
+	if(!gui_mode)
+	{
+	    cout<<"\n \n\t\t"<< file_old<<" has been renamed to "<<file_new<<endl;
+	}
+	return(1);
     }
     else
     {
-        cout<<"Error renaming "<<file_old<<endl;
+	if(!gui_mode)
+	{
+	    cout<<"\t\tError renaming "<<file_old<<endl;
+	}
+	return(-1);
     }
     delete[] file_old;
     delete[] file_new;
@@ -86,12 +97,12 @@ int Sync(bool status)
 	{
 	    if(status)
 	    {
-		cout<<"Trigger Enabled"<<endl<<endl;
+		cout<<"\t\tTrigger Enabled"<<endl<<endl;
 		daq.WriteToSocket("do4_3 1");
 	    }
 	    else if(!status)
 	    {
-		cout<<"Trigger Disabled"<<endl<<endl;
+		cout<<"\t\tTrigger Disabled"<<endl<<endl;
 		daq.WriteToSocket("do4_3 0");
 	    }
 	}
@@ -105,7 +116,7 @@ void signalHandler( int signum )
 {
     if(!fexit)
     {
-        cout <<"\n\nRequest to stop DAQ received.\nProgram will stop once current run finishes.Please wait...\nTo quit program forcefully press Ctrl+C again.\n\n";
+        cout <<"\n\n\t\tRequest to stop DAQ received.\n\t\tProgram will stop once current run finishes.Please wait...\n\t\tTo quit program forcefully press Ctrl+C again.\n\n";
 	stop=true;
 	fexit=true;
     }
@@ -161,7 +172,6 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 	ip=DAQ30_IP;
 	break;
     }
-
     default:
     {
 	ip=DAQ21_IP;
@@ -173,7 +183,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 	continuous=true;
     }
 
-    Sync(true); //Enable the Trigger
+    // Sync(true); //Enable the Trigger
     while(!stop && (continuous || (counter <runNumber)))
     {
 
@@ -182,16 +192,16 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
  	      Daq daq(ip,port,module,runlength);
 	      if(!daq.CheckStatus())
 	      {
-	          RunList();
-		  cout<<"Run "<<newrun<<" in progress ... ... "<<endl<<endl;
+	          RunList(false);
+		  cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
 	          daq.SaveData(true);
 		  if(daq.GetFileSize()<daq.filesize)
 		  {
-		      cout<<"\nPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
+		      cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		      break;
 		  }
-	          Rename(newrun,module);
-	          cout<<"\nPhew!!! Done with run number : "<<newrun<<endl<<endl;
+	          Rename(newrun,module,false);
+	          cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
                }
 	       else
                {
@@ -205,7 +215,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
          }
     }
 
-    Sync(false);//Disable the trigger    
+    // Sync(false);//Disable the trigger    
 }
 
 //Running all the DAQ module
@@ -236,8 +246,8 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 
 	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq24.CheckStatus())
 	    {
-		RunList();
-		cout<<"Run "<<newrun<<" in progress ... ... "<<endl<<endl;
+		RunList(false);
+		cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
 		thread t21(&Daq::SaveData,&daq21,true);
 		thread t22(&Daq::SaveData,&daq22,false);
 		thread t23(&Daq::SaveData,&daq23,false);
@@ -250,15 +260,15 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 
 		if(daq21.GetFileSize()<daq21.filesize || daq22.GetFileSize()<daq22.filesize || daq23.GetFileSize()<daq23.filesize ||daq24.GetFileSize()<daq24.filesize)
 		{
-		    cout<<"\nPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
+		    cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		    break;
 		}
-		Rename(newrun,DAQ21);
-		Rename(newrun,DAQ22);
-		Rename(newrun,DAQ23);
-		Rename(newrun,DAQ24);
+		Rename(newrun,DAQ21,false);
+		Rename(newrun,DAQ22,false);
+		Rename(newrun,DAQ23,false);
+		Rename(newrun,DAQ24,false);
 
-		cout<<"\nPhew!!! Done with run number : "<<newrun<<endl<<endl;
+		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }
 	    else
 	    {
