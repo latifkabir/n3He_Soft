@@ -114,10 +114,13 @@ extern "C"
 	    if(ret == i_start)
 	    {
 		clear();
-		RunSingleGui();
+		RunAllGui();
 	    }
 	    if(ret == i_single)
-		Option1();
+	     {
+		clear();
+		RunSingleGui();
+	    }
 	    if(ret == i_config)
 	    {
 		clear();
