@@ -1,10 +1,15 @@
+//Changing DAQ Configuration.
+//Author: Latiful Kabir
+//Date:11.1.14
+//Version:1.0
+
 #include<iostream>
 #include<unistd.h>
 #include"Config.h"
 #include"Daq.h"
 #include"Constants.h"
+#include"Help.h"
 
-#define SLEEP 15e5
 using namespace std;
 
 char *command=new char[100];
@@ -47,7 +52,7 @@ int ChangeRate(int module,int rate)
     MakeChange(module,command,1);	   
          
     //Set the mb_clock
-    sprintf(command,"mb_clk 64000 %d",rate);
+    sprintf(command,"mb_clk 64000 %d",rate*1000);
     MakeChange(module,command,0);	   
    
     return(0);
@@ -77,11 +82,11 @@ int ChangeMode(int module,int mode)
     {
 	sprintf(command,"rgm=2,0,0");//Triggered & Gated,d0,Falling 
     }
-    else if(mode==7)
+    else if(mode==6)
     {
 	sprintf(command,"rgm=3,0,1");//Triggered & Continuous,d0,Rising 
     }
-    else if(mode==8)
+    else if(mode==7)
     {
 	sprintf(command,"rgm=3,0,0");//Triggered & Continuous,d0,Falling 
     }
@@ -132,97 +137,109 @@ int ChangeDecimation(int module,int dec)
 }    
     
 int ChangeConfig(void)
-// int main(void)
 {
     unsigned int param;
     unsigned int value;
     unsigned int module;
+    char more1='c';
+    char more2='c';
 //cout<<"Select Options"<<endl;
 //cout<<"1:To set n3he default DAQ setting for all the modules"<<endl;
 //cout<<"2:To set n3he default DAQ setting for one modules"<<endl;
 //cout<<"3:To set Custom setting for each module"<<endl;
-//cout<<"4:To Print current DAQ setting"<<endl; 
-
-    cout<<"Enter Config in the following format. Enter Zero in a field if you do not want to that parameter. "<<endl;    
-    cout<<"1:RATE 2:MODE 3:EVENT_LENGTH 4:HI_RES_MODE 5:AVERAGING 6:DECIMATION"<<endl;
-    cout<<"Enter Module:"<<endl;
-    cin>>module;
-    cout<<"Enter Parameter Code followed by it's value:"<<endl;
-    cin>>param;  //DAQ Module
-    cin>>value;  //Sample Rate
-    // cin>>param[2];  //Running Moade
-    // cin>>param[3];  //Event Length
-    // cin>>param[4];  //Hi_Res_Mode
-    // cin>>param[5];  //Averaging
-    // cin>>param[6];  //Decimation
-    
-    // cout<<"You entered: \nModule:"<<param[0]<<"  \nRate:"<<param[1]<<" \nMode:"<<param[2]<<" \nEvent Length:"<<param[3]<<"  \nHi Res Mode:"<<param[4]<<"  \nAveraging:"<<param[5]<<"  \nDecimation:"<<param[6]<<endl;
-
-    if(!(module==21 ||  module==22 || module==23 || module==24 ||module==26 || module==30))
-    {
-	cout<<"Invalid Module"<<endl;
-        return(1);
-    }
-    if(param==1)
-    {
-	if(value<0 || value >128)
+//cout<<"4:To Print current DAQ setting"<<endl;
+    Title();
+    cout<<"\n\n\n\t\t ====================Change DAQ Configuration========================\n\n\n"<<endl;
+    while(more1=='c')
+    { 
+	cout<<"\nEnter Module:"<<endl;
+	cin>>module; //DAQ Module
+	if(!(module==21 ||  module==22 || module==23 || module==24 ||module==26 || module==30))
 	{
-	    cout<<"Invalid Rate. It should be between 1-128 KHz"<<endl;
+	    cout<<"Invalid Module"<<endl;
 	    return(1);
 	}
-	else
-	    ChangeRate(module,value);
-    }
-    if(param==2)
-    {
-	if(value<0 || value >8) 
+	while(more2=='c')
 	{
-	    cout<<"Invalid mode. Check Syntax"<<endl;
-	    return(1);
+	    cout<<"\nCheck the following table to choose the correct integer value "<<endl<<endl;    
+            cout<<"PARAMETER_CODE\t\tPOSSIBLE VALUES"<<endl;
+	    cout<<"=============\t\t==============="<<endl;
+	    cout<<"1:RATE \t\t\t 0-128KHz "<<endl;
+	    cout<<"2:MODE \t\t\t 1:Triggered,Sync,Rising 2:Trigg Off 3:Trigger,Sync,Falling \n\t\t\t 4:Trig,Gated,Rising 5:Trig,Gated,Falling 6:Trig,Continuous,Rising 7:Trig,Continuous,Falling"<<endl;
+	    cout<<"3:EVENT_LENGTH \t\t Integer above 39 "<<endl;
+	    cout<<"4:HI_RES_MODE \t\t 0:Low Res Mode 1:Hi Res Mode"<<endl;
+	    cout<<"5:AVERAGING \t\t 1-64 (This will set decimation 1)"<<endl;
+	    cout<<"6:DECIMATION\t\t Integer,power of 2,This will also set averaging, nacc=n,n"<<endl;
+	    cout<<"\nEnter Parameter Code followed by it's value:"<<endl;
+	    cin>>param;  //Parameter Code
+	    cin>>value;  //Parameter Value
+	  
+	    if(param==1)
+	    {
+		if(value<0 || value >128)
+		{
+		    cout<<"Invalid Rate. It should be between 1-128 KHz"<<endl;
+		    return(1);
+		}
+		else
+		    ChangeRate(module,value);
+	    }
+	    if(param==2)
+	    {
+		if(value<0 || value >8) 
+		{
+		    cout<<"Invalid mode. Check Syntax"<<endl;
+		    return(1);
+		}
+		else
+		    ChangeMode(module,value);
+	    }
+	    if(param==3)
+	    {
+		if(value<39 && value!=0)
+		{
+		    cout<<"Invalid Event Length.Must be greater than 39."<<endl;
+		    return(1);
+		}
+		else
+		    ChangeLength(module,value);
+	    }
+	    if(param==4)
+	    {
+		if(value <0 || value >2)
+		{
+		    cout<<"Invalid Hi_Res_Mode"<<endl;
+		    return(1);
+		}
+		else
+		    ChangeRes(module,value);
+	    }
+	    if(param==5)
+	    {
+		if(value < 0 || value > 64 )
+		{
+		    cout<<"Invalid Averaging."<<endl;
+		    return(1);
+		}
+		else
+		    ChangeAveraging(module,value);
+	    }
+	    if(param==6)
+	    {
+		if((value!=1 && value!=value && value!=0)|| ((value & (value - 1))) || value<0)
+		{
+		    cout <<"Invalid Decimation.Note it should be power of 2." <<endl; 
+		    return(1);
+		}
+		else
+		    ChangeDecimation(module,value);
+	    }
+	    cout<<"\nDone with the changes !!!"<<endl;
+	    cout<<"\nTo make another change for Module: "<<module<<" enter 'c' or 'q' to quit Config menu for Module: "<<module<<endl;
+	    cin>>more2;
 	}
-	else
-	    ChangeMode(module,value);
+	cout<<"\nTo Change config for another module enter 'c', otherwise 'q' to quit Config menu"<<endl;
+	cin>>more1;
     }
-    if(param==3)
-    {
-	if(value<39 && value!=0)
-	{
-	    cout<<"Invalid Event Length.Must be greater than 39."<<endl;
-	    return(1);
-	}
-	else
-	    ChangeLength(module,value);
-    }
-    if(param==4)
-    {
-	if(value <0 || value >2)
-	{
-	    cout<<"Invalid Hi_Res_Mode"<<endl;
-	    return(1);
-	}
-	else
-	    ChangeRes(module,value);
-    }
-    if(param==5)
-    {
-	if(value < 0 || value > 64 )
-	{
-	    cout<<"Invalid Averaging."<<endl;
-	    return(1);
-	}
-	else
-	    ChangeAveraging(module,value);
-    }
-    if(param==6)
-    {
-	if((value!=1 && value!=value && value!=0)|| ((value & (value - 1))) || value<0)
-	{
-	    cout <<"Invalid Decimation.Note it should be power of 2." <<endl; 
-	    return(1);
-	}
-	else
-	    ChangeDecimation(module,value);
-    }
-    cout<<"Done with the changes !!!"<<endl;
     return 0;
 }

@@ -10,8 +10,9 @@
 #include<fstream>
 #include<stdio.h>
 #include<string>
-#include "Help.h"
-#include "TakeRun.h"
+#include"Help.h"
+#include"TakeRun.h"
+#include"Config.h"
 extern "C"
 {
 #include "Menu.h"
@@ -115,7 +116,7 @@ int main(int argc,char *argv[])
 	}
 	case 3 :
 	{
-	    Config();
+	    ChangeConfig();
 	    break;
 	}
 	case 4 :

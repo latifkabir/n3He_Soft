@@ -24,7 +24,7 @@
 #define DAQ30 30
 #define DAQ_PORT1 "4210"
 #define DAQ_PORT2 "4220"
-#define DAQ21_IP "127.0.0.1" 
+#define DAQ21_IP "192.168.0.21" 
 #define DAQ22_IP "192.168.0.22" 
 #define DAQ23_IP "192.168.0.23" 
 #define DAQ24_IP "192.168.0.24" 

@@ -183,7 +183,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 	continuous=true;
     }
 
-    // Sync(true); //Enable the Trigger
+    Sync(true); //Enable the Trigger
     while(!stop && (continuous || (counter <runNumber)))
     {
 
@@ -215,7 +215,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
          }
     }
 
-    // Sync(false);//Disable the trigger    
+    Sync(false);//Disable the trigger    
 }
 
 //Running all the DAQ module
@@ -243,8 +243,9 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
 	    Daq daq23(DAQ23_IP,DAQ_PORT1,DAQ23,runlength);
 	    Daq daq24(DAQ24_IP,DAQ_PORT1,DAQ24,runlength);
+	    Daq daq30(DAQ30_IP,DAQ_PORT1,DAQ30,runlength);
 
-	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq24.CheckStatus())
+	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq24.CheckStatus() && !daq30.CheckStatus())
 	    {
 		RunList(false);
 		cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
@@ -252,13 +253,15 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		thread t22(&Daq::SaveData,&daq22,false);
 		thread t23(&Daq::SaveData,&daq23,false);
 		thread t24(&Daq::SaveData,&daq24,false);
+		thread t30(&Daq::SaveData,&daq30,false);
 
 		t21.join();
 		t22.join();
 		t23.join();
 		t24.join();
+		t30.join();
 
-		if(daq21.GetFileSize()<daq21.filesize || daq22.GetFileSize()<daq22.filesize || daq23.GetFileSize()<daq23.filesize ||daq24.GetFileSize()<daq24.filesize)
+		if(daq21.GetFileSize()<daq21.filesize || daq22.GetFileSize()<daq22.filesize || daq23.GetFileSize()<daq23.filesize ||daq24.GetFileSize()<daq24.filesize ||daq30.GetFileSize()<daq30.filesize)
 		{
 		    cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		    break;
@@ -267,6 +270,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		Rename(newrun,DAQ22,false);
 		Rename(newrun,DAQ23,false);
 		Rename(newrun,DAQ24,false);
+		Rename(newrun,DAQ30,false);
 
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }
