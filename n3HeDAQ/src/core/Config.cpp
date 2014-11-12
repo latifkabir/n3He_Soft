@@ -16,6 +16,7 @@ char *command=new char[100];
 
 int MakeChange(int module,char *command,int site)
 {
+    const char *dmodule;
     string change_config;
     if(site==0)
     {   
@@ -27,11 +28,32 @@ int MakeChange(int module,char *command,int site)
     }
 
     change_config=change_config+command;
-	    
-    Daq daq(DAQ30_IP,DAQ_PORT2,DAQ30,RUN_LENGTH);
+    switch (module)
+    {
+    case 21:
+	dmodule=DAQ21_IP;
+        break;
+    case 22:
+	dmodule=DAQ22_IP;
+       break;
+    case 23:
+	dmodule=DAQ23_IP;
+       break;
+    case 24:
+	dmodule=DAQ24_IP;
+       break;
+    case 30:	    
+	dmodule=DAQ30_IP;
+       break;
+    default:
+	cout<<"Invalid Module"<<endl;
+	cout<<"Unable to make changes"<<endl;
+	return(-1);
+    }
+    Daq daq(dmodule,DAQ_PORT2,module,RUN_LENGTH);        
     if(!daq.CheckStatus())
     {
-  	    daq.WriteToSocket(change_config.c_str());
+	daq.WriteToSocket(change_config.c_str());
     }
     return(0);
 }
@@ -154,7 +176,7 @@ int ChangeConfig(void)
     { 
 	cout<<"\nEnter Module:"<<endl;
 	cin>>module; //DAQ Module
-	if(!(module==21 ||  module==22 || module==23 || module==24 ||module==26 || module==30))
+	if(!(module==21 ||  module==22 || module==23 || module==24 || module==30))
 	{
 	    cout<<"Invalid Module"<<endl;
 	    return(1);
@@ -240,6 +262,7 @@ int ChangeConfig(void)
 	}
 	cout<<"\nTo Change config for another module enter 'c', otherwise 'q' to quit Config menu"<<endl;
 	cin>>more1;
+	more2='c';
     }
     return 0;
 }

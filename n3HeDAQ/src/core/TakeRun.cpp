@@ -190,30 +190,32 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 	continuous=true;
     }
 
-    Sync(true,false); //Enable the Trigger
     while(!stop && (continuous || (counter <runNumber)))
     {
 
          if(ready)
          {
- 	      Daq daq(ip,port,module,runlength);
-	      if(!daq.CheckStatus())
-	      {
-	          RunList(false);
-		  cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
-	          daq.SaveData(true);
-		  if(daq.GetFileSize()<daq.filesize)
-		  {
-		      cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
-		      break;
-		  }
-	          Rename(newrun,module,false);
-	          cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
-               }
-	       else
-               {
-	           break;
-	       }
+	     Sync(false,false);//Disable the trigger    
+	     sleep(1);
+	     Daq daq(ip,port,module,runlength);
+	     if(!daq.CheckStatus())
+	     {
+		 RunList(false);
+		 cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
+		 Sync(true,false); //Enable the Trigger
+		 daq.SaveData(true);
+		 if(daq.GetFileSize()<daq.filesize)
+		 {
+		     cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
+		     break;
+		 }
+		 Rename(newrun,module,false);
+		 cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
+	     }
+	     else
+	     {
+		 break;
+	     }
          }
  
          if(!continuous)
@@ -221,8 +223,6 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
              counter=counter+1;
          }
     }
-
-    Sync(false,false);//Disable the trigger    
 }
 
 //Running all the DAQ module
@@ -241,11 +241,12 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	continuous=true;
     }
 
-    Sync(true,false); //Enable the Trigger
     while(!stop && (continuous || (counter <runNumber)))
     {
 	if(ready)
 	{
+	    Sync(false,false); //Disable the trigger
+	    sleep(1); 	     
 	    Daq daq21(DAQ21_IP,DAQ_PORT1,DAQ21,runlength);
 	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
 	    Daq daq23(DAQ23_IP,DAQ_PORT1,DAQ23,runlength);
@@ -256,6 +257,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    {
 		RunList(false);
 		cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
+		Sync(true,false); //Enable the trigger
 		thread t21(&Daq::SaveData,&daq21,true);
 		thread t22(&Daq::SaveData,&daq22,false);
 		thread t23(&Daq::SaveData,&daq23,false);
