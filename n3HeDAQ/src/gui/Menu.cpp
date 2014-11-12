@@ -82,8 +82,6 @@ extern "C"
 	int base_x=25;
 	int base_y=0;
 
-
-
 	menu_t *menu = menu_push("USE UP/DOWN ARROW TO SELECT");
 	menu_setwindow(menu,60,100,12,6);
 	menu_item_t *i_start = menu_newitem(menu, MENU_ITEM_BUTTON);
@@ -99,7 +97,6 @@ extern "C"
 	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
 	menu_setitem(i_quit, "QUIT");
 
-
 	mvprintw(base_y, base_x+5,   "--------------------------------------------- ");
 	mvprintw(base_y+1, base_x+5, "|    Welcome to n3He DAQ Control Program    |");
 	mvprintw(base_y+2, base_x+5, "|              version:1.0                  |");
@@ -108,23 +105,25 @@ extern "C"
 	mvaddstr(base_y+5, base_x+5, "     report bug to latifulkabir@uky.edu      ");
 	refresh();
 
-
 	menu_item_t *ret = NULL;
 	do {
 	    if(ret == i_start)
 	    {
 		clear();
 		RunAllGui();
+		break;
 	    }
 	    if(ret == i_single)
 	     {
 		clear();
 		RunSingleGui();
+		break;
 	    }
 	    if(ret == i_config)
 	    {
 		clear();
 		RunSingleGui();
+		break;
 	    }
 	    if(ret == i_length)
 		Option2();
