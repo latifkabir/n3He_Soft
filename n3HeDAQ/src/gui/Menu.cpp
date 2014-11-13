@@ -3,7 +3,6 @@
 //Date:11.9.14
 //Version:1.0
 
-
 #include"TakeRunGui.h"
 extern "C"
 {
@@ -11,71 +10,10 @@ extern "C"
 #include <ncurses.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "ConfigGui.h"
 }
 extern "C"
 {
-
-    int Option1()
-    {
-	menu_t *menu = menu_push("This is the title of main Menu");
-
-	menu_item_t *i_pos = menu_newitem(menu, MENU_ITEM_BUTTON);
-	menu_setitem(i_pos,
-		     "Put Your Option-1 here");
-	menu_item_t *i_comm = menu_newitem(menu, MENU_ITEM_BUTTON);
-	menu_setitem(i_comm, "Put Your Option-2 here");
-	menu_newitem(menu, MENU_ITEM_LABEL);
-	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
-	menu_setitem(i_quit, "Quit Current Menu");
-
-	menu_item_t *ret = NULL;
-	do {
-	    if(ret == i_pos)
-		RunSingleGui();
-	    if(ret == i_comm)
-		RunSingleGui();
-      
-	    ret = menu_wait(menu, -1);
-	}
-	while(ret != i_quit && ret != MENU_QUIT);
-
-	menu_pop(menu);
-
-	return 0;
-
-    }
- 
-    int Option2()
-    {
-
-	WINDOW * mainwin;
-
-    
-	/*  Initialize ncurses  */
-
-	if ( (mainwin = initscr()) == NULL ) {
-	    fprintf(stderr, "Error initialising ncurses.\n");
-	    exit(EXIT_FAILURE);
-	}
-
-
-	/*  Display "Hello, world!" in the centre of the
-	    screen, call refresh() to show our changes, and
-	    sleep() for a few seconds to get the full screen effect  */
-
-	mvaddstr(13, 33, "Hello, world!");
-	refresh();
-	sleep(3);
-
-
-	/*  Clean up after ourselves  */
-
-	delwin(mainwin);
-	endwin();
-	refresh();
-
-	return EXIT_SUCCESS;
-    }
 
     int Menu(void)
     {
@@ -121,12 +59,15 @@ extern "C"
 	    }
 	    if(ret == i_config)
 	    {
-		clear();
-		RunSingleGui();
-		break;
+                // MyMenu();
+		//clear();
+		 ConfigGui();
+		// CustomConfig(21);
 	    }
 	    if(ret == i_length)
-		Option2();
+		// MyMenu();
+		//clear();
+		CustomDaq();
 	    ret = menu_wait(menu, -1);
 	}
 	while(ret != i_quit && ret != MENU_QUIT);

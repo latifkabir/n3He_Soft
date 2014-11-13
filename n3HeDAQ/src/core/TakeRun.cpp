@@ -294,5 +294,4 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    counter=counter+1;
 	}
     }
-    Sync(false,false);//Disable the trigger      
 }
