@@ -17,6 +17,7 @@ extern "C"
     int ChangeParam()
     {
 	int delete_me=0;
+	int x=40,y=25;
 
     	menu_t *menu = menu_push("SELECT THE DAQ RUNNING MODE");
 
@@ -38,20 +39,35 @@ extern "C"
     	menu_item_t *ret = NULL;
     	do {
     	    if(ret == i_mode1)
-    		delete_me=1;
-
+	    {	delete_me=1;
+	    mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
+	    refresh();
+	    }
     	    if(ret == i_mode2)
-    		delete_me=2;
-
+	    {
+		delete_me=2;
+		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
+		refresh();
+	    }
     	    if(ret == i_mode3)
-    		delete_me=3;
-
+	    {
+		delete_me=3;
+		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
+		refresh();
+	    }
     	    if(ret == i_mode4)
-    		delete_me=4;
-
+	    {
+		delete_me=4;
+		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
+		refresh();
+	    }
     	    if(ret == i_mode5)
-    	        delete_me=5;
-
+	    {
+		delete_me=5;
+		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
+		refresh();
+	    }
+    	   
     	    ret = menu_wait(menu, -1);
     	}
     	while(ret != i_quit && ret != MENU_QUIT);
