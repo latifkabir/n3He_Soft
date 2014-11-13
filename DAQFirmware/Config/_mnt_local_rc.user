@@ -1,0 +1,41 @@
+cp /usr/local/CARE/acq400_streamd.0.conf-soft_trigger /etc/sysconfig/acq400_streamd.0.conf
+
+# pair sites 1 + 2. peers are shared knobs (set on one site, dup on other)
+make_peers() {
+cat - > /etc/acq400/$1/peers <<EOF
+PEERS=1,2
+KNOBS=trg,rgm,rtm_translen,nacc,hi_res_mode
+EOF
+}
+
+make_peers 1
+make_peers 2
+
+# force epics ioc to see the change
+/usr/local/init/acq400ioc.init stop
+/usr/local/init/acq400ioc.init start
+
+# set some params 
+# hi_res_mode on site 2 is a peer of site 1, so only need set site 1.
+set.site 1 hi_res_mode 1
+# trg is Mandatory. peered with 2
+set.site 1 trg=1,1,1
+# we set a 25MHz internal clock. This is a MASTER knob (not peered)
+set.site 1 clkdiv 4
+# in reality, we probably want external clock eg
+# set.site 1 clk=1,0,0
+
+# pair the two sites
+run0 1,2
+
+
+# start a local capture. override remotely when streaming data required
+
+streamtonowhered
+
+#-------------------------------------------------------------------
+#     Customization entered by Kabir starts here
+#--------------------------------------------------------------------
+# copy pub key to allow password free access
+echo "PUB_KEY_HERE" >> /root/.ssh/authorized_keys
+
