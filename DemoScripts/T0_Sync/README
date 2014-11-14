@@ -1,0 +1,3 @@
+Script to Enable and Disable Digital from DAQ module which is externally latched with T0.
+After latched/AND it is feed back to DAQ as trigger. 
+Each trigger goes to Optical Isolator before going back to DAQ as trigger.
