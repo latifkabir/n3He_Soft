@@ -1,0 +1,27 @@
+Validating the CRC
+
+make crc_validate
+
+Then, assuming a raw data file DATA/acq435_CRC, run this
+
+./crc_validate DATA/acq435_CRC
+
+get this...
+
+pulse embedded-crc1 embedded-crc2 status crc: soft-calc-crc pulse-file
+
+GOOD= embedded-crc1 == embedded-crc2 == soft-calc-crc
+         592 ea614698 ea614698 GOOD crc: ea614698 file: DATA/acq435_CRC.00591 
+         593 01024afa 01024afa GOOD crc: 01024afa file: DATA/acq435_CRC.00592 
+         594 4b35047e 4b35047e GOOD crc: 4b35047e file: DATA/acq435_CRC.00593 
+         595 351314e2 351314e2 GOOD crc: 351314e2 file: DATA/acq435_CRC.00594 
+         596 836e315e 836e315e GOOD crc: 836e315e file: DATA/acq435_CRC.00595 
+         597 52c6a8dc 52c6a8dc GOOD crc: 52c6a8dc file: DATA/acq435_CRC.00596 
+         598 798515c8 798515c8 GOOD crc: 798515c8 file: DATA/acq435_CRC.00597 
+         599 806d8c27 806d8c27 GOOD crc: 806d8c27 file: DATA/acq435_CRC.00598 
+         600 b9a45e8f b9a45e8f GOOD crc: b9a45e8f file: DATA/acq435_CRC.00599 
+         601 1f268f94 1f268f94 GOOD crc: 1f268f94 file: DATA/acq435_CRC.00600 
+
+We find that frequently the first pulse is BAD. We see this as a useful validation of the method :-)
+
+
