@@ -24,4 +24,11 @@ GOOD= embedded-crc1 == embedded-crc2 == soft-calc-crc
 
 We find that frequently the first pulse is BAD. We see this as a useful validation of the method :-)
 
+================================================
+Instead of using Python script 'cksum' as above, a C version is crc32.c :
+
+Compile as:
+hadron:~/n3he/ACQ435_CRC 14:15$ gcc -o crc32 crc32.c && ./crc32 kabir_data/data32.00001
+crc: 94eaac4b
+
 
