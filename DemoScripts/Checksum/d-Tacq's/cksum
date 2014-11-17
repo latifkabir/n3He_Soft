@@ -1,0 +1,12 @@
+#!/usr/bin/python
+
+from binascii import *
+import sys
+
+
+f = open(sys.argv[1], "rb")
+
+crc = crc32(f.read())
+
+print "crc: %08x file: %s " % (crc&0xffffffff, sys.argv[1])
+
