@@ -89,7 +89,7 @@ n3He DAQ Control Program  Version: 1.0
 ---------------------------------------
 
  0. The src directory includes three separate sub-directories "core, gui, lib" where the corresponding source codes will be placed gradually.
-The makefile is configured to put the corresponding object files in newly created corresponding directory (named core,gui,lib) inside "bin" while compiling. The "core" directory contains all core sources for running from the terminal(command line) mode.
+The makefile is configured to put the corresponding object files in newly created corresponding directory (named core,gui,lib) inside "obj" while compiling. The "core" directory contains all core sources for running from the terminal(command line) mode.
 
  1. From n3HeDAQ directory just do: `make`
 

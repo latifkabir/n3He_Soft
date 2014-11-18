@@ -10,10 +10,10 @@ CFLAG     := -std=c++11 -pthread -lncurses -lmenu
 EXE	  :=n3he
 MODULES   := core gui lib
 SRC_DIR   := $(addprefix src/,$(MODULES))
-BUILD_DIR := $(addprefix bin/,$(MODULES))
+BUILD_DIR := $(addprefix obj/,$(MODULES))
 
 SRC       := $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.cpp))
-OBJ       := $(patsubst src/%.cpp,bin/%.o,$(SRC))
+OBJ       := $(patsubst src/%.cpp,obj/%.o,$(SRC))
 INCLUDES  := $(addprefix -I,$(SRC_DIR))
 
 vpath %.cpp $(SRC_DIR)
@@ -30,7 +30,7 @@ endef
 
 all: checkdirs bin/$(EXE)
 
-bin/$(EXE): $(OBJ) bin/lib/libmenu.o
+bin/$(EXE): $(OBJ) obj/lib/libmenu.o
 		$(LD) $^ $(CFLAG) -o $@
 		@echo Finished Making Successfully!!!
 
