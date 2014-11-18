@@ -19,13 +19,18 @@ int lastrun=0;
 int newrun=0; 
 bool stop=false;  //Flip if Ctrl+C is pressed
 
+int base_x2=20;
+int base_y2=12;
+
+void signalHandlerGui( int signum )
+{
+	stop=true;		  
+}
 
 //Routine to run a single DAQ module only 
 int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 {
-    int base_x2=20;
-    int base_y2=12;
-
+    stop=false;
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
@@ -33,7 +38,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
     const char *ip;
     const char *port=DAQ_PORT1;
 
-    // signal(SIGINT, signalHandler); //Handle Ctrl+C Signal
+    signal(SIGINT, signalHandlerGui); //Handle Ctrl+C Signal
 
     switch(module)
     {
@@ -69,20 +74,25 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 	continuous=true;
     }
 
-    // Sync(true,true); //Enable the Trigger
     while(!stop && (continuous || (counter <runNumber)))
     {
 
          if(ready)
          {
 	     mvprintw(base_y2+7, base_x2, "----------------------------RUN DISPLAY----------------------------");
+	  
 	     mvprintw(base_y2+24, base_x2, "-------------------------------------------------------------------");
+	     mvprintw(base_y2+25, base_x2, "Note to users:");
+	     mvprintw(base_y2+26, base_x2, "1. Press Ctrl+C if this would be the last run. Wait to finish");
+	     mvprintw(base_y2+27, base_x2, "2. GUI Mode requires maximized terminal window.");
+	     mvprintw(base_y2+28, base_x2, "3. Minimizing/Resizing terminal will destroy the display and run.");
+
 	     mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	     refresh();
 		 
-	     // Sync(false,true);//Disable the trigger    
-	     // sleep(1);
-	     mvprintw(base_y2+9, base_x2, "Trigger: Off\t\t");
+	     Sync(false,true);//Disable the trigger    
+	     sleep(1);
+	     mvprintw(base_y2+9, base_x2, "Trigger: Off");
 	     refresh();
 
 	     Daq daq(ip,port,module,runlength);
@@ -100,13 +110,13 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 
 		  refresh();
 
+		  Sync(true,true);//Enable the trigger    
+		  mvprintw(base_y2+9, base_x2, "Trigger: On ");
+		  refresh();
+		  mvprintw(base_y2+15, base_x2, "                                                       ");
 		  mvprintw(base_y2+15, base_x2, "                                                       ");
 		  refresh();
 
-		  mvprintw(base_y2+15, base_x2, "                                                       ");
-		  refresh();
-	  
-                  // Sync(true,true);//Enable the trigger    
 		  daq.SaveData(true);
 		  if(daq.GetFileSize()<daq.filesize)
 		  {
@@ -131,8 +141,12 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 		 
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
 		  refresh();
-		  mvprintw(base_y2+12, base_x2, "\t\tNow initializing run number %d ... ... ", newrun+1);
+		  if(!stop)
+		      mvprintw(base_y2+12, base_x2, "\t\tNow initializing run number %d ... ... ", newrun+1);
+		  else
+		      mvprintw(base_y2+12, base_x2, "\t\t\tFinished Data Taking Process.");
 		  refresh();
+		  
                }
 	       else
                {
@@ -144,7 +158,6 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
          {
              counter=counter+1;
          }
-	 // Sync(false,true); //Disable the Trigger
 	 sleep(5);
     }    
 
@@ -154,16 +167,13 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 //Running all the DAQ module
 int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 {
-    int base_x2=20;
-    int base_y2=12;
-   
-
+    stop=false;
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
     int stime=5; //Sleep time in second
 
-    signal(SIGINT, signalHandler); //Handle Ctrl+C Signal  
+    signal(SIGINT, signalHandlerGui); //Handle Ctrl+C Signal  
 
 
     if(runNumber==0)
@@ -177,12 +187,17 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	{
 	    mvprintw(base_y2+7, base_x2, "----------------------------RUN DISPLAY----------------------------");
 	    mvprintw(base_y2+24, base_x2, "-------------------------------------------------------------------");
+	    mvprintw(base_y2+25, base_x2, "Note to users:");
+	    mvprintw(base_y2+26, base_x2, "1. Press Ctrl+C if this would be the last run. Wait to finish.");
+	    mvprintw(base_y2+27, base_x2, "2. GUI Mode requires maximized terminal window.");
+	    mvprintw(base_y2+28, base_x2, "3. Minimizing/Resizing terminal will destroy the display and run.");
+
 	    mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	    refresh();
 		 
-	    // Sync(false,true);//Disable the trigger    
-	    // sleep(1);
-	    mvprintw(base_y2+9, base_x2, "Trigger: Off\t\t");
+	    Sync(false,true);//Disable the trigger    
+	    sleep(1);
+	    mvprintw(base_y2+9, base_x2, "Trigger: Off");
 	    refresh();
 
 	    Daq daq21(DAQ21_IP,DAQ_PORT1,DAQ21,runlength);
@@ -202,11 +217,13 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		refresh();
 		mvprintw(base_y2+12, base_x2, "\t\tRun %d in progress ...\t\t\t", newrun);
 		mvprintw(base_y2+14, base_x2, "Progress:    ", newrun);
+		refresh();
 
+		Sync(true,true);//Enable the trigger    
+		mvprintw(base_y2+9, base_x2, "Trigger: On ");
 		refresh();
 
 		mvprintw(base_y2+15, base_x2, "                                                       ");
-		refresh();
 
 		mvprintw(base_y2+15, base_x2, "                                                       ");
 		refresh();
@@ -242,10 +259,12 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		  {
 		      mvprintw(base_y2+20, base_x2, "Problem renaming data files for run number %d",newrun);		 
 		  }
-
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
 		  refresh();
-		  mvprintw(base_y2+12, base_x2, "\t\tNow initializing run number %d ... ... ", newrun+1);
+		  if(!stop)
+		      mvprintw(base_y2+12, base_x2, "\t\tNow initializing run number %d ... ... ", newrun+1);
+		  else
+		      mvprintw(base_y2+12, base_x2, "\t\t\tFinished Data Taking Process.");
 		  refresh();
 	    }
 	    else
@@ -259,7 +278,6 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    counter=counter+1;
 	}
     }
-    // Sync(false,true);//Disable the trigger
-    sleep(20);
+    sleep(5);
       
 }
