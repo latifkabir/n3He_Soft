@@ -78,10 +78,10 @@ int processPulse(const char* rawname, Sample* es1, Sample* es2)
 	unsigned comp_crc2;
 	sscanf(report1, "crc: %x", &comp_crc1);
 	sscanf(report2, "crc: %x", &comp_crc2);
-	fprintf(stdout, "%12d %08x %08x %s %s", 
+	fprintf(stdout, "%12d %08x %08x %s %s\n", 
 		es1->data[4], es1->data[5], es1->data[7], 
 			comp_crc1==es1->data[5]&& comp_crc1==es1->data[7]? "GOOD": "BAD", report1);
-	fprintf(stdout, "%12d %08x %08x %s %s", 
+	fprintf(stdout, "%12d %08x %08x %s %s\n", 
 		es2->data[4], es2->data[5], es2->data[7], 
 			comp_crc2==es2->data[5]&& comp_crc2==es2->data[7]? "GOOD": "BAD", report2);
 

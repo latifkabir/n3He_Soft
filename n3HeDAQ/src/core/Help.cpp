@@ -58,7 +58,7 @@ void Instruction()
     cout<<"\n";
     cout<<"\n";
     cout<<"\n\t\t n3he daq MODULE :";
-    cout<<"\n  \t\t Where, MODULE= The DAQ module you want to run. It acn be either 21,23,24,30.";
+    cout<<"\n  \t\t Where, MODULE= The DAQ module you want to run. It acn be either 21,22,23,24,30.";
     cout<<"\n  \t\t This will take data only for the DAQ module number 'MODULE' in continuous mode";
     cout<<"\n  \t\t for the default run length.";
     cout<<"\n  \t\t If the module number is not specified it will take data only for module 21 by";
@@ -66,7 +66,7 @@ void Instruction()
     cout<<"\n";
     cout<<"\n\t\t n3he daq MODULE LENGTH RUN :";
     cout<<"\n  \t\t Where, RUN= the number of runs to be taken, \n\t\t        LENGTH = The length of each run in Megabyte.";
-    cout<<"\n         \t\tMODULE= The DAQ module you want to run. It can be either 21,23,24,30.";
+    cout<<"\n         \t\tMODULE= The DAQ module you want to run. It can be either 21,22,23,24,30.";
     cout<<"\n";
     cout<<"\n  \t\t This will take data only for the DAQ module number 'MODULE' for 'RUN' number of ";
     cout<<"\n  \t\t runs of length 'LENGTH' Megabyte each.";

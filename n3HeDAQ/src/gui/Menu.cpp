@@ -21,7 +21,7 @@ extern "C"
 	int base_y=0;
 
 	menu_t *menu = menu_push("USE UP/DOWN ARROW TO SELECT");
-	menu_setwindow(menu,60,100,12,6);
+	menu_setwindow(menu,80,100,10,5);
 	menu_item_t *i_start = menu_newitem(menu, MENU_ITEM_BUTTON);
 	menu_setitem(i_start,"START THE RUN");
 	menu_item_t *i_single = menu_newitem(menu, MENU_ITEM_BUTTON);
@@ -35,39 +35,31 @@ extern "C"
 	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
 	menu_setitem(i_quit, "QUIT");
 
-	mvprintw(base_y, base_x+5,   "--------------------------------------------- ");
-	mvprintw(base_y+1, base_x+5, "|    Welcome to n3He DAQ Control Program    |");
-	mvprintw(base_y+2, base_x+5, "|              version:1.0                  |");
-	mvaddstr(base_y+3, base_x+5, "|        Press Ctrl+C to quit...            |");
-	mvaddstr(base_y+4, base_x+5, "---------------------------------------------");
-	mvaddstr(base_y+5, base_x+5, "     report bug to latifulkabir@uky.edu      ");
+	mvprintw(base_y, base_x+12,   "--------------------------------------------- ");
+	mvprintw(base_y+1, base_x+12, "|    Welcome to n3He DAQ Control Program    |");
+	mvprintw(base_y+2, base_x+12, "|              version:1.0                  |");
+	mvaddstr(base_y+3, base_x+12, "|    report bug to: latifulkabir@uky.edu    |");
+	mvaddstr(base_y+4, base_x+12, "---------------------------------------------");
 	refresh();
 
 	menu_item_t *ret = NULL;
 	do {
 	    if(ret == i_start)
 	    {
-		clear();
 		RunAllGui();
-		break;
 	    }
 	    if(ret == i_single)
 	     {
-		clear();
 		RunSingleGui();
-		break;
 	    }
 	    if(ret == i_config)
 	    {
-                // MyMenu();
-		//clear();
-		 ConfigGui();
-		// CustomConfig(21);
+		ConfigGui();
 	    }
-	    if(ret == i_length)
-		// MyMenu();
-		//clear();
-		CustomDaq();
+	    if(ret == i_length)	
+	    {
+		ConfigGui();	
+	    }
 	    ret = menu_wait(menu, -1);
 	}
 	while(ret != i_quit && ret != MENU_QUIT);
@@ -78,3 +70,4 @@ extern "C"
     }
 
 }
+
