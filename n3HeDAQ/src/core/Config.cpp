@@ -54,8 +54,10 @@ int MakeChange(int module,char *command,int site)
     if(!daq.CheckStatus())
     {
 	daq.WriteToSocket(change_config.c_str());
+	return(1);
     }
-    return(0);
+    else
+	return(-1);
 }
 
 //Change Frequency i.e. Sample Rate
@@ -75,9 +77,9 @@ int ChangeRate(int module,int rate)
          
     //Set the mb_clock
     sprintf(command,"mb_clk 64000 %d",rate*1000);
-    MakeChange(module,command,0);	   
+    int crate= MakeChange(module,command,0);	   
    
-    return(0);
+    return(crate);
 }
 
 //Change Running Mode
@@ -113,8 +115,8 @@ int ChangeMode(int module,int mode)
 	sprintf(command,"rgm=3,0,0");//Triggered & Continuous,d0,Falling 
     }
 
-    MakeChange(module,command,1);	   
-    return(0);
+    int cmode=MakeChange(module,command,1);	   
+    return(cmode);
     //rgm=MODE,line (0=d0, front panel), edge
     //MODE :0=OFF, 2=RGM, 3=RTM, 1=SRTM
     //Edge: 0=falling, 1=rising
@@ -128,9 +130,9 @@ int ChangeLength(int module,int length)
 {
     //Change Event Length
     sprintf(command,"rtm_translen=%d",length);
-    MakeChange(module,command,1);	   
+    int clen= MakeChange(module,command,1);	   
 
-    return(0);
+    return(clen);
 }
 
 
@@ -138,24 +140,24 @@ int ChangeLength(int module,int length)
 int ChangeRes(int module,int res)
 {
     sprintf(command,"hi_res_mode=%d",res);
-    MakeChange(module,command,1);	   
-    return(0);
+    int cres= MakeChange(module,command,1);	   
+    return(cres);
 }
 
 //Change nacc (Averaging)
 int ChangeAveraging(int module,int avg)
 {
     sprintf(command,"nacc=%d,%d",avg,1);
-    MakeChange(module,command,1);	   
-    return(0);
+   int cavg= MakeChange(module,command,1);	   
+    return(cavg);
 }
 
 //Change nacc (Decimation)
 int ChangeDecimation(int module,int dec)
 {
     sprintf(command,"nacc=%d,%d",dec,dec);
-    MakeChange(module,command,1);	   
-    return(0);
+    int cdec=MakeChange(module,command,1);	   
+    return(cdec);
 }    
     
 int ChangeConfig(void)

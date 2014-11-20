@@ -15,6 +15,48 @@ extern "C"
 extern "C"
 {
 
+    int SingleModule()
+    {
+    	menu_t *menu = menu_push("SELECT THE DAQ");
+
+    	menu_item_t *i_daq21 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_daq21, "RUN DAQ 21");
+	menu_item_t *i_daq22 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_daq22, "RUN DAQ 22");
+    	menu_item_t *i_daq23 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_daq23, "RUN DAQ 23");
+	menu_item_t *i_daq24 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_daq24, "RUN DAQ 24");
+	menu_item_t *i_daq30 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_daq30, "RUN DAQ 30");
+
+    	menu_newitem(menu, MENU_ITEM_LABEL);
+    	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_quit, "<-- GO BACK");
+
+    	menu_item_t *ret = NULL;
+    	do {
+    	    if(ret == i_daq21)
+		RunSingleGui(21,RUN_LENGTH,RUN_NUMBER);
+	    if(ret == i_daq22)
+		RunSingleGui(22,RUN_LENGTH,RUN_NUMBER);
+    	    if(ret == i_daq23)
+		RunSingleGui(23,RUN_LENGTH,RUN_NUMBER);
+	    if(ret == i_daq24)
+    		RunSingleGui(24,RUN_LENGTH,RUN_NUMBER);
+	    if(ret == i_daq30)
+		RunSingleGui(30,RUN_LENGTH,RUN_NUMBER);
+	  
+    	    ret = menu_wait(menu, -1);
+    	}
+    	while(ret != i_quit && ret != MENU_QUIT);
+
+    	menu_pop(menu);
+
+    	return 0;
+
+    }
+
     int Menu(void)
     {
 	int base_x=25;
@@ -50,7 +92,7 @@ extern "C"
 	    }
 	    if(ret == i_single)
 	     {
-		RunSingleGui();
+		SingleModule();
 	    }
 	    if(ret == i_config)
 	    {

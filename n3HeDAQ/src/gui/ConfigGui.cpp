@@ -4,80 +4,17 @@
 //Version:1.0
 
 
-#include"Config.h"
 extern "C"
 {
 #include "libmenu.h"
 #include <ncurses.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include"MakeChangesGui.h"
 }
+
 extern "C"
 {
-    int ChangeParam()
-    {
-	int delete_me=0;
-	int x=40,y=25;
-
-    	menu_t *menu = menu_push("SELECT THE DAQ RUNNING MODE");
-
-    	menu_item_t *i_mode1 = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_mode1, "MODE 1");
-    	menu_item_t *i_mode2 = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_mode2, "MODE 2");
-    	menu_item_t *i_mode3 = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_mode3, "MODE 3");
-    	menu_item_t *i_mode4 = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_mode4, "MODE 4");
-    	menu_item_t *i_mode5 = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_mode5, "MODE 5");
-
-    	menu_newitem(menu, MENU_ITEM_LABEL);
-    	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_quit, "<--GO BACK");
-
-    	menu_item_t *ret = NULL;
-    	do {
-    	    if(ret == i_mode1)
-	    {	delete_me=1;
-	    mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
-	    refresh();
-	    }
-    	    if(ret == i_mode2)
-	    {
-		delete_me=2;
-		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
-		refresh();
-	    }
-    	    if(ret == i_mode3)
-	    {
-		delete_me=3;
-		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
-		refresh();
-	    }
-    	    if(ret == i_mode4)
-	    {
-		delete_me=4;
-		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
-		refresh();
-	    }
-    	    if(ret == i_mode5)
-	    {
-		delete_me=5;
-		mvprintw(y, x,   "Done With the Changes!! Value:%d",delete_me);
-		refresh();
-	    }
-    	   
-    	    ret = menu_wait(menu, -1);
-    	}
-    	while(ret != i_quit && ret != MENU_QUIT);
-
-    	menu_pop(menu);
-
-    	return 0;
-    }
-
-
     int CustomConfig(int module)
     {
     	menu_t *menu = menu_push("SELECT THE PARAMETER");
@@ -102,17 +39,17 @@ extern "C"
     	menu_item_t *ret = NULL;
     	do {
        	        if(ret == i_rate)
-		    ChangeParam();
+		    Rate(module);
     	        if(ret == i_mode)
-		    ChangeParam();
+		    Mode(module);
     	        if(ret == i_length)
-		    ChangeParam();
+		    Length(module);
     	        if(ret == i_res)
-		    ChangeParam();
+		    Resolution(module);
     	        if(ret == i_avg)
-		    ChangeParam();
+		    Averaging(module);
     	        if(ret == i_dec)
-		    ChangeParam();
+		    Decimation(module);
       
     	      ret = menu_wait(menu, -1);
     	  }

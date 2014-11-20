@@ -63,6 +63,12 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 	ip=DAQ24_IP;
 	break;
     }
+    case 30:
+    {
+	ip=DAQ30_IP;
+	break;
+    }
+
     default:
     {
 	ip=DAQ21_IP;
@@ -90,8 +96,8 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 	     mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	     refresh();
 		 
-	     Sync(false,true);//Disable the trigger    
-	     sleep(1);
+	     // Sync(false,true);//Disable the trigger    
+	     // sleep(1);
 	     mvprintw(base_y2+9, base_x2, "Trigger: Off");
 	     refresh();
 
@@ -110,7 +116,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 
 		  refresh();
 
-		  Sync(true,true);//Enable the trigger    
+		  // Sync(true,true);//Enable the trigger    
 		  mvprintw(base_y2+9, base_x2, "Trigger: On ");
 		  refresh();
 		  mvprintw(base_y2+15, base_x2, "                                                       ");
