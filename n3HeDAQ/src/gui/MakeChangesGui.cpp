@@ -1,3 +1,10 @@
+//The Ncurses gui to select DAQ Config  
+//Author: Latiful Kabir
+//Date:11.9.14
+//Version:1.0
+
+
+#include"Constants.h"
 #include"Config.h"
 extern "C"
 {
@@ -6,9 +13,12 @@ extern "C"
 #include <stdlib.h>
 #include <unistd.h>
 }
+bool main_menu=false;
+int runlengthgui=RUN_LENGTH;
+
 extern "C"
 {
-
+    //Select The REsolution of The DAQ
     int Resolution(int module)
     {
 	int resolution=0;
@@ -23,6 +33,8 @@ extern "C"
     	menu_newitem(menu, MENU_ITEM_LABEL);
     	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_quit, "<--GO BACK");
+	menu_item_t *i_main_menu = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_main_menu, "<--GO TO MAIN MENU");
 
     	menu_item_t *ret = NULL;
     	do {
@@ -44,6 +56,12 @@ extern "C"
 		mvprintw(y, x,   "Unable to Make Changes for DAQ %d",module);
 		refresh();
 	    }
+	    if(ret == i_main_menu)
+	    {
+		main_menu=true;
+		break;
+	    }
+
     	    ret = menu_wait(menu, -1);
     	}
     	while(ret != i_quit && ret != MENU_QUIT);
@@ -52,7 +70,7 @@ extern "C"
 
     	return 0;
     }
-
+    //Select The Running MOde of The DAQ
     int Mode(int module)
     {
 	int mode=0;
@@ -80,6 +98,8 @@ extern "C"
     	menu_newitem(menu, MENU_ITEM_LABEL);
     	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_quit, "<--GO BACK");
+	menu_item_t *i_main_menu = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_main_menu, "<--GO TO MAIN MENU");
 
     	menu_item_t *ret = NULL;
     	do {
@@ -117,6 +137,12 @@ extern "C"
 	    {
 		mode=ChangeMode(module,7);
 	    }
+	    if(ret == i_main_menu)
+	    {
+		main_menu=true;
+		break;
+	    }
+
 	    if(ret!=NULL)
 	    {
 		if(mode==1)
@@ -134,7 +160,7 @@ extern "C"
     	return 0;
     }
 
-
+    //Select The Averaging of the DAQ
     int Averaging(int module)
     {
 	int average=0;
@@ -175,6 +201,8 @@ extern "C"
     	menu_newitem(menu, MENU_ITEM_LABEL);
     	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_quit, "<--GO BACK");
+	menu_item_t *i_main_menu = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_main_menu, "<--GO TO MAIN MENU");
 
     	menu_item_t *ret = NULL;
     	do {
@@ -243,6 +271,12 @@ extern "C"
 		average=ChangeAveraging(module,32);	       
 		avg_value=32;
 	    }
+	    if(ret == i_main_menu)
+	    {
+		main_menu=true;
+		break;
+	    }
+
 	    if(ret!=NULL)
 	    {
 		if(average==1)
@@ -260,7 +294,7 @@ extern "C"
 
     	return 0;
     }
-
+    //Select The Decimation of the DAQ
     int Decimation(int module)
     {
 	int decimation=0;
@@ -301,6 +335,8 @@ extern "C"
     	menu_newitem(menu, MENU_ITEM_LABEL);
     	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_quit, "<--GO BACK");
+	menu_item_t *i_main_menu = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_main_menu, "<--GO TO MAIN MENU");
 
     	menu_item_t *ret = NULL;
     	do {
@@ -369,6 +405,12 @@ extern "C"
 		decimation=ChangeDecimation(module,32);	       
 		dec_value=32;
 	    }
+	    if(ret == i_main_menu)
+	    {
+		main_menu=true;
+		break;
+	    }
+
 	    if(ret!=NULL)
 	    {
 		if(decimation==1)
@@ -386,6 +428,7 @@ extern "C"
     	return 0;
     }
 
+    //Select The Sample Rate of DAQ
     int Rate(int module)
     {
 	int rate=0;
@@ -427,6 +470,8 @@ extern "C"
     	menu_newitem(menu, MENU_ITEM_LABEL);
     	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_quit, "<--GO BACK");
+	menu_item_t *i_main_menu = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_main_menu, "<--GO TO MAIN MENU");
 
     	menu_item_t *ret = NULL;
     	do {
@@ -495,6 +540,12 @@ extern "C"
 		rate=ChangeRate(module,64);
 		rate_value=64;
 	    }
+	    if(ret == i_main_menu)
+	    {
+		main_menu=true;
+		break;
+	    }
+
 	    if(ret!=NULL)
 	    {
 		if(rate==1)
@@ -515,7 +566,7 @@ extern "C"
     	return 0;
     }
 
-
+    //Select The Event Length
     int Length(int module)
     {
 	int length=0;
@@ -566,6 +617,8 @@ extern "C"
     	menu_newitem(menu, MENU_ITEM_LABEL);
     	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_quit, "<--GO BACK");
+	menu_item_t *i_main_menu = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_main_menu, "<--GO TO MAIN MENU");
 
     	menu_item_t *ret = NULL;
     	do {
@@ -659,6 +712,11 @@ extern "C"
 		length=ChangeLength(module,1000);
 		len_value=1000;
 	    }
+	    if(ret == i_main_menu)
+	    {
+		main_menu=true;
+		break;
+	    }
 	   
 	    if(ret!=NULL)
 	    {
@@ -676,5 +734,90 @@ extern "C"
 
     	return 0;
     }
+
+    //Select the Run Length
+    int ChangeRunLength()
+    {
+	int x=40,y=25;
+
+    	menu_t *menu = menu_push("SELECT THE RUN LENGTH IN MB");
+
+    	menu_item_t *i_mode1 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode1, "5 MB");
+    	menu_item_t *i_mode2 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode2, "10 MB");
+    	menu_item_t *i_mode3 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode3, "15 MB");
+	menu_item_t *i_mode4 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode4, "20 MB");
+	menu_item_t *i_mode5 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode5, "50 MB");    
+    	menu_item_t *i_mode6 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode6, "100 MB");
+    	menu_item_t *i_mode7 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode7, "200 MB");
+	menu_item_t *i_mode8 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_mode8, "300 MB");
+
+    	menu_newitem(menu, MENU_ITEM_LABEL);
+    	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_quit, "<--GO BACK");
+	menu_item_t *i_main_menu = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_main_menu, "<--GO TO MAIN MENU");
+
+    	menu_item_t *ret = NULL;
+    	do {
+    	    if(ret == i_mode1)
+	    {
+		runlengthgui=5e6;
+	    }
+    	    if(ret == i_mode2)
+	    {
+		runlengthgui=10e6;
+	    }
+    	    if(ret == i_mode3)
+	    {
+		runlengthgui=15e6;
+	    }
+    	    if(ret == i_mode4)
+	    {
+		runlengthgui=20e6;
+	    }
+    	    if(ret == i_mode5)
+	    {
+		runlengthgui=50e6;
+	    }
+	    if(ret == i_mode6)
+	    {
+		runlengthgui=100e6;
+	    }
+    	    if(ret == i_mode7)
+	    {
+		runlengthgui=200e6;
+	    }
+    	    if(ret == i_mode8)
+	    {
+		runlengthgui=300e6;
+	    }
+	    if(ret == i_main_menu)
+	    {
+		main_menu=true;
+		break;
+	    }
+
+	    if(ret!=NULL)
+	    {
+		mvprintw(y, x,   "Run Length for All DAQ changed to %d Bytes",runlengthgui);
+		refresh();
+    	    }
+    	    ret = menu_wait(menu, -1);
+    	}
+    	while(ret != i_quit && ret != MENU_QUIT);
+
+    	menu_pop(menu);
+
+    	return 0;
+    }
+
 
 }

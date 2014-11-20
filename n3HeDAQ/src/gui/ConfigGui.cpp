@@ -3,7 +3,7 @@
 //Date:11.9.14
 //Version:1.0
 
-
+#include"Constants.h"
 extern "C"
 {
 #include "libmenu.h"
@@ -12,7 +12,8 @@ extern "C"
 #include <unistd.h>
 #include"MakeChangesGui.h"
 }
-
+extern bool main_menu;
+extern int runlengthgui;
 extern "C"
 {
     int CustomConfig(int module)
@@ -38,20 +39,54 @@ extern "C"
 
     	menu_item_t *ret = NULL;
     	do {
-       	        if(ret == i_rate)
-		    Rate(module);
-    	        if(ret == i_mode)
-		    Mode(module);
-    	        if(ret == i_length)
-		    Length(module);
-    	        if(ret == i_res)
-		    Resolution(module);
-    	        if(ret == i_avg)
-		    Averaging(module);
-    	        if(ret == i_dec)
-		    Decimation(module);
+	    if(ret == i_rate)
+	    {
+		Rate(module);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }	
+	    if(ret == i_mode)
+	    {   Mode(module);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
+	    if(ret == i_length)
+	    {   Length(module);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
+	    if(ret == i_res)
+	    {
+		Resolution(module);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
+	    if(ret == i_avg)
+	    {
+		Averaging(module);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
+	    if(ret == i_dec)
+	    {
+		Decimation(module);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
       
-    	      ret = menu_wait(menu, -1);
+	    ret = menu_wait(menu, -1);
     	  }
     	while(ret != i_quit && ret != MENU_QUIT);
 
@@ -79,25 +114,52 @@ extern "C"
     	menu_newitem(menu_daq, MENU_ITEM_LABEL);
     	menu_item_t *i_quit_daq = menu_newitem(menu_daq, MENU_ITEM_BUTTON);
     	menu_setitem(i_quit_daq, "<-- GO BACK");
-
+   
     	menu_item_t *ret_daq = NULL;
     	do {
     	    if(ret_daq == i_daq21)
+	    {
     		CustomConfig(21);
-
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
     	    if(ret_daq == i_daq22)
+	    {
     		CustomConfig(22);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
 
     	    if(ret_daq == i_daq23)
-    		CustomConfig(23);
+	    {	CustomConfig(23);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
 
     	    if(ret_daq == i_daq24)
-    		CustomConfig(24);
+	    {	CustomConfig(24);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
 
     	    if(ret_daq == i_daq30)
-    		CustomConfig(30);
+	    {
+		CustomConfig(30);
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
 
-    	    ret_daq = menu_wait(menu_daq, -1);
+	    ret_daq = menu_wait(menu_daq, -1);
     	}
     	while(ret_daq != i_quit_daq && ret_daq != MENU_QUIT);
 
@@ -108,12 +170,20 @@ extern "C"
 
     int ConfigGui()
     {
-    	menu_t *menu = menu_push("SELECT OPTION");
+	int x=40,y=25;
+
+    	menu_t *menu = menu_push("SELECT OPTION & HIT ENTER");
 
     	menu_item_t *i_default = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_default, "SET ALL TO n3HE DEFAULT CONFIG");
-	menu_item_t *i_test = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_test, "SET ALL TO TEST CONFIG");
+	menu_item_t *i_cont = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_cont, "SET ALL TO CONTINUOUS CONFIG");
+
+	menu_item_t *i_test1 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_test1, "SET ALL TO TEST CONFIG-1");
+	
+	menu_item_t *i_test2 = menu_newitem(menu, MENU_ITEM_BUTTON);
+    	menu_setitem(i_test2, "SET ALL TO TEST CONFIG-2");
 
     	menu_item_t *i_custom = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_custom, "CUSTOMIZE EACH MODULE");
@@ -125,12 +195,37 @@ extern "C"
     	menu_item_t *ret = NULL;
     	do {
     	    if(ret == i_default)
-    	          CustomDaq();
-	    if(ret == i_test)
-    	          CustomDaq();
+	    {
+		// CustomDaq();
+		mvprintw(y, x,   "Currently this Config is NOT set.Please try later.");
+		refresh();
+	    }
+	    if(ret == i_cont)
+	    {
+		// CustomDaq();
+		mvprintw(y, x,   "Currently this Config is NOT set.Please try later.");
+		refresh();
+	    }
+	    if(ret == i_test1)
+	    {
+		// CustomDaq();
+		mvprintw(y, x,   "Currently this Config is NOT set.Please try later.");
+		refresh();
+	    }
+	    if(ret == i_test2)
+	    {
+		// CustomDaq();
+		mvprintw(y, x,   "Currently this Config is NOT set.Please try later.");
+		refresh();
+	    }
     	    if(ret == i_custom)
-    		  CustomDaq();
-	  
+	    {
+		CustomDaq();
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
     	    ret = menu_wait(menu, -1);
     	}
     	while(ret != i_quit && ret != MENU_QUIT);
@@ -140,6 +235,57 @@ extern "C"
     	return 0;
 
     }
+
+    int RunLength()
+    {
+	int x=40,y=25;
+
+    	menu_t *menu_daq = menu_push("SELECT THE OPTION");
+	menu_item_t *i_default = menu_newitem(menu_daq, MENU_ITEM_BUTTON);
+    	menu_setitem(i_default, "SET RUN LENGTH to n3He DEFAULT");
+    	menu_item_t *i_short = menu_newitem(menu_daq, MENU_ITEM_BUTTON);
+    	menu_setitem(i_short, "SET RUN LENGTH TO SHORT");
+    	menu_item_t *i_custom = menu_newitem(menu_daq, MENU_ITEM_BUTTON);
+    	menu_setitem(i_custom, "SET CUSTOM RUN LENGTH");
+    	
+    	menu_newitem(menu_daq, MENU_ITEM_LABEL);
+    	menu_item_t *i_quit_daq = menu_newitem(menu_daq, MENU_ITEM_BUTTON);
+    	menu_setitem(i_quit_daq, "<-- GO BACK");
+
+    	menu_item_t *ret_daq = NULL;
+    	do {
+    	    if(ret_daq == i_default)
+	    {
+		runlengthgui=RUN_LENGTH;
+		mvprintw(y, x,   "Run Length for All modules set to :%d Bytes",runlengthgui);
+		refresh();    	
+	    }
+
+    	    if(ret_daq == i_short)
+	    {
+		runlengthgui=SHORT_RUN_LENGTH;
+		mvprintw(y, x,   "Run Length for All modules set to :%d Bytes",runlengthgui);
+		refresh();
+	    }
+
+    	    if(ret_daq == i_custom)
+	    {
+		ChangeRunLength();
+		if(main_menu)
+		{
+		    break;
+		}
+	    }
+
+    	    ret_daq = menu_wait(menu_daq, -1);
+    	}
+    	while(ret_daq != i_quit_daq && ret_daq != MENU_QUIT);
+
+    	menu_pop(menu_daq);
+
+    	return 0;
+    }
+
 
 }
 

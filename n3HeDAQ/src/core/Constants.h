@@ -1,6 +1,7 @@
 
 //Default DAQ & Run configuration (Default run length, run number, DAQ module)
 #define RUN_LENGTH 100e6 
+#define SHORT_RUN_LENGTH 20e6 
 #define RUN_NUMBER 0 
 #define MODULE 21 
 

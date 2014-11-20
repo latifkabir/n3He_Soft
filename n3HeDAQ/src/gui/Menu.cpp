@@ -12,6 +12,8 @@ extern "C"
 #include <unistd.h>
 #include "ConfigGui.h"
 }
+extern bool main_menu;
+extern int runlengthgui;
 extern "C"
 {
 
@@ -37,15 +39,15 @@ extern "C"
     	menu_item_t *ret = NULL;
     	do {
     	    if(ret == i_daq21)
-		RunSingleGui(21,RUN_LENGTH,RUN_NUMBER);
+		RunSingleGui(21,runlengthgui,RUN_NUMBER);
 	    if(ret == i_daq22)
-		RunSingleGui(22,RUN_LENGTH,RUN_NUMBER);
+		RunSingleGui(22,runlengthgui,RUN_NUMBER);
     	    if(ret == i_daq23)
-		RunSingleGui(23,RUN_LENGTH,RUN_NUMBER);
+		RunSingleGui(23,runlengthgui,RUN_NUMBER);
 	    if(ret == i_daq24)
-    		RunSingleGui(24,RUN_LENGTH,RUN_NUMBER);
+    		RunSingleGui(24,runlengthgui,RUN_NUMBER);
 	    if(ret == i_daq30)
-		RunSingleGui(30,RUN_LENGTH,RUN_NUMBER);
+		RunSingleGui(30,runlengthgui,RUN_NUMBER);
 	  
     	    ret = menu_wait(menu, -1);
     	}
@@ -62,7 +64,7 @@ extern "C"
 	int base_x=25;
 	int base_y=0;
 
-	menu_t *menu = menu_push("USE UP/DOWN ARROW TO SELECT");
+	menu_t *menu = menu_push("MAIN MENU:USE UP/DOWN ARROW TO SELECT & HIT ENTER");
 	menu_setwindow(menu,80,100,10,5);
 	menu_item_t *i_start = menu_newitem(menu, MENU_ITEM_BUTTON);
 	menu_setitem(i_start,"START THE RUN");
@@ -97,10 +99,12 @@ extern "C"
 	    if(ret == i_config)
 	    {
 		ConfigGui();
+		main_menu=false;
 	    }
 	    if(ret == i_length)	
 	    {
-		ConfigGui();	
+		RunLength();	
+		main_menu=false;
 	    }
 	    ret = menu_wait(menu, -1);
 	}
