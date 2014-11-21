@@ -6,13 +6,11 @@
 #define MODULE 21 
 
 
-
-//Data file name and directory path
-#define OLD_FILE "../data/data_file-%d"
-#define NEW_FILE "../data/run%ddata_file-%d"
-#define LAST_RUN "LastRun.txt"
-#define RUN_LIST "RunList.txt"
-
+//Data file name and directory path : On Picard Only
+#define OLD_FILE "/home/daq/DATA/data_file-%d"
+#define NEW_FILE "/home/daq/DATA/run%ddata_file-%d"
+#define LAST_RUN "/home/daq/n3He_DAQ/bin/LastRun.txt"
+#define RUN_LIST "/home/daq/n3He_DAQ/bin/RunList.txt"
 
 #define SLEEP_TIME 5
 
@@ -25,11 +23,21 @@
 #define DAQ30 30
 #define DAQ_PORT1 "4210"
 #define DAQ_PORT2 "4220"
-#define DAQ21_IP "127.0.0.1" 
+#define DAQ21_IP "192.168.0.21" 
 #define DAQ22_IP "192.168.0.22" 
 #define DAQ23_IP "192.168.0.23" 
 #define DAQ24_IP "192.168.0.24" 
 #define DAQ26_IP "192.168.0.26" 
 #define DAQ30_IP "192.168.0.30" 
 
+
+
+//Data file name and directory path: For Developer's Computer Only
+//#define OLD_FILE "../data/data_file-%d"
+//#define NEW_FILE "../data/run%ddata_file-%d"
+//#define LAST_RUN "LastRun.txt"
+//#define RUN_LIST "RunList.txt"
+
+
+//#define DAQ21_IP "127.0.0.1" 
 

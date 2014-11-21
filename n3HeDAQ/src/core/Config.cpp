@@ -10,6 +10,7 @@
 #include"Constants.h"
 #include"Help.h"
 
+int sleep_time=500000;
 using namespace std;
 
 char *command=new char[100];
@@ -54,6 +55,7 @@ int MakeChange(int module,char *command,int site)
     if(!daq.CheckStatus())
     {
 	daq.WriteToSocket(change_config.c_str());
+	usleep(sleep_time);
 	return(1);
     }
     else
