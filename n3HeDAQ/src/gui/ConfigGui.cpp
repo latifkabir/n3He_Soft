@@ -25,7 +25,7 @@ extern "C"
     	menu_item_t *i_mode = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_mode, "RUNNING MODE");
     	menu_item_t *i_length = menu_newitem(menu, MENU_ITEM_BUTTON);
-    	menu_setitem(i_length, "RUN LENGTH");
+    	menu_setitem(i_length, "EVENT LENGTH");
     	menu_item_t *i_res = menu_newitem(menu, MENU_ITEM_BUTTON);
     	menu_setitem(i_res, "RESOLUTION");
     	menu_item_t *i_avg = menu_newitem(menu, MENU_ITEM_BUTTON);

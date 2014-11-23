@@ -61,11 +61,11 @@ extern "C"
 
     int Menu(void)
     {
-	int base_x=25;
+	int base_x=20;
 	int base_y=0;
 
-	menu_t *menu = menu_push("MAIN MENU:USE UP/DOWN ARROW TO SELECT & HIT ENTER");
-	menu_setwindow(menu,80,100,10,5);
+	menu_t *menu = menu_push("MAIN MENU : USE UP/DOWN ARROW & HIT ENTER");
+	menu_setwindow(menu,80,110,8,5);
 	menu_item_t *i_start = menu_newitem(menu, MENU_ITEM_BUTTON);
 	menu_setitem(i_start,"START THE RUN");
 	menu_item_t *i_single = menu_newitem(menu, MENU_ITEM_BUTTON);

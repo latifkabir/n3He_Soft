@@ -164,7 +164,6 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
          {
              counter=counter+1;
          }
-	 sleep(5);
     }    
 
 }
@@ -283,7 +282,5 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	{
 	    counter=counter+1;
 	}
-    }
-    sleep(5);
-      
+    }      
 }
