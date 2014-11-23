@@ -156,6 +156,8 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
                }
 	       else
                {
+		   mvprintw(base_y2+8, base_x2+20, "DAQ %d is NOT Connected",module);
+		   refresh();
 	           break;
 	       }
          }
@@ -274,6 +276,8 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    }
 	    else
 	    {
+		mvprintw(base_y2+8, base_x2+20, "All DAQs are NOT Connected");
+		refresh();
 		break;
 	    }
 	}

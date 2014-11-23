@@ -170,7 +170,7 @@ extern "C"
 
     int ConfigGui()
     {
-	int x=40,y=25;
+	int x=20,y=25;
 
     	menu_t *menu = menu_push("SELECT OPTION & HIT ENTER");
 
@@ -238,7 +238,7 @@ extern "C"
 
     int RunLength()
     {
-	int x=40,y=25;
+	int x=30,y=25;
 
     	menu_t *menu_daq = menu_push("SELECT THE OPTION");
 	menu_item_t *i_default = menu_newitem(menu_daq, MENU_ITEM_BUTTON);

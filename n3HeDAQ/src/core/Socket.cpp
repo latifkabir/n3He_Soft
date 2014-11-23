@@ -63,7 +63,7 @@ int Socket::CheckStatus()
 
 	status = connect(s, servInfo->ai_addr, servInfo->ai_addrlen);
 	if(status < 0) {
-		cerr << "Connection failed" << endl;
+	    //cerr << "Connection failed" << endl;
 		return 1;
 	}
 
@@ -74,7 +74,7 @@ int Socket::CheckStatus()
 void Socket::WriteData()
 {
     data.write(buffer, retVal);	
-   // cout.write(buffer, retVal); //Uncomment this if you also want realtime data manipulation and plotting
+   // cout.write(buffer, retVal); //Uncomment this if you want to dump to screen/file.
 }
 
 int Socket::WriteToSocket(const char *txt)

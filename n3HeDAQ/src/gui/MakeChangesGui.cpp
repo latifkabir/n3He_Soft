@@ -22,7 +22,7 @@ extern "C"
     int Resolution(int module)
     {
 	int resolution=0;
-	int x=40,y=25;
+	int x=30,y=25;
 
     	menu_t *menu = menu_push("SELECT THE RESOLUTION");
 
@@ -40,6 +40,8 @@ extern "C"
     	do {
     	    if(ret == i_res1)
 	    {
+		mvprintw(y, x,   "Making changes. Please Wait... ...");
+		refresh();
 		resolution=ChangeRes(module,1);
 		if(resolution==1)
 		mvprintw(y, x,   "DAQ %d successfully set to Hi Res Mode.",module);
@@ -49,6 +51,8 @@ extern "C"
 	    }
     	    if(ret == i_res2)
 	    {
+		mvprintw(y, x,   "Making changes. Please Wait... ...");
+		refresh();	
 		resolution=ChangeRes(module,0);
 		if(resolution==1)
 		mvprintw(y, x,   "DAQ %d set to Low Res Mode",module);
@@ -75,7 +79,7 @@ extern "C"
     {
 	int mode=0;
 	int mode_value=0;
-	int x=40,y=25;
+	int x=30,y=25;
 
     	menu_t *menu = menu_push("SELECT THE DAQ RUNNING MODE");
 
@@ -103,6 +107,11 @@ extern "C"
 
     	menu_item_t *ret = NULL;
     	do {
+	    if(ret!=NULL)
+	    {
+		mvprintw(y, x,   "Making changes. Please Wait... ...");
+		refresh();
+	    }
     	    if(ret == i_mode1)
 	    {
 		mode=ChangeMode(module,1);
@@ -165,7 +174,7 @@ extern "C"
     {
 	int average=0;
 	int avg_value=0;
-	int x=40,y=30;
+	int x=30,y=30;
 
     	menu_t *menu = menu_push("SELECT AVERAGING WITH NO DECIMATION");
 
@@ -206,6 +215,11 @@ extern "C"
 
     	menu_item_t *ret = NULL;
     	do {
+	    if(ret!=NULL)
+	    {
+		mvprintw(y, x,   "Making changes. Please Wait... ...");
+		refresh();
+	    }
     	    if(ret == i_mode1)
 	    {
 		average=ChangeAveraging(module,1);
@@ -299,7 +313,7 @@ extern "C"
     {
 	int decimation=0;
 	int dec_value=0;
-	int x=40,y=30;
+	int x=30,y=30;
 
     	menu_t *menu = menu_push("SELECT DECIMATION WITH EQUAL AVERAGING");
 
@@ -340,6 +354,11 @@ extern "C"
 
     	menu_item_t *ret = NULL;
     	do {
+	    if(ret!=NULL)
+	    {
+		mvprintw(y, x,   "Making changes. Please Wait... ...");
+		refresh();
+	    }
     	    if(ret == i_mode1)
 	    {
 		decimation=ChangeDecimation(module,1);
@@ -433,7 +452,7 @@ extern "C"
     {
 	int rate=0;
 	int rate_value=0;
-	int x=40,y=30;
+	int x=20,y=30;
 
     	menu_t *menu = menu_push("SELECT THE SAMPLE RATE IN KHz");
 
@@ -475,6 +494,11 @@ extern "C"
 
     	menu_item_t *ret = NULL;
     	do {
+	    if(ret!=NULL)
+	    {
+		mvprintw(y, x,   "Making changes. Please Wait... ...");
+		refresh();
+	    }
     	    if(ret == i_mode1)
 	    {
 		rate=ChangeRate(module,10);
@@ -571,7 +595,7 @@ extern "C"
     {
 	int length=0;
 	int len_value=0;
-	int x=40,y=35;
+	int x=30,y=35;
 
     	menu_t *menu = menu_push("SELECT NUMBER OF SAMPLES PER EVENT");
 
@@ -622,6 +646,11 @@ extern "C"
 
     	menu_item_t *ret = NULL;
     	do {
+	    if(ret!=NULL)
+	    {
+		mvprintw(y, x,   "Making changes. Please Wait... ...");
+		refresh();
+	    }
     	    if(ret == i_mode3)
 	    {
 		length=ChangeLength(module,30);
@@ -738,7 +767,7 @@ extern "C"
     //Select the Run Length
     int ChangeRunLength()
     {
-	int x=40,y=25;
+	int x=20,y=25;
 
     	menu_t *menu = menu_push("SELECT THE RUN LENGTH IN MB");
 

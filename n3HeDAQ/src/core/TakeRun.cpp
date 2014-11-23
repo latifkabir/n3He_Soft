@@ -214,6 +214,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 	     }
 	     else
 	     {
+		 cout<<"DAQ "<<module<<" is NOT Connected."<<endl;
 		 break;
 	     }
          }
@@ -285,6 +286,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    }
 	    else
 	    {
+		cout<<"All the DAQs are NOT connected"<<endl;
 		break;
 	    }
 	}
