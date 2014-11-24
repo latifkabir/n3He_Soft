@@ -90,8 +90,8 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 	     mvprintw(base_y2+24, base_x2, "-------------------------------------------------------------------");
 	     mvprintw(base_y2+25, base_x2, "Note to users:");
 	     mvprintw(base_y2+26, base_x2, "1. Press Ctrl+C if this would be the last run. Wait to finish");
-	     mvprintw(base_y2+27, base_x2, "2. GUI Mode requires maximized terminal window.");
-	     mvprintw(base_y2+28, base_x2, "3. Minimizing/Resizing terminal will destroy the display and run.");
+	     mvprintw(base_y2+27, base_x2, "2. GUI Mode requires keeping window size as it is.");
+	     mvprintw(base_y2+28, base_x2, "3. Resizing window will destroy the display and run.");
 
 	     mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	     refresh();
@@ -196,8 +196,8 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    mvprintw(base_y2+24, base_x2, "-------------------------------------------------------------------");
 	    mvprintw(base_y2+25, base_x2, "Note to users:");
 	    mvprintw(base_y2+26, base_x2, "1. Press Ctrl+C if this would be the last run. Wait to finish.");
-	    mvprintw(base_y2+27, base_x2, "2. GUI Mode requires maximized terminal window.");
-	    mvprintw(base_y2+28, base_x2, "3. Minimizing/Resizing terminal will destroy the display and run.");
+	    mvprintw(base_y2+27, base_x2, "2. GUI Mode requires keeping window size as it is.");
+	    mvprintw(base_y2+28, base_x2, "3. Resizing window size will destroy the display and run.");
 
 	    mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	    refresh();
