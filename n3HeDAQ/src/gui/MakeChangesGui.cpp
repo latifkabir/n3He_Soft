@@ -769,7 +769,7 @@ extern "C"
     //Select the Run Length
     int ChangeRunLength()
     {
-	int x=20,y=25;
+	int x=20,y=35;
 
     	menu_t *menu = menu_push("SELECT THE RUN LENGTH IN MB");
 

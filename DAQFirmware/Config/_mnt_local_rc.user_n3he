@@ -4,7 +4,7 @@ cp /usr/local/CARE/acq400_streamd.0.conf-soft_trigger /etc/sysconfig/acq400_stre
 make_peers() {
 cat - > /etc/acq400/$1/peers <<EOF
 PEERS=1,2
-KNOBS=trg,rgm,rtm_translen,nacc,hi_res_mode,clk,clkdiv
+KNOBS=trg,rgm,rtm_translen,nacc,hi_res_mode,clk,clkdiv,bank_mask
 EOF
 }
 
@@ -39,7 +39,7 @@ run0 1,2
 # start a local capture. override remotely when streaming data required
 
 streamtonowhered stop
-
+set.site 1 bank_mask=ABC
 #set to n3He resync,trig mode
 set.site 1 rgm=1,0,1
 set.site 1 rtm_translen=650
