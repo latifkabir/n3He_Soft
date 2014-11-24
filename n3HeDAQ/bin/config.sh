@@ -1,7 +1,9 @@
 #!/bin/bash
 
 MODULE=$1
+echo "====================================="
 echo "The current config for DAQ Module: $MODULE"
+echo "====================================="
 echo "                    "
 
 ssh root@192.168.0.$MODULE 'PATH=$PATH:/usr/local/bin/ 
