@@ -31,6 +31,15 @@
 #define DAQ30_IP "192.168.0.30" 
 
 
+//Default DAQ Config
+#define n3He_EVENT 650
+#define n3He_RATE 50
+#define n3He_NACC 16  //Right now nacc(16,16)
+#define CONT_NACC 16  //Right now nacc(16,16)
+#define CONT_RATE 50 
+
+
+
 
 //Data file name and directory path: For Developer's Computer Only
 //#define OLD_FILE "../data/data_file-%d"

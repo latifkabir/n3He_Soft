@@ -21,5 +21,17 @@ echo "Event length: "
 get.site 1 rtm_translen
 echo "           "
 
+echo "Number of Channels: "
+get.site 0 NCHAN
+echo "           "
+
+echo "Bank Mask: "
+get.site 1 bank_mask
+echo "           "
+
+echo "Clock: "
+get.site 1 clk
+echo "           "
+
 echo "Clock Division:"
 get.site 1 clkdiv'

@@ -115,6 +115,7 @@ extern "C"
     	    if(ret == i_mode1)
 	    {
 		mode=ChangeMode(module,1);
+		ChangeLength(module,650);
 		mode_value=1;
 	    }
     	    if(ret == i_mode2)
@@ -125,6 +126,7 @@ extern "C"
     	    if(ret == i_mode3)
 	    {
 		mode=ChangeMode(module,3);
+		ChangeLength(module,650);
 		mode_value=3;
 	    }
     	    if(ret == i_mode4)

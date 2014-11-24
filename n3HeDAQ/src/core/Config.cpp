@@ -5,10 +5,13 @@
 
 #include<iostream>
 #include<unistd.h>
+#include<cstdlib>
 #include"Config.h"
 #include"Daq.h"
 #include"Constants.h"
 #include"Help.h"
+#include"DefConfig.h"
+#include"CustomConfig.h"
 
 int sleep_time=500000;
 using namespace std;
@@ -164,109 +167,91 @@ int ChangeDecimation(int module,int dec)
     
 int ChangeConfig(void)
 {
-    unsigned int param;
-    unsigned int value;
-    unsigned int module;
-    char more1='c';
-    char more2='c';
-//cout<<"Select Options"<<endl;
-//cout<<"1:To set n3he default DAQ setting for all the modules"<<endl;
-//cout<<"2:To set n3he default DAQ setting for one modules"<<endl;
-//cout<<"3:To set Custom setting for each module"<<endl;
-//cout<<"4:To Print current DAQ setting"<<endl;
+    int option=0;
+    int success;
+    int daq[5]={21,22,23,24,30};
+
     Title();
-    cout<<"\n\n\n\t\t ====================Change DAQ Configuration========================\n\n\n"<<endl;
-    while(more1=='c')
-    { 
-	cout<<"\nEnter Module:"<<endl;
-	cin>>module; //DAQ Module
-	if(!(module==21 ||  module==22 || module==23 || module==24 || module==30))
+    cout<<"\n\n\n\t\t ====================DAQ Configuration========================\n\n\n"<<endl;
+
+    cout<<"Select Any Option:"<<endl;
+    cout<<"1:To set n3he default DAQ setting for all the modules"<<endl;
+    cout<<"2:To set continuous mode for all DAQ modules"<<endl;
+    cout<<"3:To set Custom setting for each module"<<endl;
+    cout<<"4:To Print current DAQ setting\n"<<endl;
+    cout<<"Enter the number:"<<endl;
+    cin>>option;
+
+    switch(option)
+    {
+    case 1:
+	for(int i=0;i<5;i++)
 	{
-	    cout<<"Invalid Module"<<endl;
-	    return(1);
+	    success=0;
+	    cout<<"Making Changes for DAQ "<<daq[i]<<". Please wait ... ..."<<endl;
+	    success=n3heDefault(daq[i]);
+	    if(success==5)
+	    {
+		cout<<"DAQ "<<daq[i]<<" successfully set to n3He default setting"<<endl;
+	    }
+	    else
+	    {
+		cout<<"Unable to make changes to DAQ "<<daq[i]<< ". NOT Connected."<<endl;
+	    }
 	}
-	while(more2=='c')
+	break;
+    case 2:
+	for(int i=0;i<5;i++)
 	{
-	    cout<<"\nCheck the following table to choose the correct integer value "<<endl<<endl;    
-            cout<<"PARAMETER_CODE\t\tPOSSIBLE VALUES"<<endl;
-	    cout<<"=============\t\t==============="<<endl;
-	    cout<<"1:RATE \t\t\t 0-128KHz "<<endl;
-	    cout<<"2:MODE \t\t\t 1:Triggered,Sync,Rising 2:Trigg Off 3:Trigger,Sync,Falling \n\t\t\t 4:Trig,Gated,Rising 5:Trig,Gated,Falling 6:Trig,Continuous,Rising 7:Trig,Continuous,Falling"<<endl;
-	    cout<<"3:EVENT_LENGTH \t\t Integer above 39 "<<endl;
-	    cout<<"4:HI_RES_MODE \t\t 0:Low Res Mode 1:Hi Res Mode"<<endl;
-	    cout<<"5:AVERAGING \t\t 1-64 (This will set decimation 1)"<<endl;
-	    cout<<"6:DECIMATION\t\t Integer,power of 2,This will also set averaging, nacc=n,n"<<endl;
-	    cout<<"\nEnter Parameter Code followed by it's value:"<<endl;
-	    cin>>param;  //Parameter Code
-	    cin>>value;  //Parameter Value
-	  
-	    if(param==1)
+	    success=0;
+	    cout<<"Making Changes for DAQ "<<daq[i]<<". Please wait ... ..."<<endl;
+	    success=ContinuousMode(daq[i]);
+	    if(success==4)
 	    {
-		if(value<0 || value >128)
-		{
-		    cout<<"Invalid Rate. It should be between 1-128 KHz"<<endl;
-		    return(1);
-		}
-		else
-		    ChangeRate(module,value);
+		cout<<"DAQ "<<daq[i]<<" successfully set to continuous mode"<<endl;
 	    }
-	    if(param==2)
+	    else
 	    {
-		if(value<0 || value >8) 
-		{
-		    cout<<"Invalid mode. Check Syntax"<<endl;
-		    return(1);
-		}
-		else
-		    ChangeMode(module,value);
+		cout<<"Unable to make changes to DAQ "<<daq[i]<< ". NOT Connected."<<endl;
 	    }
-	    if(param==3)
-	    {
-		if(value<39 && value!=0)
-		{
-		    cout<<"Invalid Event Length.Must be greater than 39."<<endl;
-		    return(1);
-		}
-		else
-		    ChangeLength(module,value);
-	    }
-	    if(param==4)
-	    {
-		if(value <0 || value >2)
-		{
-		    cout<<"Invalid Hi_Res_Mode"<<endl;
-		    return(1);
-		}
-		else
-		    ChangeRes(module,value);
-	    }
-	    if(param==5)
-	    {
-		if(value < 0 || value > 64 )
-		{
-		    cout<<"Invalid Averaging."<<endl;
-		    return(1);
-		}
-		else
-		    ChangeAveraging(module,value);
-	    }
-	    if(param==6)
-	    {
-		if((value!=1 && value!=value && value!=0)|| ((value & (value - 1))) || value<0)
-		{
-		    cout <<"Invalid Decimation.Note it should be power of 2." <<endl; 
-		    return(1);
-		}
-		else
-		    ChangeDecimation(module,value);
-	    }
-	    cout<<"\nDone with the changes !!!"<<endl;
-	    cout<<"\nTo make another change for Module: "<<module<<" enter 'c' or 'q' to quit Config menu for Module: "<<module<<endl;
-	    cin>>more2;
 	}
-	cout<<"\nTo Change config for another module enter 'c', otherwise 'q' to quit Config menu"<<endl;
-	cin>>more1;
-	more2='c';
+	break;
+    case 3:
+	CustomConfig();
+	break;
+    case 4:
+    {
+	const char *dmodule;
+
+	for(int i=0;i<5;i++)
+	{
+	    if(i == 0)
+		dmodule=DAQ21_IP;
+	    if(i == 1)
+		dmodule=DAQ22_IP;
+	    if(i == 2)
+		dmodule=DAQ23_IP;
+	    if(i == 3)
+		dmodule=DAQ24_IP;
+	    if(i== 4)
+		dmodule=DAQ30_IP;
+
+	    sprintf(command,"./config.sh %d",daq[i]);
+	    Daq daq_test(dmodule,DAQ_PORT2,daq[i],RUN_LENGTH);       
+	    if(!daq_test.CheckStatus())
+	    {
+		system(command);
+	    }
+	    else
+	    {
+		cout<<"DAQ "<<daq[i]<<" is NOT connected"<<endl;
+	    }
+	}
     }
+    break;
+    default:
+	cout<<"Invalid Selection."<<endl;
+    }
+
     return 0;
 }

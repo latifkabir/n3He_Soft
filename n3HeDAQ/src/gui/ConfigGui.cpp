@@ -4,6 +4,7 @@
 //Version:1.0
 
 #include"Constants.h"
+#include"DefConfig.h"
 extern "C"
 {
 #include "libmenu.h"
@@ -171,6 +172,9 @@ extern "C"
     int ConfigGui()
     {
 	int x=20,y=25;
+	int success;
+	int daq[5]={21,22,23,24,30};
+
 
     	menu_t *menu = menu_push("SELECT OPTION & HIT ENTER");
 
@@ -196,14 +200,46 @@ extern "C"
     	do {
     	    if(ret == i_default)
 	    {
-		// CustomDaq();
-		mvprintw(y, x,   "Currently this Config is NOT set.Please try later.");
+		for(int i=0;i<5;i++)
+		{
+		    success=0;
+		    mvprintw(y, x,   "Now making Changes for DAQ %d .Please Wait ... ... ",daq[i]);
+		    refresh();
+		    success=n3heDefault(daq[i]);
+		    if(success==5)
+		    {
+			mvprintw(y+1, x, "DAQ %d  successfully set to n3He default setting",daq[i]);
+			refresh();
+		    }
+		    else
+		    {
+			mvprintw(y+1, x, "Unable to make changes to DAQ  %d. NOT Connected.",daq[i]);
+			refresh();
+		    }
+		}
+		mvprintw(y,x, "Done with all modules.                ");
 		refresh();
 	    }
 	    if(ret == i_cont)
 	    {
-		// CustomDaq();
-		mvprintw(y, x,   "Currently this Config is NOT set.Please try later.");
+		for(int i=0;i<5;i++)
+		{
+		    success=0;
+		    mvprintw(y, x,   "Now making Changes for DAQ %d .Please Wait ... ... ",daq[i]);
+		    refresh();
+		    success=ContinuousMode(daq[i]);
+		    if(success==4)
+		    {
+			mvprintw(y+1, x, "DAQ %d  successfully set to continuous mode",daq[i]);
+			refresh();
+		    }
+		    else
+		    {
+			mvprintw(y+1, x, "Unable to make changes to DAQ  %d. NOT Connected.",daq[i]);
+			refresh();
+		    }
+		}
+		mvprintw(y,x, "Done with all modules.");
 		refresh();
 	    }
 	    if(ret == i_test1)
