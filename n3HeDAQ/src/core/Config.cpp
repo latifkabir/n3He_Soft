@@ -4,6 +4,7 @@
 //Version:1.0
 
 #include<iostream>
+#include<fstream>
 #include<unistd.h>
 #include<cstdlib>
 #include"Config.h"
@@ -236,11 +237,18 @@ int ChangeConfig(void)
 	    if(i== 4)
 		dmodule=DAQ30_IP;
 
-	    sprintf(command,"./config.sh %d",daq[i]);
+	    sprintf(command,CONFIG_SH,daq[i]);
 	    Daq daq_test(dmodule,DAQ_PORT2,daq[i],RUN_LENGTH);       
 	    if(!daq_test.CheckStatus())
 	    {
-		system(command);
+		if(ifstream(SH_SCRIPT))
+		{
+		    system(command);
+		}
+		else
+		{
+		    cout<<"Required Shell Script NOT found"<<endl;
+		}
 	    }
 	    else
 	    {

@@ -11,6 +11,8 @@
 #define NEW_FILE "/home/daq/DATA/run%ddata_file-%d"
 #define LAST_RUN "/home/daq/n3He_DAQ/bin/LastRun.txt"
 #define RUN_LIST "/home/daq/n3He_DAQ/bin/RunList.txt"
+#define CONFIG_SH "/home/daq/n3He_DAQ/bin/config.sh %d"
+#define SH_SCRIPT "/home/daq/n3He_DAQ/bin/config.sh"
 
 #define SLEEP_TIME 5
 
@@ -46,6 +48,8 @@
 //#define NEW_FILE "../data/run%ddata_file-%d"
 //#define LAST_RUN "LastRun.txt"
 //#define RUN_LIST "RunList.txt"
+//#define CONFIG_SH "./config.sh %d"
+//#define SH_SCRIPT "./config.sh"
 
 
 //#define DAQ21_IP "127.0.0.1" 
