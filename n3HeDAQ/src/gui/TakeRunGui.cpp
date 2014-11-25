@@ -85,8 +85,13 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 
          if(ready)
          {
-	     mvprintw(base_y2+7, base_x2, "----------------------------RUN DISPLAY----------------------------");
-	  
+	     if(has_colors() && COLOR_PAIRS >= 13)
+	     {
+		 init_pair(2,COLOR_YELLOW,COLOR_BLACK);
+		 color_set(2, NULL);
+	     }
+	    
+	     mvprintw(base_y2+7, base_x2, "----------------------------RUN DISPLAY----------------------------");	  
 	     mvprintw(base_y2+24, base_x2, "-------------------------------------------------------------------");
 	     mvprintw(base_y2+25, base_x2, "Note to users:");
 	     mvprintw(base_y2+26, base_x2, "1. Press Ctrl+C if this would be the last run. Wait to finish");
@@ -192,6 +197,12 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     {
 	if(ready)
 	{
+	    if( has_colors() && COLOR_PAIRS >= 13 )
+	    {
+		init_pair(2,COLOR_YELLOW,COLOR_BLACK);
+		color_set(2, NULL);
+	    }
+	    
 	    mvprintw(base_y2+7, base_x2, "----------------------------RUN DISPLAY----------------------------");
 	    mvprintw(base_y2+24, base_x2, "-------------------------------------------------------------------");
 	    mvprintw(base_y2+25, base_x2, "Note to users:");

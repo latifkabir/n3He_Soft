@@ -5,7 +5,7 @@
 
 #define ES_MAGIC 0xaa55f154
 
-#define NCHAN 32
+#define NCHAN 24
 
 struct Sample 
 {

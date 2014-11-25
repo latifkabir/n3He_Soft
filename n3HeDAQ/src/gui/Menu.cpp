@@ -79,9 +79,14 @@ extern "C"
 	menu_item_t *i_quit = menu_newitem(menu, MENU_ITEM_BUTTON);
 	menu_setitem(i_quit, "QUIT");
 
+	if(has_colors() && COLOR_PAIRS >= 13)
+	{
+	    init_pair(1,COLOR_GREEN,COLOR_BLACK);
+	    color_set(1,NULL);
+	}
 	mvprintw(base_y, base_x+12,   "--------------------------------------------- ");
 	mvprintw(base_y+1, base_x+12, "|    Welcome to n3He DAQ Control Program    |");
-	mvprintw(base_y+2, base_x+12, "|              version:1.0                  |");
+	mvprintw(base_y+2, base_x+12, "|              Version:1.0                  |");
 	mvaddstr(base_y+3, base_x+12, "|    report bug to: latifulkabir@uky.edu    |");
 	mvaddstr(base_y+4, base_x+12, "---------------------------------------------");
 	refresh();
@@ -90,7 +95,7 @@ extern "C"
 	do {
 	    if(ret == i_start)
 	    {
-		RunAllGui();
+		RunAllGui(runlengthgui,RUN_NUMBER);
 	    }
 	    if(ret == i_single)
 	     {
