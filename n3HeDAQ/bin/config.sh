@@ -23,8 +23,8 @@ echo "Event length: "
 get.site 1 rtm_translen
 echo "           "
 
-echo "Number of Channels: "
-get.site 0 NCHAN
+echo "Sample/Event Rate: "
+get.site 1 SIG:sample_count:FREQ
 echo "           "
 
 echo "Bank Mask: "

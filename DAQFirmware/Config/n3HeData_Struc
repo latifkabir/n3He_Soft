@@ -1,0 +1,8 @@
+1. Clean DAQ: (1 header+52 Samples) @ 50 KHz/ 16 averages no decimation= 320 uSec * 52 ~ 48ch *53 *4Bytes =10176 Bytes/file/T0 * 25,000 T0 = 254.4 MB
+2.Dirty DAQ :  no Averaging, 50 KHz, process to keep 2 channels,
+
+
+Max trans_len @ 50 KHz is :831
+Sample we actually get:831-37
+
+with 16 avg, points 49

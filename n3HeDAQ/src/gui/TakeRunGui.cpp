@@ -35,6 +35,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
     int stime=SLEEP_TIME; //Sleep time in second
+    int trig=-1;
     const char *ip;
     const char *port=DAQ_PORT1;
 
@@ -101,9 +102,15 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 	     mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	     refresh();
 		 
-	     // Sync(false,true);//Disable the trigger    
-	     // sleep(1);
-	     mvprintw(base_y2+9, base_x2, "Trigger: Off");
+	     trig=Sync(false,true);//Disable the trigger    
+	     if(trig==0)
+	     {
+		 mvprintw(base_y2+9, base_x2, "Trigger: Off");
+	     }
+	     else
+	     {
+		 mvprintw(base_y2+9, base_x2, "Trigger: Error");
+	     }
 	     refresh();
 
 	     Daq daq(ip,port,module,runlength);
@@ -121,8 +128,15 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 
 		  refresh();
 
-		  // Sync(true,true);//Enable the trigger    
-		  mvprintw(base_y2+9, base_x2, "Trigger: On ");
+		  trig=Sync(true,true);//Enable the trigger    
+		  if(trig==1)
+		  {
+		      mvprintw(base_y2+9, base_x2, "Trigger: On ");
+		  }
+		  else
+		  { 
+		      mvprintw(base_y2+9, base_x2, "Trigger: Error ");
+		  }		  
 		  refresh();
 		  mvprintw(base_y2+15, base_x2, "                                                       ");
 		  mvprintw(base_y2+15, base_x2, "                                                       ");
@@ -184,6 +198,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
     int stime=5; //Sleep time in second
+    int trig=-1;
 
     signal(SIGINT, signalHandlerGui); //Handle Ctrl+C Signal  
 
@@ -213,9 +228,15 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	    refresh();
 		 
-	    Sync(false,true);//Disable the trigger    
-	    sleep(1);
-	    mvprintw(base_y2+9, base_x2, "Trigger: Off");
+	    trig=Sync(false,true);//Disable the trigger    
+	    if(trig==0)
+	    {
+		mvprintw(base_y2+9, base_x2, "Trigger: Off");
+	    }
+	    else
+	    {
+		mvprintw(base_y2+9, base_x2, "Trigger: Error");
+	    }
 	    refresh();
 
 	    Daq daq21(DAQ21_IP,DAQ_PORT1,DAQ21,runlength);
@@ -237,8 +258,15 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		mvprintw(base_y2+14, base_x2, "Progress:    ", newrun);
 		refresh();
 
-		Sync(true,true);//Enable the trigger    
-		mvprintw(base_y2+9, base_x2, "Trigger: On ");
+		trig=Sync(true,true);//Enable the trigger    
+		if(trig==1)
+		{
+		    mvprintw(base_y2+9, base_x2, "Trigger: On ");
+		}
+		else
+		{
+		    mvprintw(base_y2+9, base_x2, "Trigger: Error ");
+		}
 		refresh();
 
 		mvprintw(base_y2+15, base_x2, "                                                       ");

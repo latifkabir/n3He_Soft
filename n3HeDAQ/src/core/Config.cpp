@@ -248,6 +248,7 @@ int ChangeConfig(void)
 		else
 		{
 		    cout<<"Required Shell Script NOT found"<<endl;
+		    break;
 		}
 	    }
 	    else

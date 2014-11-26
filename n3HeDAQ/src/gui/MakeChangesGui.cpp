@@ -79,7 +79,7 @@ extern "C"
     {
 	int mode=0;
 	int mode_value=0;
-	int x=30,y=25;
+	int x=30,y=35;
 
     	menu_t *menu = menu_push("SELECT THE DAQ RUNNING MODE");
 

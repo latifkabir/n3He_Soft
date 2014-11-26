@@ -94,7 +94,6 @@ int Sync(bool status,bool gui_mode)
     Daq daq(DAQ30_IP,DAQ_PORT2,DAQ30,RUN_LENGTH);
     if(!daq.CheckStatus())
     {
-	{
 	    if(status)
 	    {
 		if(!gui_mode)
@@ -113,7 +112,13 @@ int Sync(bool status,bool gui_mode)
 		daq.WriteToSocket("do4_3 0");
 		return(0);
 	    }
-	}
+	sleep(1);
+    }
+    else
+    {
+	if(!gui_mode)
+	    cout<<"Unable to switch trigger"<<endl;
+	return(-1);
     }
 }
 
@@ -196,7 +201,6 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
          if(ready)
          {
 	     Sync(false,false);//Disable the trigger    
-	     sleep(1);
 	     Daq daq(ip,port,module,runlength);
 	     if(!daq.CheckStatus())
 	     {
@@ -247,7 +251,6 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	if(ready)
 	{
 	    Sync(false,false); //Disable the trigger
-	    sleep(1); 	     
 	    Daq daq21(DAQ21_IP,DAQ_PORT1,DAQ21,runlength);
 	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
 	    Daq daq23(DAQ23_IP,DAQ_PORT1,DAQ23,runlength);

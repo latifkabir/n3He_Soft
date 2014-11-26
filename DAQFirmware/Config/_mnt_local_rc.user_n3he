@@ -26,7 +26,7 @@ set.site 0 fpmux xclk
 set.site 1 clk=1,1,0
 set.site 1 clkdiv 1
 set.site 0 mb_clk 64000 50000
-set.site 1 nacc=16,16
+set.site 1 nacc=16,1
 
 # in reality, we probably want external clock eg
 # set.site 1 clk=1,0,0
@@ -36,13 +36,13 @@ set.site 1 nacc=16,16
 run0 1,2
 
 
-# start a local capture. override remotely when streaming data required
-
-streamtonowhered stop
+#set to n3He resync,trig mode, 48 chan
 set.site 1 bank_mask=ABC
-#set to n3He resync,trig mode
 set.site 1 rgm=1,0,1
-set.site 1 rtm_translen=650
+set.site 1 rtm_translen=870
+
+# start a local capture. override remotely when streaming data required
+streamtonowhered stop
 
 
 #-------------------------------------------------------------------
