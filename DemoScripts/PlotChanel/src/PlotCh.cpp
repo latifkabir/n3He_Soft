@@ -24,7 +24,7 @@ void PlotCh(int ch=0,int init=0){
   const long entries=(long)(8*filesize)/(32*NCHAN);
   const int start=init;
 
- if(entries==0)
+  if(entries==0)
   {
       cout<<"No data file or file is empty... Exiting!!!"<<endl;
   }

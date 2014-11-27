@@ -1,2 +1,2 @@
-#define DATA_FILE "/home/daq/DATA/ACQ2006/bigrawfile"
+#define DATA_FILE "data/000"
 #define NCHAN 64
