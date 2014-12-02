@@ -53,20 +53,21 @@ void PlotCh(int ch=0,int init=0){
 int main(int argc, char** argv)
 {
 
-    if(ifstream("/home/daq/DATA/ACQ2006/bigrawfile")) 
-    {
-	int channel,start;
-	cout<<"Enter the channel number:"<<endl;
-	cin>>channel;
-	cout<<"Enter the entry number to start:"<<endl;
-	cin>>start;
- 
-	gApplication = new TRint("PlotCh", &argc,argv,0,0,kTRUE);
-	PlotCh(channel,start);
-	gApplication->Run();
-    }
-    else
+    if(!ifstream("/home/daq/DATA/ACQ2006/bigrawfile"))
     {
 	cout<<"No data file... exiting... !!!!"<<endl;
+	return(-1);
     }    
+ 
+    int channel,start;
+    cout<<"Enter the channel number:"<<endl;
+    cin>>channel;
+    cout<<"Enter the entry number to start:"<<endl;
+    cin>>start;
+ 
+    gApplication = new TRint("PlotCh", &argc,argv,0,0,kTRUE);
+    PlotCh(channel,start);
+    gApplication->Run();
+   
+    return(0);
 }
