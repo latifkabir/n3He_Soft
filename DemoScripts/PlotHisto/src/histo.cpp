@@ -6,6 +6,7 @@
 #include<iostream>
 #include<cmath>
 #include<fstream>
+#include<cstdlib>
 #include<TCanvas.h>
 #include<TH1F.h>
 #include<TRint.h>
@@ -91,7 +92,7 @@ int main(int argc, char** argv)
   
     if(argc!=4)
     {
-	cout<<"Usage:./hist RUN_NUMBER MODULE CHANNEL"<<endl;
+	cout<<"Usage:./histo RUN_NUMBER MODULE CHANNEL"<<endl;
 	return(-1);
     }
 
@@ -99,7 +100,7 @@ int main(int argc, char** argv)
     module=atoi(argv[2]);
     channel=atoi(argv[3]);
 
-    gApplication = new TRint("hist", &argc,argv,0,0,kTRUE);
+    gApplication = new TRint("histo", &argc,argv,0,0,kTRUE);
     PlotHist(run,module,channel,start);
     gApplication->Run();
     return(0);

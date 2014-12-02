@@ -6,6 +6,7 @@
 #include<iostream>
 #include<cmath>
 #include<fstream>
+#include<cstdlib>
 #include<TCanvas.h>
 #include<TGraph.h>
 #include<TRint.h>
