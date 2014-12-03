@@ -102,7 +102,8 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 	     mvprintw(base_y2+8, base_x2, "Current Run Status:");
 	     refresh();
 		 
-	     trig=Sync(false,true);//Disable the trigger    
+	     trig=Sync(false,true);//Disable the trigger 
+	     sleep(1);  
 	     if(trig==0)
 	     {
 		 mvprintw(base_y2+9, base_x2, "Trigger: Off");
