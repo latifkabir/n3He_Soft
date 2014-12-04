@@ -26,7 +26,7 @@ int PlotCh(int run,int module,int ch=0,int init=0)
 	cout<<"No data file... exiting... !!!!"<<endl;
 	return(-1);
     }
-    if(ch<0 || ch >47)
+    if(ch<1 || ch >48)
     {
 	cout<<"Invalid Channel"<<endl;
 	return(-1);
@@ -58,12 +58,13 @@ int PlotCh(int run,int module,int ch=0,int init=0)
     for(long i=start;i<entries;i++)
     {
 	if(fa.GetValue(0,i)!=ES_MAGIC)
-	    gr1->SetPoint(i-start,i,fa.GetValue(ch,i)*ADC_TO_VOLT);
+	    gr1->SetPoint(i-start,i,fa.GetValue(ch-1,i)*ADC_TO_VOLT);
     }   
-    gr1->Draw("AP");
+   
     gr1->SetTitle("Plot for the channel");
     gr1->GetXaxis()->SetTitle("Entry$");
     gr1->GetYaxis()->SetTitle("Volt");
+    gr1->Draw("AP");
 
     delete[] file_name;
     return(0);
