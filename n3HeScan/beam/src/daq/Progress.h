@@ -1,0 +1,1 @@
+void printProgBar( int percent );

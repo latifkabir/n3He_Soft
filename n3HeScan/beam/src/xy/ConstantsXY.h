@@ -8,3 +8,6 @@
 #define END_X 5e5
 #define START_Y 3e4
 #define END_Y 5e4
+#define CHANNEL 0
+#define DIRTY_DAQ 30
+

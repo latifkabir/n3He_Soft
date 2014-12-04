@@ -1,3 +1,3 @@
 
 
-double CalAverage(int ch);
+double CalAverage(int run,int module,int ch);
