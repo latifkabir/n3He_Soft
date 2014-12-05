@@ -33,7 +33,7 @@ n3HeScan
 
 DAQFormware
 ----------
-This directory contain DAQ Firmware related Software update.
+This directory contains DAQ Firmware related Software update.
 
 DemoScripts
 -----------
