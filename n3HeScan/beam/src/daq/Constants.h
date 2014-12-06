@@ -1,18 +1,18 @@
 
 //Default DAQ & Run configuration (Default run length, run number, DAQ module)
-#define RUN_LENGTH 100e6 
+#define RUN_LENGTH 2e6 
 #define SHORT_RUN_LENGTH 20e6 
 #define RUN_NUMBER 0 
 #define MODULE 21 
 
 
 //Data file name and directory path : On Picard Only
-#define OLD_FILE "/home/daq/DATA/data-%d"
-#define NEW_FILE "/home/daq/DATA/run-%ddata-%d"
-#define LAST_RUN "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/LastRun.txt"
-#define RUN_LIST "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/RunList.txt"
-#define CONFIG_SH "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/config.sh %d"
-#define SH_SCRIPT "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/config.sh"
+//#define OLD_FILE "/home/daq/DATA/data-%d"
+//#define NEW_FILE "/home/daq/DATA/run-%ddata-%d"
+//#define LAST_RUN "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/LastRun.txt"
+//#define RUN_LIST "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/RunList.txt"
+//#define CONFIG_SH "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/config.sh %d"
+//#define SH_SCRIPT "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/config.sh"
 
 #define SLEEP_TIME 5
 
@@ -45,12 +45,12 @@
 #define ADC_TO_VOLT 4.6566e-9
 
 //Data file name and directory path: For Developer's Computer Only
-//#define OLD_FILE "../data/data-%d"
-//#define NEW_FILE "../data/run-%ddata-%d"
-//#define LAST_RUN "LastRun.txt"
-//#define RUN_LIST "RunList.txt"
-//#define CONFIG_SH "./config.sh %d"
-//#define SH_SCRIPT "./config.sh"
+#define OLD_FILE "../data/data-%d"
+#define NEW_FILE "../data/run-%ddata-%d"
+#define LAST_RUN "LastRun.txt"
+#define RUN_LIST "RunList.txt"
+#define CONFIG_SH "./config.sh %d"
+#define SH_SCRIPT "./config.sh"
 
 
 //#define DAQ21_IP "127.0.0.1" 

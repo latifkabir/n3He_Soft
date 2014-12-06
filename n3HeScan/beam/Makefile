@@ -7,7 +7,7 @@ CC        := g++
 LD        := g++
 CFLAG     := -std=c++11 -pthread
 
-EXE	  :=scan
+EXE	  :=bscan
 MODULES   := xy daq avg 
 SRC_DIR   := $(addprefix src/,$(MODULES))
 BUILD_DIR := $(addprefix bin/,$(MODULES))

@@ -12,13 +12,16 @@ void Instruction()
 {
     cout<<"========= Beam Scan Program Instruction=========="<<endl;
     cout<<"Usage:"<<endl;
-    cout<<"./xy scan"<<endl;
+    cout<<"./bscan scan"<<endl;
     cout<<"\tThis will make an auomatic full grid scan"<<endl;
-cout<<"./xy custom"<<endl;
+cout<<"./bscan custom"<<endl;
     cout<<"\tThis is to move XY table to specific position and take one run"<<endl;
-    cout<<"./xy help"<<endl;
+    cout<<"./bscan help"<<endl;
     cout<<"\tThis will pull this help session"<<endl;
-
+    cout<<"Sign Convension for XY displacements:"<<endl;
+    cout<<"\tDisplacement is in units of Steps"<<endl;
+    cout<<"\t+ for moving away from the motor"<<endl;
+    cout<<"\t- for moving  towards the motor"<<endl;
 }
 
 
