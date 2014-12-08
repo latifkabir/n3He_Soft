@@ -1,0 +1,4 @@
+M=load('Data.m')
+S=load('UMatrix.m')
+[B,Rp,M0] = fit_sym(M, S)   %calibration
+cal_field([4.9,0.1,0.3], Rp,M0)  %new measurement

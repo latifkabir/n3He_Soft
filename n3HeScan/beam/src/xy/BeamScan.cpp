@@ -167,7 +167,7 @@ int BeamScan(void)
 		xy.BeamData <<setprecision(10);
 		xy.BeamData <<setw(10)<<current_run<<"        "<<setw(10)<<-1*Y_r<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<-1*X_r<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<setprecision(10)<<intensity<<"        "<<endl;
 	    }
-	    if(!stop)
+	    if(!stop && Y_r<end_y)
 	    {
 		xy.MoveXY('X',(-1*X_m-START_X));
 		X_m=xy.GetPosition('X');
@@ -177,7 +177,7 @@ int BeamScan(void)
 	    {
 		cout<<"Current Location Y: "<<Y_m<<" X : "<<X_m<<endl;
 		cout<<"Done with the Scan !!!"<<endl;
-		xy.BeamData <<setw(10)<<current_run<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<X_m<<"        "<<"        "<<endl;
+		// xy.BeamData <<setw(10)<<current_run<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<X_m<<"        "<<"        "<<endl;
 	    }
 	}
     }

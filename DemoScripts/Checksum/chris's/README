@@ -1,0 +1,28 @@
+Demo Usage:
+hadron:~/n3he/ACQ435_CRC 08:27$ g++ crc_validate.cpp -o crc_validate
+hadron:~/n3he/ACQ435_CRC 08:28$ crc_validate 3 0 kabir_data/data24
+           2 255128ee 255128ee CRC1: 255128ee [GOOD]   
+           3 748aca05 748aca05 CRC1: 748aca05 [GOOD]   
+           4 d8d385d3 d8d385d3 CRC1: d8d385d3 [GOOD]   
+         ... .......... ...                ...
+hadron:~/n3he/ACQ435_CRC 08:28$ crc_validate 4 0 kabir_data/data32
+           2 94eaac4b 94eaac4b CRC1: 94eaac4b [GOOD]   
+           3 b2635a9d b2635a9d CRC1: b2635a9d [GOOD]   
+           4 0dd61ab3 0dd61ab3 CRC1: 0dd61ab3 [GOOD]   
+          ... ... ...
+hadron:~/n3he/ACQ435_CRC 08:28$ crc_validate 3 3 kabir_data/data48
+           2 bbcf030a bbcf030a CRC1: bbcf030a [GOOD]   a787441c a787441c CRC2: a787441c [GOOD]
+           3 5aabcb50 5aabcb50 CRC1: 5aabcb50 [GOOD]   3ace746c 3ace746c CRC2: 3ace746c [GOOD]
+           4 1d9607ca 1d9607ca CRC1: 1d9607ca [GOOD]   006ce495 006ce495 CRC2: 006ce495 [GOOD]
+           ... ... ...
+hadron:~/n3he/ACQ435_CRC 08:28$ crc_validate 4 4 kabir_data/data64
+hadron:~/n3he/ACQ435_CRC 08:29$ crc_validate 4 0 kabir_data/data64
+           2 e871c0a4 e871c0a4 CRC1: cc8a40d6 [BAD]   
+           2 3a75d15e 3a75d15e CRC1: eba5a4a4 [BAD]   
+           3 f492e493 f492e493 CRC1: 74ebd4e5 [BAD]   
+           ... ... ...
+hadron:~/n3he/ACQ435_CRC 08:32$ crc_validate 2 2 kabir_data/data64
+           2 e871c0a4 e871c0a4 CRC1: ffa506f4 [BAD]   e871c0a4 e871c0a4 CRC2: 3e108f58 [BAD]
+           2 3a75d15e 3a75d15e CRC1: 1bd93796 [BAD]   3a75d15e 3a75d15e CRC2: f39f6e13 [BAD]
+           3 f492e493 f492e493 CRC1: 08564391 [BAD]   f492e493 f492e493 CRC2: d3c2ef1c [BAD]
+           .... ...
