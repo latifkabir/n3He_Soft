@@ -8,6 +8,7 @@
 #include"ReadBinary.h"
 #include"CalAverage.h"
 #include"Constants.h"
+#include"ConstantsRB.h"
 
 using namespace std;
 double CalAverage(int run=0,int module=30,int ch=0)
@@ -28,7 +29,7 @@ double CalAverage(int run=0,int module=30,int ch=0)
     ReadBinary fa(file_name);
 
  	   
-    int entries=(int)(8*fa.GetFileSize()/(64*32));               
+    int entries=(int)(8*fa.GetFileSize()/(NCHAN*32));               
     double total=0.0;
     double average=0.0;
     int counter=0;

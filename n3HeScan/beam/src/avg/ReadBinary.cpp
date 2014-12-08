@@ -1,9 +1,13 @@
+//A stand alone class for reading and analyzing binary file
+//Author: Latiful Kabir
+//Date: 6/11/14
+
 #include<iostream>
 #include<cstdio>
 #include<string>
 #include <sys/stat.h>
 #include"ReadBinary.h"
-
+#include"ConstantsRB.h"
 using namespace std;
 
 ReadBinary::ReadBinary(const char* filename)
@@ -33,7 +37,7 @@ int ReadBinary::GetValue(int channel,long point)
 
     struct rec
     {
-	int my_data[64];
+	int my_data[NCHAN];
     };
 
     long counter=point;

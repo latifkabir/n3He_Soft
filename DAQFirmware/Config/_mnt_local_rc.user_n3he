@@ -17,7 +17,8 @@ make_peers 2
 
 # set some params 
 # hi_res_mode on site 2 is a peer of site 1, so only need set site 1.
-set.site 1 hi_res_mode 1
+set.site 1 hi_res_mode 1 #For Dirty DAQ hi_res_mode=0
+
 # trg is Mandatory. peered with 2
 set.site 1 trg=1,1,1
 # we set a 25MHz internal clock. This is a MASTER knob (not peered)
@@ -26,20 +27,19 @@ set.site 0 fpmux xclk
 set.site 1 clk=1,1,0
 set.site 1 clkdiv 1
 set.site 0 mb_clk 64000 50000
-set.site 1 nacc=16,1
+set.site 1 nacc=16,16 #for Dirty DAQ nacc=1,1
 
 # in reality, we probably want external clock eg
 # set.site 1 clk=1,0,0
 
 
 # pair the two sites
-run0 1,2
-
+run0 1,2 #for Dirty DAQ run0=1
 
 #set to n3He resync,trig mode, 48 chan
-set.site 1 bank_mask=ABC
+set.site 1 bank_mask=ABC  #For Dirty DAQ bank_mask=A
 set.site 1 rgm=1,0,1
-set.site 1 rtm_translen=870
+set.site 1 rtm_translen=830 #For Dirty DAQ rtm_translen=1660
 
 # start a local capture. override remotely when streaming data required
 streamtonowhered stop

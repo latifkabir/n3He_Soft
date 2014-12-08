@@ -1,3 +1,6 @@
+//A stand alone class for reading and analyzing binary file
+//Author: Latiful Kabir
+//Date: 6/11/14
 
 class ReadBinary
 {

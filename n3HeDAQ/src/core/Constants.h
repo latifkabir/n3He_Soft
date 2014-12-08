@@ -34,11 +34,18 @@
 
 
 //Default DAQ Config
-#define n3He_EVENT 650
+#define n3He_EVENT 830
 #define n3He_RATE 50
 #define n3He_NACC 16  //Right now nacc(16,16)
 #define CONT_NACC 16  //Right now nacc(16,16)
 #define CONT_RATE 50 
+
+#define DIRTY_EVENT 1660
+#define DIRTY_NACC 1
+#define DIRTY_RES 0
+
+//Adjustrment for Dirty DAQ run length
+#define DIRTY_FACTOR 5.33 
 
 
 

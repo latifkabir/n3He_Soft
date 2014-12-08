@@ -7,8 +7,8 @@
 
 
 //Data file name and directory path : On Picard Only
-//#define OLD_FILE "/home/daq/DATA/data-%d"
-//#define NEW_FILE "/home/daq/DATA/run-%ddata-%d"
+#define OLD_FILE "/home/daq/DATA/data-%d"
+#define NEW_FILE "/home/daq/DATA/run-%ddata-%d"
 //#define LAST_RUN "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/LastRun.txt"
 //#define RUN_LIST "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/RunList.txt"
 //#define CONFIG_SH "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/config.sh %d"
@@ -45,8 +45,8 @@
 #define ADC_TO_VOLT 4.6566e-9
 
 //Data file name and directory path: For Developer's Computer Only
-#define OLD_FILE "../data/data-%d"
-#define NEW_FILE "../data/run-%ddata-%d"
+//#define OLD_FILE "../data/data-%d"
+//#define NEW_FILE "../data/run-%ddata-%d"
 #define LAST_RUN "LastRun.txt"
 #define RUN_LIST "RunList.txt"
 #define CONFIG_SH "./config.sh %d"
