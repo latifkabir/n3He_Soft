@@ -22,6 +22,7 @@ cout<<"./bscan custom"<<endl;
     cout<<"\tDisplacement is in units of Steps"<<endl;
     cout<<"\t+ for moving away from the motor"<<endl;
     cout<<"\t- for moving  towards the motor"<<endl;
+    cout<<"\t 4000 Steps equals 1 Inch"<<endl;
 }
 
 

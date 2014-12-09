@@ -11,7 +11,7 @@
 #include"ConstantsRB.h"
 
 using namespace std;
-double CalAverage(int run=0,int module=30,int ch=0)
+double CalAverage(int run=0,int module=30,int ch=2)
 {
 
     char *file_name=new char[200];
