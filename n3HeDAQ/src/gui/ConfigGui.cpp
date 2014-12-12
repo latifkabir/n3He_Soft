@@ -217,7 +217,7 @@ extern "C"
 			refresh();
 		    }
 		}
-		mvprintw(y,x, "Done with all modules.\t\t\t\t");
+		mvprintw(y,x, "\t\tDone with all modules.\t\t\t\t\t\t");
 		refresh();
 	    }
 	    if(ret == i_cont)

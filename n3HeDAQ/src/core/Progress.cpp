@@ -9,7 +9,7 @@
 #include <stdlib.h> 
        
 using namespace std; 
-       
+              
 void printProgBar(int percent)      // percent -> Percentage 
 { 
     string bar; 
@@ -18,7 +18,7 @@ void printProgBar(int percent)      // percent -> Percentage
     { 
 	exit(1); 
     } 
-    int wdt = uk.ws_col - 50; // create some space for the other text 
+    int wdt = uk.ws_col - 55; // create some space for the other text 
     if(wdt < 5) 
     { 
 	wdt = 5;      // minimum width for progress bar 5 char 
@@ -40,10 +40,10 @@ void printProgBar(int percent)      // percent -> Percentage
 	} 
     } 
     cout << "\r";          // go to the first character in terminal 
-    cout.width(3);          // set some space for percentage 
-    cout<<"\t\t";
-    cout << percent << "%";      
+    cout<<"\t\t\t";
     cout << "[" << bar << "] ";     // progress bar        
+    cout << percent << " %   ";      
+
     cout<< flush; 
 } 
 
