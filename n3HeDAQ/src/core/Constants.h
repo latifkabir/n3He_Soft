@@ -61,3 +61,7 @@
 
 //#define DAQ21_IP "127.0.0.1" 
 
+
+
+//With Event Length 830 and Averaging 16, there will be 1 header + 49 Sample/tbin, i.e. total 50 samples per T0
+//(Including Header).

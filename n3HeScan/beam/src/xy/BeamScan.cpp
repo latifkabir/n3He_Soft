@@ -19,7 +19,8 @@
 using namespace std;
 
 int current_run=0;
-double intensity=0;
+double intensity_m4=0;
+double intensity_m1=0;
 extern bool stop;
 
 int BeamScan(void)
@@ -116,7 +117,7 @@ int BeamScan(void)
 	break;
 
 	default:
-	    cout<<"Invalid Option"<<endl;
+	    cout<<"Invalid Option or You chose not to scan."<<endl;
 	    return(-1);
 	}
 
@@ -160,12 +161,13 @@ int BeamScan(void)
 		current_run=RunSingle(DIRTY_DAQ,RUN_LENGTH,1);
 
 		//Calculate the mean here
-		intensity=CalAverage(current_run,DIRTY_DAQ,CHANNEL);
+		intensity_m4=CalAverage(current_run,DIRTY_DAQ,CHANNEL_M4);
+		intensity_m1=CalAverage(current_run,DIRTY_DAQ,CHANNEL_M1);
 
-		cout<<"Y_req : "<<-1*Y_r<<"    "<<"Y_moved : "<<Y_m<<"    "<<"X_req : "<<-1*X_r<<"    "<<"X_moved : "<<X_m<<"    "<<"intensity : "<<intensity<<endl<<endl;
+		cout<<"Y_req : "<<-1*Y_r<<"    "<<"Y_moved : "<<Y_m<<"    "<<"X_req : "<<-1*X_r<<"    "<<"X_moved : "<<X_m<<"    "<<"intensity : "<<intensity_m4<<endl<<endl;
 		//Save to Data File
 		xy.BeamData <<setprecision(10);
-		xy.BeamData <<setw(10)<<current_run<<"        "<<setw(10)<<-1*Y_r<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<-1*X_r<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<setprecision(10)<<intensity<<"        "<<endl;
+		xy.BeamData <<setw(10)<<current_run<<"        "<<setw(10)<<-1*Y_r<<"        "<<setw(10)<<Y_m<<"        "<<setw(10)<<-1*X_r<<"        "<<setw(10)<<X_m<<"        "<<setw(10)<<setprecision(10)<<intensity_m4<<"        "<<setw(10)<<setprecision(10)<<intensity_m1<<endl;
 	    }
 	    if(!stop && Y_r<end_y)
 	    {
@@ -228,12 +230,13 @@ int CustomMove()
 		current_run=RunSingle(DIRTY_DAQ,RUN_LENGTH,1);
 
 		//Calculate the mean here
-		intensity=CalAverage(current_run,DIRTY_DAQ,CHANNEL);
+		intensity_m4=CalAverage(current_run,DIRTY_DAQ,CHANNEL_M4);
+		intensity_m1=CalAverage(current_run,DIRTY_DAQ,CHANNEL_M1);
 
-		cout<<"Y_req : "<<y<<"    "<<"Y_moved : "<<y_m<<"    "<<"X_req : "<<x<<"    "<<"X_moved : "<<x_m<<"    "<<"intensity : "<<intensity<<endl<<endl;
+		cout<<"Y_req : "<<y<<"    "<<"Y_moved : "<<y_m<<"    "<<"X_req : "<<x<<"    "<<"X_moved : "<<x_m<<"    "<<"intensity : "<<intensity_m4<<endl<<endl;
 		//Save to Data File
 		xy.BeamData <<setprecision(10);
-		xy.BeamData <<setw(10)<<current_run<<"        "<<setw(10)<<y<<"        "<<setw(10)<<y_m<<"        "<<setw(10)<<x<<"        "<<setw(10)<<x_m<<"        "<<setw(10)<<setprecision(10)<<intensity<<"        "<<endl;
+		xy.BeamData <<setw(10)<<current_run<<"        "<<setw(10)<<y<<"        "<<setw(10)<<y_m<<"        "<<setw(10)<<x<<"        "<<setw(10)<<x_m<<"        "<<setw(10)<<setprecision(10)<<intensity_m4<<"        "<<setw(10)<<setprecision(10)<<intensity_m1<<endl;
 	    
 	}
 	return(0);
