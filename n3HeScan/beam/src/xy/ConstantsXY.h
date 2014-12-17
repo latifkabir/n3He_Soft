@@ -28,30 +28,30 @@
 /* #define DIRTY_DAQ 30 */
 
 //Downstream grid(1.5cm spacing) scan
+#define UNIT_X 2362
+#define UNIT_Y 2362
+#define MAX_X 10e4
+#define MAX_Y 10e4
+#define START_X 40000
+#define END_X 50000
+#define START_Y 0
+#define END_Y 40000
+#define CHANNEL_M4 2
+#define CHANNEL_M1 0
+#define DIRTY_DAQ 30
+
+//Downstream X axis scan
 /* #define UNIT_X 2362 */
 /* #define UNIT_Y 2362 */
 /* #define MAX_X 10e4 */
 /* #define MAX_Y 10e4 */
 /* #define START_X 0 */
 /* #define END_X 40000 */
-/* #define START_Y 0 */
-/* #define END_Y 40000 */
+/* #define START_Y 18000 */
+/* #define END_Y 18000 */
 /* #define CHANNEL_M4 2 */
 /* #define CHANNEL_M1 0 */
 /* #define DIRTY_DAQ 30 */
-
-//Downstream X axis scan
-#define UNIT_X 2362
-#define UNIT_Y 2362
-#define MAX_X 10e4
-#define MAX_Y 10e4
-#define START_X 0
-#define END_X 40000
-#define START_Y 18000
-#define END_Y 18000
-#define CHANNEL_M4 2
-#define CHANNEL_M1 0
-#define DIRTY_DAQ 30
 
 
 //Upstream X axis scan
