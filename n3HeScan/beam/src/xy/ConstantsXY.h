@@ -15,28 +15,54 @@
 //#define DIRTY_DAQ 30
 
 //Upstream 17x19 grid(1cm spacing) scan
-#define UNIT_X 1575
-#define UNIT_Y 1575
+/* #define UNIT_X 1575 */
+/* #define UNIT_Y 1575 */
+/* #define MAX_X 10e4 */
+/* #define MAX_Y 10e4 */
+/* #define START_X 3192 */
+/* #define END_X 28392 */
+/* #define START_Y 4786 */
+/* #define END_Y 33136 */
+/* #define CHANNEL_M4 2 */
+/* #define CHANNEL_M1 0 */
+/* #define DIRTY_DAQ 30 */
+
+//Downstream grid(1.5cm spacing) scan
+#define UNIT_X 2362
+#define UNIT_Y 2362
 #define MAX_X 10e4
 #define MAX_Y 10e4
-#define START_X 3192
-#define END_X 28392
-#define START_Y 4786
-#define END_Y 33136
+#define START_X 0
+#define END_X 40000
+#define START_Y 0
+#define END_Y 40000
 #define CHANNEL_M4 2
 #define CHANNEL_M1 0
 #define DIRTY_DAQ 30
 
 
-//Upstream 17x19 grid(1cm spacing) scan
+//Upstream X axis scan
 /* #define UNIT_X 1575 */
-/* #define UNIT_Y 1575  */
+/* #define UNIT_Y 1575 */
 /* #define MAX_X 10e4 */
 /* #define MAX_Y 10e4 */
 /* #define START_X 3192 */
 /* #define END_X 28392 */
 /* #define START_Y 18961 */
 /* #define END_Y 18961 */
+/* #define CHANNEL_M4 2 */
+/* #define CHANNEL_M1 0 */
+/* #define DIRTY_DAQ 30 */
+
+//Downstream X axis scan
+/* #define UNIT_X 7874 */
+/* #define UNIT_Y 7874 */
+/* #define MAX_X 10e4 */
+/* #define MAX_Y 10e4 */
+/* #define START_X 0 */
+/* #define END_X 40000 */
+/* #define START_Y 0 */
+/* #define END_Y 0 */
 /* #define CHANNEL_M4 2 */
 /* #define CHANNEL_M1 0 */
 /* #define DIRTY_DAQ 30 */
