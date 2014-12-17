@@ -15,9 +15,9 @@ void ScanUp3()
 	double cen_x=0;
 	double cen_y=0;
 	double sum_int=0;
-	double bgd=0.0;
+	double bgd=-0.0;
 
-	data.open("UpStreamFinal");
+	data.open("BeamData.txt");
 
 	while(!data.eof())
 	{	
@@ -48,8 +48,9 @@ void ScanUp3()
    dt->GetYaxis()->SetTitle("Y Displacement(Steps)");
    dt->GetZaxis()->SetTitle("Average Intensity");
    // dt->Draw("surf1");
-   dt->Draw("lego");
-   // dt->Draw("AP");
+   dt->Draw("AP");
+
+
 
    data.close();
    // return c;

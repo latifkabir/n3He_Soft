@@ -3,12 +3,24 @@ UpStream Scan:
 C_x:10.0282    C_y:12.0403
 
 7x7 Scan
-The centroid is: 
+The centroid is:(Not normalized and background not subtracted) 
 C_x:8.82281    C_y:12.195
+Normalized and background subtracted:
+C_x:10.002    C_y:12.0479
+
 
 Final 17x19 Scan:
 Total number of Entries 323
 The centroid is: 
 C_x:10.0413    C_y:12.0481
-(Background NOT subtracted)
+(Background NOT subtracted or only average hole covered subtracted)
+
+
+=========================================
+DownStream Scan:
+With respect to home: expected to be (from Upstream scan)approx (28000,18000)steps i.e. (17.78,11.43) cm
+
+
+The centroid is: 
+C_x:16.6353    C_y:11.6274
 
