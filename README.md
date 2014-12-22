@@ -15,12 +15,12 @@ Contains
    * The DAQ control program using command line.
    * The DAQ GUI control program (Under development).
 
-libn3He
+Library
 -------
 Contains
    * TBranchBinary : A Root friendly analysis library.
    * ReadBinary : An independent analysis library
-
+   * libn3He : Root friendly Library for n3He Experiment.
 n3HeMag
 --------
  Driver for FluxGate in C++ source code. 
