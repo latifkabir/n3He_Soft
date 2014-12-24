@@ -1,6 +1,4 @@
-#define _LIBRARY_ "/home/siplu/GIT/Workspaces/newTB_v0/TBranchBinary_cc.so"
-
-#define DATA_PATH "/home/siplu/Workspace/n3He_SampleData/"
+#define DATA_PATH "/home/siplu/GIT/MyAnalysis/SampleData/3.libn3He/"
 
 #define DAQ21_LEAF "h21[48]/I:d21[49][48]/I"
 #define DAQ22_LEAF "h22[48]/I:d22[49][48]/I"
