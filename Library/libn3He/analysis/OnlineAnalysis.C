@@ -4,8 +4,10 @@
 
 void OnlineAnalysis()
 {
-    gSystem->Load("../lib/libn3He.so");
+    gSystem->Load("libTree");    //You need to load libTree first in order to Load libn3He. This is not necessary if you include TTree.h
+//file like the Offline analysis script.
+    gSystem->Load("libn3He.so");
 
-    TTree *t=n3HeTree(855);
+    TTreeRaw *t=new TTreeRaw(855);
     t->Draw("d21[][0]:Iteration$","Entry$>3");
 }

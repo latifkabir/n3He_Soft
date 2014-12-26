@@ -33,22 +33,4 @@ protected:
   ClassDef(TBranchBinary,0)
 };
 
-class TTreeBinary : public TTree {
-
-public:
-
-  TTreeBinary(char* file, char* leaflist, int length=-1, int offset=0, int head=0)
-    : TTree(gSystem->BaseName(file),"TTree with TBranchBinary branch")
-  {
-    fBranches.Add(new TBranchBinary
-		  (this, file, leaflist,"TBranchBinary", length, offset, head));
-    SetEntries();
-  }
-
-
-protected:
-  
-  ClassDef(TTreeBinary,0)
-};
-
 #endif

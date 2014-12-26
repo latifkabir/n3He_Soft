@@ -23,7 +23,7 @@ void OfflineAnalysis()
     gSystem->Load("libn3He.so"); //Use complete path unless libn3He.so is in a directory under LD_LIBRARY_PATH
 
     //---------Create a Tree for desired run number-----------------
-    TTree *t=n3HeTree(855);
+    TTreeRaw *t=new TTreeRaw(855);
 
     int leaf_index;
     int adc_count;
@@ -46,7 +46,7 @@ void OfflineAnalysis()
 	{
 	    leaf_index = isample*NC_CLEAN + channel;  	    
 	    adc_count= t->GetLeaf("d21")->GetValue(leaf_index);
-	    volts = (adc_count>>8)*FACTOR; //>>8 to throw away last 8 bits & FACTOR to             convert ADC count to Volt
+	    volts = (adc_count>>8)*FACTOR; //>>8 to throw away last 8 bits & FACTOR to convert ADC count to Volt
 
 	    gr1->SetPoint(ientry*EL_CLEAN+isample,ientry*EL_CLEAN+isample,volts);
 
