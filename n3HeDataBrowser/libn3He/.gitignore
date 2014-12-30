@@ -1,6 +1,6 @@
 *.o
 *_Dict.*
-NPDGD_PID.DAT
+n3He_PID.DAT
 .cproject
 .project
 .settings

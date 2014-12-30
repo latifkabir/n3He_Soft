@@ -19,9 +19,10 @@ Contains
 Library
 -------
 Contains
-   * TBranchBinary : A Root friendly analysis library.
-   * ReadBinary : An independent analysis library
-   * libn3He : Root friendly Library for n3He Experiment.
+   * libn3He : Root friendly Library for the n3He Experiment.
+   * TBranchBinary : A prototype Root friendly analysis library.
+   * ReadBinary : An independent analysis library.
+   
 
 n3HeDataBrowser
 ----------------
@@ -37,7 +38,7 @@ n3HeScan
   * field : Software for magnetic field scan
   * beam : Software for beam scan
 
-DAQFormware
+DAQFirmware
 ----------
 This directory contains DAQ Firmware related Software update.
 
@@ -48,6 +49,7 @@ Contains analysis or other demo scripts necessary for DAQ performance demonstrat
 In any case please read the REAME file in the corresponding section first.
 
 Last Updated on 12/30/14
+
 -Latiful Kabir
 
 [1]: http://n3he.wikispaces.com
