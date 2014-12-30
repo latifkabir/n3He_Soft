@@ -121,3 +121,6 @@ The DAQ to control computer data transfer situation can be mocked up on you own 
  * If you enable cout.write() (L67 in Socket.cpp) , then if you do :` n3he start | pv > filename`, then it will also show the data transfer rate.
 
 
+										Last Updated on 12/25/14
+                                                                                 -Latiful Kabir
+

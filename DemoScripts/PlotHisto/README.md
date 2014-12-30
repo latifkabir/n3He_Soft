@@ -7,3 +7,6 @@ Steps
 ----
 * Do `make`
 * Usage: ./histo RUN_NUMBER MODULE CHANNEL
+
+									Last Updated on 11/23/14
+                                                                                 -Latiful Kabir

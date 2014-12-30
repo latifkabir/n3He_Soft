@@ -33,6 +33,7 @@ if [ -f /path/to/libn3He/bin/thisn3He.sh ]; then
 ```
 
                                                                    
+                                          
 
-										 Last Updated on 12/25/14
-                                                                                 -Latiful Kabir
+										-Last Updated on 12/25/14
+                                                                                          Latiful Kabir

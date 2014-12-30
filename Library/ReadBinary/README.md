@@ -31,3 +31,7 @@ To run the example(scan.cpp) included
    2. Run the executable `scan` 
    3. Enter the channel number,starting point and number of entries to be printed
    4. This will print the values for the desired entries
+
+
+                                                                                  Last Updated on 11/20/14
+                                                                                 -Latiful Kabir

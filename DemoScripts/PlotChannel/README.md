@@ -7,3 +7,6 @@ Steps
 ----
 * Do `make`
 * Usage: ./plot RUN_NUMBER MODULE CHANNEL
+
+										Last Updated on 11/25/14
+                                                                                 -Latiful Kabir
