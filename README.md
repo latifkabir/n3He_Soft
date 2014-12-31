@@ -15,8 +15,8 @@ The above download link will download the last release for each category. For th
 you might want to download/clone the entire project from the left. 
 In any case please read the README file in the corresponding section first.
 
-n3HeDAQ
--------
+n3HeDAQ [(download)][2]
+------------------------
 Contains
    * The DAQ control program using command line.
    * The DAQ GUI control program.
@@ -24,37 +24,37 @@ Contains
 ![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_demo.png "n3HeDAQ Control Program")
 
 
-Library
--------
+Library [(download)][3]
+------------------------
 Contains
    * libn3He : Root friendly Library for the n3He Experiment.
    * TBranchBinary : A prototype example Root friendly analysis library.
    * ReadBinary : An independent analysis library.
    
 
-n3HeDataBrowser
-----------------
+n3HeDataBrowser [(download)][4]
+-------------------------------
    * The GUI for Online analysis. GUI to browse the data for each run easily.
 
 ![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDataBrowser/n3HeData/demo_n3HeDataBrowser.png "n3He Data Browser")
 
 
-n3HeMag
---------
+n3HeMag [(download)][5]
+-------------------------
  Driver for FluxGate in C++ source code. 
 
 
-n3HeScan
----------
+n3HeScan [(download)][6]
+--------------------------
   * field : Software for magnetic field scan
   * beam : Software for beam scan
 
-DAQFirmware
-----------
+DAQFirmware [(download)][7]
+----------------------------
 This directory contains DAQ Firmware related Software update.
 
-DemoScripts
------------
+DemoScripts [(download)][8]
+----------------------------
 Contains analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 
 
