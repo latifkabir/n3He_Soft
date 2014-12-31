@@ -2,13 +2,13 @@ Software for the n3He Experiment
 ================================== 
 This is the official reporitory for any developed software for the [n3He experiment at SNS][1].
 This repository is divided into several sub directories based on the category:
-* n3HeDAQ[(download)][2] --- Contains software for the n3He DAQ Control.
-* Library[(download)][3] --- Contains the analysis library for the n3He experiment.
-* n3HeDataBrowser[(download)][4] --- The GUI for Online analysis. GUI to browse the data for each run easily.
-* n3HeMag[(download)][5] ---Contains 'driver for FluxGate' in C++ source code 
-* n3HeScan[(download)][6] --- Software for field and beam scan 
-* DAQFirmware[(download)][7] --- This directory contain DAQ Firmware related Software update.
-* DemoScripts[(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
+* n3HeDAQ [(download)][2] --- Contains software for the n3He DAQ Control.
+* Library [(download)][3] --- Contains the analysis library for the n3He experiment.
+* n3HeDataBrowser [(download)][4] --- The GUI for online analysis.GUI to browse the data for each run easily.
+* n3HeMag [(download)][5] ---Contains 'driver for FluxGate' in C++ source code 
+* n3HeScan [(download)][6] --- Software for field and beam scan 
+* DAQFirmware [(download)][7] --- This directory contain DAQ Firmware related Software update.
+* DemoScripts [(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 
 Please read below to know what's inside each category.
 The above download link will download the last release for each category. For the most recent changes or to participate in the development 
