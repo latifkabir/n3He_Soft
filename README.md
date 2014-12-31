@@ -10,6 +10,14 @@ This repository is divided into several sub directories based on the category:
 * DAQFirmware --- This directory contain DAQ Firmware related Software update.
 * DemoScripts --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 
+Screenshots
+--------------
+
+![](n3HeDAQ/n3HeDAQ_demo.png "n3HeDAQ Control Program")
+
+![](n3HeDataBrowser/n3HeData/demo_n3HeDataBrowser.png "n3He Data Browser")
+
+
 n3HeDAQ
 -------
 Contains
