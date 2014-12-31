@@ -32,6 +32,7 @@ if [ -f /path/to/libn3He/bin/thisn3He.sh ]; then
  fi 
 ```
 
+Note: Currently the library is NOT compatible with ROOT 6.
                                                                    
                                           
 
