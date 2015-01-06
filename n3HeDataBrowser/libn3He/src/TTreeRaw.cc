@@ -76,8 +76,8 @@ TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
 //----------------Set/Get Entries and Print Leaf List---------------
     this->SetEntries();
     this->GetEntries();
-    this->Print();
-    this->GetListOfLeaves()->Print();
+    // this->Print();
+    // this->GetListOfLeaves()->Print();
 
     }
     else
