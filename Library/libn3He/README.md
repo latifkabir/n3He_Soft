@@ -5,7 +5,7 @@ Instructions for n3He Library
 
 1. Do 'make' to compile the library. 
 
-2. The produced .so (shared library will be inside lib directory).
+2. This will produce  libn3He.so (shared library will be inside lib directory).
 
 3. Place the .so file in a directory under LD_LIBRARY_PATH.
 
@@ -25,8 +25,7 @@ and step-4 is NOT necessary.
 
 10. Try running example analysis scripts in "analysis" directory.
 
-11. To make life easier you might want to add line in rootlogon.C to load the library automatically each time you start ROOT or even better 
-     it's convenient to put this source command into your ~/.bash_profile or ~/.bashrc file:
+11. To make life easier it's convenient to put the following command into your ~/.bash_profile or ~/.bashrc file:
 
  
 ```
