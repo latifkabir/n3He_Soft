@@ -31,6 +31,10 @@ fi```
 
 7. Modify the .desktop file and .sh file in bin directory accordingly and place it in your desktop if you want to run the GUI just by double clicking from your desktop.
 
+8. Screenshot:
+![](n3HeData/demo_n3HeDataBrowser.png "n3He Data Browser")
 
-                                                                                  Last Updated on 12/25/14
+
+
+                                                                                  Last Updated on 1/15/15
                                                                                  -Latiful Kabir

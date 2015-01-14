@@ -53,9 +53,12 @@ To quit the program while in continuous data taking mode :
 
 - Press Ctrl+C any time, The DAQ program will finish the current run first, then it will quit.
 
+A typical GUI mode preview:
+-----------------------------
+![](n3HeDAQ_demo.png "n3HeDAQ Control Program")
 
 
-A Typical run with command "n3he start" will look as follows:
+A typical run with command "n3he start" will look as follows:
 --------------------------------------------------------------
 
 
@@ -121,6 +124,6 @@ The DAQ to control computer data transfer situation can be mocked up on you own 
  * If you enable cout.write() (L67 in Socket.cpp) , then if you do :` n3he start | pv > filename`, then it will also show the data transfer rate.
 
 
-										Last Updated on 12/25/14
+										Last Updated on 1/12/15
                                                                                  -Latiful Kabir
 
