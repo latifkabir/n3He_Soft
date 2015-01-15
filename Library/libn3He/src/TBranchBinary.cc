@@ -67,7 +67,7 @@ int TBranchBinary::GetEntry(Long64_t entry, Int_t /*getall*/)
   if (entry==fReadEntry) return fTotBytes;
   bzero(fBuffer, fTotBytes);
   if (fseek(fFile, fFileHeader+entry*fRecLength+fRecOffset, SEEK_SET)) return 0;
-  if (fread(fBuffer, fTotBytes, 1, fFile)<=0) return 0;
+  if (fread(fAddress, fTotBytes, 1, fFile)<=0) return 0;
   fReadEntry=entry;
   return fTotBytes;
 }

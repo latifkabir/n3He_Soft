@@ -1,6 +1,7 @@
 //Demo Offline Analysis using n3He Library.(By Offline I mean  'in a script more thoughtful and serious analysis unlike from CINT)
 //Author: Latiful Kabir
 //Date: 12/23/14
+//This is approach is much slow than SetAddress() approach and encouraged NOT to use.
 
 
 #include<TTree.h>
@@ -17,7 +18,7 @@
 using namespace std;
 
 
-void OfflineAnalysis()
+void OfflineAnalysis2()
 {
     //-------------Load the n3He Library----------------------------
     gSystem->Load("libn3He.so"); //Use complete path unless libn3He.so is in a directory under LD_LIBRARY_PATH
