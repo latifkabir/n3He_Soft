@@ -9,6 +9,8 @@ This directory contain DAQ Firmware related Software update provided by the manu
 3. CHeckSum : Code to calculate CRC Checksum
 
 4. Config : The default start up configuration for each DAQ Module + Our own customization. 
+
+5. Firmware : The software package.
  					
-										Last Updated on 9/22/14
+										Last Updated on 1/12/15
                                                                                  -Latiful Kabir

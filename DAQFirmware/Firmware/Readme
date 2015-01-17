@@ -1,0 +1,5 @@
+The firmware software package is included in the commit:ae529a736ce3a76f5a4cb0b6104122d382b42091
+It was removed from further commit as it takes unecessary large spaces.
+Refer to specified commit if necessary.
+
+The firmware package release is: acq4xx-220-20140411205618
