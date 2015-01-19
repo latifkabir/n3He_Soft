@@ -34,9 +34,9 @@ if [ -f /path/to/libn3He/bin/thisn3He.sh ]; then
  fi 
 ```
 
-Note: Currently the library is NOT compatible with ROOT 6.
+Note: This version works both for ROOT 5 and ROOT 6.
 
                                                                    
 
-										 Last Updated on 12/25/14
+										 Last Updated on 1/18/15
                                                                                  -Latiful Kabir

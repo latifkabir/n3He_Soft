@@ -61,7 +61,7 @@ SlowDAQ
 ---------
 GUI for slow DAQ.
 
-
+report bug to: latifulkabir@uky.edu
 Last Updated on 1/12/15
 
 -Latiful Kabir
