@@ -5,6 +5,22 @@
 Instruction for the Users
 ==================================
 
+The n3He DAQ control program has two independent interfaces --  GUI mode and command line mode.
+
+GUI mode:
+----------
+
+Use the desktop shortcut (double click on it) to run the n3HeDAQ control program in GUI mode.
+
+Or, alternatively from a terminal do:
+
+* `n3he gui` :
+    This will run n3he DAQ control program in gui mode. Note it is a Ncurses terminal based gui.
+
+
+Command line mode:
+--------------------
+
 From the terminal do the following:
  
 * `n3he start` :
@@ -22,7 +38,7 @@ From the terminal do the following:
 
 * `n3he daq MODULE`:
 
-    Where, MODULE= The DAQ module you want to run. It acn be either 21,23,24,30.
+    Where, MODULE= The DAQ module you want to run. It acn be either 21,22,23,24,30.
     
     This will take data only for the DAQ module number 'MODULE' in continuous mode for the default run length.
     
@@ -30,7 +46,7 @@ From the terminal do the following:
 
 * `n3he daq MODULE LENGTH RUN`:
 
-    Where, MODULE= The DAQ module you want to run. It acn be either 21,23,24,30.
+    Where, MODULE= The DAQ module you want to run. It acn be either 21,22,23,24,30.
     
      LENGTH = The length of each run in Megabyte, RUN= the number of runs to be taken. 
            
@@ -42,8 +58,6 @@ From the terminal do the following:
 
     This will display the current configuration (Sample rate,Averaging, Hi Resolution mode etc.) for all the DAQ module.
     This option is yet to be implemented.
-* `n3he gui` :
-    This will run n3he DAQ control program in gui mode. Note it is a Ncurses terminal based gui.
 
 * `n3he help` :
  
