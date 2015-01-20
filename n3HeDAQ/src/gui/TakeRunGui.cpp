@@ -157,7 +157,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 
 		  mvprintw(base_y2+19, base_x2, "Last Run Status:");
 		 
-	          if(Rename(newrun,module,true))
+	          if(Rename(newrun,module,true)==1)
 		  {
 		      mvprintw(base_y2+20, base_x2, "Data Files for run number %d  have been renamed successfully.",newrun);
 		  }
@@ -300,7 +300,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		refresh();
 		mvprintw(base_y2+19, base_x2, "Last Run Status:");
 		 
-	          if(Rename(newrun,DAQ21,true) && Rename(newrun,DAQ22,true) && Rename(newrun,DAQ23,true) && Rename(newrun,DAQ24,true) && ProcessData(newrun,DAQ30,true))
+	          if(Rename(newrun,DAQ21,true)==1 && Rename(newrun,DAQ22,true)==1 && Rename(newrun,DAQ23,true)==1 && Rename(newrun,DAQ24,true)==1 && ProcessData(newrun,DAQ30,true)==1)
 		  {
 		      mvprintw(base_y2+20, base_x2, "Data Files for run number %d  have been renamed successfully.",newrun);
 		  }
