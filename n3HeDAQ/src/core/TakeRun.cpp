@@ -11,6 +11,7 @@
 #include<csignal>
 #include<cstdlib>
 #include"Daq.h"
+#include"ProcessData.h"
 #include"Constants.h"
 
 using namespace std;
@@ -285,7 +286,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		Rename(newrun,DAQ22,false);
 		Rename(newrun,DAQ23,false);
 		Rename(newrun,DAQ24,false);
-		Rename(newrun,DAQ30,false);
+		ProcessData(newrun,DAQ30,false);
 
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }

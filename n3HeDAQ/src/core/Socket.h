@@ -34,7 +34,7 @@ private:
 public:
     int s;
     int bufferSize=0x100000;
-    char *buffer = new char[bufferSize]; //Require c++11
+    char *buffer = new char[bufferSize]; //Requires c++11
     ssize_t retVal;
     ssize_t totRet;
     int nout;

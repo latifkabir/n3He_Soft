@@ -47,7 +47,9 @@
 //Adjustrment for Dirty DAQ run length
 #define DIRTY_FACTOR 5.33 
 
-
+//Process Dirty DAQ data
+#define NCHAN_BEFORE 8  //Number of Channels before process
+#define NCHAN_AFTER 2   //Number of Channels after process
 
 
 //Data file name and directory path: For Developer's Computer Only
