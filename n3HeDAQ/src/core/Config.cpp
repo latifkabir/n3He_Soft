@@ -154,7 +154,7 @@ int ChangeRes(int module,int res)
 int ChangeAveraging(int module,int avg)
 {
     sprintf(command,"nacc=%d,%d",avg,1);
-   int cavg= MakeChange(module,command,1);	   
+    int cavg= MakeChange(module,command,1);	   
     return(cavg);
 }
 

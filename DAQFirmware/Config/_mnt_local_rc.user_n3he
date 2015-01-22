@@ -20,7 +20,8 @@ make_peers 2
 set.site 1 hi_res_mode 1 #For Dirty DAQ hi_res_mode=0
 
 # trg is Mandatory. peered with 2
-set.site 1 trg=1,1,1
+#set.site 1 trg=1,1,1
+set.site 1 trg=1,0,0
 # we set a 25MHz internal clock. This is a MASTER knob (not peered)
 #Set n3He Default Setting
 set.site 0 fpmux xclk

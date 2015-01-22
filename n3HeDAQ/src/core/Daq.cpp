@@ -30,7 +30,7 @@ void Daq::SaveData(bool pStatus)
     totRet=0;
 
     //Implement condition when Socket to be terminated or data taking is finished.For the time being up to desired data file size.
-    while ((retVal = read(s,buffer,bufferSize)) > -1 && condn)
+    while ((retVal = ReadData(totRet,filesize)) > -1 && condn)
     {
 	WriteData();
 	totRet=totRet+retVal;

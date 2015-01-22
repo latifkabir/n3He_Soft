@@ -70,7 +70,19 @@ int Socket::CheckStatus()
 	return(0);
 }
 
-//Write data to the file
+//Read Chunk of data to buffer
+ssize_t Socket::ReadData(int tSize,int fSize)
+{
+    if((tSize+bufferSize)<fSize)
+	retChunk=read(s,buffer,bufferSize);
+    else
+	retChunk=read(s,buffer,(fSize-tSize)); //resquest only remaining chunk at the end of file.
+
+    return retChunk;
+}
+
+
+//Write data to the file from the buffer
 void Socket::WriteData()
 {
     data.write(buffer, retVal);	
