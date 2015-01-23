@@ -2,7 +2,7 @@
 //Author: Latiful Kabir
 //Base Socket code contributed by: David Blyth
 //Date:08.15.14
-//Version:0.0
+//Version:1.0
 
 #include<sys/socket.h>
 #include<sys/types.h>

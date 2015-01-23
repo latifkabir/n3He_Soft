@@ -152,6 +152,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
     int stime=SLEEP_TIME; //Sleep time in second
+    double tol=0.99;   //Tolerance
     const char *ip;
     const char *port=DAQ_PORT1;
 
@@ -210,7 +211,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 		 cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
 		 Sync(true,false); //Enable the Trigger
 		 daq.SaveData(true);
-		 if(daq.GetFileSize()<daq.filesize)
+		 if(daq.GetFileSize()<tol*daq.filesize)
 		 {
 		     cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		     break;
@@ -239,7 +240,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
     int stime=5; //Sleep time in second
-
+    double tol=0.99; //Tolerance
     signal(SIGINT, signalHandler); //Handle Ctrl+C Signal  
 
 
@@ -277,7 +278,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		t24.join();
 		t30.join();
 
-		if(daq21.GetFileSize()<daq21.filesize || daq22.GetFileSize()<daq22.filesize || daq23.GetFileSize()<daq23.filesize ||daq24.GetFileSize()<daq24.filesize ||daq30.GetFileSize()<daq30.filesize)
+		if(daq21.GetFileSize()<tol*daq21.filesize || daq22.GetFileSize()<tol*daq22.filesize || daq23.GetFileSize()<tol*daq23.filesize ||daq24.GetFileSize()<tol*daq24.filesize ||daq30.GetFileSize()<tol*daq30.filesize)
 		{
 		    cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
 		    break;

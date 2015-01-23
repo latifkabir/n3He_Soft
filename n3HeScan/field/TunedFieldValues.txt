@@ -1,0 +1,21 @@
+Date_Time          Cha-1(Gauss)     Ch-2(Gauss)   Ch-3(Gauss)  Ch-4(Gauss)   Ch-5(Gauss)   Ch-6(Gauss)   Max_Range(Gauss) Offse(Gauss)
+===========        =============  =============   ============ ============= ============= =============  ============   =============
+
+2014-10-22-15-30-54	-0.0093146222	-9.0181769	-0.016071404	-0.0051804444	-0.042188965	-0.0030334853	 9.9999972	6.4763926e-05	
+2014-10-22-15-33-03	-0.0077613253	-9.0146316	-0.016874875	-0.0051649472	-0.042061411	-0.0030060671	 9.9999364	6.1187648e-05	
+
+
+
+
+Best Result (After calibration matrix application):
+Bx=0.0021, By=-9.0137,Bz=-.0007
+Bx=0.0029, By=-9.0101,Bz=-0.0023
+
+
+Current Setting:
+Bipolar/main coil supply: 21.98 A - 21.96 A
+Bk precision : 3.2 A
+Back Shim: 0.068 A (Polarity resversed with respect to NPDG)
+Front shim: 0.068 A ( Polarity reversed with respect to NPDG )
+Left Shim: 0.252 A -0.253 A
+Right Shim: 0.542 A

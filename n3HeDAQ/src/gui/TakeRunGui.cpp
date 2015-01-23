@@ -37,6 +37,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
     int counter=0;
     int stime=SLEEP_TIME; //Sleep time in second
     int trig=-1;
+    double tol=0.99; //Tolerance
     const char *ip;
     const char *port=DAQ_PORT1;
 
@@ -145,7 +146,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 		  refresh();
 
 		  daq.SaveData(true);
-		  if(daq.GetFileSize()<daq.filesize)
+		  if(daq.GetFileSize()<tol*daq.filesize)
 		  {
 		      mvprintw(base_y2+8, base_x2+21, "PROBLEM WITH MODULES ,INCORRECT FILE SIZE");
 		      refresh();
@@ -201,6 +202,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     int counter=0;
     int stime=5; //Sleep time in second
     int trig=-1;
+    double tol=0.99; //Tolerance
 
     signal(SIGINT, signalHandlerGui); //Handle Ctrl+C Signal  
 
@@ -289,7 +291,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		t24.join();
 		t30.join();
 
-		if(daq21.GetFileSize()<daq21.filesize || daq22.GetFileSize()<daq22.filesize || daq23.GetFileSize()<daq23.filesize ||daq24.GetFileSize()<daq24.filesize ||daq30.GetFileSize()<daq30.filesize)
+		if(daq21.GetFileSize()<tol*daq21.filesize || daq22.GetFileSize()<tol*daq22.filesize || daq23.GetFileSize()<tol*daq23.filesize ||daq24.GetFileSize()<tol*daq24.filesize ||daq30.GetFileSize()<tol*daq30.filesize)
 		{
 		      mvprintw(base_y2+8, base_x2+21, "PROBLEM WITH MODULES ,INCORRECT FILE SIZE");
 		      refresh();

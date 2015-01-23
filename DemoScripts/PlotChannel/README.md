@@ -8,5 +8,7 @@ Steps
 * Do `make`
 * Usage: ./plot RUN_NUMBER MODULE CHANNEL
 
+Note: Currently it is NOT compatible with ROOT6
+
 										Last Updated on 11/25/14
                                                                                  -Latiful Kabir

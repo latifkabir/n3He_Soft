@@ -55,7 +55,7 @@ int ProcessData(int run,int module,bool gui_mode)
     inFile.close();
 
     if(!gui_mode)
-	cout<<"Data file for DAQ "<<module<<" has been processed successfully"<<endl;
+	cout<<"\n\n\t\tData file for DAQ "<<module<<" has been processed successfully"<<endl;
 
     delete[] buffer;
     delete[] file_old;
