@@ -117,7 +117,7 @@ int Sync(bool status,bool gui_mode)
     else
     {
 	if(!gui_mode)
-	    cout<<"Unable to switch trigger"<<endl;
+	    cout<<"\t\tUnable to switch trigger"<<endl;
 	return(-1);
 
     }

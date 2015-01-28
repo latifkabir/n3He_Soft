@@ -23,9 +23,14 @@ bool stop=false;  //Flip if Ctrl+C is pressed
 int base_x2=20;
 int base_y2=12;
 
-void signalHandlerGui( int signum )
+void signalHandlerGui( int signum )  //Handle Ctrl+C Signal
 {
 	stop=true;		  
+}
+
+void HandleWinChange( int signum )  //Handle Window size change
+{
+    refresh();		  
 }
 
 //Routine to run a single DAQ module only 
@@ -42,6 +47,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
     const char *port=DAQ_PORT1;
 
     signal(SIGINT, signalHandlerGui); //Handle Ctrl+C Signal
+    signal(SIGWINCH, &HandleWinChange); //Handle Window size change
 
     switch(module)
     {
@@ -205,7 +211,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     double tol=0.99; //Tolerance
 
     signal(SIGINT, signalHandlerGui); //Handle Ctrl+C Signal  
-
+    signal(SIGWINCH, &HandleWinChange); //Handle Window size change
 
     if(runNumber==0)
     {
