@@ -9,10 +9,10 @@
 //Data file name and directory path : On Picard Only
 #define OLD_FILE "/home/daq/DATA/data-%d"
 #define NEW_FILE "/home/daq/DATA/run-%ddata-%d"
-#define LAST_RUN "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/LastRun.txt"
-#define RUN_LIST "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/RunList.txt"
-#define CONFIG_SH "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/config.sh %d"
-#define SH_SCRIPT "/home/daq/KABIR/Git4Kabir/n3He_Soft/n3HeDAQ/bin/config.sh"
+#define LAST_RUN "/home/daq/n3HeDAQ/bin/LastRun.txt"
+#define RUN_LIST "/home/daq/n3HeDAQ/bin/RunList.txt"
+#define CONFIG_SH "/home/daq/n3HeDAQ/bin/config.sh %d"
+#define SH_SCRIPT "/home/daq/n3HeDAQ/bin/config.sh"
 
 #define SLEEP_TIME 5
 
