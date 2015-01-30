@@ -1,0 +1,14 @@
+Steps:
+
+1.Change the IP in diagnose.sh to fit your DAQ. Also change any sleep time you will be confortable with.
+  Your DAQ needs to be configured to give you Password free ssh.
+
+2.With the DAQ running,from same directory(as *.sh files) from the terminal do: ./GetConfig.sh > ExpectedConfig
+Now open ExpectedConfig file and take a look to make sure it's the config that you expect. If not the test ends here other wise continue reading.
+
+3.Now just do: ./diagnose.sh
+
+4.The program will break when misconfiguration found.
+
+
+                                                               -Latiful kabir

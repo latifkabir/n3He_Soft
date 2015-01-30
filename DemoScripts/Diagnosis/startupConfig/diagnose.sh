@@ -1,40 +1,38 @@
 #!/bin/bash
 
-echo "Starting the Diagnostics .."
+echo "Starting the Diagnostic ... ..."
 echo "Time:"
-time
+date
 a=1
 while [ $a -ne 250 ]  
 do
+    echo "=====Loop number $a ======"
 
-    ssh root@192.168.0.$MODULE 'PATH=$PATH:/usr/local/bin/ 
+    echo "Now rebooting the DAQ"
+    ssh root@128.165.131.1 'PATH=$PATH:/usr/local/bin/ 
     reboot'
-    sleep 1
+    echo "Sleeping for 60 sec for reboot time"
+    sleep 60
+    echo "Reading Current Config"
     ./GetConfig.sh > CurrentConfig
-
 
     file1="CurrentConfig"
     file2="ExpectedConfig"
+
+    echo "Now Comparing two configs"
     diff $file1 $file2 &> /dev/null
     STSTUS=$?
-    echo "Loop number $a"
     if [ $STSTUS -eq 0 ]
     then
 	echo "They are same"
     else
 	echo "They are different"
-	time
+	date
 	break
     fi
     a=`expr $a + 1`
-    sleep 600
+
+    echo "Sleeping for 180 sec ... ..."
+    sleep 180
 done
 
-
-
-# Exit status for diff
-#     0     No differences were found. 
-#     1     Differences were found.
-#    >1     An error occurred.
-
-# Just google 'diff unix man page'
