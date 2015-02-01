@@ -111,7 +111,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 	     refresh();
 		 
 	     trig=Sync(false,true);//Disable the trigger 
-	     sleep(1);  
+	     sleep(2);  
 	     if(trig==0)
 	     {
 		 mvprintw(base_y2+9, base_x2, "Trigger: Off");
@@ -195,7 +195,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
              counter=counter+1;
          }
     }    
-
+    Sync(false,true); //Disable the trigger
 }
 
 
@@ -239,10 +239,10 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    refresh();
 		 
 	    trig=Sync(false,true);//Disable the trigger  
-	    sleep(1);  
+	    sleep(2);  
 	    if(trig==0)
 	    {
-		mvprintw(base_y2+9, base_x2, "Trigger: Off");
+		mvprintw(base_y2+9, base_x2, "Trigger: Active");
 	    }
 	    else
 	    {
@@ -269,17 +269,6 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		mvprintw(base_y2+14, base_x2, "Progress:    ", newrun);
 		refresh();
 
-		trig=Sync(true,true);//Enable the trigger    
-		if(trig==1)
-		{
-		    mvprintw(base_y2+9, base_x2, "Trigger: On ");
-		}
-		else
-		{
-		    mvprintw(base_y2+9, base_x2, "Trigger: Error ");
-		}
-		refresh();
-
 		mvprintw(base_y2+15, base_x2, "                                                       ");
 
 		mvprintw(base_y2+15, base_x2, "                                                       ");
@@ -290,12 +279,15 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		thread t23(&Daq::SaveData,&daq23,false);
 		thread t24(&Daq::SaveData,&daq24,false);
 		thread t30(&Daq::SaveData,&daq30,false);
+		thread t(Sync,true,true);    //Enable the trigger
+
 
 		t21.join();
 		t22.join();
 		t23.join();
 		t24.join();
 		t30.join();
+		t.join();        //Enable the trigger
 
 		if(daq21.GetFileSize()<tol*daq21.filesize || daq22.GetFileSize()<tol*daq22.filesize || daq23.GetFileSize()<tol*daq23.filesize ||daq24.GetFileSize()<tol*daq24.filesize ||daq30.GetFileSize()<tol*daq30.filesize)
 		{
@@ -336,5 +328,6 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	{
 	    counter=counter+1;
 	}
-    }      
+    } 
+    Sync(false,true); //Disable the trigger     
 }

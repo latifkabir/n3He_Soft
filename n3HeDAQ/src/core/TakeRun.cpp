@@ -92,6 +92,8 @@ int Rename(int run,int module,bool gui_mode)
 int Sync(bool status,bool gui_mode)
 {
     
+    if(status)
+	sleep(2);
     Daq daq(DAQ30_IP,DAQ_PORT2,DAQ30,RUN_LENGTH);
     if(!daq.CheckStatus())
     {
@@ -137,10 +139,6 @@ void signalHandler( int signum )
     {
 	exit(signum);
     }
-    // cleanup and close up stuff here  
-    // terminate program  
-    // exit(signum);  
-
 }
 
 
@@ -203,7 +201,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
          if(ready)
          {
 	     Sync(false,false);//Disable the trigger    
-	     sleep(1);
+	     sleep(2);
 	     Daq daq(ip,port,module,runlength);
 	     if(!daq.CheckStatus())
 	     {
@@ -231,6 +229,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
              counter=counter+1;
          }
     }
+    Sync(false,false); //Disable the trigger
 }
 
 //Running all the DAQ module
@@ -254,7 +253,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	if(ready)
 	{
 	    Sync(false,false); //Disable the trigger
-	    sleep(1); 	     
+	    sleep(2); 	     
 	    Daq daq21(DAQ21_IP,DAQ_PORT1,DAQ21,runlength);
 	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
 	    Daq daq23(DAQ23_IP,DAQ_PORT1,DAQ23,runlength);
@@ -265,18 +264,21 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    {
 		RunList(false);
 		cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
-		Sync(true,false); //Enable the trigger
+
 		thread t21(&Daq::SaveData,&daq21,true);
 		thread t22(&Daq::SaveData,&daq22,false);
 		thread t23(&Daq::SaveData,&daq23,false);
 		thread t24(&Daq::SaveData,&daq24,false);
 		thread t30(&Daq::SaveData,&daq30,false);
+		thread t(Sync,true,false);    //Enable the trigger
+
 
 		t21.join();
 		t22.join();
 		t23.join();
 		t24.join();
 		t30.join();
+		t.join();        //Enable the trigger
 
 		if(daq21.GetFileSize()<tol*daq21.filesize || daq22.GetFileSize()<tol*daq22.filesize || daq23.GetFileSize()<tol*daq23.filesize ||daq24.GetFileSize()<tol*daq24.filesize ||daq30.GetFileSize()<tol*daq30.filesize)
 		{
@@ -303,4 +305,5 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    counter=counter+1;
 	}
     }
+    Sync(false,false); //Disable the trigger
 }
