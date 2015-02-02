@@ -1,2 +1,2 @@
 all:
-	g++ src/*.cpp -std=c++11 -o temp
+	g++ src/*.cpp -std=c++11 -lncurses -o temp

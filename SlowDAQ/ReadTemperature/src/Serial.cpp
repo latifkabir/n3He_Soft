@@ -123,15 +123,18 @@ int Serial::Write(const char *txt)
       return(0);
 }
 
-int Serial::Read()
+char* Serial::Read(char *tmp)
 {
     nout = read(serial_fd,buf,256);
 
-    for(i=0;i<12;i++)
-    {
-	printf("Zone#%d: %c%c%c%c deg C\n",i+1,(char)buf[4*i],(char)buf[4*i+1],(char)buf[4*i+2],(char)buf[4*i+3]);
-    }
-    return(buf[0]);
+
+    for(int p=0;p<48;p++)
+	tmp[p]=buf[p];
+    // for(i=0;i<12;i++)
+    // {
+    // 	printf("Zone#%d: %c%c%c%c deg C\n",i+1,(char)buf[4*i],(char)buf[4*i+1],(char)buf[4*i+2],(char)buf[4*i+3]);
+    // }
+    return(buf);
 }
 
 

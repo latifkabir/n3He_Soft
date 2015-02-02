@@ -23,8 +23,7 @@ protected:
     int bufferSize = 0x100000;
     char *buffer = new char[bufferSize];
 
-    unsigned char buf[256];
-    //char buf[256];
+    char buf[256];
     int nout;
     int i,j;
 
@@ -33,7 +32,7 @@ public:
     ~Serial();
     int CheckStatus();
     int Write(const char *txt);
-    int Read();
+    char* Read(char *tmp);
 
 };
 
