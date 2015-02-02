@@ -99,7 +99,7 @@ int Serial::CheckStatus()
 
 
  
-  cout<<">> Serial ready at baud rate "<<speed <<endl;
+  // cout<<">> Serial ready at baud rate "<<speed <<endl;
   FD_ZERO(&rd_map);
   fcntl(serial_fd,F_SETFL,FNDELAY);
  
@@ -126,22 +126,11 @@ int Serial::Write(const char *txt)
 int Serial::Read()
 {
     nout = read(serial_fd,buf,256);
-    // nout = read(serial_fd,buffer,bufferSize);
-    printf("bytes: %d\n",nout);
-    for(i=0;i<nout;i++)
+
+    for(i=0;i<12;i++)
     {
-      printf(" %d: 0x%x\n",i,buf[i]);
-      printf(" %d: 0x%x\n",i,(int)buf[i]);
-      //char s= (buf[i]);     
-      // printf(" %d: %s\n",i,s);
-      // cout<<atof(buf)<<endl;
+	printf("Zone#%d: %c%c%c%c deg C\n",i+1,(char)buf[4*i],(char)buf[4*i+1],(char)buf[4*i+2],(char)buf[4*i+3]);
     }
-    //int temp=
-     // cout<<atof(buf)<<endl;
-
-    // printf(" %d: 0x%s\n",i,buffer);
-
-    // return((int)buf[0]);
     return(buf[0]);
 }
 
