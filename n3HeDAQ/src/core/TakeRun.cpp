@@ -256,7 +256,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
 	    Daq daq23(DAQ23_IP,DAQ_PORT1,DAQ23,runlength);
 	    Daq daq24(DAQ24_IP,DAQ_PORT1,DAQ24,runlength);
-	    Daq daq30(DAQ30_IP,DAQ_PORT1,DAQ30,runlength*DIRTY_FACTOR);
+	    Daq daq30(DAQ30_IP,DAQ_PORT1,DAQTEMP,runlength*DIRTY_FACTOR);
 
 	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq24.CheckStatus() && !daq30.CheckStatus())
 	    {

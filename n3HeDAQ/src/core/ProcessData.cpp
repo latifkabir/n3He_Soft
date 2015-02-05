@@ -34,7 +34,7 @@ int ProcessData(int run,int module,bool gui_mode)
     long fsize = inFile.tellg();  //Size of input file
     inFile.seekg (0);
 
-    int sizeBefore=NCHAN_BEFORE*sizeof(unsigned); //Chunk Size Process
+    int sizeBefore=NCHAN_BEFORE*sizeof(unsigned); //Chunk Size before Process
     int sizeAfter=NCHAN_AFTER*sizeof(unsigned); //Buffer or Chunk Size after process
 
     // allocate memory for file content
@@ -56,6 +56,17 @@ int ProcessData(int run,int module,bool gui_mode)
 
     if(!gui_mode)
 	cout<<"\n\n\t\tData file for DAQ "<<module<<" has been processed successfully"<<endl;
+
+    if(remove(file_old) == 0)
+    {
+	if(!gui_mode)
+	    cout<<"\t\tTemporary file has been deleted"<<endl<<endl;
+    }
+    else
+    {
+	if(!gui_mode)
+	    cout<<"\t\tError Deleting temporary file"<<endl<<endl;
+    }
 
     delete[] buffer;
     delete[] file_old;
