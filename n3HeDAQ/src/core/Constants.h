@@ -23,6 +23,7 @@
 #define DAQ24 24
 #define DAQ26 26
 #define DAQ30 30
+#define DAQTEMP 50
 #define DAQ_PORT1 "4210"
 #define DAQ_PORT2 "4220"
 #define DAQ21_IP "192.168.0.21" 

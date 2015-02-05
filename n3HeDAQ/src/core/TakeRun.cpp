@@ -136,12 +136,17 @@ void signalHandler( int signum )
 	fexit=true;
     }
     else
-    {
 	exit(signum);
-    }
 }
 
+//Process Dirty DAQ data from previous run while taking current run
+int ProcessDirty(int count)
+{
+    if(count!=0)
+	ProcessData(newrun-1,DAQ30,false);
 
+    return 0;
+}
 
 //Routine to run a single DAQ module only 
 void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
@@ -191,43 +196,39 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
     }
 
     if(runNumber==0)
-    {
 	continuous=true;
-    }
 
     while(!stop && (continuous || (counter <runNumber)))
     {
 
-         if(ready)
-         {
-	     Sync(false,false);//Disable the trigger    
-	     sleep(2);
-	     Daq daq(ip,port,module,runlength);
-	     if(!daq.CheckStatus())
-	     {
-		 RunList(false);
-		 cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
-		 Sync(true,false); //Enable the Trigger
-		 daq.SaveData(true);
-		 if(daq.GetFileSize()<tol*daq.filesize)
-		 {
-		     cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
-		     break;
-		 }
-		 Rename(newrun,module,false);
-		 cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
-	     }
-	     else
-	     {
-		 cout<<"DAQ "<<module<<" is NOT connected"<<endl;
-		 break;
-	     }
-         }
+	if(ready)
+	{
+	    Sync(false,false);//Disable the trigger    
+	    sleep(2);
+	    Daq daq(ip,port,module,runlength);
+	    if(!daq.CheckStatus())
+	    {
+		RunList(false);
+		cout<<"\t\tRun "<<newrun<<" in progress ... ... "<<endl<<endl;
+		Sync(true,false); //Enable the Trigger
+		daq.SaveData(true);
+		if(daq.GetFileSize()<tol*daq.filesize)
+		{
+		    cout<<"\n\t\tPROBLEM WITH MODULES , DID NOT RECEIVE REQUESTED FILE SIZE"<<endl;
+		    break;
+		}
+		Rename(newrun,module,false);
+		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
+	    }
+	    else
+	    {
+		cout<<"DAQ "<<module<<" is NOT connected"<<endl;
+		break;
+	    }
+	}
  
-         if(!continuous)
-         {
-             counter=counter+1;
-         }
+	if(!continuous)
+	    counter++;
     }
     Sync(false,false); //Disable the trigger
 }
@@ -242,17 +243,14 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     double tol=0.99; //Tolerance
     signal(SIGINT, signalHandler); //Handle Ctrl+C Signal  
 
-
     if(runNumber==0)
-    {
 	continuous=true;
-    }
 
     while(!stop && (continuous || (counter <runNumber)))
     {
 	if(ready)
 	{
-	    Sync(false,false); //Disable the trigger
+	    Sync(false,false); //Disable the trigger   
 	    sleep(2); 	     
 	    Daq daq21(DAQ21_IP,DAQ_PORT1,DAQ21,runlength);
 	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
@@ -271,6 +269,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		thread t24(&Daq::SaveData,&daq24,false);
 		thread t30(&Daq::SaveData,&daq30,false);
 		thread t(Sync,true,false);    //Enable the trigger
+		thread t0(ProcessDirty,counter);    //Process dirty DAQ data of previous run
 
 
 		t21.join();
@@ -279,6 +278,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		t24.join();
 		t30.join();
 		t.join();        //Enable the trigger
+		t0.join();       
 
 		if(daq21.GetFileSize()<tol*daq21.filesize || daq22.GetFileSize()<tol*daq22.filesize || daq23.GetFileSize()<tol*daq23.filesize ||daq24.GetFileSize()<tol*daq24.filesize ||daq30.GetFileSize()<tol*daq30.filesize)
 		{
@@ -289,7 +289,10 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		Rename(newrun,DAQ22,false);
 		Rename(newrun,DAQ23,false);
 		Rename(newrun,DAQ24,false);
-		ProcessData(newrun,DAQ30,false);
+		Rename(newrun,DAQTEMP,false);  //Rename as temporary file for dirty daq only
+
+		if(stop || (counter+1 >= runNumber))
+		    ProcessData(newrun,DAQ30,false);
 
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }
@@ -301,9 +304,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	}
  
 	if(!continuous)
-	{
-	    counter=counter+1;
-	}
+	    counter++;
     }
     Sync(false,false); //Disable the trigger
 }

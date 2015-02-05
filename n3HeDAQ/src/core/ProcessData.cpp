@@ -16,7 +16,7 @@ int ProcessData(int run,int module,bool gui_mode)
     char *file_old=new char[200];
     char *file_new=new char[200];
 
-    sprintf(file_old,OLD_FILE,module);
+    sprintf(file_old,NEW_FILE,run,DAQTEMP);
     sprintf(file_new,NEW_FILE,run,module);
 
     ifstream inFile (file_old,ifstream::binary);

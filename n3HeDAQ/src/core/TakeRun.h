@@ -17,3 +17,5 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER);
 //Handle Ctrl+C Signal
 void signalHandler( int signum );
+//Process Dirty DAQ data from previous run while taking current run
+int ProcessDirty(int count);
