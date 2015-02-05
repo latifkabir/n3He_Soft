@@ -173,10 +173,10 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 		  refresh();
 		  if(module==30)
 		  {
-		      mvprintw(base_y2+20, base_x2, "Data Files for DAQ %d is being processed ... ...",module);
+		      mvprintw(base_y2+20, base_x2, "Data Files for DAQ %d is being processed ... ... ... ... ... ...",module);
 		      refresh();
 		      ProcessData(newrun,DAQ30,true);
-		      mvprintw(base_y2+20, base_x2, "Data Files for DAQ %d has been processed successfully.",module);
+		      mvprintw(base_y2+20, base_x2, "Data Files for DAQ %d has been processed successfully.            ",module);
 		  }
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
 		  refresh();
