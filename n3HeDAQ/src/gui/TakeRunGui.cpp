@@ -85,9 +85,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
     }
 
     if(runNumber==0)
-    {
 	continuous=true;
-    }
 
     while(!stop && (continuous || (counter <runNumber)))
     {
@@ -156,7 +154,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 		  {
 		      mvprintw(base_y2+8, base_x2+21, "PROBLEM WITH MODULES ,INCORRECT FILE SIZE");
 		      refresh();
-		      sleep(5);
+		      sleep(1);
 		      break;
 		  }
 		  mvprintw(base_y2+17, base_x2, "                                                        ");
@@ -172,7 +170,14 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 		  {
 		      mvprintw(base_y2+20, base_x2, "Problem renaming data files for run number %d",newrun);		 
 		  }
-		 
+		  refresh();
+		  if(module==30)
+		  {
+		      mvprintw(base_y2+20, base_x2, "Data Files for DAQ %d is being processed ... ...",module);
+		      refresh();
+		      ProcessData(newrun,DAQ30,true);
+		      mvprintw(base_y2+20, base_x2, "Data Files for DAQ %d has been processed successfully.",module);
+		  }
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
 		  refresh();
 		  if(!stop)
@@ -191,9 +196,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
          }
  
          if(!continuous)
-         {
-             counter=counter+1;
-         }
+             counter++;
     }    
     Sync(false,true); //Disable the trigger
 }
@@ -214,9 +217,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     signal(SIGWINCH, &HandleWinChange); //Handle Window size change
 
     if(runNumber==0)
-    {
 	continuous=true;
-    }
 
     while(!stop && (continuous || (counter <runNumber)))
     {
@@ -280,6 +281,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		thread t24(&Daq::SaveData,&daq24,false);
 		thread t30(&Daq::SaveData,&daq30,false);
 		thread t(Sync,true,true);    //Enable the trigger
+		thread t0(ProcessDirty,counter);    //Process dirty DAQ data of previous run
 
 
 		t21.join();
@@ -288,19 +290,20 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		t24.join();
 		t30.join();
 		t.join();        //Enable the trigger
+		t0.join();       
 
 		if(daq21.GetFileSize()<tol*daq21.filesize || daq22.GetFileSize()<tol*daq22.filesize || daq23.GetFileSize()<tol*daq23.filesize ||daq24.GetFileSize()<tol*daq24.filesize ||daq30.GetFileSize()<tol*daq30.filesize)
 		{
 		      mvprintw(base_y2+8, base_x2+21, "PROBLEM WITH MODULES ,INCORRECT FILE SIZE");
 		      refresh();
-		      sleep(5);
+		      sleep(1);
 		      break;
 		}
 		mvprintw(base_y2+17, base_x2, "                                                        ");
 		refresh();
 		mvprintw(base_y2+19, base_x2, "Last Run Status:");
 		 
-	          if(Rename(newrun,DAQ21,true)==1 && Rename(newrun,DAQ22,true)==1 && Rename(newrun,DAQ23,true)==1 && Rename(newrun,DAQ24,true)==1 && ProcessData(newrun,DAQ30,true)==1)
+	          if(Rename(newrun,DAQ21,true)==1 && Rename(newrun,DAQ22,true)==1 && Rename(newrun,DAQ23,true)==1 && Rename(newrun,DAQ24,true)==1 && Rename(newrun,DAQ30,true)==1)
 		  {
 		      mvprintw(base_y2+20, base_x2, "Data Files for run number %d  have been renamed successfully.",newrun);
 		  }
@@ -308,6 +311,10 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		  {
 		      mvprintw(base_y2+20, base_x2, "Problem renaming data files for run number %d",newrun);		 
 		  }
+
+		  if(stop || (counter+1 >= runNumber))
+		      ProcessData(newrun,DAQ30,true);
+
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
 		  refresh();
 		  if(!stop)
@@ -325,9 +332,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	}
  
 	if(!continuous)
-	{
-	    counter=counter+1;
-	}
+	    counter++;
     } 
     Sync(false,true); //Disable the trigger     
 }

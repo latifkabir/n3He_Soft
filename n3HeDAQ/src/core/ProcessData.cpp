@@ -65,7 +65,7 @@ int ProcessData(int run,int module,bool gui_mode)
     else
     {
 	if(!gui_mode)
-	    cout<<"\t\tError Deleting temporary file"<<endl<<endl;
+	    cout<<"\t\tError deleting temporary file"<<endl<<endl;
     }
 
     delete[] buffer;

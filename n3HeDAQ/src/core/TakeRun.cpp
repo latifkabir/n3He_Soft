@@ -66,7 +66,11 @@ int Rename(int run,int module,bool gui_mode)
     char *file_new=new char[200];
 
     sprintf(file_old,OLD_FILE,module);
-    sprintf(file_new,NEW_FILE,run,module);
+
+    if(module==30)
+	sprintf(file_new,NEW_FILE,run,DAQTEMP);//Rename as temporary file for dirty daq only
+    else
+	sprintf(file_new,NEW_FILE,run,module);
 
     if(rename(file_old, file_new) == 0)
     {
@@ -218,6 +222,8 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 		    break;
 		}
 		Rename(newrun,module,false);
+		if(module==30)
+		    ProcessData(newrun,DAQ30,false);
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }
 	    else
@@ -256,7 +262,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 	    Daq daq22(DAQ22_IP,DAQ_PORT1,DAQ22,runlength);
 	    Daq daq23(DAQ23_IP,DAQ_PORT1,DAQ23,runlength);
 	    Daq daq24(DAQ24_IP,DAQ_PORT1,DAQ24,runlength);
-	    Daq daq30(DAQ30_IP,DAQ_PORT1,DAQTEMP,runlength*DIRTY_FACTOR);
+	    Daq daq30(DAQ30_IP,DAQ_PORT1,DAQ30,runlength*DIRTY_FACTOR);
 
 	    if(!daq21.CheckStatus() && !daq22.CheckStatus() && !daq23.CheckStatus() && !daq24.CheckStatus() && !daq30.CheckStatus())
 	    {
@@ -289,7 +295,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		Rename(newrun,DAQ22,false);
 		Rename(newrun,DAQ23,false);
 		Rename(newrun,DAQ24,false);
-		Rename(newrun,DAQTEMP,false);  //Rename as temporary file for dirty daq only
+		Rename(newrun,DAQ30,false);  
 
 		if(stop || (counter+1 >= runNumber))
 		    ProcessData(newrun,DAQ30,false);
