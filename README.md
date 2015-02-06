@@ -9,7 +9,7 @@ This repository is divided into several sub directories based on the category:
 * n3HeScan [(download)][6] --- Software for field and beam scan 
 * DAQFirmware [(download)][7] --- This directory contain DAQ Firmware related Software update.
 * DemoScripts [(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
-* SlowDAQ -- GUI for slow DAQ.
+* SlowDAQ[(download)][9] -- GUI for slow DAQ.Monitoring magnetic field and temperature on a ncurses window.
 
 Please read below to know what's inside each category.
 The above/following download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right. 
@@ -57,13 +57,13 @@ DemoScripts [(download)][8]
 ----------------------------
 Contains analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 
-SlowDAQ
+SlowDAQ[(download)][9]
 ---------
-GUI for slow DAQ.
+GUI for slow DAQ.Monitoring magnetic field and temperature on a ncurses window.
 
 report bug to: latifulkabir@uky.edu
 
-Last Updated on 1/12/15
+Last Updated on 2/5/15
 
 -Latiful Kabir
 
@@ -75,5 +75,6 @@ Last Updated on 1/12/15
 [6]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeScan.zip
 [7]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DAQFirmware.zip
 [8]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DemoScripts.zip
+[9]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/SlowDAQ.zip
 
 	 
