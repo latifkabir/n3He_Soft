@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=n3HeDAQ
+Comment=n3HeDAQ
+Icon=/home/daq/SlowDAQ/ReadMag/ReadMag.jpg
+Exec=gnome-terminal --geometry=100x20+0+0 -e "/home/daq/SlowDAQ/ReadMag/mag"
+Terminal=false
+Type=Application
+Categories=Developer;Accessories;Accessibility;
+StartupNotify=true
+
+Name[en_US]=n3HeMag

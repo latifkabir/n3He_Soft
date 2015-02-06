@@ -209,6 +209,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
+    int runCount=0;
     int stime=5; //Sleep time in second
     int trig=-1;
     double tol=0.99; //Tolerance
@@ -281,7 +282,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		thread t24(&Daq::SaveData,&daq24,false);
 		thread t30(&Daq::SaveData,&daq30,false);
 		thread t(Sync,true,true);    //Enable the trigger
-		thread t0(ProcessDirty,counter);    //Process dirty DAQ data of previous run
+		thread t0(ProcessDirty,runCount,true);    //Process dirty DAQ data of previous run
 
 
 		t21.join();
@@ -330,7 +331,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		break;
 	    }
 	}
- 
+	runCount++;
 	if(!continuous)
 	    counter++;
     } 

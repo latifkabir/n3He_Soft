@@ -144,10 +144,10 @@ void signalHandler( int signum )
 }
 
 //Process Dirty DAQ data from previous run while taking current run
-int ProcessDirty(int count)
+int ProcessDirty(int count,bool gui_mode)
 {
     if(count!=0)
-	ProcessData(newrun-1,DAQ30,false);
+	ProcessData(newrun-1,DAQ30,gui_mode);
 
     return 0;
 }
@@ -245,6 +245,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
     bool continuous=false; //Continuous or single run
     bool ready=true;  //Start if DAQ ready based on T0
     int counter=0;
+    int runCount=0;
     int stime=5; //Sleep time in second
     double tol=0.99; //Tolerance
     signal(SIGINT, signalHandler); //Handle Ctrl+C Signal  
@@ -275,7 +276,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		thread t24(&Daq::SaveData,&daq24,false);
 		thread t30(&Daq::SaveData,&daq30,false);
 		thread t(Sync,true,false);    //Enable the trigger
-		thread t0(ProcessDirty,counter);    //Process dirty DAQ data of previous run
+		thread t0(ProcessDirty,runCount,false);    //Process dirty DAQ data of previous run
 
 
 		t21.join();
@@ -308,7 +309,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		break;
 	    }
 	}
- 
+	runCount++;
 	if(!continuous)
 	    counter++;
     }

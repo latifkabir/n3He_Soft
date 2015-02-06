@@ -18,4 +18,4 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER);
 //Handle Ctrl+C Signal
 void signalHandler( int signum );
 //Process Dirty DAQ data from previous run while taking current run
-int ProcessDirty(int count);
+int ProcessDirty(int count,bool gui_mode);
