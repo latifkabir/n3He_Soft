@@ -1,5 +1,5 @@
 /*
-GUI for reading field flux gate using Ncurses
+GUI for reading field flux gate(A magnetometer from Bartington, Model:Mag-03DAM) using Ncurses
 Author: Latiful Kabir
 Date: 1/2/15
   

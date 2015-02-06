@@ -1,4 +1,4 @@
-//The main program for beam scan
+//The main program for beam scan using Velmex motor with XY stage through Serial(RS232) port.
 //Author: Latiful Kabir
 //Version:1.0
 //Date:09.23.14

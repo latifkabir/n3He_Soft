@@ -1,4 +1,5 @@
-//The SerialXY derived class with Serial as base class
+//The SerialXY derived class with Serial as base class(For Velmex motor with XY stage through Serial(RS232) port.)
+
 //Author: Latiful Kabir
 //Date:09.22.14
 //Version:1.0

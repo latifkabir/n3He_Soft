@@ -1,4 +1,4 @@
-//The basic XY movement program
+//The basic XY movement program(using Velmex motor with XY stage through Serial(RS232) port.)
 //Author: Latiful Kabir
 //Version:0.0
 //Date:09.12.14

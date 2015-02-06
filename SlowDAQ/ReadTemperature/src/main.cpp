@@ -1,5 +1,6 @@
 /*
-GUI for reading field flux gate using Ncurses
+Ncurses GUI for reading temperature
+Program to read temperature from OMEGA CN606 & CN612 Series Temperature Monitor device
 Author: Latiful Kabir
 Date: 1/2/15
   

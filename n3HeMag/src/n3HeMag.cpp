@@ -1,4 +1,5 @@
 //The FluxGate driver for n3He
+// Reading field from flux gate(A magnetometer from Bartington, Model:Mag-03DAM)
 //Author: Latiful Kabir
 //Date:09.5.14
 //Version:1.0
