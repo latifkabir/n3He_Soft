@@ -297,7 +297,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		Rename(newrun,DAQ24,false);
 		Rename(newrun,DAQ30,false);  
 
-		if(stop || (counter+1 >= runNumber))
+		if(stop || ((counter+1 >= runNumber) && runNumber!=0))
 		    ProcessData(newrun,DAQ30,false);
 
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;

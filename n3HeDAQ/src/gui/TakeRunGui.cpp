@@ -312,7 +312,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		      mvprintw(base_y2+20, base_x2, "Problem renaming data files for run number %d",newrun);		 
 		  }
 
-		  if(stop || (counter+1 >= runNumber))
+		  if(stop || ((counter+1 >= runNumber) && runNumber!=0))
 		      ProcessData(newrun,DAQ30,true);
 
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
