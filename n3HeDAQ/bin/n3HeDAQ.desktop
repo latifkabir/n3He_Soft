@@ -3,7 +3,7 @@ Encoding=UTF-8
 Name=n3HeDAQ
 Comment=n3HeDAQ
 Icon=/home/daq/n3HeDAQ/bin/n3HeDAQ.jpg
-Exec=gnome-terminal --geometry=110x45+0+0 -e "/home/daq/n3HeDAQ/bin/n3he gui"
+Exec=gnome-terminal --geometry=110x45+0+0 -t "n3HeDAQ" -e "/home/daq/n3HeDAQ/bin/n3he gui"
 Terminal=false
 Type=Application
 Categories=Developer;Accessories;Accessibility;

@@ -44,7 +44,7 @@ TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
 	dataFile[i]+=module[i];
     }
 
-    if(ifstream(dataFile[0]) && ifstream(dataFile[1]) && ifstream(dataFile[2]) && ifstream(dataFile[3]) && ifstream(dataFile[3]))
+    if(ifstream(dataFile[0]) && ifstream(dataFile[1]) && ifstream(dataFile[2]) && ifstream(dataFile[3]) && ifstream(dataFile[4]))
     {
 //-------------Add the Branches to this tree-----------------------------------
  
