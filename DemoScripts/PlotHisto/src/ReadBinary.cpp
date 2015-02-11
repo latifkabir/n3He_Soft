@@ -7,18 +7,28 @@
 #include<string>
 #include <sys/stat.h>
 #include"ReadBinary.h"
-#include"Constants.h"
+
 using namespace std;
 
 ReadBinary::ReadBinary(const char* filename)
 {
     myfile=filename;
     ptr_myfile=fopen(filename,"rb");
+
+    if (!ptr_myfile)
+    {
+	cout<<"Unable to open file!"<<endl;
+	fStatus=0;
+    }
+    else
+	fStatus=1;
+    
 }
 
 ReadBinary::~ReadBinary()
 {
     fclose(ptr_myfile);
+    delete dataPattern;
 }
 
 size_t ReadBinary::GetFileSize()
@@ -32,34 +42,14 @@ size_t ReadBinary::GetFileSize()
     return st.st_size;
 }
 
-int ReadBinary::GetValue(int channel,long point)
+int ReadBinary::GetValue(int channel,long position)
 {
 
-    struct rec
-    {
-	int my_data[NCHAN];
-    };
+    if(!fStatus)
+	return -1;
 
-    long counter=point;
-    struct rec my_record;
-    int value;
-
-    if (!ptr_myfile)
-    {
-	cout<<"Unable to open file!"<<endl;
-	return 1;
-    }
-    
-
-    fseek(ptr_myfile,sizeof(struct rec)*counter,SEEK_SET);
-    fread(&my_record,sizeof(struct rec),1,ptr_myfile);
-    // printf("%d   %d\n",counter,my_record.my_data[0]);
-    value=my_record.my_data[channel];
-
-    // fclose(ptr_myfile);
-
-    return (value);
+    fseek(ptr_myfile,sizeof(struct Pattern)*position,SEEK_SET);
+    fread(dataPattern,sizeof(struct Pattern),1,ptr_myfile);
+    return (dataPattern->data[channel]);
 }
 
-
-  

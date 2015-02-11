@@ -1,5 +1,5 @@
 all:
-	g++ -g -o histo src/histo.cpp src/ReadBinary.cpp `root-config --cflags --glibs`
+	g++ -g -std=c++11 -o histo src/histo.cpp src/ReadBinary.cpp `root-config --cflags --glibs`
 
 clear:
 	rm -f src/*.o

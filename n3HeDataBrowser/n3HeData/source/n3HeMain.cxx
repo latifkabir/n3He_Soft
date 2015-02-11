@@ -1035,7 +1035,7 @@ void n3HeMain::PlotMonitorData(ERPlotTypes ptype, Int_t runNumber) {
 		if (i == 2){
 		        
 		  cout << "Drawing Monitor-4" << endl;
-			r.Draw("d30[][2]:Iteration$");
+			r.Draw("d30[][1]:Iteration$");
 
 			gPad->Modified();
 			gPad->Update();
@@ -1074,7 +1074,7 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 	mc->cd(2);
 	//draw the spin flipper data
 	cout << "Drawing spin flipper data" << endl;
-	r.Draw("d30[][2]:Iteration$");
+	r.Draw("d30[][1]:Iteration$");
 
 	gPad->Modified();
 	gPad->Update();
@@ -1332,7 +1332,7 @@ void n3HeMain::PlotSpinFlipperData(ERPlotTypes ptype, ENDataType dtype,
 
 	mc->cd(2);
 	cout << "Drawing spin flipper voltage" << endl;
-	r.Draw("d30[][3]:Iteration$");
+	r.Draw("d30[][1]:Iteration$");
 
 	gPad->Modified();
 	gPad->Update();

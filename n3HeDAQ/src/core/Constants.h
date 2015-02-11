@@ -1,6 +1,5 @@
-
 //Default DAQ & Run configuration (Default run length, run number, DAQ module)
-#define RUN_LENGTH 100e6 
+#define RUN_LENGTH 240e6 
 #define SHORT_RUN_LENGTH 20e6 
 #define RUN_NUMBER 0 
 #define MODULE 21 
@@ -46,7 +45,7 @@
 #define DIRTY_RES 0
 
 //Adjustrment for Dirty DAQ run length
-#define DIRTY_FACTOR 5.33 
+#define DIRTY_FACTOR 5.416666667 
 
 //Process Dirty DAQ data
 #define NCHAN_BEFORE 8  //Number of Channels before process

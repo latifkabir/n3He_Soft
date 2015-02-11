@@ -1,8 +1,29 @@
-1. Clean DAQ: (1 header+52 Samples) @ 50 KHz/ 16 averages no decimation= 320 uSec * 52 ~ 48ch *53 *4Bytes =10176 Bytes/file/T0 * 25,000 T0 = 254.4 MB
-2.Dirty DAQ :  no Averaging, 50 KHz, process to keep 2 channels,
+====================
+Current Setting:
+====================
 
 
-Max trans_len @ 50 KHz is :831
-Sample we actually get:831-37
+Max trans_len set @ 50 KHz is :830 (Theoretically 50KHz x 16.66 ms = 833 samples) per T0
+But 833 event length gives overlap. So we set to 830.
+At 100 KHz the theoretical number of samples 100KHz x 16.66 ms = 1666 
+But to avoid overlap we set to 1660.
+More over the DAQ has fixed 35 samples(with no averaging) arming time. This amout of time will be missed for every event.
 
-with 16 avg, points 49
+
+Clen DAQ event length 830 with nacc=16,16 with hi_res_mode=1
+Dirty DAQ event length 1660 with nacc=1,1 with hi_res_mode=0
+
+No of sample per event:
+Clean DAQ: (830-35)/16=49.68 ~ 50  (1 header + 49 samples)
+Dirty DAQ: (1660-35)=1625 (1 header + 1624 samples) 
+
+
+Run Length:
+With 25000 T0 per run:
+Clean DAQ file size: 25000 T0 x 50 samples x 4 Byte per sample x 48 Channels =240 x10^6 Bytes ~ 240 MB.
+Dirty DAQ file size (before process): 25000 T0 x 1625 samples x 4 Bytes per sample x 8 channels = 1300 x 10^6 Bytes ~ 1300 MB
+Dirty DAQ file seize (after process) : 25000 T0 x 1625 samples x 4 Bytes per sample x 2 channels = 325 x 10^6 Bytes ~ 325 MB
+
+When file size is set in DAQ it must be in Bytes (i.e. exact up to Bytes).
+
+The Dirty factor is=1300/240 (keep all decimal places).

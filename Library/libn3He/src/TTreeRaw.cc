@@ -48,7 +48,7 @@ TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
     {
 //-------------Add the Branches to this tree-----------------------------------
  
-//------------Brach for daq-21------------                            
+//------------Branch for daq-21------------                            
     cout << "Reading clean daq file: " << dataFile[0] << endl;
     b21 = new TBranchBinary(this,dataFile[0],DaqLeaf[0],"b21", -1, 0);
     this->GetListOfBranches()->Add(b21);

@@ -16,11 +16,11 @@ using namespace std;
 
 void PlotCh(int ch=0,int init=0){
 
-  ReadBinary fa("/home/daq/DATA/ACQ2006/bigrawfile");
+  ReadBinary fa(DATA_FILE);
   //1.Getting the data in arrays
 
   const long filesize=fa.GetFileSize() ;//In Byte
-  const long entries=(long)(8*filesize)/(32*64);
+  const long entries=(long)(8*filesize)/(32*NCHAN);
   const int start=init;
 
  if(entries==0)
@@ -53,7 +53,7 @@ void PlotCh(int ch=0,int init=0){
 int main(int argc, char** argv)
 {
 
-    if(!ifstream("/home/daq/DATA/ACQ2006/bigrawfile"))
+    if(!ifstream(DATA_FILE))
     {
 	cout<<"No data file... exiting... !!!!"<<endl;
 	return(-1);

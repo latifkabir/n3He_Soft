@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-//n3Heamma Experiment Data Visualization and Analysis
+//n3He Experiment Data Visualization and Analysis
 //
 //Version 2.01
 //

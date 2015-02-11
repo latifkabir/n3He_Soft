@@ -5,6 +5,7 @@ This is purely C++ script but the final plot is shown thgrough ROOT.
 
 Steps
 ----
+* Make changes in src/Constants file to fir your requirements.
 * Do `make`
 * Give channel number for which the graph to be plotted
 * Give specific starting point.
