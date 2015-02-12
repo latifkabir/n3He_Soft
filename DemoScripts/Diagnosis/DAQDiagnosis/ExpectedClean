@@ -1,0 +1,8 @@
+rgm=1,0,1 enable d0 RISING
+830
+1
+16,16
+ABC
+clk=1,1,0 external d1 FALLING
+1
+trg=1,1,1 external d1 RISING

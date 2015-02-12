@@ -7,7 +7,7 @@ PingDAQ()
     STSTUS=$?
     if [ $STSTUS -eq 0 ]
     then
-	echo "Found DAQ $1 is Active. --OK"
+	echo "DAQ $1 is Active. --OK"
     else
 	echo "DAQ $1 is NOT Active. Enter the Cave and Reboot it manually. --PROBLEM"
     fi
@@ -16,35 +16,39 @@ PingDAQ()
 GetConfig()
 {
     ssh root@192.168.0.$1 'PATH=$PATH:/usr/local/bin/ 
-get.site 1 <<EOF
-rgm
-rtm_translen
-hi_res_mode
-nacc
-bank_mask
-clk
-clkdiv
-trg
-EOF
+cat /etc/acq400/1/rgm
+cat /etc/acq400/1/rtm_translen
+cat /etc/acq400/1/hi_res_mode
+cat /etc/acq400/1/nacc
+cat /etc/acq400/1/bank_mask
+cat /etc/acq400/1/clk
+cat /etc/acq400/1/clkdiv
+cat /etc/acq400/1/trg
 '
 }
 
 CheckConfig()
 {
     echo "Reading Current Config"
-    GetConfig $1 > CurrentConfig
+    GetConfig $1 > /home/daq/DAQDiagnosis/CurrentConfig
 
-    file1="CurrentConfig"
-    file2="ExpectedConfig"
+    file1="/home/daq/DAQDiagnosis/CurrentConfig"
+    file2="/home/daq/DAQDiagnosis/ExpectedClean"
+    file3="/home/daq/DAQDiagnosis/ExpectedDirty"
 
     echo "Now Comparing two configs"
-    diff $file1 $file2 &> /dev/null
+    if [ $1 -eq 30 ]
+    then
+	diff $file1 $file3 &> /dev/null
+    else
+	diff $file1 $file2 &> /dev/null
+    fi
     STSTUS=$?
     if [ $STSTUS -eq 0 ]
     then
-	echo "The configuration for DAQ $1 is OK"
+	echo "The configuration for DAQ $1 is as expected. --OK"
     else
-	echo "PROBLEM with DAQ $1 Configuration Detected.--PROBLEM"
+	echo "PROBLEM with DAQ $1 Configuration Detected. --PROBLEM"
     fi
 
 }
@@ -85,4 +89,8 @@ do
     CheckConfig $DAQ
 done
 
+echo "                           "
 echo "Finished the diagnosis !!"
+echo "Close the window to quit."
+
+sleep 600
