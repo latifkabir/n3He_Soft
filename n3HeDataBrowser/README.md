@@ -19,8 +19,8 @@
    Now include command in your .bashrc file to run thisn3He.sh file each time you open the terminal. i.e. include the fillowing lines:
 
 ```
-if [ -f $HOME/libn3He/bin/thisn3He.sh ]; then
-	. $HOME/libn3He/bin/thisn3He.sh
+if [ -f path_to/libn3He/bin/thisn3He.sh ]; then
+	. path_to/libn3He/bin/thisn3He.sh
 fi
 ```
 

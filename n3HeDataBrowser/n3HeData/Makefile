@@ -5,7 +5,7 @@ ROOT_INCLUDE 	= $(shell  root-config  --incdir)
 PRG_INCLUDE 	= ./include
 PRG_SOURCE  	= ./source
 #LIB_INCLUDE  	= /home/kabir/libn3He/src/libn3He  ####<===remove
-LIB_INCLUDE	= /home/siplu/GIT/Workspaces/n3HeDataBrowser/libn3He/src ####<===add
+LIB_INCLUDE	= /home/npdg/n3He/libn3He/src ####<===add
 
 
 OBJECTS       	= n3HeMain.o
@@ -14,7 +14,7 @@ APPLIC        	= n3HeData$(VERS)
 
 DEBUGFLAGS    	= #-Dn3He_DEBUG
 CXX           	= g++
-CXXFLAGS      	= -fPIC -std=c++11
+CXXFLAGS      	= -fPIC
 LD            	= g++
 LDFLAGS       	= -O2 -Wl,-rpath,$(LIB_INCLUDE)
 SOFLAGS       	= -shared
@@ -26,7 +26,7 @@ ROOTGLIBS    	:= $(shell root-config --glibs)
 CXXFLAGS     	+= $(DEBUGFLAGS) $(ROOTCFLAGS)# -Wno-deprecated
 LIBS          	= $(ROOTLIBS)
 #GLIBS         	= $(ROOTGLIBS) -L/home/kabir/libn3He/lib -ln3He  ####<===remove
-GLIBS         	= $(ROOTGLIBS) -L/home/siplu/GIT/Workspaces/n3HeDataBrowser/libn3He/lib -ln3He  ####<===add
+GLIBS         	= $(ROOTGLIBS) -L/home/npdg/n3He/libn3He/lib -ln3He  ####<===add
 
 
 

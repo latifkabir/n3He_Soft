@@ -1,4 +1,4 @@
-#define DATA_PATH "/media/siplu/SIPLU/DATA/DeleteMEBIG/"
+#define DATA_PATH "/mnt/idata01/data/"
 
 #define DAQ21_LEAF "h21[48]/I:d21[49][48]/I"
 #define DAQ22_LEAF "h22[48]/I:d22[49][48]/I"

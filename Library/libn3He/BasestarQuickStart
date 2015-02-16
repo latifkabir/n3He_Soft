@@ -1,0 +1,18 @@
+
+The basestar is now up for n3He analysis. The data is being transferred to the directory ' /mnt/idata01/data/ ' and the analysis library is compiled in a shared directory ' /home/npdg/n3He/libn3He/lib '.
+
+So a quick start can be as follows from any user account:
+
+1.  Add the following lines to the .bashrc file & save it :
+
+if [ -f /home/npdg/n3He/libn3He/bin/thisn3He.sh ]; then
+        . /home/npdg/n3He/libn3He/bin/thisn3He.sh
+fi
+
+2. Start a new terminal , go to  /home/npdg/n3He/libn3He/analysis/ directory & try running sample analysis scripts from ROOT.
+
+3. The Data browser GUI (named as n3HeData) can be opened issuing the command '/home/npdg/n3He/n3HeData/n3HeData' from the terminal. Copy the binary to your home directory if you will be using the GUI frequently.
+
+
+Other user specific customization can be achieved following the instruction in the ReadMe file in the respective directory. The latest developments and releases can be found from n3He wiki > Software.
+
