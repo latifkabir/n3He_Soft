@@ -1,7 +1,8 @@
 //Demo Offline Analysis using n3He Library.(By Offline I mean  'in a script more thoughtful and serious analysis unlike from CINT)
 //Author: Latiful Kabir
 //Date: 12/23/14
-
+//This is approach is much slower than SetAddress() approach and encouraged NOT to use.
+//This for demonstration purpose only for how to access individual branch and leaf.
 
 #include<TTree.h>
 #include<TLeaf.h>
@@ -17,13 +18,13 @@
 using namespace std;
 
 
-void OfflineAnalysis()
+void OfflineAnalysis2()
 {
     //-------------Load the n3He Library----------------------------
     gSystem->Load("libn3He.so"); //Use complete path unless libn3He.so is in a directory under LD_LIBRARY_PATH
 
     //---------Create a Tree for desired run number-----------------
-    TTreeRaw *t=new TTreeRaw(855);
+    TTreeRaw *t=new TTreeRaw(15142);
 
     int leaf_index;
     int adc_count;
@@ -70,24 +71,24 @@ void OfflineAnalysis()
     //Loop over all Events(Entries)
     for (int ientry = 0; ientry <entries; ientry++)
     {
-	t->GetEntry(ientry);
+    	t->GetEntry(ientry);
 
-	//Dirty DAQ30 Channel-0 analysis
+    	//Dirty DAQ30 Channel-0 analysis
         //Loop over all tbins(samples) for each event(Entry).
-	for (int isample=0; isample<EL_DIRTY; isample++)
-	{
-	    leaf_index = isample*NC_DIRTY + channel;  	    
-	    adc_count= t->GetLeaf("d30")->GetValue(leaf_index);
-	    volts = (adc_count>>8)*FACTOR; //>>8 to throw away last 8 bits & FACTOR to             convert ADC count to Volt
+    	for (int isample=0; isample<EL_DIRTY; isample++)
+    	{
+    	    leaf_index = isample*NC_DIRTY + channel;  	    
+    	    adc_count= t->GetLeaf("d30")->GetValue(leaf_index);
+    	    volts = (adc_count>>8)*FACTOR; //>>8 to throw away last 8 bits & FACTOR to             convert ADC count to Volt
 
-	    gr2->SetPoint(ientry*EL_DIRTY+isample,ientry*EL_DIRTY+isample,volts);
+    	    gr2->SetPoint(ientry*EL_DIRTY+isample,ientry*EL_DIRTY+isample,volts);
 
-	}
+    	}
 
     }
     gr2->GetXaxis()->SetTitle("tbin");
     gr2->GetYaxis()->SetTitle("Volts");
     gr2->SetTitle("Plot for DAQ30 Channel-0");
     gr2->Draw("AP");
-
+    delete t;
 }

@@ -1,0 +1,40 @@
+48 Channels divided into two modules:
+Each sample is 4 bytes(in hexdump one contiguous pair consists one sample or 4 bytes).
+
+With: mod= module  ch = channel
+
+mod1event1sample1Ch0 mod1event1sample1ch1 mod1event1sample1ch3 ..... ... ... ... ... mod1event1sample1ch8 
+mod1event1sample1Ch9 mod1event1sample1ch10 mod1event1sample1ch11 ..... ... ... ... ... mod1event1sample1ch16
+mod1event1sample1Ch17 mod1event1sample1ch18 mod1event1sample1ch19 ..... ... ... ... ... mod1event1sample1ch23
+
+mod2event1sample1Ch0 mod2event1sample1ch1 mod2event1sample1ch3 ..... ... ... ... ... mod2event1sample1ch8 
+mod2event1sample1Ch9 mod2event1sample1ch10 mod2event1sample1ch11 ..... ... ... ... ... mod2event1sample1ch16
+mod2event1sample1Ch17 mod2event1sample1ch18 mod2event1sample1ch19 ..... ... ... ... ... mod2event1sample1ch23
+  
+
+mod1event2sample1Ch0 mod1event2sample1ch1 mod1event2sample1ch3 ..... ... ... ... ... mod1event2sample1ch8 
+mod1event2sample1Ch9 mod1event2sample1ch10 mod1event2sample1ch11 ..... ... ... ... ... mod1event2sample1ch16
+mod1event2sample1Ch17 mod1event2sample1ch18 mod1event2sample1ch19 ..... ... ... ... ... mod1event2sample1ch23
+
+mod2event2sample1Ch0 mod2event2sample1ch1 mod2event2sample1ch3 ..... ... ... ... ... mod2event2sample1ch8 
+mod2event2sample1Ch9 mod2event2sample1ch10 mod2event2sample1ch11 ..... ... ... ... ... mod2event2sample1ch16
+mod2event2sample1Ch17 mod2event2sample1ch18 mod2event2sample1ch19 ..... ... ... ... ... mod2event2sample1ch23
+  
+....     ....             ....  ...           .................             ........................    .....
+....     ....             ....  ...           .................             ........................    .....
+....     ....             ....  ...           .................             ........................    .....
+....     ....             ....  ...           .................             ........................    .....
+
+Up to N number of events.
+
+Now the first sample of any event is the event header with following structure:
+mod1event1sample1Ch0=mod1event1sample1Ch1=mod1event1sample1Ch3 = Event Signature-1 (0xaa55f154) , mod1event1sample1Ch4= Event Number,
+mod1event1sample1Ch5 = checksum using path-1 , mod1event1sample1Ch6 = sample number ,mod1event1sample1Ch7 = checksum using path-2 
+Then this pattern repeats 3 more times (i.e. in quanta of 8 channels) up to channel-23
+
+mod2event1sample1Ch0 =mod2event1sample1Ch1 = mod2event1sample1Ch3= Event Signature-2 (0xaa55f15f) ,mod1event1sample1Ch4= 0 (always),
+mod2event1sample1Ch5 = checksum using path-1 , mod2event1sample1Ch6 = sample number ,mod2event1sample1Ch7 = checksum using path-2 
+Then this pattern repeats 3 more times (i.e. in quanta of 8 channels) up to channel-23
+
+
+

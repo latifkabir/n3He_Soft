@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include"Constants.h"
 
+#define NCHAN 1  //Pretent that our data files have just one channel
+
 struct Pattern
 {
     int data[NCHAN];

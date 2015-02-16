@@ -10,6 +10,7 @@ This repository is divided into several sub directories based on the category:
 * DAQFirmware [(download)][7] --- This directory contain DAQ Firmware related Software update.
 * DemoScripts [(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 * ReadRS232 [(download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
+* Watchdog  -- Program for 24/7 DAQ status and other critical parameters watchdog.
 
 Please read below to know what's inside each category.
 The above/following download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right. 
@@ -60,6 +61,10 @@ Contains analysis or other demo scripts necessary for DAQ performance demonstrat
 ReadRS232 [(download)][9]
 ---------
 GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
+
+Watchdog
+----------
+Program for 24/7 DAQ status and other critical parameters watchdog. Capable to send text alert and restart the DAQ program automatically.
 
 report bug to: latifulkabir@uky.edu
 

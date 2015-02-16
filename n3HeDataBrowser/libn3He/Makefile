@@ -4,7 +4,7 @@
 ROOTCINT  = rootcint
 ROOTFLAGS = $(shell root-config --cflags)
 ROOTLIBS  = $(shell root-config --glibs)
-CXXFLAGS  += -fPIC -std=c++11
+CXXFLAGS  += -fPIC
 
 all: libn3He
 
@@ -14,7 +14,7 @@ clear: libn3He_clear
 # BEGIN libn3He
 
 libn3He: lib/libn3He.so
-libn3He_base	= TBranchBinary TTreeRaw 
+libn3He_base	= TBranchBinary TTreeRaw ReadBinary CalOffset
 
 libn3He_inc	= $(libn3He_base:=.h)
 libn3He_obj	= $(addprefix src/,$(libn3He_base:=.o))

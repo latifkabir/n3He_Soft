@@ -1,3 +1,7 @@
+//A stand alone class for reading and analyzing binary file
+//Author: Latiful Kabir
+//Date: 6/11/14
+
 #include<iostream>
 #include<cstdio>
 #include<string>
@@ -8,6 +12,7 @@ using namespace std;
 
 ReadBinary::ReadBinary(const char* filename)
 {
+    dataPattern=new Pattern;
     myfile=filename;
     ptr_myfile=fopen(filename,"rb");
 

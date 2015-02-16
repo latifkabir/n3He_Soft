@@ -2,14 +2,32 @@
 
 PingDAQ()
 {
+    if [ $1 -eq 21 ]
+    then
+	INDEX1=0
+    elif [ $1 -eq 22 ]
+    then
+	INDEX1=1
+    elif [ $1 -eq 23 ]
+    then
+	INDEX1=2
+    elif [ $1 -eq 24 ]
+    then
+	INDEX1=3
+    elif [ $1 -eq 30 ]
+    then
+	INDEX1=4
+    fi
     IP=192.168.0.$1
     ping -c 1 $IP &> /dev/null
-    STSTUS=$?
-    if [ $STSTUS -eq 0 ]
+    STSTUS1=$?
+    if [ $STSTUS1 -eq 0 ]
     then
 	echo "DAQ $1 is Active. --OK"
+	LIVE[$INDEX1]=1
     else
 	echo "DAQ $1 is NOT Active. Enter the Cave and Reboot it manually. --PROBLEM"
+	LIVE[$INDEX1]=0
     fi
 }
 
@@ -29,6 +47,24 @@ cat /etc/acq400/1/trg
 
 CheckConfig()
 {
+
+    if [ $1 -eq 21 ]
+    then
+	INDEX2=0
+    elif [ $1 -eq 22 ]
+    then
+	INDEX2=1
+    elif [ $1 -eq 23 ]
+    then
+	INDEX2=2
+    elif [ $1 -eq 24 ]
+    then
+	INDEX2=3
+    elif [ $1 -eq 30 ]
+    then
+	INDEX2=4
+    fi
+
     echo "Reading Current Config"
     GetConfig $1 > /home/daq/DAQDiagnosis/CurrentConfig
 
@@ -43,12 +79,18 @@ CheckConfig()
     else
 	diff $file1 $file2 &> /dev/null
     fi
-    STSTUS=$?
-    if [ $STSTUS -eq 0 ]
+    STSTUS2=$?
+    if [ $STSTUS2 -eq 0 ]
     then
 	echo "The configuration for DAQ $1 is as expected. --OK"
+	MIS[$INDEX2]=1
     else
 	echo "PROBLEM with DAQ $1 Configuration Detected. --PROBLEM"
+	echo "Following is the corrupted config for DAQ $1"
+	echo "---------------------------------------------------"
+	cat $file1
+	echo "---------------------------------------------------"
+	MIS[$INDEX2]=0
     fi
 
 }
@@ -56,9 +98,9 @@ CheckConfig()
 RebootDAQ()
 {
     echo "Now rebooting the DAQ"
-    ssh root@128.165.131.1 'PATH=$PATH:/usr/local/bin/ 
+    ssh root@192.168.0.$1 'PATH=$PATH:/usr/local/bin/ 
     reboot'
-    echo "Sleeping for 60 sec for reboot time"
+    echo "Sleeping for 60 sec for reboot time... ..."
     sleep 60
     
 }
@@ -77,20 +119,27 @@ do
     PingDAQ $DAQ
 done
 
-echo "                           "
-echo "Now testing if there is any configuration mismatch ..."
-echo "                           "
-
-for DAQ in 21 22 23 24 30  
-do
+if [ ${LIVE[0]} == 0 ] || [ ${LIVE[1]} == 0 ] || [ ${LIVE[2]} == 0 ] || [ ${LIVE[3]} == 0 ] || [ ${LIVE[4]} == 0 ]
+then
     echo "                           "
-    echo "Checking if there is any config mismatch for DAQ $DAQ"
-    echo "                           "
-    CheckConfig $DAQ
-done
+    echo "Please Fix the above issues and then run the diagnosis again."
+else
+    {
+	echo "                           "
+	echo "Now testing if there is any configuration mismatch ..."
+	echo "                           "
 
-echo "                           "
-echo "Finished the diagnosis !!"
-echo "Close the window to quit."
+	for DAQ in 21 22 23 24 30  
+	do
+	    echo "                           "
+	    echo "Checking if there is any config mismatch for DAQ $DAQ"
+	    echo "                           "
+	    CheckConfig $DAQ
+	done
 
+	echo "                           "
+	echo "Finished the diagnosis !!"
+	echo "Close the window or press ctrl+C to quit."
+    }
+fi
 sleep 600

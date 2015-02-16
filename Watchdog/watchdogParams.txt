@@ -1,0 +1,9 @@
+isProgramRunning   
+isTriggerOn   
+LastRun
+MagY1Value
+Temp1
+Temp2
+Temp3
+Temp4
+Temp5 

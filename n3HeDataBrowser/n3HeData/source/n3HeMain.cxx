@@ -1027,7 +1027,7 @@ void n3HeMain::PlotMonitorData(ERPlotTypes ptype, Int_t runNumber) {
 		if (i != 2 && i != 3) {
 
 			cout << "Drawing Monitor-1" << i << endl;
-			r.Draw("d30[][0]:Iteration$");
+			r.Draw("d30[][0]:Iteration$","Entry$%25==0");
 
 			gPad->Modified();
 			gPad->Update();
@@ -1035,7 +1035,7 @@ void n3HeMain::PlotMonitorData(ERPlotTypes ptype, Int_t runNumber) {
 		if (i == 2){
 		        
 		  cout << "Drawing Monitor-4" << endl;
-			r.Draw("d30[][1]:Iteration$");
+		  r.Draw("d30[][0]:Iteration$","Entry$%15==0");
 
 			gPad->Modified();
 			gPad->Update();
@@ -1066,7 +1066,7 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 	mc->cd(1);
 	//draw the monitor 1  
 	cout << "Drawing monitor 1" << endl;
-	r.Draw("d30[][0]:Iteration$");
+	r.Draw("d30[][0]:Iteration$","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();
@@ -1074,7 +1074,7 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 	mc->cd(2);
 	//draw the spin flipper data
 	cout << "Drawing spin flipper data" << endl;
-	r.Draw("d30[][1]:Iteration$");
+	r.Draw("d30[][1]:(1624*Entry$+Iteration$)%3248","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();
@@ -1083,15 +1083,15 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 	//draw DAQ21 channel-0
 
 	cout << "Drawing DAQ21 channel-0" << endl;
-	r.Draw("d21[][0]:Iteration$");
+	r.Draw("d21[][0]:Iteration$","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();
 
 	mc->cd(4);
-	//draw DAQ22 channel-0
-	cout << "Drawing DAQ22 channel-0" << endl;
-	r.Draw("d22[][0]:Iteration$");
+	//draw DAQ22 channel-24
+	cout << "Drawing DAQ22 channel-24" << endl;
+	r.Draw("d22[][24]:Iteration$","Entry$%25==0");
 
 	gStyle->SetOptStat("");
 
@@ -1106,7 +1106,7 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 
 	//draw DAQ23 channel-0
 	cout << "Drawing DAQ23 channel-0" << endl;
-	r.Draw("d23[][0]:Iteration$");
+	r.Draw("d23[][0]:Iteration$","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();
@@ -1117,9 +1117,9 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 	}
 
 	mc->cd(6);
-	//draw DAQ24 channel-0
-	cout << "Drawing DAQ24 channel-0" << endl;
-	r.Draw("d24[][0]:Iteration$");
+	//draw DAQ24 channel-24
+	cout << "Drawing DAQ24 channel-24" << endl;
+	r.Draw("d24[][24]:Iteration$","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();
@@ -1158,9 +1158,9 @@ void n3HeMain::PlotDetectorData1(ERPlotTypes ptype, ENDataType dtype,
 
 		//plot DAQ21 data
 		if(i<18)      //Module 1
-		    r.Draw(Form("d21[][%i]:Iteration$", i), "","");
+		    r.Draw(Form("d21[][%i]:Iteration$", i), "Entry$%25==0");
 		else          //Module 2
-		    r.Draw(Form("d21[][%i]:Iteration$", i+6), "","");
+		    r.Draw(Form("d21[][%i]:Iteration$", i+6),"Entry$%25==0");
 
 		gPad->Modified();
 		gPad->Update();
@@ -1204,9 +1204,9 @@ void n3HeMain::PlotDetectorData2(ERPlotTypes ptype, ENDataType dtype,
 
 		//plot DAQ22 data
 		if(i<18)      //Module 1
-		    r.Draw(Form("d22[][%i]:Iteration$", i), "","");
+		    r.Draw(Form("d22[][%i]:Iteration$", i),"Entry$%25==0");
 		else         //Module 2
-		    r.Draw(Form("d22[][%i]:Iteration$", i+6), "","");
+		    r.Draw(Form("d22[][%i]:Iteration$", i+6),"Entry$%25==0");
 		
 		gPad->Modified();
 		gPad->Update();
@@ -1249,9 +1249,9 @@ void n3HeMain::PlotDetectorData3(ERPlotTypes ptype, ENDataType dtype,
 
 		//plot DAQ23 data
 		if(i<18)    //Module 1
-		    r.Draw(Form("d23[][%i]:Iteration$", i), "","");
+		    r.Draw(Form("d23[][%i]:Iteration$", i),"Entry$%25==0");
 		else       //Module 2
-		    r.Draw(Form("d23[][%i]:Iteration$", i+6), "","");
+		    r.Draw(Form("d23[][%i]:Iteration$", i+6),"Entry$%25==0");
 		
 		gPad->Modified();
 		gPad->Update();
@@ -1295,9 +1295,9 @@ void n3HeMain::PlotDetectorData4(ERPlotTypes ptype, ENDataType dtype,
 
 		//plot DAQ24 data
 		if(i<18)
-		    r.Draw(Form("d24[][%i]:Iteration$", i), "","");
+		    r.Draw(Form("d24[][%i]:Iteration$", i),"Entry$%25==0");
 		else
-		    r.Draw(Form("d24[][%i]:Iteration$", i+6), "","");
+		    r.Draw(Form("d24[][%i]:Iteration$", i+6),"Entry$%25==0");
 		
 		gPad->Modified();
 		gPad->Update();
@@ -1326,13 +1326,13 @@ void n3HeMain::PlotSpinFlipperData(ERPlotTypes ptype, ENDataType dtype,
 		return;
 	mc->cd(1);
 	cout << "Drawing spin flipper current" << endl;
-	r.Draw("d30[][1]:Iteration$");
+	r.Draw("d30[][1]:(1624*Entry$+Iteration$)%3248","Entry$%15==0");
 	gPad->Modified();
 	gPad->Update();
 
 	mc->cd(2);
 	cout << "Drawing spin flipper voltage" << endl;
-	r.Draw("d30[][1]:Iteration$");
+	r.Draw("d30[][1]:(1624*Entry$+Iteration$)%3248","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();

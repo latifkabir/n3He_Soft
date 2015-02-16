@@ -4,9 +4,6 @@
 //Author: Latiful Kabir
 //Date: 01/14/15
 //This is the fastest and most preferred method for reading Tree 
-
-#include<TTree.h>
-#include<TBranch.h>
 #include<TGraph.h>
 
 void OfflineAnalysis1(){

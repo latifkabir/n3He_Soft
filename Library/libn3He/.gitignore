@@ -1,0 +1,8 @@
+*.o
+*_Dict.*
+n3He_PID.DAT
+.cproject
+.project
+.settings
+*.root
+*.*~

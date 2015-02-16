@@ -17,8 +17,8 @@ class TTreeRaw: public TTree
 public:
 
    TString dataPath;
-   TString *DaqLeaf=new TString[5];
-   TString *dataFile=new TString[5];
+   TString *DaqLeaf;
+   TString *dataFile;
    static int module[5];
 
    TBranch *b21,*b22,*b23,*b24,*b30;
