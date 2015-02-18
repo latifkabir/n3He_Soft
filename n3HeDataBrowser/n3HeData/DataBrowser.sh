@@ -1,4 +1,4 @@
 #!/bin/bash
-. /home/siplu/TOOLS/ROOT/root-5.34/bin/thisroot.sh
-. $HOME/GIT/n3He_Soft/Github/n3HeDataBrowser/libn3He/bin/thisn3He.sh
-$HOME/GIT/n3He_Soft/Github/n3HeDataBrowser/n3HeData/n3HeData
+. /usr/local/bin/thisroot.sh
+. /home/daq/Library/libn3He/bin/thisn3He.sh
+/home/daq/DataBrowser/n3HeData

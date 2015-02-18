@@ -2,8 +2,8 @@
 Encoding=UTF-8
 Name=n3HeDAQ
 Comment=n3HeDAQ
-Icon=/home/daq/SlowDAQ/ReadMag/ReadMag.jpg
-Exec=gnome-terminal --geometry=100x20+0+0 -t "n3HeMag" -e "/home/daq/SlowDAQ/ReadMag/mag"
+Icon=/home/daq/ReadRS232/ReadMag/ReadMag.jpg
+Exec=gnome-terminal --geometry=100x20+0+0 -t "n3HeMag" -e "/home/daq/ReadRS232/ReadMag/mag"
 Terminal=false
 Type=Application
 Categories=Developer;Accessories;Accessibility;

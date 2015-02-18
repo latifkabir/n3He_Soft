@@ -5,7 +5,7 @@ ROOT_INCLUDE 	= $(shell  root-config  --incdir)
 PRG_INCLUDE 	= ./include
 PRG_SOURCE  	= ./source
 #LIB_INCLUDE  	= /home/kabir/libn3He/src/libn3He  ####<===remove
-LIB_INCLUDE	= /home/npdg/n3He/libn3He/src ####<===add
+LIB_INCLUDE	= /home/daq/Library/libn3He/src ####<===add
 
 
 OBJECTS       	= n3HeMain.o
@@ -26,7 +26,7 @@ ROOTGLIBS    	:= $(shell root-config --glibs)
 CXXFLAGS     	+= $(DEBUGFLAGS) $(ROOTCFLAGS)# -Wno-deprecated
 LIBS          	= $(ROOTLIBS)
 #GLIBS         	= $(ROOTGLIBS) -L/home/kabir/libn3He/lib -ln3He  ####<===remove
-GLIBS         	= $(ROOTGLIBS) -L/home/npdg/n3He/libn3He/lib -ln3He  ####<===add
+GLIBS         	= $(ROOTGLIBS) -L/home/daq/Library/libn3He/lib -ln3He  ####<===add
 
 
 

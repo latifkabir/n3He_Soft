@@ -2,8 +2,8 @@
 Encoding=UTF-8
 Name=n3HeDAQ
 Comment=n3HeDAQ
-Icon=/home/daq/SlowDAQ/ReadTemperature/Temp.png
-Exec=gnome-terminal --geometry=100x15+0+0 -t "n3HeTemp" -e "/home/daq/SlowDAQ/ReadTemperature/temp"
+Icon=/home/daq/ReadRS232/ReadTemperature/Temp.png
+Exec=gnome-terminal --geometry=100x15+0+0 -t "n3HeTemp" -e "/home/daq/ReadRS232/ReadTemperature/temp"
 Terminal=false
 Type=Application
 Categories=Developer;Accessories;Accessibility;
