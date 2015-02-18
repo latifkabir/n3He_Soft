@@ -36,13 +36,14 @@ int ProcessData(int run,int module,bool gui_mode)
 
     int sizeBefore=NCHAN_BEFORE*sizeof(unsigned); //Chunk Size before Process
     int sizeAfter=NCHAN_AFTER*sizeof(unsigned); //Buffer or Chunk Size after process
+    int startPoint=sizeBefore+3*sizeof(unsigned); //Offset for the first chunk
 
     // allocate memory for file content
     char* buffer = new char[sizeAfter];
 
-    for (int i=sizeBefore; i<=fsize; i+=sizeBefore) 
+    for (int i=startPoint; i<=fsize; i+=sizeBefore) 
     {	
-	inFile.seekg (i-sizeBefore);
+	inFile.seekg (i);
 	// read content of inFile
 	inFile.read (buffer,sizeAfter);
 
