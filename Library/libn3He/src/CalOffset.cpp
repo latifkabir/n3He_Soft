@@ -12,30 +12,12 @@ int CalOffset(const char* filename,int module)
     int h=0;
     int skipSamples=0;
 
-    if(module!=30)
+    for(int i=0;i<20000;i++)
     {
-	for(int i=0;i<20000;i++)
+	if(fa.GetValue(0,i)==5)
 	{
-	    if(fa.GetValue(0,i)==5)
-	    {
-		skipSamples=i;
-		break;
-	    }
-	}
-    }
-    else
-    {
-	for(int i=0;i<20000;i++)
-	{
-	    if(fa.GetValue(0,i)==ES_MAGIC1)
-	    {
-		h++;
-		if(h==9)
-		{
-		    skipSamples=i;
-		    break;
-		} 
-	    }
+	    skipSamples=i;
+	    break;
 	}
     }
 

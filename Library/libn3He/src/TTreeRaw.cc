@@ -74,7 +74,7 @@ TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
 	    offsetDaq22=(offsetDaq22-4)*4;
 	    offsetDaq23=(offsetDaq23-4)*4;
 	    offsetDaq24=(offsetDaq24-4)*4;
-	    offsetDaq30=offsetDaq30*4;
+	    offsetDaq30=(offsetDaq30-1)*4;
 	}
 
 //-------------Add the Branches to this tree-----------------------------------
