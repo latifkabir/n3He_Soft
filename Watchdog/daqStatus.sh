@@ -2,7 +2,7 @@
 
 isProgRunning()
 {
-    ps -a | grep 'n3he'
+    ps -e | grep 'n3he'
     STATUS=$?
     STATUS >> watchdogParam.txt
 
