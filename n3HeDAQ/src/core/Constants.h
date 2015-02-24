@@ -45,7 +45,7 @@
 #define DIRTY_RES 0
 
 //Adjustrment for Dirty DAQ run length
-#define DIRTY_FACTOR 5.416666667 
+#define DIRTY_FACTOR 5.41666666667 
 
 //Process Dirty DAQ data
 #define NCHAN_BEFORE 8  //Number of Channels before process

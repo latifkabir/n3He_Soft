@@ -50,7 +50,7 @@ echo "PUB_KEY_HERE" >> /root/.ssh/authorized_keys
 #          For Reference Only
 #----------------------------------------------------------------------
 
-#For Dirty DAQ bank_mask=A
+#For Dirty DAQ bank_mask=B
 #for Dirty DAQ run0=1
 #For Dirty DAQ rtm_translen=1660
 #For Dirty DAQ hi_res_mode=0
@@ -76,4 +76,12 @@ echo "PUB_KEY_HERE" >> /root/.ssh/authorized_keys
 
 # start a local capture. override remotely when streaming data required
 #streamtonowhered stop
+
+#Setting the sample rate:
+#FC=OSR*HI_RES_512
+#mb_clk 32768 FC
+#where FC is the ADS12178 modular clock, HI_RES_512 is 512 and 32768 is the xclk frequency in KHz,OSR=Output sample rate
+#so for 50KHz sample rate
+#mb_clk 32768 25600
+ 
 
