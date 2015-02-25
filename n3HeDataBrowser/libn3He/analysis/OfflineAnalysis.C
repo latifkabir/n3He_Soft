@@ -1,6 +1,5 @@
 //Demo Offline Analysis using n3He Library.(By Offline I mean  'in a script more thoughtful and serious analysis unlike from CINT)
-//This script shows how to accress Tree using SetAddress
-// and plots only the all event/pulses of channel-0
+//This script shows how to accress Tree using SetAddress and plots only the all event/pulses of channel-0
 //Author: Latiful Kabir
 //Date: 01/14/15
 //This is the fastest and most preferred method for reading Tree 
@@ -9,16 +8,18 @@
 #include<TBranch.h>
 #include<TGraph.h>
 
-void OfflineAnalysis1(){
+void OfflineAnalysis(){
 
     //Load the library unless loaded automatically by ROOT
      gSystem->Load("libTree");
      gSystem->Load("libn3He.so");
  
-  TTreeRaw *t=new TTreeRaw(15142);
-  t->Print();
+  //Create a TTreeRaw object with desired run number
+  TTreeRaw *t=new TTreeRaw(17900);
+  t->Print();  // Print to see what's inside the Tree
   int ch=0; //Channel to analyze
 
+  //Create a struc buffer to keep your events 
   struct myData
   {
       int header[48];
