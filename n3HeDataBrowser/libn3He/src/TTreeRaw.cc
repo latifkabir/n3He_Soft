@@ -56,7 +56,7 @@ TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
 
     if(ifstream(dataFile[0]) && ifstream(dataFile[1]) && ifstream(dataFile[2]) && ifstream(dataFile[3]) && ifstream(dataFile[3]))
     {
-        //Calculate The Dynamic Offset to go around sync issues with data stream for first few events from the DAQ
+        //-------------------Calculate The Dynamic Offset to go around sync issues with data stream for first few events from the DAQ-------------
 
 	offsetDaq21=CalOffset(dataFile[0],21);
 	offsetDaq22=CalOffset(dataFile[1],22);
@@ -67,14 +67,15 @@ TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
 	if(offsetDaq21==0 || offsetDaq22 ==0 || offsetDaq23 ==0 || offsetDaq24 == 0 || offsetDaq30 == 0)
 	{
 	    offsetDaq21=offsetDaq22=offsetDaq23=offsetDaq24=offsetDaq30=0;
+	    cout<<"WARNING: You are using the library for a very old run number for which the library is NOT optimized."<<endl;
 	}
 	else
 	{
-	    offsetDaq21=(offsetDaq21-4)*4;
-	    offsetDaq22=(offsetDaq22-4)*4;
-	    offsetDaq23=(offsetDaq23-4)*4;
-	    offsetDaq24=(offsetDaq24-4)*4;
-	    offsetDaq30=offsetDaq30*4;
+	    offsetDaq21=(offsetDaq21-6)*4;
+	    offsetDaq22=(offsetDaq22-6)*4;
+	    offsetDaq23=(offsetDaq23-6)*4;
+	    offsetDaq24=(offsetDaq24-6)*4;
+	    offsetDaq30=(offsetDaq30-1)*4;
 	}
 
 //-------------Add the Branches to this tree-----------------------------------

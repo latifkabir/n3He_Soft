@@ -79,7 +79,7 @@ void OfflineAnalysis2()
     	{
     	    leaf_index = isample*NC_DIRTY + channel;  	    
     	    adc_count= t->GetLeaf("d30")->GetValue(leaf_index);
-    	    volts = (adc_count>>8)*FACTOR; //>>8 to throw away last 8 bits & FACTOR to             convert ADC count to Volt
+    	    volts = (adc_count>>8)*FACTOR; //>>8 to throw away last 8 bits & FACTOR to convert ADC count to Volt
 
     	    gr2->SetPoint(ientry*EL_DIRTY+isample,ientry*EL_DIRTY+isample,volts);
 
