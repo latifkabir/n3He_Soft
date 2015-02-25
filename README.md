@@ -2,21 +2,22 @@ Software for the n3He Experiment
 ================================== 
 This is the official reporitory for any developed software for the [n3He experiment at SNS][1].
 This repository is divided into several sub directories based on the category:
-* n3HeDAQ [(download)][2] --- Contains software for the n3He DAQ Control.
-* Library [(download)][3] --- Contains the analysis library for the n3He experiment.
-* n3HeDataBrowser [(download)][4] --- The GUI for online analysis.GUI to browse the data for each run easily.
-* n3HeMag [(download)][5] ---Contains 'driver for FluxGate' in C++ source code 
-* n3HeScan [(download)][6] --- Software for field and beam scan 
-* DAQFirmware [(download)][7] --- This directory contain DAQ Firmware related Software update.
-* DemoScripts [(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
-* ReadRS232 [(download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
-* Watchdog  -- Program for 24/7 DAQ status and other critical parameters watchdog.
+* n3HeDAQ [(v1.2 download)][2] --- Contains software for the n3He DAQ Control.
+* Library [(v1.2 download)][3] --- Contains the analysis library for the n3He experiment.
+* n3HeDataBrowser [(v1.2 download)][4] --- The GUI for online analysis.GUI to browse the data for each run easily.
+* n3HeMag [(v1.0 download)][5] ---Contains 'driver for FluxGate' in C++ source code 
+* n3HeScan [(v1.0 download)][6] --- Software for field and beam scan 
+* DAQFirmware [(v1.0 download)][7] --- This directory contain DAQ Firmware related Software update.
+* DemoScripts [(v1.0 download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
+* ReadRS232 [(v1.0 download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
+* Watchdog  [(Beta download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
+[(Release Notes)][11]
 
 Please read below to know what's inside each category.
 The above/following download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right. 
 In any case please read the README file in the corresponding section first.
 
-n3HeDAQ [(download)][2]
+n3HeDAQ [(v1.2 download)][2]
 ------------------------
 Contains
    * The DAQ control program using command line.
@@ -25,7 +26,7 @@ Contains
 ![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_demo.png "n3HeDAQ Control Program")
 
 
-Library [(download)][3]
+Library [(v1.2 download)][3]
 ------------------------
 Contains
    * libn3He : Root friendly Library for the n3He Experiment.
@@ -33,36 +34,36 @@ Contains
    * ReadBinary : An independent analysis library.
    
 
-n3HeDataBrowser [(download)][4]
+n3HeDataBrowser [(v1.0 download)][4]
 -------------------------------
    * The GUI for Online analysis. GUI to browse the data for each run easily.
 
 ![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDataBrowser/n3HeData/demo_n3HeDataBrowser.png "n3He Data Browser")
 
 
-n3HeMag [(download)][5]
+n3HeMag [(v1.0 download)][5]
 -------------------------
  Driver for FluxGate in C++ source code. 
 
 
-n3HeScan [(download)][6]
+n3HeScan [(v1.0 download)][6]
 --------------------------
   * field : Software for magnetic field scan
   * beam : Software for beam scan
 
-DAQFirmware [(download)][7]
+DAQFirmware [(v1.0 download)][7]
 ----------------------------
 This directory contains DAQ Firmware related Software update.
 
-DemoScripts [(download)][8]
+DemoScripts [(v1.0 download)][8]
 ----------------------------
 Contains analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 
-ReadRS232 [(download)][9]
+ReadRS232 [(v1.0 download)][9]
 ---------
 GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
 
-Watchdog
+Watchdog [(Beta download)][10]
 ----------
 Program for 24/7 DAQ status and other critical parameters watchdog. Capable to send text alert and restart the DAQ program automatically.
 
@@ -81,5 +82,7 @@ Last Updated on 2/5/15
 [7]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DAQFirmware.zip
 [8]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DemoScripts.zip
 [9]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReadRS232.zip
+[10]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Watchdog.zip
+[11]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReleaseNotes
 
 	 

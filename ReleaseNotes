@@ -1,0 +1,9 @@
+Following are the changes for different release versions:
+
+n3HeDAQ
+v1.0: Added Data Processing for dirty daq data.
+v1.2: Connected M1 and SF signal to batch panel ch-26 and 27. Now Dirty daq data header contains sample number and checksum instead of event magic and event number.
+
+
+Library:
+v1.2: Changed the Offset callculation algorithm. Using sample number insted of event number to set the offset. 

@@ -1,7 +1,7 @@
 //The main program to interact with user
 //Author: Latiful Kabir
 //Date:08.15.14
-//Version:1.0
+//Version:1.2
 
 
 

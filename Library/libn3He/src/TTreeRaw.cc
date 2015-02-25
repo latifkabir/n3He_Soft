@@ -1,6 +1,7 @@
 //The TTreeRaw Class that reads raw n3He data files in TTree format
 //Author: Latiful Kabir
 //Date: 12/25/14
+//Version:1.2
 
 #include "TTreeRaw.h"
 #include "TBranchBinary.h"
