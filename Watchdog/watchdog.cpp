@@ -5,18 +5,19 @@
 #include"watchdog.h"
 using namespace std;
 
+int lastRun=0;
 
 //--------------Transfer the run to basestar------------------
-int TransferData(int rNumber)
+int TransferData(int rNumber,int lastTransferred)
 {
-    int lastRun=0;  //last run transferred sucessfully.
-    int currentRun=rNumber;   // Current run ready for transfer.
+    int startRun=lastTransferred+1;  //last run transferred sucessfully.
+    int stopRun=rNumber;   // Current run ready for transfer.
 
     int strlen=200;
     char *command=new char[strlen];
-    snprintf(command,strlen,TRANS_COMMAND,currentRun,lastRun);
+    snprintf(command,strlen,TRANS_COMMAND,startRun,stopRun+1);
     cout<<command<<endl;
-    if(currentRun > lastRun)
+    if(stopRun > (startRun-1))
     {
 	cout<<"Now attempting to transfer the data files to basestar ..."<<endl;
 
@@ -24,11 +25,11 @@ int TransferData(int rNumber)
 
 	if(!tStatus)  //0 tStatus means successfully transferred
 	{	
-	    lastRun=currentRun;
-	    if(currentRun==lastRun+1)
-		cout<<"All data files for run number "<<currentRun<<" transferred to basestar successfully"<<endl;
+	    if(stopRun==startRun)
+		cout<<"All data files for run number "<<stopRun<<" transferred to basestar successfully"<<endl;
 	    else
-		cout<<"All data files for run numbers "<<lastRun<<" to "<<currentRun<<"transferred to basestar successfully"<<endl;
+		cout<<"All data files for run numbers "<<startRun<<" to "<<stopRun<<"transferred to basestar successfully"<<endl;
+            //Update last transferred run---HERE-----
 	    cout<<"Now waiting for next run ... ..."<<endl;
 	    //wait till current run finishes
 	    sleep(180);    
@@ -41,13 +42,26 @@ int TransferData(int rNumber)
 	    int tStatus=system(command);
 	    if(!tStatus)
 	    {
-		lastRun=currentRun;
-		cout<<"All data files for run number "<<currentRun<<" transferred to basestar successfully"<<endl;
+		if(stopRun==startRun)
+		    cout<<"All data files for run number "<<stopRun<<" transferred to basestar successfully"<<endl;
+		else
+		    cout<<"All data files for run numbers "<<startRun<<" to "<<stopRun<<"transferred to basestar successfully"<<endl;
+		//Update last transferred run---HERE-----
+
 	    }
 	    else
 	    {
-		cout<<"Both attempts to transfer run "<<currentRun<<"data failed."<<endl;
-		cout<<"Adding run "<<currentRun<<" in the list of failed transfer."<<endl; 
+		if(stopRun==startRun)
+		{
+		    cout<<"Both attempts to transfer run "<<stopRun<<" data failed."<<endl;
+		    cout<<"Adding run "<<stopRun<<" in the list of failed transfer."<<endl;
+		} 
+		else
+		{
+		    cout<<"Both attempts to transfer run: "<<startRun<<" to "<<stopRun<<" data files failed."<<endl;
+		    cout<<"Adding run numbers in the list of failed transfer."<<endl; 
+		}
+
 		//Routing to add current run to failed list   
 		cout<<"Now waiting for next run ... ..."<<endl;
 		sleep(180);
@@ -106,36 +120,75 @@ int main(void)
 {
 
 //-------------List of parameters------------------------
-    int daqStatus; //If the DAQ program is running
-    int runStatus; //If taking the data based on trigger status
-    int runNumber; // Current run number
-    int mag;
-    int temp1;
-    int loop=0;
+    bool upStatus;       //If the DAQ program is Up for taking data
+    int runStatus;  //If taking the data based on trigger status
+    int runNumber;  //Run number which is done processing
+    int lastTransRun; // Run number that was transferred last time
+    double mag;       //Magnitude of the magnetic field
+    double temp[5];     // The temperature values
+    int loop=0;      // The loop number
 
-//Check if all the required files are in place as expected
-    // if(ifstream("") && ifstream("") && ... ...)
 
-//-------------Loop the following Over & Over ---------------------------
+//----------Loop over and Over starting here------------
+
+
+//---------Check if all the required scripts are in place as expected---------------
+    if(!(ifstream("upStatus.sh") && ifstream("transferFile.sh") && ifstream("textAlert.sh")))
+    {
+	cout<<"Could NOT locate all the required bash scripts"<<endl;
+	return(-1);
+    }
+
+    int isUp=system("upStatus.sh >> /dev/null");
+    if(isUp==0)
+    {
+	cout<<"Detected the DAQ program is Up for taking data"<<endl;
+	upStatus=true;
+    }
+    else
+    {
+	cout<<"Detected the DAQ program is NOT Up for taking data"<<endl;
+	upStatus=false;
+    }
 
 //-------Open the file containing parameters values.-----------
-    ifstream paramFile("./params");
+    ifstream daqStatus("daqStatus.txt");
+    ifstream lastTrans("lastTrans.txt");
+    ifstream magTemp("magTemp.txt");
 
+//---------Check if all the required data files are in place as expected---------------
+    if(!(daqStatus && lastTrans && magTemp))
+    {
+	cout<<"Could NOT locate all the required data files"<<endl;
+	return(-1);
+    }
 
 //-----------Read params from a text file--------------------
-    paramFile>>daqStatus>>runStatus>>runNumber>>mag>>temp1;
-    paramFile.close();
+    daqStatus>>runStatus>>runNumber;
+    lastTrans>>lastTransRun;
+    magTemp>>mag>>temp[0]>>temp[1]>>temp[2]>>temp[3]>>temp[4];
 
-    cout << "Daq Status:"<<daqStatus <<endl;
+    daqStatus.close();
+    lastTrans.close();
+    magTemp.close();
+
+//-----------------------------------------------------
+    cout << "Daq Status:"<<isUp<<endl;
     cout << "Run Status:"<<runStatus <<endl;
     cout << "Run Number:"<<runNumber <<endl;
-    cout << "Mag Field:"<<mag <<endl;
-    cout << "Temp zome 1:"<<temp1 <<endl;
+    cout << "Last run transferred:"<<lastTransRun<<endl;
+    cout << "Mag Field:"<<mag<<endl;
+    cout << "Temp zome 1:"<<temp[0]<<endl;
 
-    if(daqStatus && runStatus)
+
+//-------------Loop the following Over & Over ---------------------------
+    lastRun=lastTransRun; //before the loop
+
+    if(upStatus && runStatus)
     {
-	TransferData(runNumber);
+	TransferData(runNumber,lastTransRun);
 	// TextAlert();
+	lastRun=runNumber;
     }
     else
     {
@@ -148,3 +201,11 @@ int main(void)
     }
     return 0;
 }
+
+
+//Input from DAQ progrem: last processed run number & trigger status.
+//daqStatus.txt ---if trigger is active (trigger status) and last processed run number.
+//upStatus.txt -- if the DAQ program is running.
+//magTemp.txt -- Instant values of magnetic filed and temperatures.
+//lastTransferred.txt -- Last successfully transferred run.
+//Scripts list:textAlert.sh,transferFile.sh,upStatus.sh

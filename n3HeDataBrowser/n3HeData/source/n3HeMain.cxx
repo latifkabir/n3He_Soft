@@ -1080,10 +1080,10 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 	gPad->Update();
 
 	mc->cd(3);
-	//draw DAQ21 channel-0
+	//draw DAQ21 channel-24
 
-	cout << "Drawing DAQ21 channel-0" << endl;
-	r.Draw("d21[][0]:Iteration$","Entry$%25==0");
+	cout << "Drawing DAQ21 channel-24" << endl;
+	r.Draw("d21[][24]:Iteration$","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();
@@ -1104,9 +1104,9 @@ void n3HeMain::PlotMainData(ERPlotTypes ptype, Int_t runNumber) {
 	}
 	mc->cd(5);
 
-	//draw DAQ23 channel-0
-	cout << "Drawing DAQ23 channel-0" << endl;
-	r.Draw("d23[][0]:Iteration$","Entry$%25==0");
+	//draw DAQ23 channel-24
+	cout << "Drawing DAQ23 channel-24" << endl;
+	r.Draw("d23[][24]:Iteration$","Entry$%25==0");
 
 	gPad->Modified();
 	gPad->Update();

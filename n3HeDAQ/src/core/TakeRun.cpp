@@ -53,9 +53,8 @@ void RunList(bool gui_mode)
     }
 
     if(!gui_mode)
-    {
 	cout<<"\t\t====================Initializing Run number: "<<newrun<<"====================="<<"\n\t\t\t\tDate & Time: "<<ctime(&time_now)<<endl<<endl; 
-    }
+
     delete[] strname;   
 }
 
@@ -75,17 +74,13 @@ int Rename(int run,int module,bool gui_mode)
     if(rename(file_old, file_new) == 0)
     {
 	if(!gui_mode)
-	{
 	    cout<<"\n \n\t\t"<< file_old<<" has been renamed to "<<file_new<<endl;
-	}
 	return(1);
     }
     else
     {
 	if(!gui_mode)
-	{
 	    cout<<"\t\tError renaming "<<file_old<<endl;
-	}
 	return(-1);
     }
     delete[] file_old;
@@ -104,18 +99,16 @@ int Sync(bool status,bool gui_mode)
 	if(status)
 	{
 	    if(!gui_mode)
-	    {
 		cout<<"\t\tTrigger Enabled"<<endl<<endl;
-	    }
+
 	    daq.WriteToSocket("do4_3 1");
 	    return(1);
 	}
 	else if(!status)
 	{
 	    if(!gui_mode)
-	    {
 		cout<<"\t\tTrigger Disabled"<<endl<<endl;
-	    }
+
 	    daq.WriteToSocket("do4_3 0");
 	    return(0);
 	}
