@@ -11,6 +11,7 @@ This repository is divided into several sub directories based on the category:
 * DemoScripts v1.0 [(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 * ReadRS232 v1.0 [(download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
 * Watchdog  Beta [(download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
+* Diagnosis --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
 [Release Notes][11]
 
 Please read below to know what's inside each category.
@@ -66,6 +67,10 @@ GUI for monitoring magnetic field and Temperature on a ncurses window through RS
 Watchdog Beta [(download)][10]
 ----------
 Program for 24/7 DAQ status and other critical parameters watchdog. Capable to send text alert and restart the DAQ program automatically.
+
+Diagnosis
+----------
+The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
 
 report bug to: latifulkabir@uky.edu
 
