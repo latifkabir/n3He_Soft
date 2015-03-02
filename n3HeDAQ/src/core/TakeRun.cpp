@@ -34,13 +34,14 @@ void RunList(bool gui_mode)
 
  
     // Read last run number and generate run number for current run
-    fstream runRecord(LAST_RUN,ios::in | ios::out);
+    //fstream runRecord(LAST_RUN,ios::in | ios::out);
+    ifstream runRecord(LAST_RUN);
     if(runRecord)
     {
 	runRecord>>lastrun;	
 	newrun=lastrun+1;
-	runRecord.seekg(0,ios::beg);
-	runRecord<<newrun;
+	// runRecord.seekg(0,ios::beg);
+	// runRecord<<newrun;
 	runRecord.close();
     }
 
@@ -56,6 +57,15 @@ void RunList(bool gui_mode)
 	cout<<"\t\t====================Initializing Run number: "<<newrun<<"====================="<<"\n\t\t\t\tDate & Time: "<<ctime(&time_now)<<endl<<endl; 
 
     delete[] strname;   
+}
+void UpdateRun()
+{
+    ofstream runRecord(LAST_RUN);
+    if(runRecord)
+    {
+	runRecord<<newrun;
+	runRecord.close();
+    }
 }
 
 //Rename all the data files (just taken) adding the run number
@@ -90,10 +100,11 @@ int Rename(int run,int module,bool gui_mode)
 //Synchronize with T_0 at the start of DAQ by enabling and disabling Trigger
 int Sync(bool status,bool gui_mode)
 {
-    
     if(status)
 	sleep(2);
     Daq daq(DAQ30_IP,DAQ_PORT2,DAQ30,RUN_LENGTH);
+    ofstream daqStatus(DAQ_STATUS);
+
     if(!daq.CheckStatus())
     {
 	if(status)
@@ -102,6 +113,8 @@ int Sync(bool status,bool gui_mode)
 		cout<<"\t\tTrigger Enabled"<<endl<<endl;
 
 	    daq.WriteToSocket("do4_3 1");
+	    if(daqStatus)
+		daqStatus<<1<<"        "<<newrun;
 	    return(1);
 	}
 	else if(!status)
@@ -110,6 +123,8 @@ int Sync(bool status,bool gui_mode)
 		cout<<"\t\tTrigger Disabled"<<endl<<endl;
 
 	    daq.WriteToSocket("do4_3 0");
+	    if(daqStatus)
+		daqStatus<<0<<"        "<<newrun;
 	    return(0);
 	}
     }
@@ -120,6 +135,7 @@ int Sync(bool status,bool gui_mode)
 	return(-1);
 
     }
+    daqStatus.close();
 }
 
 
@@ -217,6 +233,7 @@ void RunSingle(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NUMB
 		Rename(newrun,module,false);
 		if(module==30)
 		    ProcessData(newrun,DAQ30,false);
+		UpdateRun();
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }
 	    else
@@ -293,7 +310,7 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 
 		if(stop || ((counter+1 >= runNumber) && runNumber!=0))
 		    ProcessData(newrun,DAQ30,false);
-
+		UpdateRun();
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }
 	    else

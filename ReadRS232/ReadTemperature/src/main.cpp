@@ -93,7 +93,7 @@ int main(void)
 
 
 //-------------------------Parameters List------------------------------
-	    mvprintw(10, 10, "zone 1: %d deg C", zone[0]);
+	    mvprintw(10, 10, "zone 1: %d Deg C", zone[0]);
 	    mvprintw(11, 10, "zone 2: %d Deg C", zone[1]);
 	    mvprintw(12, 10, "zone 3: %d Deg C", zone[2]);
 	    mvprintw(10, 55, "zone 4: %d Deg C", zone[3]);

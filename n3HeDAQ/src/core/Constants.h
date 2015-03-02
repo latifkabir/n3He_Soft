@@ -10,6 +10,7 @@
 #define NEW_FILE "/home/daq/DATA/run-%ddata-%d"
 #define LAST_RUN "/home/daq/n3HeDAQ/bin/LastRun.txt"
 #define RUN_LIST "/home/daq/n3HeDAQ/bin/RunList.txt"
+#define DAQ_STATUS "/home/daq/Watchdog/bin/daqStatus.txt"
 #define CONFIG_SH "/home/daq/n3HeDAQ/bin/config.sh %d"
 #define SH_SCRIPT "/home/daq/n3HeDAQ/bin/config.sh"
 
