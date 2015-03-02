@@ -95,7 +95,7 @@ int main(void)
 
 //-----------------------------Header of the Program---------------------
 		mvprintw(2, 25, "----------------------------------------------- ");
-		mvprintw(3, 30, "Welcome to n3He Field & Temperature monitoring Program ");
+		mvprintw(3, 30, "n3He Field & Temperature monitoring Program ");
 		mvprintw(4, 30, "\tTime :%s",strname);
                 mvprintw(5, 30, "\t\tLoop number:%d",loop);
 		mvaddstr(6, 30, "\tPress Ctrl+C to quit...");               
@@ -103,33 +103,35 @@ int main(void)
 		mvaddstr(8, 25, "-----------------------------------------------");
 
 //----------The divisions of the enrire window------------------------	
-		mvaddstr(10, 45, "|");
 		mvaddstr(11, 45, "|");
 		mvaddstr(12, 45, "|");
+		mvaddstr(13, 45, "|");
 
-		mvaddstr(18, 45, "|");
 		mvaddstr(19, 45, "|");
 		mvaddstr(20, 45, "|");
+		mvaddstr(21, 45, "|");
 	
 //--------------------------------------------------------------------
 
 
 //-------------------------Parameters List------------------------------
-		mvprintw(10, 10, "Field X1: %lf Gauss", field[0]);
-		mvprintw(11, 10, "Field Y1: %lf Gauss", field[1]);
-		mvprintw(12, 10, "Field Z1: %lf Gauss", field[2]);
+		mvaddstr(10, 30, "==========Magnetic Field Reading=========");
+		mvprintw(11, 10, "Field X1: %lf Gauss", field[0]);
+		mvprintw(12, 10, "Field Y1: %lf Gauss", field[1]);
+		mvprintw(13, 10, "Field Z1: %lf Gauss", field[2]);
 		mvprintw(14, 30, "Max Range : %lf Gauss", field[6]);
 		mvprintw(15, 30, "Offset : %lf Gauss", field[7]);
-		mvprintw(10, 55, "Field X2: %lf Gauss", field[3]);
-		mvprintw(11, 55, "Field Y2: %lf Gauss", field[4]);
-		mvprintw(12, 55, "Field Z2: %lf Gauss", field[5]);
+		mvprintw(11, 55, "Field X2: %lf Gauss", field[3]);
+		mvprintw(12, 55, "Field Y2: %lf Gauss", field[4]);
+		mvprintw(13, 55, "Field Z2: %lf Gauss", field[5]);
 
-		mvprintw(18, 10, "Temp Zone1: %d Deg C", zone[0]);
-		mvprintw(19, 10, "Temp Zone2: %d Deg C", zone[1]);
-		mvprintw(20, 10, "Temp Zone3: %d Deg C", zone[2]);
-		mvprintw(18, 55, "Temp Zone4: %d Deg C", zone[3]);
-		mvprintw(19, 55, "Temp Zone5: %d Deg C", zone[4]);
-		mvprintw(20, 55, "Temp Zone6: %d Deg C", zone[5]);
+		mvaddstr(18, 30, "===========Temperature Reading==========");
+		mvprintw(19, 10, "Temp Zone1: %d Deg C", zone[0]);
+		mvprintw(20, 10, "Temp Zone2: %d Deg C", zone[1]);
+		mvprintw(21, 10, "Temp Zone3: %d Deg C", zone[2]);
+		mvprintw(19, 55, "Temp Zone4: %d Deg C", zone[3]);
+		mvprintw(20, 55, "Temp Zone5: %d Deg C", zone[4]);
+		mvprintw(21, 55, "Temp Zone6: %d Deg C", zone[5]);
 
 //-----------Refresh the screen----------------------------
 		refresh();

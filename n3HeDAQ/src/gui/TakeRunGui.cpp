@@ -183,6 +183,7 @@ int RunSingleGui(int module=MODULE,int runlength=RUN_LENGTH,int runNumber=RUN_NU
 		      ProcessData(newrun,DAQ30,true);
 		      mvprintw(base_y2+20, base_x2, "Data Files for DAQ %d has been processed successfully.            ",module);
 		  }
+		  UpdateRun();
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
 		  refresh();
 		  if(!stop)
@@ -326,7 +327,7 @@ int RunAllGui (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 
 		  if(stop || ((counter+1 >= runNumber) && runNumber!=0))
 		      ProcessData(newrun,DAQ30,true);
-
+		  UpdateRun();
 		  mvprintw(base_y2+21, base_x2, "Phew!!! Done with run number : %d", newrun);
 		  refresh();
 		  if(!stop)

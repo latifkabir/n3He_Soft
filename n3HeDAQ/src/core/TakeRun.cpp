@@ -34,14 +34,11 @@ void RunList(bool gui_mode)
 
  
     // Read last run number and generate run number for current run
-    //fstream runRecord(LAST_RUN,ios::in | ios::out);
     ifstream runRecord(LAST_RUN);
     if(runRecord)
     {
 	runRecord>>lastrun;	
 	newrun=lastrun+1;
-	// runRecord.seekg(0,ios::beg);
-	// runRecord<<newrun;
 	runRecord.close();
     }
 

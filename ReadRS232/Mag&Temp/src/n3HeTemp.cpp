@@ -14,7 +14,7 @@ void ReadTemp(Serial &temp, int *zone)
 {
 
     ofstream tempData(TEMP_DATA_FILE,ofstream::app);
-    ofstream temp_watch(WATCHDOG_DATA);
+    ofstream temp_watch(WATCHDOG_DATA,ofstream::app);
     char *cTemp=new char[48];
     int strlen=100;
     char *current_time=new char[strlen];

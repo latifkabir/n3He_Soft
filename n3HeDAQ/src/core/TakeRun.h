@@ -7,6 +7,8 @@
 
 // Read last run number and generate run number for current run
 void RunList(bool gui_mode);
+//Update run number if the last run was successful
+void UpdateRun();
 //Rename all the data files (just taken) adding the run number
 int Rename(int run,int module,bool gui_mode);
 //Enable or Disable the trigger
