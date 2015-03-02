@@ -88,7 +88,7 @@ int main(void)
 
 
 //-------------Read Temperature-----------------
-		ReadTemp(temp,zone);
+		ReadTemp(temp,zone,field[1]);
 
 //--------------Get the current time----------------
 		CurrentTime(strname,strlen);

@@ -10,11 +10,11 @@
 
 using namespace std;
 
-void ReadTemp(Serial &temp, int *zone)
+void ReadTemp(Serial &temp, int *zone,double field)
 {
 
     ofstream tempData(TEMP_DATA_FILE,ofstream::app);
-    ofstream temp_watch(WATCHDOG_DATA,ofstream::app);
+    ofstream mag_temp(WATCHDOG_DATA);
     char *cTemp=new char[48];
     int strlen=100;
     char *current_time=new char[strlen];
@@ -42,11 +42,11 @@ void ReadTemp(Serial &temp, int *zone)
 	tempData<<current_time<<"	"<<zone[0]<<"  	"<<zone[1]<<"	"<<zone[2]<<"	"<<zone[3]<<"	"<<zone[4]<<endl;
 	tempData.close();
     }
-    if(temp_watch)
+    if(mag_temp)
     {
-	temp_watch<<setw(10);
-	temp_watch<<zone[0]<<"  	"<<zone[1]<<"	"<<zone[2]<<"	"<<zone[3]<<"	"<<zone[4]<<endl;
-	temp_watch.close();
+	mag_temp<<setw(10);
+	mag_temp<<field<<"    "<<zone[0]<<"  	"<<zone[1]<<"	"<<zone[2]<<"	"<<zone[3]<<"	"<<zone[4]<<endl;
+	mag_temp.close();
     }
 
     delete[] cTemp;

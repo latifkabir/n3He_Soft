@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=n3HeDAQ
+Comment=n3HeDAQ
+Icon=/home/daq/ReadRS232/Mag&Temp/bin/Mag&Temp.png
+Exec=gnome-terminal --geometry=100x25+0+0 -t "n3HeTemp" -e "/home/daq/ReadRS232/Mag&Temp/bin/magTemp"
+Terminal=false
+Type=Application
+Categories=Developer;Accessories;Accessibility;
+StartupNotify=true
+
+Name[en_US]=Mag&Temp

@@ -7,8 +7,8 @@ CFLAGS=-c
 LDFLAGS= -lncurses
 SOURCES=$(wildcard src/*.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=magTemp
-all: $(EXECUTABLE)
+EXECUTABLE=bin/magTemp
+all:$(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	       $(CXX)  $(OBJECTS) $(LDFLAGS) -o $@

@@ -51,15 +51,7 @@ double FluxGate::ReadFG(int ch)
     {
     	magData<<endl;
     }
-    if(ch==1)
-    {
-	ofstream mag_watch(WATCHDOG_DATA);
-	if(mag_watch)
-	{
-	    mag_watch<<gauss<<"    ";
-	    mag_watch.close();
-	}
-    }
+    
     return gauss;
 }
 

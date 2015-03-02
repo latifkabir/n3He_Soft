@@ -1,2 +1,2 @@
-void ReadTemp(Serial &temp, int *zone);
+void ReadTemp(Serial &temp, int *zone,double field);
 
