@@ -10,19 +10,10 @@
 using namespace std;
 
 int last_run=0;
-bool stop=false;
-bool fexit=false;
 
 void signalHandler( int signum )
 {
-    if(!fexit)
-    {
-	cout <<"\n\n\t\tRequest to stop Watchdog received.\n\t\tProgram will stop once current loop finishes.Please wait...\n\t\tTo quit program forcefully press Ctrl+C again.\n\n";
-	stop=true;
-	fexit=true;
-    }
-    else
-	exit(signum);
+    exit(signum);
 }
 
 int main(void)
@@ -128,10 +119,6 @@ int main(void)
 	}
 
 	loop++;
-
-	if(stop)
-	    break;
-
     }
     return 0;
 }
