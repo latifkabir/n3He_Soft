@@ -10,9 +10,16 @@ using namespace std;
 //--------------Transfer the run to basestar------------------
 int TransferData(int rnumber,int last_trans)
 {
-    int start_run=last_trans+1;  //last run transferred sucessfully.
-    int stop_run=rnumber;   // Current run ready for transfer.
-    // ofstream last_transf("lastTrans.txt");
+    int start_run=last_trans+1;  //next run after last run transferred sucessfully.
+    int stop_run;
+    if(rnumber < start_run+2) 
+	stop_run=rnumber;   // Current run ready for transfer.
+    else
+	stop_run=start_run+2;
+    int sleep_time;
+    if(stop_run > start_run-1)
+	sleep_time=(450 - 150*(stop_run+1-start_run));
+    
 
     int strlen=200;
     char *command=new char[strlen];
@@ -32,15 +39,18 @@ int TransferData(int rnumber,int last_trans)
 		cout<<"\n\t\tAll data files for run numbers "<<start_run<<" to "<<stop_run<<" transferred to basestar successfully"<<endl;
             //Update last transferred run
 	    ofstream last_transf("lastTrans.txt");
-	    last_transf<<stop_run;
-	    last_transf.close();
+	    if(last_transf)
+	    {
+		last_transf<<stop_run;
+		last_transf.close();
+	    }
 	    cout<<"\n\t\tNow waiting for next run ... ..."<<endl;
-	    sleep(240);    	//wait till current run finishes
+	    sleep(sleep_time);    	//wait till current run finishes
 	}
 	else
 	{
 	    cout<<"\n\t\tThe first attenpt to send data files to basestar failed.Will initiate the second attempt shortly ... .."<<endl;
-	    sleep(120);
+	    sleep(30);
 	    cout<<"\n\t\tSecond attempt to transfer data to basestar ..."<<endl;
 	    tstatus=system(command);
 	    if(!tstatus)
@@ -49,13 +59,17 @@ int TransferData(int rnumber,int last_trans)
 		    cout<<"\n\t\tAll data files for run number "<<stop_run<<" transferred to basestar successfully"<<endl;
 		else
 		    cout<<"\n\t\tAll data files for run numbers "<<start_run<<" to "<<stop_run<<"transferred to basestar successfully"<<endl;
-		//Update last transferred run
+		
+                //Update last transferred run
 		ofstream last_transf("lastTrans.txt");
-		last_transf<<stop_run;
-		last_transf.close();
+		if(last_transf)
+		{
+		    last_transf<<stop_run;
+		    last_transf.close();
+		}
 
 		cout<<"\n\t\tNow waiting for next run ... ..."<<endl;
-		sleep(120);
+		sleep(sleep_time);
 	    }
 	    else
 	    {
@@ -72,10 +86,8 @@ int TransferData(int rnumber,int last_trans)
     else
     {
 	cout<<"\n\t\tNo valid run number for transfer activity"<<endl;
-	//sleep(480);
-	sleep(10);
+	sleep(450);
     }
 
-    // last_transf.close();
     delete[] command;
 }
