@@ -8,3 +8,4 @@ histo
 dplot
 RunList.txt
 LastRun.txt
+textAlert.sh
