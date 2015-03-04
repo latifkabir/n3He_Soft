@@ -66,11 +66,11 @@ CheckConfig()
     fi
 
     echo "Reading Current Config"
-    GetConfig $1 > /home/daq/DAQDiagnosis/CurrentConfig
+    GetConfig $1 > /home/daq/Diagnosis/CurrentConfig
 
-    file1="/home/daq/DAQDiagnosis/CurrentConfig"
-    file2="/home/daq/DAQDiagnosis/ExpectedClean"
-    file3="/home/daq/DAQDiagnosis/ExpectedDirty"
+    file1="/home/daq/Diagnosis/CurrentConfig"
+    file2="/home/daq/Diagnosis/ExpectedClean"
+    file3="/home/daq/Diagnosis/ExpectedDirty"
 
     echo "Now Comparing two configs"
     if [ $1 -eq 30 ]

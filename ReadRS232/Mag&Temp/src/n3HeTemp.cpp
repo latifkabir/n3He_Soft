@@ -1,5 +1,5 @@
 // Reading the temperature and writing to a text file
-//Author: latiful Kabir
+//Author: Latiful Kabir
 //Date: 03.02.15
 
 #include<fstream>
@@ -10,11 +10,10 @@
 
 using namespace std;
 
-void ReadTemp(Serial &temp, int *zone,double field)
+void ReadTemp(Serial &temp, int *zone,double field,long loop)
 {
 
     ofstream tempData(TEMP_DATA_FILE,ofstream::app);
-    ofstream mag_temp(WATCHDOG_DATA);
     char *cTemp=new char[48];
     int strlen=100;
     char *current_time=new char[strlen];
@@ -42,11 +41,16 @@ void ReadTemp(Serial &temp, int *zone,double field)
 	tempData<<current_time<<"	"<<zone[0]<<"  	"<<zone[1]<<"	"<<zone[2]<<"	"<<zone[3]<<"	"<<zone[4]<<endl;
 	tempData.close();
     }
-    if(mag_temp)
+//--------In every five minutes update critical parameters----
+    if(loop%25==0)
     {
-	mag_temp<<setw(10);
-	mag_temp<<field<<"    "<<zone[0]<<"  	"<<zone[1]<<"	"<<zone[2]<<"	"<<zone[3]<<"	"<<zone[4]<<endl;
-	mag_temp.close();
+	ofstream mag_temp(WATCHDOG_DATA);
+	if(mag_temp)
+	{
+	    mag_temp<<setw(10);
+	    mag_temp<<field<<"    "<<zone[0]<<"  	"<<zone[1]<<"	"<<zone[2]<<"	"<<zone[3]<<"	"<<zone[4]<<endl;
+	    mag_temp.close();
+	}
     }
 
     delete[] cTemp;

@@ -31,7 +31,7 @@ int main(void)
 
     int strlen=100;
     char *strname= new char[strlen];
-    int loop=0;
+    long loop=0;
 
     //  Initialize ncurses 
     if ( (mainwin = initscr()) == NULL ) 
@@ -88,7 +88,7 @@ int main(void)
 
 
 //-------------Read Temperature-----------------
-		ReadTemp(temp,zone,field[1]);
+		ReadTemp(temp,zone,field[1],loop);
 
 //--------------Get the current time----------------
 		CurrentTime(strname,strlen);

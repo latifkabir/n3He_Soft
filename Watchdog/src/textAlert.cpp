@@ -1,3 +1,7 @@
+//Program for sending text alert when DAQ fails or critical parameters are out of range.
+//Author: Latiful Kabir
+//Date:03/03/15
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>

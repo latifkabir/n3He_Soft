@@ -1,3 +1,7 @@
+//Program for 24/7 DAQ status and other critical parameters watchdog.
+//Author: Latiful Kabir
+//Date:03/03/15
+
 #include<iostream>
 #include<fstream>
 #include<stdlib.h>

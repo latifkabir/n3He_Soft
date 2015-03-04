@@ -1,3 +1,7 @@
+//Program for periodic run transfer to basestar.
+//Author: Latiful Kabir
+//Date:03/03/15
+
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
