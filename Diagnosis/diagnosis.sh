@@ -26,7 +26,7 @@ PingDAQ()
 	echo "DAQ $1 is Active. --OK"
 	LIVE[$INDEX1]=1
     else
-	echo "DAQ $1 is NOT Active. Enter the Cave and Reboot it manually. --PROBLEM"
+	echo "DAQ $1 is NOT Active. Power Reboot it using browser or terminal. --PROBLEM"
 	LIVE[$INDEX1]=0
     fi
 }
