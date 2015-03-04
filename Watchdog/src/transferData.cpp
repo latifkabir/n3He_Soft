@@ -38,7 +38,7 @@ int TransferData(int rnumber,int last_trans)
 	    else
 		cout<<"\n\t\tAll data files for run numbers "<<start_run<<" to "<<stop_run<<" transferred to basestar successfully"<<endl;
             //Update last transferred run
-	    ofstream last_transf("lastTrans.txt");
+	    ofstream last_transf(LAST_TRANS_TXT);
 	    if(last_transf)
 	    {
 		last_transf<<stop_run;
@@ -61,7 +61,7 @@ int TransferData(int rnumber,int last_trans)
 		    cout<<"\n\t\tAll data files for run numbers "<<start_run<<" to "<<stop_run<<"transferred to basestar successfully"<<endl;
 		
                 //Update last transferred run
-		ofstream last_transf("lastTrans.txt");
+		ofstream last_transf(LAST_TRANS_TXT);
 		if(last_transf)
 		{
 		    last_transf<<stop_run;

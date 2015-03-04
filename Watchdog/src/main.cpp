@@ -35,11 +35,27 @@ int main(void)
     cout<<"\t\t=================================================="<<endl;
 
 //---------Check if all the required scripts are in place as expected---------------
-    if(!(ifstream("upStatus.sh") && ifstream("transferFile.sh") && ifstream("textAlert.sh")))
+    if(!(ifstream(UP_STATUS_SH) && ifstream(FILE_TRANS_SH) && ifstream(TXT_ALERT_SH) && ifstream(PING_IP_SH)))
     {
 	cout<<"\n\t\tCould NOT locate all the required bash scripts"<<endl;
 	return(-1);
     }
+
+    cout<<"\n\t\tChecking if Network connection is OK ...."<<endl;
+    int is_connected=system(PING_COMMAND);
+
+    if(is_connected==0)
+    {
+	cout<<"\n\t\tDetected Picard is Connected to Cyclonous"<<endl;
+    }
+    else
+    {
+	cout<<"\n\t\tDetected Picard is NOT connected to Cyclonous. Please fix the problem"<<endl;
+	sleep(60);
+	return(-1);
+    }
+
+
     signal(SIGINT, signalHandler); //Handle Ctrl+C Signal
 
 //----------Loop over and Over starting here------------
@@ -47,7 +63,7 @@ int main(void)
     {
 	cout<<"\n\t\tloop number: "<<loop<<endl;
 
-	int is_up=system("upStatus.sh >> /dev/null");
+	int is_up=system(STATUS_COMMAND);
 	if(is_up==0)
 	{
 	    cout<<"\n\t\tDetected the DAQ program is Up for taking data"<<endl;
@@ -60,9 +76,9 @@ int main(void)
 	}
 
 //-------Open the file containing parameters values.-----------
-	ifstream daq_status("daqStatus.txt");
-	ifstream last_transf("lastTrans.txt");
-	ifstream mag_temp("magTemp.txt");
+	ifstream daq_status(DAQ_STATUS_TXT);
+	ifstream last_transf(LAST_TRANS_TXT);
+	ifstream mag_temp(MAG_TEMP_TXT);
 
 //---------Check if all the required data files are in place as expected---------------
 	if(!(daq_status && last_transf && mag_temp))
@@ -102,8 +118,9 @@ int main(void)
 
 	if(up_status && run_status)
 	{
+	    if(loop!=0)
+		TextAlert(run_number,last_run,mag,temp,alert_enabled);
 	    TransferData(run_number,last_trans);
-	    TextAlert(run_number,last_run,mag,temp,alert_enabled);
 	    last_run=run_number;
 	}
 	else
@@ -114,8 +131,7 @@ int main(void)
 	    cout<<"\t\t-------------------WATCHDOG SYSTEM IN SLEEP---------------------"<<endl;
 	    cout<<"\t\t-------------------WATCHDOG SYSTEM IN SLEEP---------------------"<<endl;
 	    cout<<"\t\t-------------------DO NOT CLOSE THE PROGRAM---------------------"<<endl;
-	    //sleep(480);
-	    sleep(8);
+	    sleep(450);
 	}
 
 	loop++;
@@ -125,7 +141,7 @@ int main(void)
 
 
 //Input from DAQ progrem: last processed run number & trigger status.
-//daq_status.txt ---if trigger is active (trigger status) and last processed run number.
-//mag_temp.txt -- Instant values of magnetic filed and temperatures.
+//daqStatus.txt ---if trigger is active (trigger status) and last processed run number.
+//magTemp.txt -- Instant values of magnetic filed and temperatures.
 //lastTransferred.txt -- Last successfully transferred run.
-//Scripts list:textAlert.sh,transferFile.sh,upStatus.sh
+//Scripts list:textAlert.sh,transferFile.sh,upStatus.sh,pingip.sh

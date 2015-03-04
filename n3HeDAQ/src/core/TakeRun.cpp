@@ -111,7 +111,7 @@ int Sync(bool status,bool gui_mode)
 
 	    daq.WriteToSocket("do4_3 1");
 	    if(daqStatus)
-		daqStatus<<1<<"        "<<newrun;
+		daqStatus<<1<<"        "<<(newrun-1);
 	    return(1);
 	}
 	else if(!status)
@@ -121,7 +121,7 @@ int Sync(bool status,bool gui_mode)
 
 	    daq.WriteToSocket("do4_3 0");
 	    if(daqStatus)
-		daqStatus<<0<<"        "<<newrun;
+		daqStatus<<0<<"        "<<(newrun-1);
 	    return(0);
 	}
     }
