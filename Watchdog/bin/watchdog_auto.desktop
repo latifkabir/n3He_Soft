@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Watchdog
+Comment=Watchdog
+Icon=/home/daq/Watchdog/bin/watchdog.jpg
+Exec=gnome-terminal --geometry=170x55+0+0 -t "Watchdog" -e "/home/daq/Watchdog/bin/watchdog auto"
+Terminal=false
+Type=Application
+Categories=Developer;Accessories;Accessibility;
+StartupNotify=true
+
+Name[en_US]=watchdog_auto

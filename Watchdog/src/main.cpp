@@ -14,13 +14,14 @@
 using namespace std;
 
 int last_run=0;
-
+extern bool automated;
+ 
 void signalHandler( int signum )
 {
     exit(signum);
 }
 
-int main(void)
+int main(int argc,char *argv[])
 {
 
 //-------------List of parameters------------------------
@@ -32,6 +33,12 @@ int main(void)
     double temp[5];     // The temperature values
     long long loop=0;      // The loop number
     bool alert_enabled[3];
+    time_t time_now;
+    time(&time_now);
+    string atm="auto";
+
+    if(argc==2 && argv[1]==atm)
+	automated=true;
 
     cout<<"\n\t\t=================================================="<<endl;
     cout<<"\t\t\tWelcome to n3He 24/7 DAQ Watchdog program"<<endl;
@@ -65,7 +72,7 @@ int main(void)
 //----------Loop over and Over starting here------------
     while(true)
     {
-	cout<<"\n\t\tloop number: "<<loop<<endl;
+	cout<<"\n\t\tloop number: "<<loop<<" Time:"<<ctime(&time_now)<<endl;
 
 	int is_up=system(STATUS_COMMAND);
 	if(is_up==0)

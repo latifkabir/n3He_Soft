@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ $# == 1 ]
+then 
+    AUTO=$1
+else
+    AUTO='no'
+fi
 SR_ATTEMPT=-1
 RP_ATTEMPT=-1
 SUCCESS=0
@@ -198,8 +204,14 @@ DiagnoseActivity()
 	echo "              "
 	echo "Problem detected. Seems like I am capable to handle it."
 	echo "              "
-	echo "If you want me to fix the issue press enter 'y', Otherwise enter 'n'"
-	read INPUT
+	if [ $AUTO == 'auto' ]
+	then
+	    INPUT='y'
+	else
+	    echo "If you want me to fix the issue press enter 'y', Otherwise enter 'n'"
+	    read INPUT
+	fi
+
 	if [ $INPUT == 'y' ]
 	then
 	    ResetPower
@@ -233,8 +245,15 @@ DiagnoseConfig()
     if [ ${MIS[0]} == 0 ] || [ ${MIS[1]} == 0 ] || [ ${MIS[2]} == 0 ] || [ ${MIS[3]} == 0 ] || [ ${MIS[4]} == 0 ]
     then
 	echo "Problem detected. Seems like I am capable to handle it."
-	echo "If you want me to fix the issue press enter 'y', Otherwise enter 'n'"
-	read INPUT
+	echo "               "
+	if [ $AUTO == 'auto' ]
+	then
+	    INPUT='y'
+	else
+	    echo "If you want me to fix the issue press enter 'y', Otherwise enter 'n'"
+	    read INPUT
+	fi
+
 	if [ $INPUT == 'y' ]
 	then
 	    SoftReboot
@@ -253,7 +272,7 @@ DiagnoseConfig()
 
 echo "--------------------------------------------------------"
 echo "|     Welcome to DAQ's Healthcare Companion Baymax     |"
-echo "|     report issues or bug:latifulkabir@uky.edu        |"
+echo "|     report issues or bug to:latifulkabir@uky.edu     |"
 echo "--------------------------------------------------------"
 CheckStatus
 echo "Starting the DAQ Diagnosis ... ..."
@@ -290,7 +309,11 @@ then
     then
 	echo "           "
 	echo "Successfully fixed the issues!!!. The DAQ is ready to resume data taking process."
-        #if auto : gnome-terminal -e "n3he start"
+	if [ $AUTO == 'auto' ]
+	then
+	    echo "Initializing alternative data taking program own it's own ..."
+	    n3he start
+	fi
     else
 	echo "Sorry, Unable to fix the issue :) ."
     fi

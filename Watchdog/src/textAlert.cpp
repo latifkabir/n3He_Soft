@@ -9,6 +9,7 @@
 #include "constants.h"
 using namespace std;
 
+bool automated=false;
 //-----------------Send text alert if any param goes out of range----------
 
 int SendAlert(string msg)
@@ -44,6 +45,12 @@ int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_
 	{
 	    SendAlert(msg);
 	    alert_enabled[0]=false;
+	}
+	if(automated && alert_enabled[0])
+	{
+	    int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\"-e \"/home/daq/Diagnosis/diagnosis.sh auto\"");
+	    msg="Initiated alternative automated n3He data taking process.";
+	    SendAlert(msg);
 	}
     }
     else
