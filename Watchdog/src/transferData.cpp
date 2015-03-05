@@ -90,6 +90,7 @@ int TransferData(int rnumber,int last_trans)
     else
     {
 	cout<<"\n\t\tNo valid run number for transfer activity"<<endl;
+	cout<<"\n\t\tNow waiting for next run ... ..."<<endl;
 	sleep(450);
     }
 

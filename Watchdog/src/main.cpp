@@ -122,7 +122,7 @@ int main(void)
 
 	if(up_status && run_status)
 	{
-	    if(loop!=0)
+	    if(loop>1)
 		TextAlert(run_number,last_run,mag,temp,alert_enabled);
 	    TransferData(run_number,last_trans);
 	    last_run=run_number;
@@ -135,6 +135,7 @@ int main(void)
 	    cout<<"\t\t-------------------WATCHDOG SYSTEM IN SLEEP---------------------"<<endl;
 	    cout<<"\t\t-------------------WATCHDOG SYSTEM IN SLEEP---------------------"<<endl;
 	    cout<<"\t\t-------------------DO NOT CLOSE THE PROGRAM---------------------"<<endl;
+	    loop=0;
 	    sleep(450);
 	}
 
