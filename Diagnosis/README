@@ -1,0 +1,3 @@
+1. Make sure all files are in place.
+2. Before you execute diagnosis make sure all .sh files or binaries are given execution permission.
+3. Inside a bash function use complete path for bash program to be called.

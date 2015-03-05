@@ -33,8 +33,6 @@ int main(int argc,char *argv[])
     double temp[5];     // The temperature values
     long long loop=0;      // The loop number
     bool alert_enabled[3];
-    time_t time_now;
-    time(&time_now);
     string atm="auto";
 
     if(argc==2 && argv[1]==atm)
@@ -72,6 +70,9 @@ int main(int argc,char *argv[])
 //----------Loop over and Over starting here------------
     while(true)
     {
+	time_t time_now;
+	time(&time_now);
+
 	cout<<"\n\t\tloop number: "<<loop<<" Time:"<<ctime(&time_now)<<endl;
 
 	int is_up=system(STATUS_COMMAND);

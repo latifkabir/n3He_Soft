@@ -12,11 +12,12 @@ SUCCESS=0
 file1=/home/daq/Diagnosis/CurrentConfig
 file2=/home/daq/Diagnosis/ExpectedClean
 file3=/home/daq/Diagnosis/ExpectedDirty
+file4=/home/daq/Diagnosis/power_reset
 
 CheckStatus()
 {
     echo "Checking if all files are in place ..."
-    if [ -f $file1 ] && [ -f $file2 ] && [ -f $file3 ]
+    if [ -f $file1 ] && [ -f $file2 ] && [ -f $file3 ] && [ -f $file4 ]
     then
 	echo "Found all files are in place"
     else
@@ -53,7 +54,9 @@ PingDAQ()
 	echo "DAQ $1 is Active. --OK"
 	LIVE[$INDEX1]=1
     else
+	echo "               "
 	echo "DAQ $1 is NOT Active. Power Reboot it using browser or terminal. --PROBLEM"
+	echo "             "
 	LIVE[$INDEX1]=0
     fi
 }
@@ -108,7 +111,9 @@ CheckConfig()
 	echo "The configuration for DAQ $1 is as expected. --OK"
 	MIS[$INDEX2]=1
     else
+	echo "                   "
 	echo "PROBLEM with DAQ $1 Configuration Detected. --PROBLEM"
+	echo "                    "
 	echo "Following is the corrupted config for DAQ $1"
 	echo "---------------------------------------------------"
 	cat $file1
@@ -129,27 +134,27 @@ ResetPower()
 {
     if [ ${LIVE[0]} == 0 ]
     then
-	power_reset 21
+	/home/daq/Diagnosis/power_reset 21
     fi
 
     if [ ${LIVE[1]} == 0 ]
     then
-	power_reset 22
+	/home/daq/Diagnosis/power_reset 22
     fi
 
     if [ ${LIVE[2]} == 0 ]
     then
-	power_reset 23
+	/home/daq/Diagnosis/power_reset 23
     fi
 
     if [ ${LIVE[3]} == 0 ]
     then
-	power_reset 24
+	/home/daq/Diagnosis/power_reset 24
     fi
 
     if [ ${LIVE[4]} == 0 ]
     then
-	power_reset 30
+	/home/daq/Diagnosis/power_reset 30
     fi
 
     echo "Please wait 60 sec more to allow the DAQ to boot up properly... ..."
@@ -244,6 +249,7 @@ DiagnoseConfig()
 
     if [ ${MIS[0]} == 0 ] || [ ${MIS[1]} == 0 ] || [ ${MIS[2]} == 0 ] || [ ${MIS[3]} == 0 ] || [ ${MIS[4]} == 0 ]
     then
+	echo "               "
 	echo "Problem detected. Seems like I am capable to handle it."
 	echo "               "
 	if [ $AUTO == 'auto' ]
@@ -294,6 +300,12 @@ do
 	if [ $ACTIVITY == 1 ]
 	then
 	    DiagnoseConfig
+	fi
+	if [ $SUCCESS == 1 ]
+	then
+	    RP_ATTEMPT=1
+	    SR_ATTEMPT=1
+	    break
 	fi
     fi
 
