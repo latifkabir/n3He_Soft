@@ -44,15 +44,17 @@ int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_
 	if(alert_enabled[0])
 	{
 	    SendAlert(msg);
+
+	    if(automated)
+	    {
+		int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\" -e \"/home/daq/Diagnosis/diagnosis.sh auto\"");
+		msg="Initiated alternative automated n3He data taking process.";
+		cout<<msg<<endl;
+		SendAlert(msg);
+	    }
+
 	    alert_enabled[0]=false;
-	}
-	if(automated && alert_enabled[0])
-	{
-	    int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\"-e \"/home/daq/Diagnosis/diagnosis.sh auto\"");
-	    msg="Initiated alternative automated n3He data taking process.";
-	    cout<<msg<<endl;
-	    SendAlert(msg);
-	}
+	}	
     }
     else
     {
