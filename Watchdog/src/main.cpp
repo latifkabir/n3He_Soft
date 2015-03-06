@@ -75,6 +75,9 @@ int main(int argc,char *argv[])
 
 	cout<<"\n\t\tloop number: "<<loop<<" Time:"<<ctime(&time_now)<<endl;
 
+	if(automated)
+	    cout<<"\n\t\tThe watchdog is running in automated mode"<<endl;
+
 	int is_up=system(STATUS_COMMAND);
 	if(is_up==0)
 	{

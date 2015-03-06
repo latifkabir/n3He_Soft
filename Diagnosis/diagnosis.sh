@@ -6,9 +6,11 @@ then
 else
     AUTO='no'
 fi
-SR_ATTEMPT=-1
-RP_ATTEMPT=-1
-SUCCESS=0
+SR_ATTEMPT=0
+RP_ATTEMPT=0
+SUCCESS_A=0
+SUCCESS_B=0
+LOOP=0
 file1=/home/daq/Diagnosis/CurrentConfig
 file2=/home/daq/Diagnosis/ExpectedClean
 file3=/home/daq/Diagnosis/ExpectedDirty
@@ -125,7 +127,7 @@ CheckConfig()
 
 RebootDAQ()
 {
-    echo "Now rebooting the DAQ"
+    echo "Now rebooting the DAQ $1"
     ssh root@192.168.0.$1 'PATH=$PATH:/usr/local/bin/ 
     reboot'
 }
@@ -220,16 +222,17 @@ DiagnoseActivity()
 	if [ $INPUT == 'y' ]
 	then
 	    ResetPower
-	    RP_ATTEMPT=1
+	    RP_ATTEMPT=`expr $RP_ATTEMPT + 1` 
 	else
 	    echo "                           "
 	    echo "Please Fix the above issues yourself and then run the diagnosis again."
-	    RP_ATTEMPT=0
-	    SUCCESS=1 
+	    SUCCESS_A=1 
+	    SUCCESS_B=1 
 	fi 
     else
 	ACTIVITY=1
-	RP_ATTEMPT=0 
+	SUCCESS_A=1
+	LOOP=`expr $LOOP + 1` 
     fi  
 }
 
@@ -263,16 +266,15 @@ DiagnoseConfig()
 	if [ $INPUT == 'y' ]
 	then
 	    SoftReboot
-	    SR_ATTEMPT=1
+	    SR_ATTEMPT=`expr $SR_ATTEMPT + 1` 
 	else
 	    echo "                           "
 	    echo "Please Fix the above issues yourself and then run the diagnosis again."
-	    SR_ATTEMPT=0
-	    SUCCESS=1
+	    SUCCESS_B=1
 	fi
     else
-	SR_ATTEMPT=0
-	SUCCESS=1
+	SUCCESS_B=1
+	LOOP=`expr $LOOP + 1` 
     fi    
 }
 
@@ -293,7 +295,7 @@ do
 	DiagnoseConfig
     fi
 
-    if [ $SR_ATTEMPT == 1 ] || [ $RP_ATTEMPT == 1 ]
+    if [ $SR_ATTEMPT -gt 0 ] || [ $RP_ATTEMPT -gt 0 ]
     then
 	echo "Checking the Activity and Configuration after the fixes..."
 	DiagnoseActivity
@@ -301,30 +303,28 @@ do
 	then
 	    DiagnoseConfig
 	fi
-	if [ $SUCCESS == 1 ]
+	if [ $SUCCESS_A == 1 ] && [ $SUCCESS_B == 1 ]
 	then
-	    RP_ATTEMPT=1
-	    SR_ATTEMPT=1
 	    break
 	fi
     fi
 
-    if [ $SUCCESS == 1 ]
+    if [ $SUCCESS_A == 1 ] && [ $SUCCESS_B == 1 ]
     then
 	break
     fi
 done
 
-if [ $SR_ATTEMPT == 1 ] || [ $RP_ATTEMPT == 1 ]
+if [ $LOOP -gt 2 ]
 then
-    if [ $SUCCESS == 1 ]
+    if [ $SUCCESS_A == 1 ] && [ $SUCCESS_B == 1 ]
     then
 	echo "           "
 	echo "Successfully fixed the issues!!!. The DAQ is ready to resume data taking process."
 	if [ $AUTO == 'auto' ]
 	then
 	    echo "Initializing alternative data taking program own it's own ..."
-	    n3he start
+	    /home/daq/n3HeDAQ/bin/n3he start
 	fi
     else
 	echo "Sorry, Unable to fix the issue :) ."
