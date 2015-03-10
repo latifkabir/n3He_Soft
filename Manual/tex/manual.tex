@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\title{\LaTeX}
+\date{}
+
+\title{\emph{\huge\textbf{Start up Guide \\ for \\$n^3He$ Analysis}}
+}
+\author{\\Latiful Kabir\\
+}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+  \maketitle
+  
+\newpage  
+\tableofcontents
+\newpage
+\setcounter{tocdepth}{2}
+
+\section{Resources}
+All the start up software and manual related to $n^3He$ experiment can be found from the official git repository with detailed instruction.
+The easiest way is to go to n3He wiki (n3he.wikispaces.com/) and then click on software from the left panel.  
+Alternatively, here is a direct link.
+
+\newpage
+\section{Quick start on basestar}
+On basestar the data is being transferred and saved to the directory \\ \textcolor{magenta}{ /mnt/idata01/data/ }and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} 
+
+So a quick start using the compiled library can be as follows from any user account:
+
+\begin{enumerate}
+  \item Add the following lines to the .bashrc file \& save it
+ 
+\begin{lstlisting}
+if [ -f /home/npdg/n3He/libn3He/bin/thisn3He.sh ]; then
+       . /home/npdg/n3He/libn3He/bin/thisn3He.sh
+fi
+\end{lstlisting}
+
+ \item Start a new terminal , go to  \textcolor{magenta} { /home/npdg/n3He/libn3He/analysis/ }directory \& try running sample analysis scripts from ROOT.
+ \item The data browser GUI (named as n3HeData) can be opened issuing the command\textcolor{magenta}{ /home/npdg/n3He/n3HeData/n3HeData } from the terminal. Copy the binary to your home directory if you will be using the GUI frequently.
+\end{enumerate}
+
+\noindent
+{\color{red} \rule{\linewidth}{1mm} }
+
+\begin{lstlisting}
+//OnlineAnalysis.C
+//Demo Online Analysis using n3He Library.(By Online I mean  'from CINT, doing analysis on the fly, less thoughtful but preferred by many or in some conditions')
+//Author: Latiful Kabir
+//Date: 12/23/14
+
+void OnlineAnalysis()
+{
+    gSystem->Load("libTree");    //You need to load libTree first in order to Load libn3He. This is not necessary if you include TTree.h
+//file like the Offline analysis script.
+    gSystem->Load("libn3He.so");
+
+    TTreeRaw *t=new TTreeRaw(15142);
+    t->Draw("d21[][0]:Iteration$","Entry$>3");
+}
+ 
+\end{lstlisting}
+ 
+
+Other user specific customization can be achieved following the instruction in the ReadMe file in the respective directory. The latest developments and releases can be found from n3He wiki > Software.
+
+
+\end{document}

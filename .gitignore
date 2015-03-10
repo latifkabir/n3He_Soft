@@ -9,3 +9,8 @@ dplot
 RunList.txt
 LastRun.txt
 textAlert.sh
+*.log
+*.aux
+*.synctex.gz
+*.toc
+
