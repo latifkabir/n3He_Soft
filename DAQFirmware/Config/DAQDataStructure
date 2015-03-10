@@ -38,8 +38,8 @@ Then this pattern repeats 3 more times (i.e. in quanta of 8 channels) up to chan
 
 
 For Dirty DAQ the data is taken in 8 channels (bank_mask B) with one module only and then processed to 2 channels.
-On Batch panel, M1 signal is connected to marked channel-8 and RFSF signal is connected to marked channel 25. This corresponds to 
-ACD channel-3 (with Event signature) and channel-4 (with event number) where for ADC channel number starts with 0.
+On Batch panel, M1 signal is connected to marked channel-26 and RFSF signal is connected to marked channel 27. This corresponds to 
+ACD channel-5 (with checksum) and channel-6 (with sample number) where for ADC channel number starts with 0.
 
 This for Dirty DAQ after the processing,
 
@@ -51,8 +51,8 @@ event2sample1Ch0 event2sample1ch1
 Up to N events.
 
 with teh first sample of any event being event signature and event number i.e.
-     event1sample1ch0 = Event signature.
-     event1sample1ch1 = Event number.
+     event1sample1ch0 = checksum.
+     event1sample1ch1 = sample number.
 
 
 

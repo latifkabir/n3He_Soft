@@ -13,4 +13,5 @@ textAlert.sh
 *.aux
 *.synctex.gz
 *.toc
+.fuse_*
 
