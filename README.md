@@ -65,6 +65,8 @@ ReadRS232 v1.0 [(download)][9]
 ---------
 GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
 
+![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/ReadRS232/Mag&Temp/magTemp.png "Field & Temperature Display")
+
 Watchdog v1.0 [(download)][10]
 ----------
 Program for 24/7 DAQ status and other critical parameters watchdog. Capable to send text alert and restart the DAQ program automatically.
