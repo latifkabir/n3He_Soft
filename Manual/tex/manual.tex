@@ -109,6 +109,8 @@ Each sample is 4 bytes(in hexdump one contiguous pair consists one sample or 4 b
 \includegraphics[width=6in]{hexdump.png}\\
 \caption{Typical view of hexdump}\label{f1}
 \end{figure}
+
+
 The above hexdump to be interpreted as follows:\\
 With: mod= module  ch = channel\\
 \begingroup
@@ -312,7 +314,7 @@ Currently n3He Tree has five branches corresponding to four clean DAQ and one di
  DAQ24_LEAF "h24[48]/I:d24[49][48]/I"
  DAQ30_LEAF "h30[2]/I:d30[1624][2]/I"
 \end{lstlisting}
-where h used to indicate header and d used to indicate detector signal. 21 to 24 are clean DAQs and 30 is dirty DAQ.
+where h used to indicate header and d used to indicate detector signal. 21 to 24 are clean DAQs and 30 is dirty DAQ. Clean DAQs contain detector signals. Dirty DAQ (after data processing) ADC channel-0 is monitor-1 signal and ACD channel-2 is RFSF signal. 
 
 \begin{figure}[htb]
 \centering
@@ -434,7 +436,7 @@ This script when you run using \textcolor{magenta}{root -l OfflineAnalysis.C} wi
  
 \newpage
 \section{Reference for TTreeRaw class}
-The base Classis  TTree.\\
+The base Class is  TTree.\\
 As a result all data and member functions from TTree are automatically inherited. For a list of TTree data and member functions go \href{https://root.cern.ch/root/html/TTree.html}{here}
 \begin{lstlisting}
 public:
