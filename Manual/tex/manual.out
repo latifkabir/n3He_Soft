@@ -3,7 +3,8 @@
 \BOOKMARK [1][-]{section.3}{Event length and file size calculation}{}% 3
 \BOOKMARK [1][-]{section.4}{The data file structure}{}% 4
 \BOOKMARK [1][-]{section.5}{The ADC channel to wire map}{}% 5
-\BOOKMARK [1][-]{section.6}{Setting up local version of n3He analysis libary on basestar}{}% 6
+\BOOKMARK [1][-]{section.6}{Setting up local version of n3He analysis library on basestar}{}% 6
 \BOOKMARK [1][-]{section.7}{Setting up local version of data browser on basestar}{}% 7
 \BOOKMARK [1][-]{section.8}{Current tree structure in n3He analysis libary}{}% 8
 \BOOKMARK [1][-]{section.9}{Sample analysis}{}% 9
+\BOOKMARK [1][-]{section.10}{Reference for TTreeRaw class}{}% 10

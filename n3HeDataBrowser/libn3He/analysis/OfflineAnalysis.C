@@ -1,5 +1,6 @@
 //Demo Offline Analysis using n3He Library.(By Offline I mean  'in a script more thoughtful and serious analysis unlike from CINT)
-//This script shows how to accress Tree using SetAddress and plots only the all event/pulses of channel-0
+//This script shows how to accress Tree using SetAddress
+// and plots only the all event/pulses of channel-0
 //Author: Latiful Kabir
 //Date: 01/14/15
 //This is the fastest and most preferred method for reading Tree 

@@ -71,7 +71,7 @@ Watchdog v1.0 [(download)][10]
 ----------
 Program for 24/7 DAQ status and other critical parameters watchdog. Capable to send text alert and restart the DAQ program automatically.
 
-Diagnosis v1.0 v1.0 [(download)][11]
+Diagnosis v1.0 [(download)][11]
 ----------
 The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
 
