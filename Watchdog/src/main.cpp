@@ -55,11 +55,11 @@ int main(int argc,char *argv[])
 
     if(is_connected==0)
     {
-	cout<<"\n\t\tDetected Picard is Connected to Cyclonous"<<endl;
+	cout<<"\n\t\tDetected Picard is Connected to Cyclonus"<<endl;
     }
     else
     {
-	cout<<"\n\t\tDetected Picard is NOT connected to Cyclonous. Please fix the problem"<<endl;
+	cout<<"\n\t\tDetected Picard is NOT connected to Cyclonus. Please fix the problem"<<endl;
 	sleep(60);
 	return(-1);
     }

@@ -29,7 +29,9 @@ int TransferData(int rnumber,int last_trans)
     char *command=new char[strlen];
     snprintf(command,strlen,TRANS_COMMAND,start_run,stop_run+1);
 
-    if(stop_run > (start_run-1))
+    int isConnected=system(PING_COMMAND);
+
+    if((stop_run > (start_run-1)) && isConnected==0 )
     {
 	cout<<"\n\t\tNow attempting to transfer the data files to basestar ..."<<endl;
 
@@ -89,7 +91,7 @@ int TransferData(int rnumber,int last_trans)
     }
     else
     {
-	cout<<"\n\t\tNo valid run number for transfer activity"<<endl;
+	cout<<"\n\t\tNo valid run number for transfer activity or No internet connection"<<endl;
 	cout<<"\n\t\tNow waiting for next run ... ..."<<endl;
 	sleep(450);
     }

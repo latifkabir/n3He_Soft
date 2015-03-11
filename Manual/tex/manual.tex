@@ -43,7 +43,7 @@
 \section{Resources}
 All the start up software and manual related to $n^3He$ experiment can be found from the official git repository with detailed instruction. \\
 The easiest way is to go to n3He wiki (n3he.wikispaces.com) and then click on software from the left panel.  \\
-Alternatively, here is a direct \href{http://www.latifkabir.github.io/n3He_Soft/}{link}.\\
+Alternatively, here is a direct \href{http://latifkabir.github.io/n3He_Soft/}{link}.\\
 Any new change goes to this  git repository. You might want to clone the entire repository and pull periodically to be updated. Or you can also download the last release of only what your are interested in.  
 \newpage
 \section{Quick start on basestar}
@@ -180,7 +180,8 @@ Eventually you will want to set up your own version of the analysis library and 
 part of the library and add more functionality. 
 
 \begin{enumerate}
-\item Download the source code from \href{http://www.latifkabir.github.io/n3He_Soft/}{here}
+\item Download the source code from \href{http://latifkabir.github.io/n3He_Soft/}{here}. \\
+lib3He is the analysis library for n3He experiment.
 
 \item Make any necessary changes in Constants.h file that is required.
 
@@ -192,7 +193,7 @@ part of the library and add more functionality.
 
 \item Now start root and load the Library as: \textcolor{magenta}{gSystem$->$Load(``libTree'')}  \& gSystem$->$Load(``libn3He.so'')  . (For Online analysis)
 
-\item  For analysis from a script if you include TTree.h file then you need not to do \textcolor{magenta}{gSystem$\->$Load(``libTree'')}; Just load 
+\item  For analysis from a script if you include TTree.h file then you need not to do \textcolor{magenta}{gSystem$->$Load(``libTree'')}; Just load 
     \textcolor{magenta}{gSystem$->$Load(``libn3He.so'')}.  You need to give full path unless the directory is included in \textcolor{magenta}{LD\_LIBRARY\_PATH}.
 
 \item If you put the \textcolor{magenta}{rootlogon.C} file in \textcolor{magenta}{ macros } directory under Root installation directory, then the library will be loaded automatically and step-4 is NOT necessary.
@@ -219,9 +220,46 @@ Note: This version of the libary works both for ROOT 5 and ROOT 6.
 \end{enumerate}
 
 \section{Setting up local version of data browser on basestar}
+\begin{enumerate}
+\item Download the source code from \href{http://latifkabir.github.io/n3He_Soft/}{here}. \\
 
+\item In bin directory: contains just binary files(obtained after doing make) named \textcolor{magenta}{n3HeData}.
+
+\item In libn3He directory: Contains all the library required for running the Data check GUI.
+
+\item Modify and compile the library:(Unless you have already set up the library)
+   You need to change the Data file directory from \textcolor{magenta}{Constants.h} in \textcolor{magenta}{libn3He} to appropriate directory. Before you do \textcolor{magenta}{make} do: \textcolor{magenta}{make clean}   
+   in the same directory.  and then make a fresh shared binary files after you make any changes.
+
+\item Place .so file under \textcolor{magenta}{LD\_LIBRARY\_PATH}:
+   Now make sure the shared library (\textcolor{magenta}{libn3He.so}) file is in a directory under your \textcolor{magenta}{LD\_LIBRARY\_PATH}. 
+
+   OR, a more professional way is as follows:
+   Open \textcolor{magenta}{\*/libn3He/bin/thisn3He.sh} and define \textcolor{magenta}{n3HeROOT} path variable to the location where \textcolor{magenta}{libn3He} is located.
+   for example: \textcolor{magenta}{n3HeROOT=/home/siplu/libn3He/}
+   
+   Now include command in your \textcolor{magenta}{.bashrc} file to run \textcolor{magenta}{thisn3He.sh} file each time you open the terminal. i.e. include the fillowing lines:
+
+\begin{lstlisting}
+if [ -f path_to/libn3He/bin/thisn3He.sh ]; then
+	. path_to/libn3He/bin/thisn3He.sh
+fi
+\end{lstlisting}
+
+\item Produce binary for GUI:
+  To produce a new binary file named \textcolor{magenta}{n3HeData}, go to n3HeData directory, open makefile and change \textcolor{magenta}{LIB\_INCLUDE} and \textcolor{magenta}{GLIBS} to
+  appropriate location for you and then do \textcolor{magenta}{make}. It will produce \textcolor{magenta}{n3HeData} binary file in the same dirctory. 
+
+\item Run the GUI:
+   Now run the binary file \textcolor{magenta}{n3HeData} by doing \textcolor{magenta}{./n3HeData} from your recently compiled verson in \textcolor{magenta}{\*/n3He\_DAQ\_GUI/n3HeData/} .
+
+\item Modify the \textcolor{magenta}{.desktop} file (included one only for Ubuntu distribution) and \textcolor{magenta}{.sh} file in bin directory accordingly and place it in your desktop if you want to run the GUI just by double clicking from your desktop.
+
+\end{enumerate}
 \section{Current tree structure in n3He analysis libary}
 
 \section{Sample analysis}
+
+\section{Reference for TTreeRaw class}
 
 \end{document}

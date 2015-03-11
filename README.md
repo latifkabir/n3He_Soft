@@ -10,9 +10,10 @@ This repository is divided into several sub directories based on the category:
 * DAQFirmware v1.0 [(download)][7] --- This directory contain DAQ Firmware related Software update.
 * DemoScripts v1.0 [(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 * ReadRS232 v1.0 [(download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
-* Watchdog  Beta [(download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
-* Diagnosis --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
-[Release Notes][11]
+* Watchdog  v1.0 [(download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
+* Diagnosis v1.0 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
+* Manual v0 --- DAQ Operational Manual [(download)][12] and n3He Analysis Start up Guide [(download)][13]
+[Release Notes][14]
 
 Please read below to know what's inside each category.
 The above/following download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right. 
@@ -64,13 +65,17 @@ ReadRS232 v1.0 [(download)][9]
 ---------
 GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
 
-Watchdog Beta [(download)][10]
+Watchdog v1.0 [(download)][10]
 ----------
 Program for 24/7 DAQ status and other critical parameters watchdog. Capable to send text alert and restart the DAQ program automatically.
 
-Diagnosis
+Diagnosis v1.0 v1.0 [(download)][11]
 ----------
 The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
+
+Manual v0 
+------------
+DAQ Operational Manual [(download)][12] and n3He Analysis Start up Guide [(download)][13]
 
 report bug to: latifulkabir@uky.edu
 
@@ -88,6 +93,9 @@ Last Updated on 2/5/15
 [8]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DemoScripts.zip
 [9]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReadRS232.zip
 [10]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Watchdog.zip
-[11]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReleaseNotes
+[11]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Diagnosis.zip
+[12]:https://github.com/latifkabir/n3He_Soft/raw/master/Manual/DAQManual.pdf
+[13]:https://github.com/latifkabir/n3He_Soft/raw/master/Manual/AnalysisGuide.pdf
+[14]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReleaseNotes
 
 	 
