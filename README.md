@@ -12,7 +12,7 @@ This repository is divided into several sub directories based on the category:
 * ReadRS232 v1.0 [(download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
 * Watchdog  v1.0 [(download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
 * Diagnosis v1.0 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
-* Manual v0 --- DAQ Operational Manual [(download)][12] and n3He Analysis Start up Guide [(download)][13]
+* Manual v0 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 [Release Notes][14]
 
 Please read below to know what's inside each category.
@@ -77,11 +77,11 @@ The DAQ's healthcare companion Baymax with automated diagnosis and healing capab
 
 Manual v0 
 ------------
-DAQ Operational Manual [(download)][12] and n3He Analysis Start up Guide [(download)][13]
+DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 
 report bug to: latifulkabir@uky.edu
 
-Last Updated on 2/5/15
+Last Updated on 3/11/15
 
 -Latiful Kabir
 
