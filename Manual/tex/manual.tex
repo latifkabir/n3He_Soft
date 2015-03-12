@@ -102,7 +102,7 @@ Dirty DAQ file seize (after process) : 25000 T0 x 1625 samples x 4 Bytes per sam
 \newpage
 \section{The data file structure}
 48 Clean DAQ channels divided into two modules: \\
-Each sample is 4 bytes(in hexdump one contiguous pair consists one sample or 4 bytes).\\
+Each sample is 4 bytes(in hexdump one contiguous pair consists one sample or 4 bytes). Out of this 32 bit(4 bytes) , our data is 24 bit and remaining least significant 8 bits are channel ID. \\
 \begin{figure}[htb]
 \centering
 % Requires \usepackage{graphicx}
@@ -173,6 +173,7 @@ with the first sample of any event being checksum and sample number i.e.\\
  
 \newpage
 \section{The ADC channel to wire map}
+Out of 48 clean ADC channels, only 36 ADC channels are connected to the pre-amps.
 Eventually the ADC channel to detector wire map to be handled by the library. However following is the map for reference:
 \begin{lstlisting}
 
@@ -228,7 +229,7 @@ lib3He is the analysis library for n3He experiment.
 \item  For analysis from a script if you include TTree.h file then you need not to do \textcolor{magenta}{gSystem$->$Load(``libTree'')}; Just load 
     \textcolor{magenta}{gSystem$->$Load(``libn3He.so'')}.  You need to give full path unless the directory is included in \textcolor{magenta}{LD\_LIBRARY\_PATH}.
 
-\item If you put the \textcolor{magenta}{rootlogon.C} file in \textcolor{magenta}{ macros } directory under Root installation directory, then the library will be loaded automatically and step-4 is NOT necessary.
+\item If you put the \textcolor{magenta}{rootlogon.C} file in \textcolor{magenta}{ macros } directory under Root installation directory, then the library will be loaded automatically and step-6 is NOT necessary.
 
 \item Now from your root script create a Tree by calling: \textcolor{magenta}{TTreeRaw ${\ast}my\_tree$ = new TreeRaw(runNumber\#)} or Just \textcolor{magenta}{TTreeRaw t(runNumber\#)}
 
@@ -263,7 +264,7 @@ Note: This version of the library works both for ROOT 5 and ROOT 6.
 
 \item In libn3He directory: Contains all the library required for running the Data check GUI.
 
-\item Modify and compile the library:(Unless you have already set up the library)
+\item Modify and compile the library (Unless you have already set up the library):
    You need to change the Data file directory from \textcolor{magenta}{Constants.h} in \textcolor{magenta}{libn3He} to appropriate directory. Before you do \textcolor{magenta}{make} do: \textcolor{magenta}{make clean}   
    in the same directory.  and then make a fresh shared binary files after you make any changes.
 
@@ -274,7 +275,7 @@ Note: This version of the library works both for ROOT 5 and ROOT 6.
    Open \textcolor{magenta}{\*/libn3He/bin/thisn3He.sh} and define \textcolor{magenta}{n3HeROOT} path variable to the location where \textcolor{magenta}{libn3He} is located.
    for example: \textcolor{magenta}{n3HeROOT=/home/siplu/libn3He/}
    
-   Now include command in your \textcolor{magenta}{.bashrc} file to run \textcolor{magenta}{thisn3He.sh} file each time you open the terminal. i.e. include the following lines:
+Now include command in your \textcolor{magenta}{.bashrc} file to run \textcolor{magenta}{thisn3He.sh} file each time you open the terminal. i.e. include the following lines:
 
 \begin{lstlisting}
 if [ -f path_to/libn3He/bin/thisn3He.sh ]; then
@@ -283,11 +284,11 @@ fi
 \end{lstlisting}
 
 \item Produce binary for GUI:
-  To produce a new binary file named \textcolor{magenta}{n3HeData}, go to n3HeData directory, open makefile and change \textcolor{magenta}{LIB\_INCLUDE} and \textcolor{magenta}{GLIBS} to
+To produce a new binary file named \textcolor{magenta}{n3HeData}, go to n3HeData directory, open makefile and change \textcolor{magenta}{LIB\_INCLUDE} and \textcolor{magenta}{GLIBS} to
   appropriate location for you and then do \textcolor{magenta}{make}. It will produce \textcolor{magenta}{n3HeData} binary file in the same directory. 
 
 \item Run the GUI:
- Now run the binary file \textcolor{magenta}{n3HeData} by doing \textcolor{magenta}{./n3HeData} from your recently compiled verson in \textcolor{magenta}{\*/n3He\_DAQ\_GUI/n3HeData/} .
+Now run the binary file \textcolor{magenta}{n3HeData} by doing \textcolor{magenta}{./n3HeData} from your recently compiled verson in \textcolor{magenta}{\*/n3He\_DAQ\_GUI/n3HeData/} .
 
 \item Modify the \textcolor{magenta}{.desktop} file (included one only for Ubuntu distribution) and \textcolor{magenta}{.sh} file in bin directory accordingly and place it in your desktop if you want to run the GUI just by double clicking from your desktop.
 
@@ -314,7 +315,7 @@ Currently n3He Tree has five branches corresponding to four clean DAQ and one di
  DAQ24_LEAF "h24[48]/I:d24[49][48]/I"
  DAQ30_LEAF "h30[2]/I:d30[1624][2]/I"
 \end{lstlisting}
-where h used to indicate header and d used to indicate detector signal. 21 to 24 are clean DAQs and 30 is dirty DAQ. Clean DAQs contain detector signals. Dirty DAQ (after data processing) ADC channel-0 is monitor-1 signal and ACD channel-2 is RFSF signal. 
+where h used to indicate header and d used to indicate detector signal. 21 to 24 are clean DAQs and 30 is dirty DAQ. Clean DAQs contain detector signals. Dirty DAQ (after data processing) ADC channel-0 is monitor-1 signal and ACD channel-1 is RFSF signal. 
 
 \begin{figure}[htb]
 \centering
@@ -365,6 +366,7 @@ This script when you run using \textcolor{magenta}{root -l OnlineAnalysis.C} wil
 \end{figure}
 
 \newpage
+
 Sample offline analysis on basestar:
 \begin{lstlisting}
 //OfflineAnalysis.C
@@ -422,6 +424,8 @@ void OfflineAnalysis(){
   delete t;
 }
 \end{lstlisting}
+
+
 This script when you run using \textcolor{magenta}{root -l OfflineAnalysis.C} will produce the following output when zoomed in:
 
 \begin{figure}[htb]
@@ -452,7 +456,6 @@ public:
     ~TTreeRaw();
 
 \end{lstlisting}
-
 This list will be updated gradually as new functionality is added to the TTreeRaw class.
 
 \noindent
