@@ -323,7 +323,7 @@ then
 	echo "Successfully fixed the issues!!!. The DAQ is ready to resume data taking process."
 	if [ $AUTO == 'auto' ]
 	then
-	    echo "Initializing alternative data taking program own it's own ..."
+	    echo "Initializing alternative data taking program on it's own ..."
 	    /home/daq/n3HeDAQ/bin/n3he start
 	fi
     else

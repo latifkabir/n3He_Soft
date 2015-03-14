@@ -1,7 +1,6 @@
 //The TTreeRaw Class that reads raw n3He data files in TTree format
 //Author: Latiful Kabir
 //Date: 12/25/14
-//Version:1.2
 
 #include "TTreeRaw.h"
 #include "TBranchBinary.h"
@@ -22,6 +21,22 @@ ClassImp(TTreeRaw)
 int TTreeRaw::module[5]={21,22,23,24,30};
 
 TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
+{
+    Init(runNumber);    
+}
+
+TTreeRaw::~TTreeRaw()
+{
+    // delete b21;
+    // delete b22;
+    // delete b23;
+    // delete b24;
+    // delete b30;
+    delete[] DaqLeaf;
+    delete[] dataFile;
+}
+
+void TTreeRaw::Init(int runNumber)
 {
 
     DaqLeaf=new TString[5];
@@ -115,19 +130,9 @@ TTreeRaw::TTreeRaw(int runNumber):TTree("n3He", "n3He raw data")
     }
     else
     {
+	cout<<"======================================"<<endl;
 	cout<<"No data files for requested run number"<<endl;
+	cout<<"======================================"<<endl;
     }
     
 }
-
-TTreeRaw::~TTreeRaw()
-{
-    // delete b21;
-    // delete b22;
-    // delete b23;
-    // delete b24;
-    // delete b30;
-    delete[] DaqLeaf;
-    delete[] dataFile;
-}
-
