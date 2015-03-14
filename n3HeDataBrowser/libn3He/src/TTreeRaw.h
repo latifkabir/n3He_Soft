@@ -16,17 +16,18 @@ class TTreeRaw: public TTree
 
 public:
 
-   TString dataPath;
-   TString *DaqLeaf;
-   TString *dataFile;
-   static int module[5];
+    TString dataPath;
+    TString *DaqLeaf;
+    TString *dataFile;
+    static int module[5];
 
-   TBranch *b21,*b22,*b23,*b24,*b30;
+    TBranch *b21,*b22,*b23,*b24,*b30;
 
-     TTreeRaw(int runNumber);
+    void Init(int runNumber);
+    TTreeRaw(int runNumber);
     ~TTreeRaw();
 protected:
-
+    
 ClassDef(TTreeRaw,0)
 };
 
