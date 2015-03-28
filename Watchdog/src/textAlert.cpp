@@ -30,7 +30,7 @@ int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_
 {
 
 //------------Range of Critical values-----------------------
-    double mag_upper=9.12;
+    double mag_upper=9.16;  //Optimal value last determined to be 9.12 Gauss
     double mag_lower=9.08;
     double temp_upper=31;
     double temp_lower=16;

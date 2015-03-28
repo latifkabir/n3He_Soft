@@ -82,7 +82,7 @@ int SignOn(bool &signon)
 
 }
 
-void ReadField(FluxGate &p,double *fValue)
+int ReadField(FluxGate &p,double *fValue)
 {
 //------------------Channel 0 Scan------------------------    	
 	    p.Write("\1"); //Polled mode command token
@@ -204,6 +204,10 @@ void ReadField(FluxGate &p,double *fValue)
 	    usleep(sleep_time);
 	    fValue[7]=p.ReadFG(7);
 
+	    if(fValue[0]==fValue[1]==fValue[2]==fValue[3]==fValue[4]==fValue[5]==-10)
+		return -1;
+
+	    return 0;
 }
 
 //Handling ctrl+C signal to stop DAQ program smoothly/after finishing current run

@@ -31,7 +31,7 @@ void OfflineAnalysis(){
   
   //Get the branch you want to analyze
   TBranch *b=t->GetBranch("b21");
-  b->SetAddress(&md.header[ch]);
+  b->SetAddress(&md.header[0]);
 
 //--------------------------------------------------
 
