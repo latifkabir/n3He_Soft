@@ -323,6 +323,12 @@ then
 	echo "Successfully fixed the issues!!!. The DAQ is ready to resume data taking process."
 	if [ $AUTO == 'auto' ]
 	then
+	    echo "Terminating the frozen DAQ Program ..."
+	    PID=$(ps -e | grep -w 'n3he' | awk '{print $1}')
+	    if [ $PID > 0 ]
+	    then
+		kill $PID
+	    fi
 	    echo "Initializing alternative data taking program on it's own ..."
 	    /home/daq/n3HeDAQ/bin/n3he start
 	fi

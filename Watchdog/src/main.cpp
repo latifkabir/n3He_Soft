@@ -24,7 +24,7 @@ void signalHandler( int signum )
 int main(int argc,char *argv[])
 {
 
-//-------------List of parameters------------------------
+    //-------------List of parameters------------------------
     bool up_status;       //If the DAQ program is Up for taking data
     int run_status;  //If DAQ taking the data based on trigger status
     int run_number;  //Run number which is done processing
@@ -35,15 +35,12 @@ int main(int argc,char *argv[])
     bool alert_enabled[3];
     string atm="auto";
 
-    if(argc==2 && argv[1]==atm)
-	automated=true;
-
     cout<<"\n\t\t=================================================="<<endl;
     cout<<"\t\t\tWelcome to n3He 24/7 DAQ Watchdog program"<<endl;
     cout<<"\t\t\treport bug to: latifulkabir@uky.edu"<<endl;
     cout<<"\t\t=================================================="<<endl;
 
-//---------Check if all the required scripts are in place as expected---------------
+    //---------Check if all the required scripts are in place as expected---------------
     if(!(ifstream(UP_STATUS_SH) && ifstream(FILE_TRANS_SH) && ifstream(TXT_ALERT_SH) && ifstream(PING_IP_SH)))
     {
 	cout<<"\n\t\tCould NOT locate all the required bash scripts"<<endl;
@@ -67,11 +64,21 @@ int main(int argc,char *argv[])
 
     signal(SIGINT, signalHandler); //Handle Ctrl+C Signal
 
-//----------Loop over and Over starting here------------
+    //----------Loop over and Over starting here------------
     while(true)
     {
 	time_t time_now;
 	time(&time_now);
+	struct tm my_time;
+	localtime_r (&time_now,&my_time);
+	int hour=my_time.tm_hour;
+
+	if(argc==2 && argv[1]==atm)
+	    automated=true;
+	else if(hour < 8) //Run Watchdog in automated mode for Over night shift(0:00 to 7:59 AM) only
+	    automated=true;
+	else
+	    automated=false;
 
 	cout<<"\n\t\tloop number: "<<loop<<" Time:"<<ctime(&time_now)<<endl;
 
@@ -90,19 +97,19 @@ int main(int argc,char *argv[])
 	    up_status=false;
 	}
 
-//-------Open the file containing parameters values.-----------
+        //-------Open the file containing parameters values.-----------
 	ifstream daq_status(DAQ_STATUS_TXT);
 	ifstream last_transf(LAST_TRANS_TXT);
 	ifstream mag_temp(MAG_TEMP_TXT);
 
-//---------Check if all the required data files are in place as expected---------------
+        //---------Check if all the required data files are in place as expected---------------
 	if(!(daq_status && last_transf && mag_temp))
 	{
 	    cout<<"\n\t\tCould NOT locate all the required data files"<<endl;
 	    break;
 	}
 
-//-----------Read params from the text files--------------------
+        //-----------Read params from the text files--------------------
 	daq_status>>run_status>>run_number;
 	last_transf>>last_trans;
 	mag_temp>>mag>>temp[0]>>temp[1]>>temp[2]>>temp[3]>>temp[4];
@@ -111,7 +118,7 @@ int main(int argc,char *argv[])
 	last_transf.close();
 	mag_temp.close();
 
-//---------------------Printing for verification--------------------------------
+        //---------------------Printing for verification--------------------------------
 	cout<<"\n\t\t----------------Printing status for verification----------------"<<endl;
 	cout << "\t\tDaq Status:"<<up_status<<endl;
 	cout << "\t\tRun Status:"<<run_status <<endl;
