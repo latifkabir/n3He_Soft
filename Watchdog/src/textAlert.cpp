@@ -10,6 +10,14 @@
 using namespace std;
 
 bool automated=false;
+int auto_count=0;
+
+//------------Range of Critical values-----------------------
+double mag_upper=9.16;  //Optimal value last determined to be 9.12 Gauss
+double mag_lower=9.08;
+double temp_upper=31;
+double temp_lower=16;
+
 //-----------------Send text alert if any param goes out of range----------
 
 int SendAlert(string msg)
@@ -28,13 +36,6 @@ int SendAlert(string msg)
 
 int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_enabled)
 {
-
-//------------Range of Critical values-----------------------
-    double mag_upper=9.16;  //Optimal value last determined to be 9.12 Gauss
-    double mag_lower=9.08;
-    double temp_upper=31;
-    double temp_lower=16;
-
     string msg;
 
     if(run_number==last_run)
@@ -45,12 +46,13 @@ int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_
 	{
 	    SendAlert(msg);
 
-	    if(automated)
+	    if(automated && auto_count<3)
 	    {
 		int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\" -e \"/home/daq/Diagnosis/diagnosis.sh auto\"");
 		msg="Initiated alternative automated n3He data taking process.";
 		cout<<"\n\t\t"<<msg<<endl;
 		SendAlert(msg);
+		auto_count++;
 	    }
 
 	    alert_enabled[0]=false;

@@ -1,20 +1,36 @@
 #!/bin/bash
 
+# Filename: diagnosis.sh
+# Description: The DAQ's healthcare companion Baymax 
+# Author: Latiful Kabir < siplukabir@gmail.com >
+# Created: Sat Mar 28 15:53:47 2015 (-0400)
+# URL: latifkabir.github.io
+
+
+
 if [ $# == 1 ]
 then 
     AUTO=$1
 else
     AUTO='no'
 fi
+
 SR_ATTEMPT=0
 RP_ATTEMPT=0
 SUCCESS_A=0
 SUCCESS_B=0
 LOOP=0
+
 file1=/home/daq/Diagnosis/CurrentConfig
 file2=/home/daq/Diagnosis/ExpectedClean
 file3=/home/daq/Diagnosis/ExpectedDirty
 file4=/home/daq/Diagnosis/power_reset
+
+dfile1=/home/daq/DATA/data-21
+dfile2=/home/daq/DATA/data-22
+dfile3=/home/daq/DATA/data-23
+dfile4=/home/daq/DATA/data-24
+dfile5=/home/daq/DATA/data-30
 
 CheckStatus()
 {
@@ -278,6 +294,26 @@ DiagnoseConfig()
     fi    
 }
 
+CheckFileSize()
+{
+    if [ -f $dfile1 ] && [ -f $dfile2 ] && [ -f $dfile3 ] && [ -f $dfile4 ] && [ -f $dfile5 ]
+    then
+	echo "                                      "
+	echo "Now Checking file size consistancy ..."
+	echo "                                      "
+	SIZE21=$(ls -l $dfile1 | awk '{print $5}')
+	echo "DAQ21 data file size: $SIZE21 Bytes" 
+	SIZE22=$(ls -l $dfile2 | awk '{print $5}')
+	echo "DAQ22 data file size: $SIZE22 Bytes" 
+	SIZE23=$(ls -l $dfile3 | awk '{print $5}')
+	echo "DAQ23 data file size: $SIZE23 Bytes" 
+	SIZE24=$(ls -l $dfile4 | awk '{print $5}')
+	echo "DAQ24 data file size: $SIZE24 Bytes" 
+	SIZE30=$(ls -l $dfile5 | awk '{print $5}')
+	echo "DAQ30 data file size: $SIZE30 Bytes" 
+    fi    
+}
+
 echo "--------------------------------------------------------"
 echo "|     Welcome to DAQ's Healthcare Companion Baymax     |"
 echo "|     report issues or bug to:latifulkabir@uky.edu     |"
@@ -329,6 +365,7 @@ then
 	    then
 		kill $PID
 	    fi
+	    sleep 3
 	    echo "Initializing alternative data taking program on it's own ..."
 	    /home/daq/n3HeDAQ/bin/n3he start
 	fi
@@ -336,6 +373,7 @@ then
 	echo "Sorry, Unable to fix the issue :) ."
     fi
 else
+    CheckFileSize
     echo "                           "
     echo "Finished the diagnosis !!"
     echo "Close the window or press ctrl+C to quit."
