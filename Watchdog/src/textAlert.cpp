@@ -13,8 +13,8 @@ bool automated=false;
 int auto_count=0;
 
 //------------Range of Critical values-----------------------
-double mag_upper=9.16;  //Optimal value last determined to be 9.12 Gauss
-double mag_lower=9.08;
+double mag_upper=9.25;  //Optimal value last determined to be 9.12 Gauss
+double mag_lower=9.00;
 double temp_upper=31;
 double temp_lower=16;
 
