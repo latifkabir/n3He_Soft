@@ -65,7 +65,7 @@ int Serial::CheckStatus()
   serial_fd = open(serial_portname, O_RDWR | O_NONBLOCK | O_NDELAY);
   if (serial_fd < 0)
   {
-    fprintf(stderr,"Cannot open serial port '%s': %s\n",
+    fprintf(stderr,"\nCannot open serial port '%s': %s\n",
             serial_portname,strerror(errno));
     return 1;
   }

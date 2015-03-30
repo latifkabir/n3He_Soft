@@ -15,4 +15,8 @@ textAlert.sh
 *.toc
 .fuse_*
 pptx/
+lastTrans.txt
+magTemp.txt
+magData.txt
+tempData.txt
 

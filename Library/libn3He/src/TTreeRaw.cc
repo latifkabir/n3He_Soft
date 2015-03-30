@@ -49,8 +49,15 @@ void TTreeRaw::Init(int runNumber)
     int offsetDaq30=0;
 
 //-------------------Get The Data Path-----------------------------
+//On Picard
     dataPath=DATA_PATH;
-
+//On Basestar
+    // if(runNumber > 0 && runNumber < 23662)
+    // 	dataPath=DATA_PATH1;
+    // else if(runNumber > 23662)
+    // 	dataPath=DATA_PATH2;
+    // else
+    // 	dataPath=DATA_PATH1;
 //------------------Get the Leaf list-------------------------------
 
     DaqLeaf[0]=DAQ21_LEAF;

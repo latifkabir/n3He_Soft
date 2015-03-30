@@ -3,7 +3,7 @@ Encoding=UTF-8
 Name=Watchdog
 Comment=Watchdog
 Icon=/home/daq/Watchdog/bin/watchdog.jpg
-Exec=gnome-terminal --geometry=170x55+0+0 -t "Watchdog" -e "/home/daq/Watchdog/bin/watchdog"
+Exec=gnome-terminal --geometry=170x55+0+0 -t "Watchdog" -e "/home/daq/Watchdog/bin/RunWatchdog.sh"
 Terminal=false
 Type=Application
 Categories=Developer;Accessories;Accessibility;
