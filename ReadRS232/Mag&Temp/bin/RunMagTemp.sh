@@ -9,10 +9,10 @@ then
     echo "                    "
     echo "                    "
     echo "                    "
-    echo "                Seems like magTemp program is already renning."
+    echo "                Seems like magTemp program is already running."
     echo "                Running multiple of them at the same time is prohibited by its programmer."
     echo "                Please close the other one if you really need to start a fresh one."
-    echo "                Note there are multile workspaces on this computer.    "
+    echo "                Note there are multiple workspaces on this computer.    "
     echo "                    "
     sleep 600
 else
