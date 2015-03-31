@@ -7,7 +7,7 @@ CFLAGS=-c
 LDFLAGS=
 SOURCES=$(wildcard src/*.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=bin/watchdog
+EXECUTABLE=bin/n3HeWatchdog
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)

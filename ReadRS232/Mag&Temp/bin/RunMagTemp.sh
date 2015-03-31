@@ -16,5 +16,5 @@ then
     echo "                    "
     sleep 600
 else
-    /home/daq/ReadRS232/Mag&Temp/bin/magTemp
+    /home/daq/ReadRS232/Mag\&Temp/bin/magTemp
 fi

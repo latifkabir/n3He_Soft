@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ps -e | grep -w 'watchdog' >> /dev/null
+ps -e | grep -w 'n3HeWatchdog' >> /dev/null
 STATUS=$?
 
 if [ $STATUS == 0 ]
@@ -16,5 +16,5 @@ then
     echo "                    "
     sleep 600
 else
-    /home/daq/Watchdog/bin/watchdog
+    /home/daq/Watchdog/bin/n3HeWatchdog
 fi
