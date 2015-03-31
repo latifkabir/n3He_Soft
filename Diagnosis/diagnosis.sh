@@ -311,7 +311,27 @@ CheckFileSize()
 	echo "DAQ24 data file size: $SIZE24 Bytes" 
 	SIZE30=$(ls -l $dfile5 | awk '{print $5}')
 	echo "DAQ30 data file size: $SIZE30 Bytes" 
-    fi    
+    fi
+
+    SIZE=0
+
+    if [ $SIZE21 -gt $SIZE22 ]
+    then
+	SIZE=$SIZE21
+    else
+	SIZE=$SIZE22
+    fi     
+
+    if [ $SIZE23 -gt $SIZE ]
+    then
+	SIZE=$SIZE23
+    fi     
+
+    if [ $SIZE24 -gt $SIZE ]
+    then
+	SIZE=$SIZE24
+    fi     
+    SIZED=`expr $SIZE * 5.41666666667`
 }
 
 echo "--------------------------------------------------------"

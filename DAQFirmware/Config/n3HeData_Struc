@@ -27,3 +27,37 @@ Dirty DAQ file seize (after process) : 25000 T0 x 1625 samples x 4 Bytes per sam
 When file size is set in DAQ it must be in Bytes (i.e. exact up to Bytes).
 
 The Dirty factor is=1300/240 (keep all decimal places).
+
+
+==============================
+Calculating Dynamic Offset:
+==============================
+For dirty DAQ connection:
+  Batch Panel ch 26 ---->ACD ch 5 (+1) (M1 Signal)
+  Batch panel ch 27 ---->ADC ch 6 (+1) (RFSF Signal)
+
+For calculation offset:
+We skip the first four events to avoid double header issue (and also first two events are not reliable.)
+In Clean data look for 3330 (on ADC ch 6) then revert back 6 channels. Note the number 3330 = 832x4 + 2 .
+In Dirty data look for 6650(on ADC ch 1), then revert back 1 channel. Note the number 6650 = 1662 x 4 + 2
+
+Clean: number of samples per event =832 , Note 832= (834 - 2)
+Dirty: number  of samples per event = 1662, Note 1662=(1664 - 2)
+
+where the offset 2 arises from the fact that ADC sample count registry starts fron 2 in the header.
+Expected  Offset in perfect data set:
+Clean = (9606 - 6)= 9600
+Dirty = (13001 -1)= 13000
+
+When double trigger happens, it will be , clean: 9606+- n x 48 and dirty: 1300+- n x 2 
+where n= number of double trigger occerence, typically 1 or 2.
+
+To get number of entries,
+clean =(number of samples -2)/832 (+1 to match ADC reported value)
+dirty =(number of samples -2)/ (+1 to match ADC reported value)
+
+So number of entries(events) in the root tree = (number of events in the data file - 4 ) (In data set without problem).
+
+
+
+
