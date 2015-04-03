@@ -36,7 +36,7 @@ dfile5=/home/daq/DATA/data-30
 CheckStatus()
 {
     echo "Checking if all files are in place ..."
-    if [ -f $file1 ] && [ -f $file2 ] && [ -f $file3 ] && [ -f $file4 ]
+    if [ -e $file1 ] && [ -e $file2 ] && [ -e $file3 ] && [ -e $file4 ]
     then
 	echo "Found all files are in place"
     else
@@ -226,7 +226,7 @@ DiagnoseActivity()
     then
 	ACTIVITY=0
 	echo "              "
-	echo "Problem detected. Seems like I am capable to handle it."
+	echo "PROBLEM detected. Seems like I am capable to handle it."
 	echo "              "
 	if [ $AUTO == 'auto' ]
 	then
@@ -270,7 +270,7 @@ DiagnoseConfig()
     if [ ${MIS[0]} == 0 ] || [ ${MIS[1]} == 0 ] || [ ${MIS[2]} == 0 ] || [ ${MIS[3]} == 0 ] || [ ${MIS[4]} == 0 ]
     then
 	echo "               "
-	echo "Problem detected. Seems like I am capable to handle it."
+	echo "PROBLEM detected. Seems like I am capable to handle it."
 	echo "               "
 	if [ $AUTO == 'auto' ]
 	then
@@ -298,7 +298,7 @@ DiagnoseConfig()
 
 CheckFileSize()
 {
-    if [ -f $dfile1 ] && [ -f $dfile2 ] && [ -f $dfile3 ] && [ -f $dfile4 ] && [ -f $dfile5 ]
+    if [ -e $dfile1 ] && [ -e $dfile2 ] && [ -e $dfile3 ] && [ -e $dfile4 ] && [ -e $dfile5 ]
     then
 	echo "                                      "
 	echo "Now Checking file size consistancy ..."
@@ -333,69 +333,79 @@ CheckFileSize()
 	    SIZE=$SIZE24
 	fi     
 
-	SIZED=`expr $SIZE \* 5.41666666667`
-	SIZEC=`expr $SIZED - 5000000`
-	SIZER=`expr $SIZE - 5000000`
+	if [ $SIZE -gt 5000000 ]
+	then
+	    SIZED=$(echo "($SIZE*5.41666666667)/1" | bc)
+	    SIZEC=`expr $SIZED - 5000000`
+	    SIZER=`expr $SIZE - 5000000`
 
-	if [ $SIZER -gt $SIZE21 ]
-	then
-	    echo "Unexpected file size. Problem with DAQ 21. ---PROBLEM"
-	    MIS[0]=0
-	fi
-	
-	if [ $SIZER -gt $SIZE22 ]
-	then
-	    echo "Unexpected file size. Problem with DAQ 22. ---PROBLEM"
-	    MIS[1]=0
-	fi
-	
-	if [ $SIZER -gt $SIZE23 ]
-	then
-	    echo "Unexpected file size. Problem with DAQ 23. ---PROBLEM"
-	    MIS[2]=0
-	fi     
-
-	if [ $SIZER -gt $SIZE24 ]
-	then
-	    echo "Unexpected file size. Problem with DAQ 24. ---PROBLEM"
-	    MIS[3]=0
-	fi   
-
-	if [ $SIZEC -gt $SIZE30 ]
-	then
-	    echo "Unexpected file size. Problem with DAQ 30. ---PROBLEM"
-	    MIS[4]=0
-	fi     
-
-	if [ ${MIS[0]} == 0 ] || [ ${MIS[1]} == 0 ] || [ ${MIS[2]} == 0 ] || [ ${MIS[3]} == 0 ] || [ ${MIS[4]} == 0 ]
-	then
-	    echo "               "
-	    echo "Problem detected. Seems like I am capable to handle it."
-	    echo "               "
-	    if [ $AUTO == 'auto' ]
+	    if [ $SIZER -gt $SIZE21 ]
 	    then
-		INPUT='y'
-	    else
-		echo "If you want me to fix the issue press enter 'y', Otherwise enter 'n'"
-		read INPUT
+		echo "             "
+		echo "Unexpected file size. Problem with DAQ 21. ---PROBLEM"
+		MIS[0]=0
 	    fi
-
-	    if [ $INPUT == 'y' ]
+	    
+	    if [ $SIZER -gt $SIZE22 ]
 	    then
-		SoftReboot
-		SR_ATTEMPT=`expr $SR_ATTEMPT + 1` 
+		echo "             "
+		echo "Unexpected file size. Problem with DAQ 22. ---PROBLEM"
+		MIS[1]=0
+	    fi
+	    
+	    if [ $SIZER -gt $SIZE23 ]
+	    then
+		echo "             "
+		echo "Unexpected file size. Problem with DAQ 23. ---PROBLEM"
+		MIS[2]=0
+	    fi     
+
+	    if [ $SIZER -gt $SIZE24 ]
+	    then
+		echo "             "
+		echo "Unexpected file size. Problem with DAQ 24. ---PROBLEM"
+		MIS[3]=0
+	    fi   
+
+	    if [ $SIZEC -gt $SIZE30 ]
+	    then
+		echo "             "
+		echo "Unexpected file size. Problem with DAQ 30. ---PROBLEM"
+		MIS[4]=0
+	    fi     
+
+	    if [ ${MIS[0]} == 0 ] || [ ${MIS[1]} == 0 ] || [ ${MIS[2]} == 0 ] || [ ${MIS[3]} == 0 ] || [ ${MIS[4]} == 0 ]
+	    then
+		echo "               "
+		echo "PROBLEM detected. Seems like I am capable to handle it."
+		echo "               "
+		if [ $AUTO == 'auto' ]
+		then
+		    INPUT='y'
+		else
+		    echo "If you want me to fix the issue press enter 'y', Otherwise enter 'n'"
+		    read INPUT
+		fi
+
+		if [ $INPUT == 'y' ]
+		then
+		    SoftReboot
+		    SR_ATTEMPT=`expr $SR_ATTEMPT + 1` 
+		else
+		    echo "                           "
+		    echo "Please Fix the above issues yourself and then run the diagnosis again."
+		    SUCCESS_B=1
+		fi
 	    else
-		echo "                           "
-		echo "Please Fix the above issues yourself and then run the diagnosis again."
+		echo "               "
+		echo "The data file sizes make sense. --OK"
 		SUCCESS_B=1
 	    fi
-	else
-	    SUCCESS_B=1
 	fi
     else
 	SUCCESS_B=1    
     fi
-    LOOP=`expr $LOOP + 1` 
+    # LOOP=`expr $LOOP + 1` 
 }
 
 echo "--------------------------------------------------------"
@@ -415,13 +425,17 @@ do
 	DiagnoseConfig
 	if [ $CHECK_FS == 1 ]
 	then
-	    SUCCESS_B=0 
-	    CheckFileSize
+	    SUCCESS_B=0
+	    if [ $attempt == 1 ]
+	    then 
+		CheckFileSize
+	    fi
 	fi
     fi
 
     if [ $SR_ATTEMPT -gt 0 ] || [ $RP_ATTEMPT -gt 0 ]
     then
+	echo "                                "
 	echo "Checking the Activity and Configuration after the fixes..."
 	DiagnoseActivity
 	if [ $ACTIVITY == 1 ]
@@ -440,7 +454,7 @@ do
     fi
 done
 
-if [ $LOOP -gt 3 ]
+if [ $LOOP -ge 3 ]
 then
     if [ $SUCCESS_A == 1 ] && [ $SUCCESS_B == 1 ]
     then
