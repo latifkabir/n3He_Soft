@@ -19,6 +19,7 @@ SR_ATTEMPT=0
 RP_ATTEMPT=0
 SUCCESS_A=0
 SUCCESS_B=0
+CHECK_FS=0
 LOOP=0
 
 file1=/home/daq/Diagnosis/CurrentConfig
@@ -248,8 +249,8 @@ DiagnoseActivity()
     else
 	ACTIVITY=1
 	SUCCESS_A=1
-	LOOP=`expr $LOOP + 1` 
     fi  
+    LOOP=`expr $LOOP + 1` 
 }
 
 DiagnoseConfig()
@@ -290,8 +291,9 @@ DiagnoseConfig()
 	fi
     else
 	SUCCESS_B=1
-	LOOP=`expr $LOOP + 1` 
+	CHECK_FS=1
     fi    
+    LOOP=`expr $LOOP + 1` 
 }
 
 CheckFileSize()
@@ -311,27 +313,89 @@ CheckFileSize()
 	echo "DAQ24 data file size: $SIZE24 Bytes" 
 	SIZE30=$(ls -l $dfile5 | awk '{print $5}')
 	echo "DAQ30 data file size: $SIZE30 Bytes" 
-    fi
 
-    SIZE=0
+	SIZE=0
 
-    if [ $SIZE21 -gt $SIZE22 ]
-    then
-	SIZE=$SIZE21
+	if [ $SIZE21 -gt $SIZE22 ]
+	then
+	    SIZE=$SIZE21
+	else
+	    SIZE=$SIZE22
+	fi     
+
+	if [ $SIZE23 -gt $SIZE ]
+	then
+	    SIZE=$SIZE23
+	fi     
+
+	if [ $SIZE24 -gt $SIZE ]
+	then
+	    SIZE=$SIZE24
+	fi     
+
+	SIZED=`expr $SIZE \* 5.41666666667`
+	SIZEC=`expr $SIZED - 5000000`
+	SIZER=`expr $SIZE - 5000000`
+
+	if [ $SIZER -gt $SIZE21 ]
+	then
+	    echo "Unexpected file size. Problem with DAQ 21. ---PROBLEM"
+	    MIS[0]=0
+	fi
+	
+	if [ $SIZER -gt $SIZE22 ]
+	then
+	    echo "Unexpected file size. Problem with DAQ 22. ---PROBLEM"
+	    MIS[1]=0
+	fi
+	
+	if [ $SIZER -gt $SIZE23 ]
+	then
+	    echo "Unexpected file size. Problem with DAQ 23. ---PROBLEM"
+	    MIS[2]=0
+	fi     
+
+	if [ $SIZER -gt $SIZE24 ]
+	then
+	    echo "Unexpected file size. Problem with DAQ 24. ---PROBLEM"
+	    MIS[3]=0
+	fi   
+
+	if [ $SIZEC -gt $SIZE30 ]
+	then
+	    echo "Unexpected file size. Problem with DAQ 30. ---PROBLEM"
+	    MIS[4]=0
+	fi     
+
+	if [ ${MIS[0]} == 0 ] || [ ${MIS[1]} == 0 ] || [ ${MIS[2]} == 0 ] || [ ${MIS[3]} == 0 ] || [ ${MIS[4]} == 0 ]
+	then
+	    echo "               "
+	    echo "Problem detected. Seems like I am capable to handle it."
+	    echo "               "
+	    if [ $AUTO == 'auto' ]
+	    then
+		INPUT='y'
+	    else
+		echo "If you want me to fix the issue press enter 'y', Otherwise enter 'n'"
+		read INPUT
+	    fi
+
+	    if [ $INPUT == 'y' ]
+	    then
+		SoftReboot
+		SR_ATTEMPT=`expr $SR_ATTEMPT + 1` 
+	    else
+		echo "                           "
+		echo "Please Fix the above issues yourself and then run the diagnosis again."
+		SUCCESS_B=1
+	    fi
+	else
+	    SUCCESS_B=1
+	fi
     else
-	SIZE=$SIZE22
-    fi     
-
-    if [ $SIZE23 -gt $SIZE ]
-    then
-	SIZE=$SIZE23
-    fi     
-
-    if [ $SIZE24 -gt $SIZE ]
-    then
-	SIZE=$SIZE24
-    fi     
-    SIZED=`expr $SIZE * 5.41666666667`
+	SUCCESS_B=1    
+    fi
+    LOOP=`expr $LOOP + 1` 
 }
 
 echo "--------------------------------------------------------"
@@ -349,6 +413,11 @@ do
     if [ $ACTIVITY == 1 ]
     then
 	DiagnoseConfig
+	if [ $CHECK_FS == 1 ]
+	then
+	    SUCCESS_B=0 
+	    CheckFileSize
+	fi
     fi
 
     if [ $SR_ATTEMPT -gt 0 ] || [ $RP_ATTEMPT -gt 0 ]
@@ -371,7 +440,7 @@ do
     fi
 done
 
-if [ $LOOP -gt 2 ]
+if [ $LOOP -gt 3 ]
 then
     if [ $SUCCESS_A == 1 ] && [ $SUCCESS_B == 1 ]
     then
@@ -385,7 +454,7 @@ then
 	    then
 		kill $PID
 	    fi
-	    sleep 3
+	    sleep 5
 	    echo "Initializing alternative data taking program on it's own ..."
 	    /home/daq/n3HeDAQ/bin/n3he start
 	fi
@@ -393,7 +462,6 @@ then
 	echo "Sorry, Unable to fix the issue :) ."
     fi
 else
-    CheckFileSize
     echo "                           "
     echo "Finished the diagnosis !!"
     echo "Close the window or press ctrl+C to quit."
