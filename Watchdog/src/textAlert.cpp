@@ -45,16 +45,12 @@ int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_
 	if(alert_enabled[0])
 	{
 	    SendAlert(msg);
-
 	    if(automated && auto_count<3)
 	    {
 		int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\" -e \"/home/daq/Diagnosis/diagnosis.sh auto\"");
-		msg="Initiated alternative automated n3He data taking process.";
-		cout<<"\n\t\t"<<msg<<endl;
-		SendAlert(msg);
+		cout<<"\n\t\tInitiated alternative automated n3He data taking process."<<endl;
 		auto_count++;
 	    }
-
 	    alert_enabled[0]=false;
 	}	
     }

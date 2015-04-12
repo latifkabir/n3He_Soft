@@ -378,6 +378,7 @@ CheckFileSize()
 	    then
 		echo "               "
 		echo "PROBLEM detected. Seems like I am capable to handle it."
+		echo "Discard this PROBLEM if you just rebooted this DAQ & have not resumed data taking process."
 		echo "               "
 		if [ $AUTO == 'auto' ]
 		then
@@ -470,6 +471,7 @@ then
 	    fi
 	    sleep 5
 	    echo "Initializing alternative data taking program on it's own ..."
+	    /home/daq/Watchdog/bin/textAlert.sh "Initiated alternative automated n3He data taking process."
 	    /home/daq/n3HeDAQ/bin/n3he start
 	fi
     else

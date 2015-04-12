@@ -172,6 +172,19 @@ with the first sample of any event being checksum and sample number i.e.\\
 {\color{red} \rule{\linewidth}{1mm} }
  
 \newpage
+\section{ADC to Volt conversion}
+The resolution and device range of a DAQ device determine the smallest
+detectable change in the input signal. We can calculate the smallest
+detectable change,called the precision(code width), using the following formula.
+$$Precision =\frac{ADC Range}{2^{resolution}}$$
+We have a 24 bit ADC with +10 V to -10 V range.
+$$Precision =\frac{20 Volt}{2^{24}}$$
+Thus $1.192092896\times10^{-6}$ will be the conversion factor from ADC value to volt. Also to throw away the least significant 8 bit out of 32 bit, you can do $ADC Count>>8$ in your analysis code. 
+
+\noindent
+{\color{red} \rule{\linewidth}{1mm} }
+ 
+\newpage
 \section{The ADC channel to wire map}
 Out of 48 clean ADC channels, only 36 ADC channels are connected to the pre-amps.
 Eventually the ADC channel to detector wire map to be handled by the library. However following is the map for reference:
