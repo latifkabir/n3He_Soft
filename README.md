@@ -12,7 +12,7 @@ This repository is divided into several sub directories based on the category:
 * ReadRS232 v1.0 [(download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
 * Watchdog  v1.0 [(download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
 * Diagnosis v1.0 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
-* Manual v0 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
+* Manual v1.0 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 [Release Notes][14]
 
 Please read below to know what's inside each category.
@@ -27,7 +27,9 @@ Contains
    * The DAQ control program using command line.
    * The DAQ GUI control program.
 
-![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_demo.png "n3HeDAQ Control Program")
+![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_demo.png "n3HeDAQ GUI Control Program")
+
+![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_commandline.png "n3HeDAQ Control Program in commandline")
 
 
 Library v1.2 [(download)][3]
@@ -77,7 +79,7 @@ Diagnosis v1.0 [(download)][11]
 ----------
 The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
 
-Manual v0 
+Manual v1.0 
 ------------
 DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 
@@ -101,5 +103,6 @@ Last Updated on 3/11/15
 [12]:https://github.com/latifkabir/n3He_Soft/raw/master/Manual/DAQManual.pdf
 [13]:https://github.com/latifkabir/n3He_Soft/raw/master/Manual/AnalysisGuide.pdf
 [14]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReleaseNotes
+[15]:https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_commandline.png
 
 	 

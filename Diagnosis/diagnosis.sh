@@ -402,11 +402,12 @@ CheckFileSize()
 		echo "The data file sizes make sense. --OK"
 		SUCCESS_B=1
 	    fi
+	else
+	    SUCCESS_B=1    
 	fi
     else
 	SUCCESS_B=1    
     fi
-    # LOOP=`expr $LOOP + 1` 
 }
 
 echo "--------------------------------------------------------"

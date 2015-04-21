@@ -5,6 +5,7 @@
 \title{\emph{\huge\textbf{Startup Guide \\ for \\$n^3He$ Analysis}}
 }
 \author{\\Latiful Kabir\\
+Version:1.0
 }
 
 \usepackage{listings}
@@ -172,14 +173,19 @@ with the first sample of any event being checksum and sample number i.e.\\
 {\color{red} \rule{\linewidth}{1mm} }
  
 \newpage
-\section{ADC to Volt conversion}
+\section{ADC count to Volt conversion and time bin}
 The resolution and device range of a DAQ device determine the smallest
 detectable change in the input signal. We can calculate the smallest
 detectable change,called the precision(code width), using the following formula.
 $$Precision =\frac{ADC Range}{2^{resolution}}$$
-We have a 24 bit ADC with +10 V to -10 V range.
-$$Precision =\frac{20 Volt}{2^{24}}$$
-Thus $1.192092896\times10^{-6}$ will be the conversion factor from ADC value to volt. Also to throw away the least significant 8 bit out of 32 bit, you can do $ADC Count>>8$ in your analysis code. 
+In our ADC each sample is stored in 32 bit and the ADC has a range of +10 V to -10 V.
+$$Precision =\frac{20 Volt}{2^{32}}$$
+Thus $4.656612873\times10^{-9}$ will be the conversion factor from ADC value to volt. Also to throw away the least significant 8 bit out of 32 bit, you can do $ADC Count>>8$ in your analysis code. \\
+
+The time bin depends on the sample rate at which the DAQ is taking data. For the n3He experiment we run the clean DAQs at 50 KHz sample rate and dirty DAQs at 100KHz. Again for clean DAQs 16 samples are averaged to give one sample and for dirty DAQ no averaging is used. Thus for clean (detector) data each time bin corresponds to: 
+$$16\times\frac{1}{50KHz}=320\mu sec$$
+And for dirty data it is 
+$$\frac{1}{100KHz} = 10 \mu sec$$
 
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }
@@ -354,7 +360,7 @@ Now the library always skips the first four or five events since those might NOT
 Sample online analysis on basestar:
 \begin{lstlisting}
 //OnlineAnalysis.C
-//Demo Online Analysis using n3He Library.(By Online I mean  'from CINT, doing analysis on the fly, less thoughtful but preferred by in some conditions')
+//Demo Online Analysis using n3He Library.(By Online I mean  'from CINT, doing analysis on the fly, less thoughtful but preferred in some conditions')
 //Author: Latiful Kabir
 //Date: 12/23/14
 
@@ -416,7 +422,7 @@ void OfflineAnalysis(){
   
   //Get the branch you want to analyze
   TBranch *b=t->GetBranch("b21");
-  b->SetAddress(&md.header[ch]);
+  b->SetAddress(&md.header[0]);
 
 //--------------------------------------------------
 
@@ -465,8 +471,9 @@ public:
 
    TBranch *b21,*b22,*b23,*b24,*b30;
 
-     TTreeRaw(int runNumber);
-    ~TTreeRaw();
+   void Init(int runNumber);
+   TTreeRaw(int runNumber);
+   ~TTreeRaw();
 
 \end{lstlisting}
 This list will be updated gradually as new functionality is added to the TTreeRaw class.
