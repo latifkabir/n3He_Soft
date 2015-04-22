@@ -27,8 +27,10 @@ Contains
    * The DAQ control program using command line.
    * The DAQ GUI control program.
 
+* n3HeDAQ GUI Control Program Screenshot:
 ![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_demo.png "n3HeDAQ GUI Control Program")
 
+* n3HeDAQ Control Program in commandline Screenshot:
 ![](https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_commandline.png "n3HeDAQ Control Program in commandline")
 
 

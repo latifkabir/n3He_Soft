@@ -4,7 +4,8 @@
 
 
 
-#define ES_MAGIC 0xaa55f154
+#define ES_MAGIC1 0xaa55f154
+#define ES_MAGIC2 0xaa55f15f
 
 
 #define NCHAN 24
@@ -79,22 +80,41 @@ static unsigned Crc32_ComputeBuf(unsigned inCrc32, const void *buf, size_t bufLe
 
 
 
-bool is_es(Sample* es)
+bool is_es1(Sample* es)
 {
     return 
-	es->data[0] == ES_MAGIC &&
-	es->data[1] == ES_MAGIC &&
-	es->data[2] == ES_MAGIC &&
-	es->data[3] == ES_MAGIC &&
-	es->data[8] == ES_MAGIC &&
-	es->data[9] == ES_MAGIC &&
-	es->data[10] == ES_MAGIC &&
-	es->data[11] == ES_MAGIC &&
-	es->data[16] == ES_MAGIC &&
-	es->data[17] == ES_MAGIC &&
-	es->data[18] == ES_MAGIC &&
-	es->data[19] == ES_MAGIC;
+	es->data[0] == ES_MAGIC1 &&
+	es->data[1] == ES_MAGIC1 &&
+	es->data[2] == ES_MAGIC1 &&
+	es->data[3] == ES_MAGIC1 &&
+	es->data[8] == ES_MAGIC1 &&
+	es->data[9] == ES_MAGIC1 &&
+	es->data[10] == ES_MAGIC1 &&
+	es->data[11] == ES_MAGIC1 &&
+	es->data[16] == ES_MAGIC1 &&
+	es->data[17] == ES_MAGIC1 &&
+	es->data[18] == ES_MAGIC1 &&
+	es->data[19] == ES_MAGIC1;
 }
+
+bool is_es2(Sample* es)
+{
+    return 
+	es->data[0] == ES_MAGIC2 &&
+	es->data[1] == ES_MAGIC2 &&
+	es->data[2] == ES_MAGIC2 &&
+	es->data[3] == ES_MAGIC2 &&
+	es->data[8] == ES_MAGIC2 &&
+	es->data[9] == ES_MAGIC2 &&
+	es->data[10] == ES_MAGIC2 &&
+	es->data[11] == ES_MAGIC2 &&
+	es->data[16] == ES_MAGIC2 &&
+	es->data[17] == ES_MAGIC2 &&
+	es->data[18] == ES_MAGIC2 &&
+	es->data[19] == ES_MAGIC2;
+}
+
+
 int processPulse(const char* rawname, Sample* es1,Sample* es2)
 {
     unsigned my_value1=0;
@@ -145,13 +165,13 @@ int process(const char* rawname)
 	switch(state)
 	{
 	case LOOK_FIRST_ES:
-	    if (is_es(sample1))
+	    if (is_es1(sample1))
 	    {
 		state = LOOK_SECOND_ES;
 		break;
 	    }
 	case LOOK_SECOND_ES:
-	    if (is_es(sample1) && is_es(sample2))
+	    if (is_es1(sample1) && is_es2(sample2))
 	    {
 		processPulse(rawname, sample1,sample2);
 	    }
