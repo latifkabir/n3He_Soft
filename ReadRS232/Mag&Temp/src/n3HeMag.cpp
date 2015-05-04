@@ -204,7 +204,7 @@ int ReadField(FluxGate &p,double *fValue)
 	    usleep(sleep_time);
 	    fValue[7]=p.ReadFG(7);
 
-	    if(fValue[0]==fValue[1]==fValue[2]==fValue[3]==fValue[4]==fValue[5]==-10)
+	    if(fValue[0]==fValue[1] && fValue[2]==fValue[3] && fValue[3]==fValue[0] && fValue[0]==-10)
 		return -1;
 
 	    return 0;

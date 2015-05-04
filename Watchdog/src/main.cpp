@@ -153,7 +153,7 @@ int main(int argc,char *argv[])
 	    cout<<"\t\t-------------------WATCHDOG SYSTEM IN SLEEP---------------------"<<endl;
 	    cout<<"\t\t-------------------WATCHDOG SYSTEM IN SLEEP---------------------"<<endl;
 	    cout<<"\t\t-------------------DO NOT CLOSE THE PROGRAM---------------------"<<endl;
-	    loop=0;
+	    loop=-1;
 	    sleep(450);
 	}
 

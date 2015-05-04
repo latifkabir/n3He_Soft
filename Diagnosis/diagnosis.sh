@@ -82,7 +82,7 @@ PingDAQ()
 
 GetConfig()
 {
-    ssh root@192.168.0.$1 'PATH=$PATH:/usr/local/bin/ 
+    ssh -o ConnectTimeout=10 root@192.168.0.$1 'PATH=$PATH:/usr/local/bin/ 
 cat /etc/acq400/1/rgm
 cat /etc/acq400/1/rtm_translen
 cat /etc/acq400/1/hi_res_mode
@@ -117,27 +117,33 @@ CheckConfig()
     echo "Reading Current Config"
     GetConfig $1 > /home/daq/Diagnosis/CurrentConfig
 
-    echo "Now Comparing two configs"
-    if [ $1 -eq 30 ]
+    TIMED_OUT=$?
+    if [ $TIMED_OUT -eq 0 ]
     then
-	diff $file1 $file3 &> /dev/null
+	echo "Now Comparing two configs"
+	if [ $1 -eq 30 ]
+	then
+	    diff $file1 $file3 &> /dev/null
+	else
+	    diff $file1 $file2 &> /dev/null
+	fi
+	STSTUS2=$?
+	if [ $STSTUS2 -eq 0 ]
+	then
+	    echo "The configuration for DAQ $1 is as expected. --OK"
+	    MIS[$INDEX2]=1
+	else
+	    echo "                   "
+	    echo "PROBLEM with DAQ $1 Configuration Detected. --PROBLEM"
+	    echo "                    "
+	    echo "Following is the corrupted config for DAQ $1"
+	    echo "---------------------------------------------------"
+	    cat $file1
+	    echo "---------------------------------------------------"
+	    MIS[$INDEX2]=0
+	fi
     else
-	diff $file1 $file2 &> /dev/null
-    fi
-    STSTUS2=$?
-    if [ $STSTUS2 -eq 0 ]
-    then
-	echo "The configuration for DAQ $1 is as expected. --OK"
 	MIS[$INDEX2]=1
-    else
-	echo "                   "
-	echo "PROBLEM with DAQ $1 Configuration Detected. --PROBLEM"
-	echo "                    "
-	echo "Following is the corrupted config for DAQ $1"
-	echo "---------------------------------------------------"
-	cat $file1
-	echo "---------------------------------------------------"
-	MIS[$INDEX2]=0
     fi
 
 }
@@ -145,7 +151,7 @@ CheckConfig()
 RebootDAQ()
 {
     echo "Now rebooting the DAQ $1"
-    ssh root@192.168.0.$1 'PATH=$PATH:/usr/local/bin/ 
+    ssh -o ConnectTimeout=10 root@192.168.0.$1 'PATH=$PATH:/usr/local/bin/ 
     reboot'
 }
 
