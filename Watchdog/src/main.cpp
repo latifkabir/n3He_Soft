@@ -15,7 +15,8 @@ using namespace std;
 
 int last_run=0;
 extern bool automated;
- 
+int auto_count=0;
+
 void signalHandler( int signum )
 {
     exit(signum);
@@ -135,7 +136,10 @@ int main(int argc,char *argv[])
 	{
 	    alert_enabled[0]=true;      //Enable DAQ status text alert
 	    alert_enabled[1]=true;       //Enable Magnetic field status text alert
-	    alert_enabled[3]=true;       //Enable Temperature status text alert 
+	    alert_enabled[2]=true;       //Enable Temperature status text alert
+	    
+	    if(loop%20==0)
+		auto_count=0; 
 	}
 
 	if(up_status && run_status)

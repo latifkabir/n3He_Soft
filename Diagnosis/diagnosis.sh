@@ -21,6 +21,7 @@ SUCCESS_A=0
 SUCCESS_B=0
 CHECK_FS=0
 LOOP=0
+FROZEN=0
 
 file1=/home/daq/Diagnosis/CurrentConfig
 file2=/home/daq/Diagnosis/ExpectedClean
@@ -116,8 +117,8 @@ CheckConfig()
 
     echo "Reading Current Config"
     GetConfig $1 > /home/daq/Diagnosis/CurrentConfig
-
     TIMED_OUT=$?
+
     if [ $TIMED_OUT -eq 0 ]
     then
 	echo "Now Comparing two configs"
@@ -143,9 +144,9 @@ CheckConfig()
 	    MIS[$INDEX2]=0
 	fi
     else
-	MIS[$INDEX2]=1
+	LIVE[$INDEX2]=0
+	FROZEN=1
     fi
-
 }
 
 RebootDAQ()
@@ -227,7 +228,10 @@ DiagnoseActivity()
 	echo "                           "
 	PingDAQ $DAQ
     done
+}
 
+SolveFrozenActivity()
+{
     if [ ${LIVE[0]} == 0 ] || [ ${LIVE[1]} == 0 ] || [ ${LIVE[2]} == 0 ] || [ ${LIVE[3]} == 0 ] || [ ${LIVE[4]} == 0 ]
     then
 	ACTIVITY=0
@@ -295,6 +299,9 @@ DiagnoseConfig()
 	    echo "Please Fix the above issues yourself and then run the diagnosis again."
 	    SUCCESS_B=1
 	fi
+    elif [ $FROZEN -eq 1 ]
+    then
+	SolveFrozenActivity
     else
 	SUCCESS_B=1
 	CHECK_FS=1
@@ -409,7 +416,7 @@ CheckFileSize()
 		SUCCESS_B=1
 	    fi
 	else
-	    SUCCESS_B=1    
+	    SUCCESS_B=1
 	fi
     else
 	SUCCESS_B=1    
@@ -428,6 +435,7 @@ echo "                           "
 for attempt in 1 2 3
 do
     DiagnoseActivity
+    SolveFrozenActivity
     if [ $ACTIVITY == 1 ]
     then
 	DiagnoseConfig
@@ -446,6 +454,7 @@ do
 	echo "                                "
 	echo "Checking the Activity and Configuration after the fixes..."
 	DiagnoseActivity
+	SolveFrozenActivity
 	if [ $ACTIVITY == 1 ]
 	then
 	    DiagnoseConfig
@@ -478,7 +487,7 @@ then
 	    fi
 	    sleep 5
 	    echo "Initializing alternative data taking program on it's own ..."
-	    /home/daq/Watchdog/bin/textAlert.sh "Initiated alternative automated n3He data taking process."
+	    /home/daq/Watchdog/bin/textAlert.sh "Initiated alternative automated n3He data taking process"
 	    /home/daq/n3HeDAQ/bin/n3he start
 	fi
     else

@@ -10,7 +10,7 @@
 using namespace std;
 
 bool automated=false;
-int auto_count=0;
+extern int auto_count; 
 
 //------------Range of Critical values-----------------------
 double mag_upper=9.25;  //Optimal value last determined to be 9.12 Gauss
@@ -45,12 +45,15 @@ int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_
 	if(alert_enabled[0])
 	{
 	    SendAlert(msg);
+
 	    if(automated && auto_count<3)
 	    {
-		int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\" -e \"/home/daq/Diagnosis/diagnosis.sh auto\"");
-		cout<<"\n\t\tInitiated alternative automated n3He data taking process."<<endl;
+		msg="Initiating alternative automated n3He data taking process... ...";
+		cout<<"\n\t\t"<<msg<<endl;
+		int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\" -e \"/home/daq/Diagnosis/diagnosis.sh auto\"");		
 		auto_count++;
 	    }
+
 	    alert_enabled[0]=false;
 	}	
     }
