@@ -146,7 +146,10 @@ void signalHandler( int signum )
 	fexit=true;
     }
     else
+    {
+	Sync(false,false); //Disable the trigger     
 	exit(signum);
+    }
 }
 
 void HandleTermination(int signum)  //Handle forced termination

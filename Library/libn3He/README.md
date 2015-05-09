@@ -16,10 +16,11 @@ Instructions for n3He Library
 
 6. If you put the rootlogon.C file in "macros" directory under Root installation directory, then the library will be loaded automatically 
 and step-4 is NOT necessary.
+If you do NOT have local version of ROOT, rather it's installed under root account(a shared version, which is the case for basestart by default), then just copy system.rootrc file from /usr/share/root to your home directory and rename it to .rootrc, Now add the directory having rootlogon.C file to the list of Unix.*.Root.MacroPath variable. 
 
 7. Now from your root script create a Tree by calling: TTreeRaw *my_tree = new TreeRaw(runNumber#) or Just TTreeRaw t(runNumber#)
 
-8. It will also print the tree and branch structure.
+8. It will also print the tree and branch structure when you do:my_tree->Print().
 
 9. Now do what ever analysis you want using my_tree.
 

@@ -268,8 +268,8 @@ lib3He is the analysis library for n3He experiment.
 \item  For analysis from a script if you include TTree.h file then you need not to do \textcolor{magenta}{gSystem$->$Load(``libTree'')}; Just load 
     \textcolor{magenta}{gSystem$->$Load(``libn3He.so'')}.  You need to give full path unless the directory is included in \textcolor{magenta}{LD\_LIBRARY\_PATH}.
 
-\item If you put the \textcolor{magenta}{rootlogon.C} file in \textcolor{magenta}{ macros } directory under Root installation directory, then the library will be loaded automatically and step-6 is NOT necessary.
-
+\item If you put the \textcolor{magenta}{rootlogon.C} file in \textcolor{magenta}{ macros } directory under Root installation directory, then the library will be loaded automatically and step-6 is NOT necessary.\\
+If you do NOT have local version of ROOT, rather it's installed under root account(a shared version, which is the case for basestart by default), then just copy system.rootrc file from /usr/share/root to your home directory and rename it to .rootrc, Now add the directory having rootlogon.C file to the list of Unix.*.Root.MacroPath variable. \\
 \item Now from your root script create a Tree by calling: \textcolor{magenta}{TTreeRaw ${\ast}my\_tree$ = new TreeRaw(runNumber\#)} or Just \textcolor{magenta}{TTreeRaw t(runNumber\#)}
 
 \item Do \textcolor{magenta}{$my\_tree->Print()$} to print the tree and branch structure.
@@ -308,13 +308,11 @@ Note: This version of the library works both for ROOT 5 and ROOT 6.
    in the same directory.  and then make a fresh shared binary files after you make any changes.
 
 \item Place .so file under \textcolor{magenta}{LD\_LIBRARY\_PATH}:
-   Now make sure the shared library (\textcolor{magenta}{libn3He.so}) file is in a directory under your \textcolor{magenta}{LD\_LIBRARY\_PATH}. 
+   Now make sure the shared library (\textcolor{magenta}{libn3He.so}) file is in a directory under your \textcolor{magenta}{LD\_LIBRARY\_PATH}. \\ 
 
-   OR, a more professional way is as follows:
-   Open \textcolor{magenta}{\*/libn3He/bin/thisn3He.sh} and define \textcolor{magenta}{n3HeROOT} path variable to the location where \textcolor{magenta}{libn3He} is located.
-   for example: \textcolor{magenta}{n3HeROOT=/home/siplu/libn3He/}
+  Alternatively, more convenient and  professional way is as follows:
    
-Now include command in your \textcolor{magenta}{.bashrc} file to run \textcolor{magenta}{thisn3He.sh} file each time you open the terminal. i.e. include the following lines:
+ Include command in your \textcolor{magenta}{.bashrc} file to run \textcolor{magenta}{thisn3He.sh} file each time you open the terminal. i.e. include the following lines:
 
 \begin{lstlisting}
 if [ -f path_to/libn3He/bin/thisn3He.sh ]; then
@@ -327,7 +325,7 @@ To produce a new binary file named \textcolor{magenta}{n3HeData}, go to n3HeData
   appropriate location for you and then do \textcolor{magenta}{make}. It will produce \textcolor{magenta}{n3HeData} binary file in the same directory. 
 
 \item Run the GUI:
-Now run the binary file \textcolor{magenta}{n3HeData} by doing \textcolor{magenta}{./n3HeData} from your recently compiled verson in \textcolor{magenta}{\*/n3He\_DAQ\_GUI/n3HeData/} .
+Now run the binary file \textcolor{magenta}{n3HeData} by doing \textcolor{magenta}{./n3HeData} from your recently compiled verson in \textcolor{magenta}{n3HeData/} .
 
 \item Modify the \textcolor{magenta}{.desktop} file (included one only for Ubuntu distribution) and \textcolor{magenta}{.sh} file in bin directory accordingly and place it in your desktop if you want to run the GUI just by double clicking from your desktop.
 

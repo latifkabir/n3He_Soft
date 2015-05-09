@@ -142,7 +142,7 @@ int main(int argc,char *argv[])
 		auto_count=0; 
 	}
 
-	if(up_status && run_status)
+	if(run_status)
 	{
 	    if(loop>1)
 		TextAlert(run_number,last_run,mag,temp,alert_enabled);

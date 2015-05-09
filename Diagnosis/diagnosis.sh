@@ -380,7 +380,7 @@ CheckFileSize()
 		MIS[3]=0
 	    fi   
 
-	    if [ $SIZEC -gt $SIZE30 ]
+	    if [ $SIZEC -gt $SIZE30 ] && [ $SIZE30 -ne 0 ]
 	    then
 		echo "             "
 		echo "Unexpected file size. Problem with DAQ 30. ---PROBLEM"
@@ -390,8 +390,9 @@ CheckFileSize()
 	    if [ ${MIS[0]} == 0 ] || [ ${MIS[1]} == 0 ] || [ ${MIS[2]} == 0 ] || [ ${MIS[3]} == 0 ] || [ ${MIS[4]} == 0 ]
 	    then
 		echo "               "
-		echo "PROBLEM detected. Seems like I am capable to handle it."
+		echo "PROBLEM detected."
 		echo "Discard this PROBLEM if you just rebooted this DAQ & have not resumed data taking process."
+		echo "Otherwise seems like I am capable to handle it.               "
 		echo "               "
 		if [ $AUTO == 'auto' ]
 		then
