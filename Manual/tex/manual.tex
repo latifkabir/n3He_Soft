@@ -142,6 +142,7 @@ mod2event2sample1Ch17 mod2event2sample1ch18 mod2event2sample1ch19 ..... ... ... 
 ....     ....             ....  ...           .................             ........................    .....
 
 Up to N number of events.
+
 \end{verbatim}    
 \endgroup
 
@@ -171,6 +172,8 @@ Up to N events.\\
 with the first sample of any event being checksum and sample number i.e.\\
      event1sample1ch0 = checksum.\\
      event1sample1ch1 = sample number.\\
+
+In the analysis the last event always to be skipped , since sometimes the data file might miss one or two time bins only for the last event of the run.
      
 \newpage     
 \begin{figure}[htb]
@@ -269,7 +272,7 @@ lib3He is the analysis library for n3He experiment.
     \textcolor{magenta}{gSystem$->$Load(``libn3He.so'')}.  You need to give full path unless the directory is included in \textcolor{magenta}{LD\_LIBRARY\_PATH}.
 
 \item If you put the \textcolor{magenta}{rootlogon.C} file in \textcolor{magenta}{ macros } directory under Root installation directory, then the library will be loaded automatically and step-6 is NOT necessary.\\
-If you do NOT have local version of ROOT, rather it's installed under root account(a shared version, which is the case for basestart by default), then just copy system.rootrc file from /usr/share/root to your home directory and rename it to .rootrc, Now add the directory having rootlogon.C file to the list of Unix.*.Root.MacroPath variable. \\
+If you do NOT have local version of ROOT, rather it's installed under root account(a shared version, which is the case for basestart by default), then just copy system.rootrc file from \textcolor{magenta}{/usr/share/root} to your home directory and rename it to \textcolor{magenta}{.rootrc}, Now add the directory having \textcolor{magenta}{rootlogon.C} file to the list of \textcolor{magenta}{Unix.*.Root.MacroPath} variable. \\
 \item Now from your root script create a Tree by calling: \textcolor{magenta}{TTreeRaw ${\ast}my\_tree$ = new TreeRaw(runNumber\#)} or Just \textcolor{magenta}{TTreeRaw t(runNumber\#)}
 
 \item Do \textcolor{magenta}{$my\_tree->Print()$} to print the tree and branch structure.

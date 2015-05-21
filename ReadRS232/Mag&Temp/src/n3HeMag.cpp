@@ -16,6 +16,7 @@ using namespace std;
 char response;
 int sleep_time=SLEEP_TIME;
 bool stop=false; //Flip if Ctrl+C is pressed
+double threshold=-9.98;
 
 int SignOn(bool &signon)
 {
@@ -206,11 +207,13 @@ int ReadField(FluxGate &p,double *fValue)
 
 	    if(fValue[0]==fValue[1] && fValue[2]==fValue[3] && fValue[3]==fValue[0] && fValue[0]==-10)
 		return -1;
+	    else if((fValue[0] < threshold) && (fValue[1] < threshold)  && (fValue[2] < threshold))
+		return -1;
 
 	    return 0;
 }
 
-//Handling ctrl+C signal to stop DAQ program smoothly/after finishing current run
+//Handling ctrl+C signal to stop the program smoothly/after finishing current run
 void signalHandler( int signum )
 {
     cout << "\n\nRequest to stop FluxGate received.Program will stop once current run finishes.Wait please ...\n\n";

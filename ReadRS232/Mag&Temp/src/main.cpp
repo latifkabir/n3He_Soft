@@ -94,6 +94,7 @@ int main(void)
 		    if(time_out==-1)
 		    {
 			restart=true;
+			signon=false;
 			loop=0;
 			break;
 		    }
