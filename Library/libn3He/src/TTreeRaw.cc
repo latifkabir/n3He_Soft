@@ -54,10 +54,12 @@ void TTreeRaw::Init(int runNumber)
 //On Basestar
     // if(runNumber > 0 && runNumber < 23662)
     // 	dataPath=DATA_PATH1;
-    // else if(runNumber > 23662)
+    // else if(runNumber > 23661 && runNumber <31840)
     // 	dataPath=DATA_PATH2;
+    // else if(runNumber > 31839)
+    // 	dataPath=DATA_PATH3;
     // else
-    // 	dataPath=DATA_PATH1;
+    // 	dataPath=DATA_PATH;
 //------------------Get the Leaf list-------------------------------
 
     DaqLeaf[0]=DAQ21_LEAF;

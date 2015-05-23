@@ -44,6 +44,8 @@ int TransferData(int rnumber,int last_trans)
 	time(&end);
 	tDiff=difftime(end,start);
 	sleep_time=(sleep_time - (int)tDiff);
+	if(sleep_time<0)
+	    sleep_time=0;
  
 	if(!tstatus)  //0 tstatus means successfully transferred
 	{	
@@ -72,6 +74,8 @@ int TransferData(int rnumber,int last_trans)
 	    time(&end);
 	    tDiff=difftime(end,start);
 	    sleep_time=(sleep_time - (int)tDiff);
+	    if(sleep_time<0)
+		sleep_time=0;
 
 	    if(!tstatus)
 	    {
