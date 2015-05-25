@@ -5,7 +5,7 @@
 \title{\emph{\huge\textbf{Startup Guide \\ for \\$n^3He$ Analysis}}
 }
 \author{\\Latiful Kabir\\
-Version:1.0
+Version:1.2
 }
 
 \usepackage{listings}
@@ -160,7 +160,7 @@ For Dirty DAQ the data is taken in 8 channels (bank mask B) with one module only
 On Batch panel, M1 signal is connected to marked channel-26 and RFSF signal is connected to marked channel 27. This corresponds to 
 ADC channel-5 (with checksum) and channel-6 (with sample number) where for ADC channel number starts with 0.\\
 \\
-This for Dirty DAQ after the processing,\\
+So for the Dirty DAQ after the processing the data structure is:\\
 \\
 event1sample1Ch0   event1sample1ch1\\
 event2sample1Ch0   event2sample1ch1\\
@@ -173,7 +173,7 @@ with the first sample of any event being checksum and sample number i.e.\\
      event1sample1ch0 = checksum.\\
      event1sample1ch1 = sample number.\\
 
-In the analysis the last event always to be skipped , since sometimes the data file might miss one or two time bins only for the last event of the run.
+In the analysis we recommend to skip the last event to be safe in case the last event of the run is a partial event (though every effort has been done to avoid this).
      
 \newpage     
 \begin{figure}[htb]
@@ -364,7 +364,8 @@ where h used to indicate header and d used to indicate detector signal. 21 to 24
 \caption{The n3He leaf list}\label{f3}
 \end{figure}
 
-Now the library always skips the first four or five events since those might NOT be reliable. As a result the number of events in any branch for a typical n3He run is 24996 or 24995(This offset is set dynamically).
+Now the library always skips the first four or five events since those might NOT be reliable. As a result the number of events in any branch for a typical n3He run is 24996 or 24995(This offset is set dynamically).Also in the analysis we recommend to skip the last event to be safe in case the last event of the run is a partial event (though every effort has been done to avoid this).
+
 
 \begin{figure}[htb]
 \centering
