@@ -173,7 +173,7 @@ with the first sample of any event being checksum and sample number i.e.\\
      event1sample1ch0 = checksum.\\
      event1sample1ch1 = sample number.\\
 
-In the analysis we recommend to skip the last event to be safe in case the last event of the run is a partial event (though every effort has been done to avoid this).
+In the analysis we recommend to skip the last event to be safe in case the last event of the run is a partial event (though every effort has been made to avoid this).
      
 \newpage     
 \begin{figure}[htb]
@@ -215,8 +215,8 @@ $$\frac{1}{100KHz} = 10 \mu sec$$
  
 \newpage
 \section{The ADC channel to wire map}
-Out of 48 clean ADC channels, only 36 ADC channels are connected to the pre-amps (ADC channels 0 to 17 and channels 24 to 41). Moreover there are five bad channels: DAQ21- channels 5 \& 6(they are combined on channel 6), DAQ22 channels 35 and DAQ 24 channel-35,39(these have opposite polarity). 
-Eventually the ADC channel to detector wire map to be handled by the library. However following is the map for reference:
+Out of 48 clean ADC channels, only 36 ADC channels are connected to the pre-amps (ADC channels 0 to 17 and channels 24 to 41). Moreover there are five bad channels: DAQ21- channels 5 \& 6(they are combined on channel 6), DAQ22 channels 35 and DAQ 24 channel-35,39(these have opposite polarity and can be corrected easily by flipping the sign in the analysis). \\
+Following is the ADC channel to wire map for reference:
 \begin{lstlisting}
 
 Number of layers = 16;
@@ -364,7 +364,7 @@ where h used to indicate header and d used to indicate detector signal. 21 to 24
 \caption{The n3He leaf list}\label{f3}
 \end{figure}
 
-Now the library always skips the first four or five events since those might NOT be reliable. As a result the number of events in any branch for a typical n3He run is 24996 or 24995(This offset is set dynamically).Also in the analysis we recommend to skip the last event to be safe in case the last event of the run is a partial event (though every effort has been done to avoid this).
+Now the library always skips the first four or five events since those might NOT be reliable. As a result the number of events in any branch for a typical n3He run is 24996 or 24995(This offset is set dynamically).Also in the analysis we recommend to skip the last event to be safe in case the last event of the run is a partial event (though every effort has been made to avoid this).
 
 
 \begin{figure}[htb]
