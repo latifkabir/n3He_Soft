@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	else
 	    j=2;                                      
 	attron(COLOR_PAIR(j));                                                      
-	print_in_middle(stdscr, LINES / 2, 15, 0, "====Attention Shift Takers!!! Abnormal Activity Detected !!!====");         
+	print_in_middle(stdscr, LINES / 3, 15, 0, "====Attention Shift Takers!!! Abnormal Activity Detected !!!====");         
     }
     attroff(COLOR_PAIR(1)); 
     endwin();                                                                   
