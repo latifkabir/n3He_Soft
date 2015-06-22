@@ -182,9 +182,6 @@ ResetPower()
     then
 	/home/daq/Diagnosis/power_reset 30
     fi
-
-    echo "Please wait 60 sec more to allow the DAQ to boot up properly... ..."
-    sleep 60
 }
 
 SoftReboot()
@@ -488,7 +485,7 @@ then
 	    fi
 	    sleep 5
 	    echo "Initializing alternative data taking program on it's own ..."
-	    /home/daq/Watchdog/bin/textAlert.sh "Initiated alternative automated n3He data taking process"
+	    /home/daq/Watchdog/bin/textAlert.sh "Fixed the issue. Initiated alternative automated n3He data taking process"
 	    /home/daq/n3HeDAQ/bin/n3he start
 	fi
     else

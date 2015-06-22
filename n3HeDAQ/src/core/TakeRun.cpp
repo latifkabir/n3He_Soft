@@ -319,7 +319,10 @@ void RunAll (int runlength=RUN_LENGTH,int runNumber=RUN_NUMBER)
 		Rename(newrun,DAQ30,false);  
 
 		if(stop || ((counter+1 >= runNumber) && runNumber!=0))
+		{
+		    cout << "Please wait while the dirty DAQ data is being processed ... ..." <<endl;
 		    ProcessData(newrun,DAQ30,false);
+		}
 		UpdateRun();
 		cout<<"\n\t\tPhew!!! Done with run number : "<<newrun<<endl<<endl;
 	    }

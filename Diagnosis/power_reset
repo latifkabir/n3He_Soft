@@ -45,7 +45,7 @@ ResetPower()
 	    echo "Resetting the power of DAQ $DAQ ..."
 	    echo "It might take about 60 sec. Please wait ... ..."
 	    /home/daq/Diagnosis/power_reset_clean.sh $ARG1 $ARG2 >> /dev/null
-	    sleep 50
+	    sleep 60
 	    echo "Done resetting power of DAQ $DAQ"
 	else
 	    echo "Could NOT located required scrip"
@@ -58,7 +58,7 @@ ResetPower()
 	    echo "Resetting the power of DAQ $DAQ ..."
 	    echo "It might take about 60 sec. Please wait ... ..."
 	    /home/daq/Diagnosis/power_reset_dirty.sh 0000 0001 >> /dev/null
-	    sleep 50
+	    sleep 60
 	    echo "Done resetting the power of DAQ $DAQ"
 	else
 	    echo "Could NOT located required scrip"

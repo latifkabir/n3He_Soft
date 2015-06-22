@@ -6,7 +6,7 @@ ssh basestar "echo $TXT | mutt -s \"Subject Here\" number1@domain1,-b number2@do
 HOUR=$(date "+%k")
 if [ $HOUR -lt 8 ]
 then
-	echo "\t\t\t Sent Text Alert"
+	echo "                  Sent Text Alert"
 else
 	gnome-terminal --geometry=165x30+0+0 -t "Alert" -e "/home/daq/Watchdog/bin/screenAlert"
 fi
