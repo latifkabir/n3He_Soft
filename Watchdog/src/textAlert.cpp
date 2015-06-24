@@ -50,7 +50,7 @@ int TextAlert(int run_number,int last_run,double mag, double* temp, bool* alert_
 	    {
 		msg="Initiating alternative automated n3He data taking process... ...";
 		cout<<"\n\t\t"<<msg<<endl;
-		int atm=system("gnome-terminal --geometry=120x35+0+0 -t \"n3HeDAQ\" -e \"/home/daq/Diagnosis/diagnosis.sh auto\"");		
+		int atm=system("gnome-terminal --geometry=110x45+0+0 -t \"n3HeDAQ\" -e \"/home/daq/Diagnosis/diagnosis.sh auto\"");		
 		auto_count++;
 	    }
 

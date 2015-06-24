@@ -12,6 +12,7 @@ extern "C"
 #include <unistd.h>
 #include "ConfigGui.h"
 }
+extern bool automated;
 extern bool main_menu;
 extern int runlengthgui;
 extern "C"
@@ -91,7 +92,17 @@ extern "C"
 	mvaddstr(base_y+4, base_x+12, "---------------------------------------------");
 	refresh();
 
-	menu_item_t *ret = NULL;
+	menu_item_t *ret;
+	if(automated)
+	{
+	    refresh();
+	    ret=i_start;
+	    automated=false;
+	    sleep(1);
+	}
+	else
+	    ret = NULL;
+
 	do {
 	    if(ret == i_start)
 	    {

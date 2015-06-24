@@ -485,8 +485,8 @@ then
 	    fi
 	    sleep 5
 	    echo "Initializing alternative data taking program on it's own ..."
-	    /home/daq/Watchdog/bin/textAlert.sh "Fixed the issue. Initiated alternative automated n3He data taking process"
-	    /home/daq/n3HeDAQ/bin/n3he start
+	    /home/daq/Watchdog/bin/textAlert.sh "Fixed the issue. Initiated automated n3He data taking process"	    
+	    /home/daq/n3HeDAQ/bin/n3he auto
 	fi
     else
 	echo "Sorry, Unable to fix the issue :) ."
@@ -496,4 +496,10 @@ else
     echo "Finished the diagnosis !!"
     echo "Close the window or press ctrl+C to quit."
 fi
-sleep 600
+
+if [ $AUTO == 'auto' ]
+then
+    sleep 0
+else
+    sleep 600
+fi

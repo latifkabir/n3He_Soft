@@ -19,6 +19,7 @@ extern "C"
 }
 
 using namespace std;
+bool automated=false;
 
 int main(int argc,char *argv[])
 {
@@ -44,10 +45,10 @@ int main(int argc,char *argv[])
     }
 
 //make a list of all available options and command and assign a number for that
-    string list[]={"help","start","daq","config","gui"};
+    string list[]={"help","start","daq","config","gui","auto"};
     if(argc>1)
     {
-	for(int i=0;i<5;i++)
+	for(int i=0;i<6;i++)
 	{
 	    if(list[i]==argv[1])
 	    {
@@ -121,6 +122,12 @@ int main(int argc,char *argv[])
 	}
 	case 4 :
 	{
+            Menu();
+            break;
+	}
+	case 5 :
+	{
+	    automated=true;
             Menu();
             break;
 	}

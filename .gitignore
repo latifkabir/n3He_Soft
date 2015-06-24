@@ -20,4 +20,6 @@ magTemp.txt
 magData.txt
 tempData.txt
 manual.pdf
+*.root
+ref/
 
