@@ -22,4 +22,4 @@ tempData.txt
 manual.pdf
 *.root
 ref/
-
+*.so
