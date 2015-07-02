@@ -23,3 +23,4 @@ manual.pdf
 *.root
 ref/
 *.so
+*_cc.d
