@@ -1,3 +1,5 @@
+// Current version modified by Latiful Kabir <latifulkabir@uky.edu>
+// Original version by Chris Crawford <crawford@pa.uky.edu> 2014-07-29
 // $ root -l b45/ ../../n3HeSim.C+ -geom_xyz=1 -rho3=0.5 -xcol=0.08 -ntof=1 -verbose=3
 // $ root -l poly_sm6/ ../n3HeSim.C+(1e4,300) #defaults: -geom_xyz=0 -rho3=0.5 -xcol=0.08 -ntof=1 #compare: sim_2015-03-12.cint
 // $ g++ -g `root-config --cflags --glibs` n3HeSim.C && a.out

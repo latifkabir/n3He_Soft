@@ -53,7 +53,7 @@ Any new change goes to this  git repository. You might want to clone the entire 
  
 \newpage
 \section{Quick start on basestar}
-On basestar the data is being transferred and saved to the directories: \\ \textcolor{magenta}{ /mnt/idata01/data/ } (run number: 1-23661),\\ \textcolor{magenta}{ /mnt/idata02/data/ } (run number: 23662 -31839 ),\\ \textcolor{magenta}{ /mnt/idata03/data/ } (run number: 31840- )\\and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} 
+On basestar the data is being transferred and saved to the directories: \\ \textcolor{magenta}{ /mnt/idata01/data/ } (run number: 1-23661),\\ \textcolor{magenta}{ /mnt/idata02/data/ } (run number: 23662 -31839 ),\\ \textcolor{magenta}{ /mnt/idata03/data/ } (run number: 31840- 40703),\\ \textcolor{magenta}{ /mnt/idata04/data/ } (run number:40704 - )\\and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} 
 
 So a quick start using the compiled library can be as follows from any user account:
 
@@ -272,7 +272,7 @@ lib3He is the analysis library for n3He experiment.
     \textcolor{magenta}{gSystem$->$Load(``libn3He.so'')}.  You need to give full path unless the directory is included in \textcolor{magenta}{LD\_LIBRARY\_PATH}.
 
 \item If you put the \textcolor{magenta}{rootlogon.C} file in \textcolor{magenta}{ macros } directory under Root installation directory, then the library will be loaded automatically and step-6 is NOT necessary.\\
-If you do NOT have local version of ROOT, rather it's installed under root account(a shared version, which is the case for basestart by default), then just copy system.rootrc file from \textcolor{magenta}{/usr/share/root} to your home directory and rename it to \textcolor{magenta}{.rootrc}, Now add the directory having \textcolor{magenta}{rootlogon.C} file to the list of \textcolor{magenta}{Unix.*.Root.MacroPath} variable. \\
+If you do NOT have local version of ROOT, rather it's installed under root account(a shared version, which is the case for basestar by default), then just copy system.rootrc file from \textcolor{magenta}{/usr/share/root} to your home directory and rename it to \textcolor{magenta}{.rootrc}, Now add the directory having \textcolor{magenta}{rootlogon.C} file to the list of \textcolor{magenta}{Unix.*.Root.MacroPath} variable. \\
 \item Now from your root script create a Tree by calling: \textcolor{magenta}{TTreeRaw ${\ast}my\_tree$ = new TreeRaw(runNumber\#)} or Just \textcolor{magenta}{TTreeRaw t(runNumber\#)}
 
 \item Do \textcolor{magenta}{$my\_tree->Print()$} to print the tree and branch structure.

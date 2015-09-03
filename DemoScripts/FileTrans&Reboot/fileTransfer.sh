@@ -2,7 +2,7 @@
 
 RUN=$1
 LAST=$2
-while [ $RUN -ne $LAST ]
+while [ $RUN -le $LAST ]
 do
     if [ -f /home/daq/DATA/run-${RUN}data-21 ] && if [ -f /home/daq/DATA/run-${RUN}data-22 ] && if [ -f /home/daq/DATA/run-${RUN}data-23 ] && if [ -f /home/daq/DATA/run-${RUN}data-24 ] && if [ -f /home/daq/DATA/run-${RUN}data-30 ]
     then
