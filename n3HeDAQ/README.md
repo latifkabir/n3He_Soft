@@ -17,6 +17,8 @@ Or, alternatively from a terminal do:
 * `n3he gui` :
     This will run n3he DAQ control program in gui mode. Note it is a Ncurses terminal based gui.
 
+    ![](n3HeDAQAnimation.gif "n3HeDAQ Control Program")
+
 
 Command line mode:
 --------------------
