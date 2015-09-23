@@ -99,7 +99,8 @@ void TTreeRaw::Init(int runNumber)
 	
     if(offsetDaq21==0 || offsetDaq22 ==0 || offsetDaq23 ==0 || offsetDaq24 == 0 || offsetDaq30 == 0)
     {
-	offsetDaq21=offsetDaq22=offsetDaq23=offsetDaq24=offsetDaq30=0;
+	offsetDaq21=offsetDaq22=offsetDaq23=offsetDaq24=4*9600; //Skip first 4 events: 50 samples/event x 4 events x 48 channels x e bytes/sample.
+	offsetDaq30=4*13000; //Skip first 4 events: 1625 samples/event x 4 events x 48 channels x e bytes/sample.
 	cout<<"WARNING: You are using the library for a very old run number for which the library is NOT optimized."<<endl;
     }
     else
