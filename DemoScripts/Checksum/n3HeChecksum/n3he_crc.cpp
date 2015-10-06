@@ -190,7 +190,7 @@ int main(int argc, const char* argv[])
 {
     if (argc < 2) 
     {
-	fprintf(stderr, "USAGE crc_validate RAWFILE\n");
+	fprintf(stderr, "USAGE n3he_crc RAWFILE\n");
 	exit(1);
     }
     else

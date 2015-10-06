@@ -2,8 +2,8 @@ Software for the n3He Experiment
 ================================== 
 This is the official reporitory for any developed software for the [n3He experiment at SNS][1].
 This repository is divided into several sub directories based on the category:
-* n3HeDAQ v1.2 [(download)][2] --- Contains software for the n3He DAQ Control.
-* Library v1.2 [(download)][3] --- Contains the analysis library for the n3He experiment.
+* n3HeDAQ v1.3 [(download)][2] --- Contains software for the n3He DAQ Control.
+* Library v1.3 [(download)][3] --- Contains the analysis library for the n3He experiment.
 * n3HeDataBrowser v1.2 [(download)][4] --- The GUI for online analysis.GUI to browse the data for each run easily.
 * n3HeMag v1.0 [(download)][5] ---Contains 'driver for FluxGate' in C++ source code 
 * n3HeScan v1.0 [(download)][6] --- Software for field and beam scan 
@@ -11,8 +11,8 @@ This repository is divided into several sub directories based on the category:
 * DemoScripts v1.0 [(download)][8] --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration & testing.
 * ReadRS232 v1.0 [(download)][9] -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.
 * Watchdog  v1.0 [(download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
-* Diagnosis v1.0 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
-* Manual v1.0 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
+* Diagnosis v1.2 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
+* Manual v1.5 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 [Release Notes][14]
 
 Please read below to know what's inside each category.

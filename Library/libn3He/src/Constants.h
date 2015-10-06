@@ -3,6 +3,8 @@
 #define DATA_PATH2 "/mnt/idata02/data/"
 #define DATA_PATH3 "/mnt/idata03/data/"
 #define DATA_PATH4 "/mnt/idata04/data/"
+#define DATA_PATH5 "/mnt/idata05/data/"
+#define DATA_PATH6 "/mnt/idata06/data/"
 
 #define DAQ21_LEAF "h21[48]/I:d21[49][48]/I"
 #define DAQ22_LEAF "h22[48]/I:d22[49][48]/I"
