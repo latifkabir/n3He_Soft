@@ -5,7 +5,7 @@
 \title{\emph{\huge\textbf{Startup Guide \\ for \\$n^3He$ Analysis}}
 }
 \author{\\Latiful Kabir\\
-Version:1.2
+Version:1.5
 }
 
 \usepackage{listings}
@@ -245,6 +245,20 @@ Layer_to_ADC_channel_map[16][9] =
       {33,34,35,36,37,38,39,40,41},
     };
 \end{lstlisting}
+Thus , if we label layers and wires starting from 1, then the above mapping to be interpreted as - \\
+The ADC21 , channel-0 corresponds to layer 1 wire 1. \\
+The ADC24, channel-40 corresponds to layer 16 wire 8.\\
+The ADC22, channel-5 corresponds to layer 9 wire 6. And so on.\\  
+Where (for Up-down asymmetry) wire 1 label starts from (beam) bottom of any layer. And wire 9 is the (beam) top wire of any layer.\\
+And the layer counting starts from the face where beam enters the chamber. \\
+
+\begin{figure}[htb]
+\centering
+% Requires \usepackage{graphicx}
+\includegraphics[width=6in]{adc2wire.png}\\
+\caption{ADC to Wire Map}\label{f3}
+\end{figure}
+
 
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }
@@ -548,5 +562,28 @@ check the file /mnt/idata05/summary/runList.txt on basestar.}
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }
 
+\newpage
+\section{List of n3He Parameters}
+Chopper 1 Phase : 14.045 CW \\
+Chopper 2 Phase : 0.245 CCW \\
+T0 Delay :13.5 ms \\
+DAQ dead time : 0.96 ms \\
+Distance between moderator and detector front face : 18 m (approx) \\
+Vertical B-field(Guide field) value : -9.14$\pm$ 0.02 Gauss.\\
+Number of time bin per event for detector data : 49\\
+Number of time bin per event for M1 data : 1624\\
+Width of each detector data time bin : 320 $\mu$ sec.\\
+Width of each M1 data time bin : 10 $\mu$ sec\\
+Each run length : \\
+\hspace{5cm} 25000 T0 (events) (in raw file)\\
+\hspace{5cm} 24996 $\pm$ 1 T0 (events) (when loaded in TTreeRaw)\\
+
+
+Others to be included gradually ... ... ... \\
+
+
+
+\noindent
+{\color{red} \rule{\linewidth}{1mm} }
 
 \end{document}
