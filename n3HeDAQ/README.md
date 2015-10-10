@@ -1,5 +1,6 @@
  n3He DAQ Control Program
 ===============================
+The program is a curses based data acquisition system (DAQ) control GUI (which also include command line option) for the n3He experiment at Oak Ridge National Lab. The controller GUI talks to Unix based DAQ through TCP/IP connection and allows the user to take data in different modes and options in a user friendly environment. 
 
 
 Instruction for the Users

@@ -1,6 +1,9 @@
       ======================================================================================================
                                     Data Browser for the n3He Experiment
       ======================================================================================================
+The data browser GUI for the n3He experiment allows user to plot and have a look quickly huge amount of data coming out of the DAQ. The GUI program relies on ROOT GUI classes.
+
+
 1. bin directory: contains just binary files(obtained after doing make) named n3HeData.
 
 2. libn3He directory: Contains all the library required for running the Data check GUI.
