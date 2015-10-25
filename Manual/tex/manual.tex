@@ -53,7 +53,9 @@ Any new change goes to this  git repository. You might want to clone the entire 
  
 \newpage
 \section{Quick start on basestar}
-On basestar the data is being transferred and saved to the directories: \\ \textcolor{magenta}{ /mnt/idata01/data/ } (run number: 1-23661),\\ \textcolor{magenta}{ /mnt/idata02/data/ } (run number: 23662 -31839 ),\\ \textcolor{magenta}{ /mnt/idata03/data/ } (run number: 31840- 40703),\\ \textcolor{magenta}{ /mnt/idata04/data/ } (run number:40704 -44385 ),\\ \textcolor{magenta}{ /mnt/idata05/data/ } (run number:44386 - 45999 ),\\ \textcolor{magenta}{ /mnt/idata06/data/ } (run number:46000 - )\\and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} 
+On basestar the data is being transferred and saved to the directories: \\ \textcolor{magenta}{ /mnt/idata01/data/ } (run number: 1-23661),\\ \textcolor{magenta}{ /mnt/idata02/data/ } (run number: 23662 -31839 ),\\ \textcolor{magenta}{ /mnt/idata03/data/ } (run number: 31840- 40703),\\ \textcolor{magenta}{ /mnt/idata04/data/ } (run number:40704 -44385 ),\\ \textcolor{magenta}{ /mnt/idata05/data/ } (run number:44386 - 45999 ),\\ \textcolor{magenta}{ /mnt/idata06/data/ } (run number:46000 - )\\and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} \\
+
+Actual analytical run starts from run  number:18050. Run numbers before that are different R\&D runs. \\
 
 So a quick start using the compiled library can be as follows from any user account:
 
@@ -157,7 +159,7 @@ mod2event1sample1Ch5 = checksum using path-1 \\ mod2event1sample1Ch6 = sample nu
 Then this pattern repeats 3 more times (i.e. in quanta of 8 channels) up to channel-23\\
 \\
 For Dirty DAQ the data is taken in 8 channels (bank mask B) with one module only and then processed to 2 channels.
-On Batch panel, M1 signal is connected to marked channel-26 and RFSF signal is connected to marked channel 27. This corresponds to 
+On BNC panel, M1 signal is connected to marked channel-26 and RFSF signal is connected to marked channel 27. This corresponds to 
 ADC channel-5 (with checksum) and channel-6 (with sample number) where for ADC channel number starts with 0.\\
 \\
 So for the Dirty DAQ after the processing the data structure is:\\
@@ -529,7 +531,7 @@ Chopper Tuning Data : 15867 - 15924 \\
 
 Instrumental Asymmetry Data : 17357 - 17889 , ... ... \\
 
-U/D Asymmetry Data : Starts from run number 17400 and continues as we take data. \textbf {For the Up-Down analysis it is recommended to use run numbers after 18000 since we were still testing and changing things before that.}\\
+U/D Asymmetry Data : Starts from run number 17400 and continues as we take data. \textbf {For the Up-Down analysis it is recommended to use run numbers after 18050 since we were still testing and changing things before that.}\\
 
 The stable optimization of n3He library was done for run numbers starting from 17400. \\
   
@@ -564,6 +566,7 @@ check the file /mnt/idata05/summary/runList.txt on basestar.}
 
 \newpage
 \section{List of n3He Parameters}
+
 Chopper 1 Phase : 14.045 CW \\
 Chopper 2 Phase : 0.245 CCW \\
 T0 Delay :13.5 ms \\
@@ -577,6 +580,12 @@ Width of each M1 data time bin : 10 $\mu$ sec\\
 Each run length : \\
 \hspace{5cm} 25000 T0 (events) (in raw file)\\
 \hspace{5cm} 24996 $\pm$ 1 T0 (events) (when loaded in TTreeRaw)\\
+Pressure in the chamber : 0.5 atm (approx) \\
+Opening for Collimator :  \\
+\hspace{5cm} X-Axis : 10 cm \\
+\hspace{5cm} Y-Axis : 8.2 cm \\
+Number of detector wires per layer : 9 \\
+Number of detector layers : 16 \\
 
 
 Others to be included gradually ... ... ... \\

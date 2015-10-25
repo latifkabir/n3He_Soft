@@ -85,7 +85,7 @@ void TTreeRaw::Init(int runNumber)
 	dataFile[i]+=module[i];
     }
 
-    if(!(ifstream(dataFile[0]) && ifstream(dataFile[1]) && ifstream(dataFile[2]) && ifstream(dataFile[3]) && ifstream(dataFile[3])))
+    if(!(ifstream(dataFile[0]) && ifstream(dataFile[1]) && ifstream(dataFile[2]) && ifstream(dataFile[3]) && ifstream(dataFile[4])))
     {
 	cout<<"======================================"<<endl;
 	cout<<"No data files for requested run number"<<endl;
