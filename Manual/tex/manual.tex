@@ -5,7 +5,7 @@
 \title{\emph{\huge\textbf{Startup Guide \\ for \\$n^3He$ Analysis}}
 }
 \author{\\Latiful Kabir\\
-Version:1.5
+Version:1.6
 }
 
 \usepackage{listings}
@@ -55,7 +55,7 @@ Any new change goes to this  git repository. You might want to clone the entire 
 \section{Quick start on basestar}
 On basestar the data is being transferred and saved to the directories: \\ \textcolor{magenta}{ /mnt/idata01/data/ } (run number: 1-23661),\\ \textcolor{magenta}{ /mnt/idata02/data/ } (run number: 23662 -31839 ),\\ \textcolor{magenta}{ /mnt/idata03/data/ } (run number: 31840- 40703),\\ \textcolor{magenta}{ /mnt/idata04/data/ } (run number:40704 -44385 ),\\ \textcolor{magenta}{ /mnt/idata05/data/ } (run number:44386 - 45999 ),\\ \textcolor{magenta}{ /mnt/idata06/data/ } (run number:46000 - )\\and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} \\
 
-Actual analytical run starts from run  number:18050. Run numbers before that are different R\&D runs. \\
+Actual analyzable run for UD asymmetry starts from run  number:18000. Run numbers before that are different R\&D runs and LR asymmetry runs. \\
 
 So a quick start using the compiled library can be as follows from any user account:
 
@@ -520,7 +520,70 @@ This list will be updated gradually as new functionality is added to the TTreeRa
 {\color{red} \rule{\linewidth}{1mm} }
 
 \newpage
-\section{Reference for Run numbers}
+\section{The summary root file}
+For each GOOD run (which is analyzable for either LR or UD asymmetry), a summary file is processed which has time bin integration (sum of signals) of each event both for detector channels(clean DAQ channels) and  dirty DAQ channels (M1 signal and RFSF current). Also a calculated asymmetry for pair of adjacent events of each detector channel is computed. All these values are saved in tree structure in a root file in the directory /mnt/idata05/summary/ on basestar.  
+The tree has three branches : sumc (sum of signals from clean DAQ), sumd (sum of signals from dirty DAQ) and asym (calculated asymmetry).\\
+\textbf{sumc[4][36]:} \\
+The first index is for DAQ (0:DAQ21, 1:DAQ22,2:DAQ23,3:DAQ24)\\
+and second index is for each channel (Note the channel index is continuous here).  \\
+\textbf{sumd[2]: }\\
+sumd[0] is time bin integration of M1 signal and sumd[1] is the same thing for RFSF current.
+
+\begin{figure}[htb]
+\centering
+% Requires \usepackage{graphicx}
+\includegraphics[width=6in]{summary_tree.png}\\
+\caption{The summary root file tree structure}\label{f10}
+\end{figure}
+Each root file(for each run) has 24991 entries as some events at the beginning and end of the run are skipped.\\
+\textbf{asym[4][36] :}\\
+The first index is for DAQ and second index is for channels.
+Now the first entry of the branch ``asym" is a flag which is the run number. second entry is asymmetry between first event and second event of the run, third entry is asymmetry between second and third event of the run and so on.  \\
+
+0:run number 1:(0,1) 2:(1,2) 3:(2,3) 4:(3,4) .... ... \\
+
+So in the analysis the first entry always to be skipped (since its a flag for run number) and only either odd entries or even entries to be considered (to avoid double counting or correlations) of the ``asym" branch (in addition to the imposed cut). \\
+
+In calculating the above asymmetry, the signal of each channels for each event is normalized by the sum over all the detector signals to get rid of beam fluctuation. \\
+The asymmetry is constructed using : \\
+$(SF_{on} - SF_{off})/(SF_{on} + SF_{off})$ \\
+which corresponds to neutron spin pattern: \\
+ $(Spin_{down} - Spin_{up})/(Spin_{down} + Spin_{up})$. \\
+
+
+For details check the source code.
+
+\noindent
+{\color{red} \rule{\linewidth}{1mm} }
+
+\newpage
+\section{Individual run status}
+
+For UD Asymmetry runs, the complete individual run status can be found on basestar in the file: \\
+\textbf{/mnt/idata05/summary/runList.txt } \\
+
+For LR Asymmetry runs, the complete individual run status can be found on basestar in the file: \\
+\textbf{/mnt/idata05/summary/runListLR.txt } \\
+
+In the run list each run is checked for the following run quality :\\
+-- DAQ header/trigger issue (error code -1)\\
+-- No beam or partial beam (error code -2)\\
+-- Branches having different number of entries (error code -3) \\
+-- Short runs (error code -4)\\
+-- All DAQs are NOT synchronized. (error code -5)\\
+-- No or partial data files on basestar. (error code -6)\\
+-- Wrong chopper phases. (error code -7)\\
+-- Wrong RFSF phases (error code -8)\\
+-- High voltage turned off (error code -9)\\
+
+If any run apparently passed all the above checks, then the run is deemed as GOOD (error code 1). GOOD runs with error code 0 means , the last event of the run is incomplete and the last event needs to be thrown away for that run in the analysis.
+ 
+\noindent
+{\color{red} \rule{\linewidth}{1mm} }
+
+
+\newpage
+\section{Reference for run numbers}
 Actual n3He data with full run length(25000 T0 per run) starts from 14586. \\
 
 Left Right(PC) Asymmetry Data : Run numbers with beam before 16390 (exclude chopper tuning, polarimetry, beam scan, collimation data runs)\\
@@ -531,13 +594,13 @@ Chopper Tuning Data : 15867 - 15924 \\
 
 Instrumental Asymmetry Data : 17357 - 17889 , ... ... \\
 
-U/D Asymmetry Data : Starts from run number 17400 and continues as we take data. \textbf {For the Up-Down analysis it is recommended to use run numbers after 18050 since we were still testing and changing things before that.}\\
+U/D Asymmetry Data : Starts from run number 17400 and continues as we take data. \textbf {For the Up-Down analysis it is recommended to use run numbers after 18000 since we were still testing and changing things before that.}\\
 
 The stable optimization of n3He library was done for run numbers starting from 17400. \\
   
 Polarimetry Data : Consecutive short runs are generally polarimetry data. Its generally taken on Wednesday of first week of the month\\
 
-850KW and 1.2MW runs: Runs before April 25 are 850KW and after that are 1.2MW.\\
+Hi and low beam power runs: Runs before April 25 are 850KW and after that are 1.2MW for a while then its again around 850KW. Thus run numbers around 27000 - 47000 has beam power 1.0- 1.3 MW. Run numbers around 28500 has maximum. All other runs have around 850MW.(The run numbers are approximate only) \\
 
 Second Collimation scan runs: 37987-38022 \\
  
@@ -546,8 +609,9 @@ Second Collimation scan runs: 37987-38022 \\
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }
 
+
 \newpage
-\section{Summary of 1st Beam Cycle Data}
+\section{Summary of 1st beam cycle data}
 Run Range: 17400 to 38214 (excluding initial test runs)\\
 Total Runs on tape(on basestar) : 20815 \\
 Number of GOOD Runs :16684 \\
@@ -558,14 +622,12 @@ Number of short runs : 802 \\
 Number of runs with synchronization issue : 19 \\
 Number of runs with NO data files on basestar: 43 \\
    
-\textbf{ For a complete list of individual run status \\
-check the file /mnt/idata05/summary/runList.txt on basestar.}
 
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }
 
 \newpage
-\section{List of n3He Parameters}
+\section{List of n3He parameters}
 
 Chopper 1 Phase : 14.045 CW \\
 Chopper 2 Phase : 0.245 CCW \\
