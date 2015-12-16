@@ -6,6 +6,7 @@
 #define DATA_PATH5 "/mnt/idata05/data/"
 #define DATA_PATH6 "/mnt/idata06/data/"
 #define DATA_PATH7 "/mnt/idata07/data/"
+#define DATA_PATH8 "/mnt/idata08/data/"
 
 #define DAQ21_LEAF "h21[48]/I:d21[49][48]/I"
 #define DAQ22_LEAF "h22[48]/I:d22[49][48]/I"

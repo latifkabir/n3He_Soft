@@ -64,8 +64,10 @@ void TTreeRaw::Init(int runNumber)
     	dataPath=DATA_PATH5;
     else if(runNumber > 45999 && runNumber< 54041)
     	dataPath=DATA_PATH6;
-    else if(runNumber > 54040 )
+    else if(runNumber > 54040 && runNumber < 58960)
     	dataPath=DATA_PATH7;
+    else if(runNumber > 58959)
+    	dataPath=DATA_PATH8;
     else
     	dataPath=DATA_PATH;
 //------------------Get the Leaf list-------------------------------
