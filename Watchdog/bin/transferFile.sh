@@ -8,8 +8,8 @@ do
     then
 	scp -p /home/daq/DATA/run-${RUN}data-{21,22,23,24,30} basestar:/mnt/idata02/data/.
     else
-	echo "FAILED to transfer run:${RUN} to ${LAST} . Files does NOT exist."
-	echo "run:${RUN} to ${LAST}," >> /home/daq/Watchdog/bin/failedRuns.txt
+	echo "FAILED to transfer run:${RUN}  . Files does NOT exist."
+	echo "run:${RUN} " >> /home/daq/Watchdog/bin/failedRuns.txt
     fi
     RUN=`expr $RUN + 1`
 done
