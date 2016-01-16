@@ -8,23 +8,28 @@ void ScanUp3()
 
    ifstream data;
    double x[35000],y[35000],z[35000],bg[35000],m1[35000];
-	int index=0;
-	int index2=0;
-	int index3=0;
-	double factor=-6.35e-4; //Step size to cm conversion.
-	double cen_x=0;
-	double cen_y=0;
-	double sum_int=0;
-	double bgd=-0.0;
+   int index=0;
+   int index2=0;
+   int index3=0;
+   double factor=-6.35e-4; //Step size to cm conversion.
+   double cen_x=0;
+   double cen_y=0;
+   double sum_int=0;
+   double bgd=-0.0;
 
-	data.open("BeamData.txt");
+   data.open("BeamDataUp.txt");
+   if(!data)
+   {
+       cout << "Data file does not exists" <<endl;
+       return;
+   }
 
-	while(!data.eof())
-	{	
-	    data >>y[index]>>x[index]>>z[index]>>m1[index];
-	    index++;
-	}
-	cout<<"Total number of Entries "<<(index-1)<<endl;
+   while(!data.eof())
+   {	
+       data >>y[index]>>x[index]>>z[index]>>m1[index];
+       index++;
+   }
+   cout<<"Total number of Entries "<<(index-1)<<endl;
 	
 
    TGraph2D *dt = new TGraph2D();
@@ -47,8 +52,8 @@ void ScanUp3()
    dt->GetXaxis()->SetTitle("X Displacement(Steps)");
    dt->GetYaxis()->SetTitle("Y Displacement(Steps)");
    dt->GetZaxis()->SetTitle("Average Intensity");
-   // dt->Draw("surf1");
-   dt->Draw("AP");
+   dt->Draw("surf1");
+   // dt->Draw("AP");
 
 
 

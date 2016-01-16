@@ -1,0 +1,10 @@
+In the BeamDataUp.txt or BeamDataDown.txt files:
+The first column is Y coord and second column is X coord. These coordinates are in step size (for Velmex motor , 4000 Step equals 1 Inch), the negative sign indicated which way the motor is spinning.
+Third column is Average Intensity of M4 monitor used for the scan and fourth column is Average Intensity of M1 monitor(used for normalization). These intensities are in volt.
+
+The Up Stream scan is a 17x19 scan.
+The Down Stream scan is a 17x22 scan.
+
+Reference point:
+The coordinate X:10.0413cm  Y:12.0481cm found to be the beam centroid analyzing the upstream data, thus corresponds to the beam center as marked in the sketch(15.5 cm,15.1 cm) showing ruler.
+ 

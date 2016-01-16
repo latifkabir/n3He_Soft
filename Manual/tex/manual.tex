@@ -563,12 +563,16 @@ For details check the source code.
 
 \newpage
 \section{Individual run status}
+I used my analysis library to create a list for individual run status. \\
 
-For UD Asymmetry runs, the complete individual run status can be found on basestar in the file: \\
+The complete run list can be found on basestar in the file: \\
+\textbf{/mnt/idata05/summary/runList.txt } \\
+
+For UD target position runs, individual run status can be found on basestar in the file: \\
 \textbf{/mnt/idata05/summary/runListUD.txt } \\
 
-For LR Asymmetry runs, the complete individual run status can be found on basestar in the file: \\
-\textbf{/mnt/idata05/summary/runListLR.txt } \\
+For LR target position runs, the individual run status can be found on basestar in the file: \\
+\textbf{/mnt/idata05/summary/runListLR.txt } \\ 
 
 In the run list each run is checked for the following run quality :\\
 -- DAQ header/trigger issue (error code -1)\\
@@ -581,14 +585,16 @@ In the run list each run is checked for the following run quality :\\
 -- Wrong RFSF phases (error code -8)\\
 -- High voltage turned off (error code -9)\\
 
-If any run apparently passed all the above checks, then the run is deemed as GOOD (error code 1). GOOD runs with error code 0 means , the last event of the run is incomplete and the last event needs to be thrown away for that run in the analysis.
- 
+If any run apparently passed all the above checks, then the run is deemed as GOOD (error code 1). GOOD runs with error code 0 means , the last event of the run is incomplete and the last event needs to be thrown away for that run in the analysis.\\
+\textbf{Note the list assumes using libn3He where I fix the header/trigger issues of many runs just right in the library.}
+
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }
 
 
 \newpage
 \section{Reference for run numbers}
+\textbf{......................LR Orientation, NPDG Chopper Settings..............................}
 \begin{itemize}
 \item Actual n3He data with full run length(25000 T0 per run) starts from 14586. 
 
@@ -597,7 +603,9 @@ If any run apparently passed all the above checks, then the run is deemed as GOO
 \item Run range used so far for PC asymmetry analysis :14785 - 15785  
 
 \item Chopper Tuning Runs : 15867 - 15924 
-
+\end{itemize}
+\textbf{......................UD Orientation, n3He Chopper Settings..............................}
+\begin{itemize}
 \item Instrumental Asymmetry Data : 17357 - 17889 , and many more run sets ... ... 
 
 \item U/D Asymmetry Data : Starts from run number 17400 and continues as we take data. For the Up-Down analysis it is recommended to use run numbers after 18000 since we were still testing and changing things before that.The last UD run recorded to be run number 57177. 
@@ -615,25 +623,31 @@ If any run apparently passed all the above checks, then the run is deemed as GOO
 \item HV scan runs 57177- 57201
 
 \item Thin slit scan 57204 - 57218
-
+\end{itemize}
+\textbf{...............................LR Orientation, Various Collimations...........................}
+\begin{itemize}
 \item  Run numbers starting 57403 till the end of run, all are LR runs.\\
 LR asymmetry with 8 x 10 cm collimation: 57403 -57796, 6 x 10 cm collimation: 57797-58197, 4 x 10 cm Collimation: 58199 - 58535. 
-
-\item Tighten Chopper setting( Ch-1:15.3109ms CW, Ch-2: 0.133ms CW) LR runs with 8 x 10cm collimation: 58613 - 89808. \\
-
+\end{itemize}
+\textbf{.......LR, Various IC Pressure and Collimations, NPDG Choppers............}\\
 All the following runs here after are in tighter choppers setting (The  NPDG chopper settings runs)
-
+\begin{itemize}
+\item Tighten Chopper setting( Ch-1:15.3109ms CW, Ch-2: 0.133ms CW) LR runs with 8 x 10cm collimation: 58613 - 59808. \\
 
 \item Second (and complete) HV scan : 59810 - 59853
 
 \item Hi resolution scan (All DAQs running at 100KHz, event length is 1624 tbin plus 1 header) : 59860 - 59875.
 
 \item Ion Chamber pressure modified to 1 atm: M1 signal flips(this is true for rest of the runs) and one preamps signals hits the saturation point after changing the IC pressure. Also last half of the chamber mostly shows very weak noise like signal at 1 atm IC pressure. 8x10 cm collimation Run numbers: 59980 - 60314, 6x10 cm collimation runs: 60314 - 60503.  
-\item Ion Chamber pressure 0.25 atm and 8x10 cm collimation : 60504 - 60700, 6x10cm collimation runs: 60709 -60869, 4x10 cm collimation runs: 60871 - last n3he run with beam.
- 
+\item Ion Chamber pressure 0.25 atm and 8x10 cm collimation : 60504 - 60700, 6x10cm collimation runs: 60709 -60869, 4x10 cm collimation runs: 60871 - 61009.
+\end{itemize}
+\textbf{...............................Run Numbers for Various Scan...........................}
+\begin{itemize}
+\item Check the text file in this \href{https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/Manual/tex/RunReferences.txt}{link}
+\end{itemize} 
 \textbf{ Note: This list is NOT complete. For a complete list or reference work out through the paper log book.} \\
 
-\end{itemize}
+
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }
 
