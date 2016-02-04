@@ -13,11 +13,11 @@ This repository is divided into several sub directories based on the category:
 * Watchdog  v1.0 [(download)][10]-- Program for 24/7 DAQ status and other critical parameters watchdog.
 * Diagnosis v1.2 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
 * Manual v1.5 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
-[Release Notes][14]
 * Analysis Contributors' Repo --- Source code repository by the n3He analysis contributors (check end of this page).
+[Release Notes][14]
 
-Please read below to know what's inside each category.
-The above/following download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right.   
+Please continue reading to know details of category.
+The download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right.   
 Alternatively, to clone using a terminal use, from Github repo :`` git clone https://github.com/latifkabir/n3He_Soft.git `` 
 Or from ASU repo : `` git clone n3he@alarcondaq.la.asu.edu:/mnt/sharedSource/N3HE.git ``   
 In any case please read the README file in the corresponding section first.  
@@ -89,9 +89,12 @@ DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(downlo
 
 Analysis Contributors' Repo 
 ----------------------------
-Kabir's Analysis (ROOT based) Repo : Kabir's personal n3He Analysis Tools bassed on ROOT (Can be found [here][16])
+Kabir's Analysis (ROOT based) Repo :
+
+Kabir's personal n3He Analysis Tools bassed on ROOT (Can be found [here][16])
 
 MTSU Analysis (Python based) Repo :
+
 Middle Tennessee State University contributors (Led by Rob), starting from scratch, developed a pristine Python based analysis library.
 It can be cloned using (assuming you have access to basestar):
 ``git clone basestar:~mahurin/n3he_rootpy.git``
