@@ -17,7 +17,7 @@ This repository is divided into several sub directories based on the category:
 
 [Release Notes][14]
 
-Please continue reading to know details of category.
+Please continue reading to know details of each section.
 The download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right.   
 Alternatively, to clone using a terminal use, from Github repo :`` git clone https://github.com/latifkabir/n3He_Soft.git `` 
 Or from ASU repo : `` git clone n3he@alarcondaq.la.asu.edu:/mnt/sharedSource/N3HE.git ``   
