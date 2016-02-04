@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <!--[if lt IE 9]>
@@ -29,14 +29,14 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a id="software-for-the-n3he-experiment" class="anchor" href="#software-for-the-n3he-experiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Software for the n3He Experiment</h1>
+<a id="software-for-the-n3he-experiment" class="anchor" href="#software-for-the-n3he-experiment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Software for the n3He Experiment</h1>
 
 <p>This is the official reporitory for any developed software for the <a href="http://n3he.wikispaces.com">n3He experiment at SNS</a>.
 This repository is divided into several sub directories based on the category:</p>
 
 <ul>
-<li>n3HeDAQ v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeDAQ.zip">(download)</a> --- Contains software for the n3He DAQ Control.</li>
-<li>Library v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Library.zip">(download)</a> --- Contains the analysis library for the n3He experiment.</li>
+<li>n3HeDAQ v1.3 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeDAQ.zip">(download)</a> --- Contains software for the n3He DAQ Control.</li>
+<li>Library v1.3 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Library.zip">(download)</a> --- Contains the analysis library for the n3He experiment.</li>
 <li>n3HeDataBrowser v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeDataBrowser.zip">(download)</a> --- The GUI for online analysis.GUI to browse the data for each run easily.</li>
 <li>n3HeMag v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeMag.zip">(download)</a> ---Contains 'driver for FluxGate' in C++ source code </li>
 <li>n3HeScan v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeScan.zip">(download)</a> --- Software for field and beam scan </li>
@@ -44,20 +44,22 @@ This repository is divided into several sub directories based on the category:</
 <li>DemoScripts v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DemoScripts.zip">(download)</a> --- Contains demo analysis or other demo scripts necessary for DAQ performance demonstration &amp; testing.</li>
 <li>ReadRS232 v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReadRS232.zip">(download)</a> -- GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.</li>
 <li>Watchdog  v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Watchdog.zip">(download)</a>-- Program for 24/7 DAQ status and other critical parameters watchdog.</li>
-<li>Diagnosis v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Diagnosis.zip">(download)</a> --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. </li>
-<li>Manual v0 --- DAQ Operational Manual <a href="https://github.com/latifkabir/n3He_Soft/raw/master/Manual/DAQManual.pdf">(download)</a> and n3He Analysis Startup Guide <a href="https://github.com/latifkabir/n3He_Soft/raw/master/Manual/AnalysisGuide.pdf">(download)</a>
+<li>Diagnosis v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Diagnosis.zip">(download)</a> --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. </li>
+<li>Manual v1.5 --- DAQ Operational Manual <a href="https://github.com/latifkabir/n3He_Soft/raw/master/Manual/DAQManual.pdf">(download)</a> and n3He Analysis Startup Guide <a href="https://github.com/latifkabir/n3He_Soft/raw/master/Manual/AnalysisGuide.pdf">(download)</a>
+</li>
+<li>Analysis Contributors' Repo --- Source code repository by the n3He analysis contributors (check end of this page).
 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReleaseNotes">Release Notes</a>
 </li>
 </ul>
 
-<p>Please read below to know what's inside each category.
-The above/following download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right.<br>
-Alternatively,to clone using a terminal use, from Github repo :<code>git clone https://github.com/latifkabir/n3He_Soft.git</code> 
+<p>Please continue reading to know details of category.
+The download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right.<br>
+Alternatively, to clone using a terminal use, from Github repo :<code>git clone https://github.com/latifkabir/n3He_Soft.git</code> 
 Or from ASU repo : <code>git clone n3he@alarcondaq.la.asu.edu:/mnt/sharedSource/N3HE.git</code><br>
 In any case please read the README file in the corresponding section first.  </p>
 
 <h2>
-<a id="n3hedaq-v12-download" class="anchor" href="#n3hedaq-v12-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>n3HeDAQ v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeDAQ.zip">(download)</a>
+<a id="n3hedaq-v12-download" class="anchor" href="#n3hedaq-v12-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>n3HeDAQ v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeDAQ.zip">(download)</a>
 </h2>
 
 <p>Contains</p>
@@ -67,10 +69,15 @@ In any case please read the README file in the corresponding section first.  </p
 <li>The DAQ GUI control program.</li>
 </ul>
 
-<p><img src="https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_demo.png" alt="" title="n3HeDAQ Control Program"></p>
+<ul>
+<li><p>n3HeDAQ GUI Control Program Screenshot:
+<img src="https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_demo.png" alt="" title="n3HeDAQ GUI Control Program"></p></li>
+<li><p>n3HeDAQ Control Program in commandline Screenshot:
+<img src="https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_commandline.png" alt="" title="n3HeDAQ Control Program in commandline"></p></li>
+</ul>
 
 <h2>
-<a id="library-v12-download" class="anchor" href="#library-v12-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Library v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Library.zip">(download)</a>
+<a id="library-v12-download" class="anchor" href="#library-v12-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Library v1.2 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Library.zip">(download)</a>
 </h2>
 
 <p>Contains</p>
@@ -82,7 +89,7 @@ In any case please read the README file in the corresponding section first.  </p
 </ul>
 
 <h2>
-<a id="n3hedatabrowser-v10-download" class="anchor" href="#n3hedatabrowser-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>n3HeDataBrowser v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeDataBrowser.zip">(download)</a>
+<a id="n3hedatabrowser-v10-download" class="anchor" href="#n3hedatabrowser-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>n3HeDataBrowser v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeDataBrowser.zip">(download)</a>
 </h2>
 
 <ul>
@@ -92,13 +99,13 @@ In any case please read the README file in the corresponding section first.  </p
 <p><img src="https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDataBrowser/n3HeData/demo_n3HeDataBrowser.png" alt="" title="n3He Data Browser"></p>
 
 <h2>
-<a id="n3hemag-v10-download" class="anchor" href="#n3hemag-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>n3HeMag v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeMag.zip">(download)</a>
+<a id="n3hemag-v10-download" class="anchor" href="#n3hemag-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>n3HeMag v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeMag.zip">(download)</a>
 </h2>
 
 <p>Driver for FluxGate in C++ source code. </p>
 
 <h2>
-<a id="n3hescan-v10-download" class="anchor" href="#n3hescan-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>n3HeScan v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeScan.zip">(download)</a>
+<a id="n3hescan-v10-download" class="anchor" href="#n3hescan-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>n3HeScan v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/n3HeScan.zip">(download)</a>
 </h2>
 
 <ul>
@@ -107,19 +114,19 @@ In any case please read the README file in the corresponding section first.  </p
 </ul>
 
 <h2>
-<a id="daqfirmware-v10-download" class="anchor" href="#daqfirmware-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>DAQFirmware v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DAQFirmware.zip">(download)</a>
+<a id="daqfirmware-v10-download" class="anchor" href="#daqfirmware-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DAQFirmware v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DAQFirmware.zip">(download)</a>
 </h2>
 
 <p>This directory contains DAQ Firmware related Software update.</p>
 
 <h2>
-<a id="demoscripts-v10-download" class="anchor" href="#demoscripts-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>DemoScripts v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DemoScripts.zip">(download)</a>
+<a id="demoscripts-v10-download" class="anchor" href="#demoscripts-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DemoScripts v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/DemoScripts.zip">(download)</a>
 </h2>
 
 <p>Contains analysis or other demo scripts necessary for DAQ performance demonstration &amp; testing.</p>
 
 <h2>
-<a id="readrs232-v10-download" class="anchor" href="#readrs232-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>ReadRS232 v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReadRS232.zip">(download)</a>
+<a id="readrs232-v10-download" class="anchor" href="#readrs232-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ReadRS232 v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReadRS232.zip">(download)</a>
 </h2>
 
 <p>GUI for monitoring magnetic field and Temperature on a ncurses window through RS232.</p>
@@ -127,25 +134,40 @@ In any case please read the README file in the corresponding section first.  </p
 <p><img src="https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/ReadRS232/Mag&amp;Temp/magTemp.png" alt="" title="Field &amp; Temperature Display"></p>
 
 <h2>
-<a id="watchdog-v10-download" class="anchor" href="#watchdog-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Watchdog v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Watchdog.zip">(download)</a>
+<a id="watchdog-v10-download" class="anchor" href="#watchdog-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Watchdog v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Watchdog.zip">(download)</a>
 </h2>
 
 <p>Program for 24/7 DAQ status and other critical parameters watchdog. Capable to send text alert and restart the DAQ program automatically.</p>
 
 <h2>
-<a id="diagnosis-v10-download" class="anchor" href="#diagnosis-v10-download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Diagnosis v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Diagnosis.zip">(download)</a>
+<a id="diagnosis-v10-download" class="anchor" href="#diagnosis-v10-download" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Diagnosis v1.0 <a href="http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/Diagnosis.zip">(download)</a>
 </h2>
 
 <p>The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. </p>
 
 <h2>
-<a id="manual-v0-" class="anchor" href="#manual-v0-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual v0 </h2>
+<a id="manual-v10-" class="anchor" href="#manual-v10-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Manual v1.0 </h2>
 
 <p>DAQ Operational Manual <a href="https://github.com/latifkabir/n3He_Soft/raw/master/Manual/DAQManual.pdf">(download)</a> and n3He Analysis Startup Guide <a href="https://github.com/latifkabir/n3He_Soft/raw/master/Manual/AnalysisGuide.pdf">(download)</a></p>
 
+<h2>
+<a id="analysis-contributors-repo-" class="anchor" href="#analysis-contributors-repo-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Analysis Contributors' Repo </h2>
+
+<p>Following are source code repository by the n3He analysis contributors :</p>
+
+<p>Kabir's Analysis (ROOT based) Repo :</p>
+
+<p>Kabir's personal n3He Analysis Tools bassed on ROOT can be found <a href="https://github.com/latifkabir/n3HeAnalysisTool">here</a></p>
+
+<p>MTSU Analysis (Python based) Repo :</p>
+
+<p>Middle Tennessee State University contributors (Led by Rob), starting from scratch, developed a pristine Python based analysis library.
+It can be cloned using (assuming you have access to basestar):
+<code>git clone basestar:~mahurin/n3he_rootpy.git</code></p>
+
 <p>report bug to: <a href="mailto:latifulkabir@uky.edu">latifulkabir@uky.edu</a></p>
 
-<p>Last Updated on 3/11/15</p>
+<p>Last Updated on 2/04/16</p>
 
 <p>-Latiful Kabir</p>
         </section>
