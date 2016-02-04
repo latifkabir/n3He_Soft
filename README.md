@@ -14,6 +14,7 @@ This repository is divided into several sub directories based on the category:
 * Diagnosis v1.2 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
 * Manual v1.5 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 * Analysis Contributors' Repo --- Source code repository by the n3He analysis contributors (check end of this page).
+
 [Release Notes][14]
 
 Please continue reading to know details of category.
@@ -89,9 +90,11 @@ DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(downlo
 
 Analysis Contributors' Repo 
 ----------------------------
+Following are source code repository by the n3He analysis contributors :
+
 Kabir's Analysis (ROOT based) Repo :
 
-Kabir's personal n3He Analysis Tools bassed on ROOT (Can be found [here][16])
+Kabir's personal n3He Analysis Tools bassed on ROOT can be found [here][16]
 
 MTSU Analysis (Python based) Repo :
 
