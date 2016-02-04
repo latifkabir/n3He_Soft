@@ -53,7 +53,7 @@ Any new change goes to this  git repository. You might want to clone the entire 
  
 \newpage
 \section{Quick start on basestar}
-On basestar the data is being transferred and saved to the directories: \\ \textcolor{magenta}{ /mnt/idata01/data/ } (run numbers: 14548-23661),\\ \textcolor{magenta}{ /mnt/idata02/data/ } (run numbers: 23662 -31839 ),\\ \textcolor{magenta}{ /mnt/idata03/data/ } (run numbers: 31840- 40703),\\ \textcolor{magenta}{ /mnt/idata04/data/ } (run numbers: 40704 -44385 ),\\ \textcolor{magenta}{ /mnt/idata05/data/ } (run numbers: 44386 - 45999 ),\\ \textcolor{magenta}{ /mnt/idata06/data/ } (run numbers: 46000 - 54040 ),\\ \textcolor{magenta}{ /mnt/idata07/data/ } (run numbers: 54041 - 58959),\\ \textcolor{magenta}{ /mnt/idata08/data/ } (run numbers: 58960 - )\\and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} \\
+On basestar the data is being transferred and saved to the directories: \\ \textcolor{magenta}{ /mnt/idata01/data/ } (run numbers: 14548-23661),\\ \textcolor{magenta}{ /mnt/idata02/data/ } (run numbers: 23662 -31839 ),\\ \textcolor{magenta}{ /mnt/idata03/data/ } (run numbers: 31840- 40703),\\ \textcolor{magenta}{ /mnt/idata04/data/ } (run numbers: 40704 -44385 ),\\ \textcolor{magenta}{ /mnt/idata05/data/ } (run numbers: 44386 - 45999 ),\\ \textcolor{magenta}{ /mnt/idata06/data/ } (run numbers: 46000 - 54040 ),\\ \textcolor{magenta}{ /mnt/idata07/data/ } (run numbers: 54041 - 58959),\\ \textcolor{magenta}{ /mnt/idata08/data/ } (run numbers: 58960 - 61000)\\and the analysis library is compiled in a shared directory \textcolor{magenta}{ /home/npdg/n3He/libn3He/lib} \\
 
 Actual analyzable run for UD asymmetry starts from run  number:18000. Run numbers before that are different R\&D runs and LR asymmetry runs. \\
 
@@ -653,17 +653,23 @@ All the following runs here after are in tighter choppers setting (The  NPDG cho
 
 
 \newpage
-\section{Summary of 1st beam cycle data}
-Run Range: 17400 to 38214 (excluding initial test runs)\\
-Total Runs on tape(on basestar) : 20815 \\
-Number of GOOD Runs :16684 \\
-Number of runs with partial last event :246 (Still GOOD if last event is skipped)\\
-Number of runs with header/trigger issue : 201 \\
-Number of runs with partial beam or NO beam :2820 \\
-Number of short runs : 802 \\
-Number of runs with synchronization issue : 19 \\
-Number of runs with NO data files on basestar: 43 \\
-   
+\section{Summary of n3He data}
+Run Range: 14785 to 61000 \\
+Total Runs on tape(on basestar) : 46217 \\
+Number of GOOD Runs with beam: 34754  \\
+Number of runs with partial last event :902 (Still GOOD if last event is skipped)\\
+Number of runs with header/trigger issue : 838 \\
+Number of runs with partial beam or NO beam :6897 \\
+Number of short runs : 2602 \\
+Number of runs with synchronization issue : 56 \\
+Number of runs with NO data files on basestar: 107 \\
+
+\begin{figure}[htb]
+\centering
+% Requires \usepackage{graphicx}
+\includegraphics[width=4in]{n3he_run_status.png}\\
+\caption{n3He Run Staistics}\label{f5}
+\end{figure}   
 
 \noindent
 {\color{red} \rule{\linewidth}{1mm} }

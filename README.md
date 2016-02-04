@@ -14,6 +14,7 @@ This repository is divided into several sub directories based on the category:
 * Diagnosis v1.2 [(download)][11] --- The DAQ's healthcare companion Baymax with automated diagnosis and healing capability. 
 * Manual v1.5 --- DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 [Release Notes][14]
+* Analysis Contributors' Repo --- Source code repository by the n3He analysis contributors (check end of this page).
 
 Please read below to know what's inside each category.
 The above/following download links will download the last release for each category. For the most recent changes or to participate in the development you might want to download/clone the entire project from the right.   
@@ -85,9 +86,21 @@ Manual v1.0
 ------------
 DAQ Operational Manual [(download)][12] and n3He Analysis Startup Guide [(download)][13]
 
+
+Analysis Contributors' Repo 
+----------------------------
+Kabir's Analysis (ROOT based) Repo : Kabir's personal n3He Analysis Tools bassed on ROOT (Can be found [here][16])
+
+MTSU Analysis (Python based) Repo :
+Middle Tennessee State University contributors (Led by Rob), starting from scratch, developed a pristine Python based analysis library.
+It can be cloned using (assuming you have access to basestar):
+``git clone basestar:~mahurin/n3he_rootpy.git``
+ 
+
+
 report bug to: latifulkabir@uky.edu
 
-Last Updated on 3/11/15
+Last Updated on 2/04/16
 
 -Latiful Kabir
 
@@ -106,5 +119,6 @@ Last Updated on 3/11/15
 [13]:https://github.com/latifkabir/n3He_Soft/raw/master/Manual/AnalysisGuide.pdf
 [14]:http://raw.githubusercontent.com/latifkabir/n3HeReleases/master/ReleaseNotes
 [15]:https://raw.githubusercontent.com/latifkabir/n3He_Soft/master/n3HeDAQ/n3HeDAQ_commandline.png
+[16]:https://github.com/latifkabir/n3HeAnalysisTool
 
 	 
