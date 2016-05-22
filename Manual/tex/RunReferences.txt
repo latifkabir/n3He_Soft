@@ -93,6 +93,15 @@ Hi Resolution Scan(12/14/15):
 All DAQs are running at 100KHz with no averaging, each event length is 1624 tbins plus 1 header.
 Run length=5000 T0 ~ 1560x10^6 Bytes of each clean DAQ data.
 Run numbers: 59860 - 59875.
+
+Beam Scan To Calculate Beam centroid (12/12/14):
+===============================================
+The data can be found here: https://github.com/latifkabir/n3He_Soft/tree/master/n3HeScan/beam
+
+The analysis can be found here : https://github.com/latifkabir/n3He_Soft/tree/master/n3HeScan/analysis/beam
+
+The presentation for beam scan is here : http://n3he.wikispaces.com/file/view/BeamScan_result_final.pdf/535497024/BeamScan_result_final.pdf
+
  
 
 	
