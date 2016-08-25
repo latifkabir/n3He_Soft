@@ -3,13 +3,18 @@
 // Author: Latiful Kabir < siplukabir@gmail.com >
 // Created: Wed Jun 15 15:02:27 2016 (-0400)
 // URL: latifkabir.github.io
+//The key function that enables refresh is TCanvas Update() and Clear() (later one if you want to start a fresh after a certain time)
+//
+
 
 #include<fstream>
 #include<iostream>
 #include<unistd.h>
 using namespace std;
 
-void PlotField(int offset=1000)
+TCanvas *c1=new TCanvas("c","Live Magnetic Fields Plot",1600,800);
+
+void PlotField(int offset,int refresh_count)
 {
     ifstream dataFile("/home/daq/NPDGamma/ReadMag/bin/magData.txt");
 
@@ -24,13 +29,29 @@ void PlotField(int offset=1000)
     TGraph *gr[6];
     for(int i=0;i<6;i++)
 	gr[i]=new TGraph();
-    TCanvas *c1=new TCanvas("c","Live Magnetic Fields Plot",1600,800);
+ 
     gr[0]->SetTitle("X1 (Gauss vs x10 sec )");
     gr[1]->SetTitle("Y1 (Gauss vs x10 sec )");
     gr[2]->SetTitle("Z1 (Gauss vs x10 sec )");
     gr[3]->SetTitle("X2 (Gauss vs x10 sec )");
     gr[4]->SetTitle("Y2 (Gauss vs x10 sec )");
     gr[5]->SetTitle("Z3 (Gauss vs x10 sec )");
+
+
+    gr[0]->SetMarkerStyle(24);
+    gr[1]->SetMarkerStyle(24);
+    gr[2]->SetMarkerStyle(24);
+    gr[3]->SetMarkerStyle(24);
+    gr[4]->SetMarkerStyle(24);
+    gr[5]->SetMarkerStyle(24);
+
+    gr[0]->SetMarkerColor(2);
+    gr[1]->SetMarkerColor(3);
+    gr[2]->SetMarkerColor(4);
+    gr[3]->SetMarkerColor(7);
+    gr[4]->SetMarkerColor(8);
+    gr[5]->SetMarkerColor(1);
+
     c1->Divide(3,2);
 
     int points=0;
@@ -83,47 +104,62 @@ void PlotField(int offset=1000)
     points=0;
     dataFile.close();
     int fillPoint;
+    int counter=0;
 
-    while (1) 
+    while (counter<refresh_count)  //Refresh Canvas in every 24 hours or so for example. 
     {    
     	sleep(10);	
-        dataFile.open("/home/daq/NPDGamma/ReadMag/bin/magData.txt"); //If you read from a text file that has only updated value(as for Watchdog) then this openning and closing again and again will NOT be necessary.
+        dataFile.open("/home/daq/NPDGamma/ReadMag/bin/magData.txt");
     	while (!dataFile.eof()) 
     	{
     	    dataFile>>dateTime>>x1>>y1>>z1>>x2>>y2>>z2>>max>>offSet;	  
     	    points++;
     	    if(points>prevPoints)
     	    {
-		fillPoint=points-startPoint;
+		fillPoint=points-startPoint-1;
 		c1->cd(1);
-		gr[0]->SetPoint(fillPoint-1,fillPoint,x1); //points-1 is important as last points++ is not filled and points start from 0. 
+		gr[0]->SetPoint(fillPoint,fillPoint,x1); //points-1 is important as last points++ is not filled and points start from 0. 
 		gr[0]->Draw("AP");
 
 		c1->cd(2);
-		gr[1]->SetPoint(fillPoint-1,fillPoint,y1);
+		gr[1]->SetPoint(fillPoint,fillPoint,y1);
 		gr[1]->Draw("AP");
 
 		c1->cd(3);
-		gr[2]->SetPoint(fillPoint-1,fillPoint,z1);
+		gr[2]->SetPoint(fillPoint,fillPoint,z1);
 		gr[2]->Draw("AP");
 
 		c1->cd(4);
-		gr[3]->SetPoint(fillPoint-1,fillPoint,x2);
+		gr[3]->SetPoint(fillPoint,fillPoint,x2);
 		gr[3]->Draw("AP");
 
 		c1->cd(5);
-		gr[4]->SetPoint(fillPoint-1,fillPoint,y2);
+		gr[4]->SetPoint(fillPoint,fillPoint,y2);
 		gr[4]->Draw("AP");
 
 		c1->cd(6);
-		gr[5]->SetPoint(fillPoint-1,fillPoint,z2);
+		gr[5]->SetPoint(fillPoint,fillPoint,z2);
 		gr[5]->Draw("AP");
 
-    		c1->Update();
+    		c1->Update();		
     	    }
     	}
     	prevPoints=points;
     	points=0;
     	dataFile.close();
+	++counter;
     }  
+
+    for(int i=0;i<6;i++)
+	delete gr[i];
+}
+
+void LiveFieldPlot(int offset=1000,int refresh_count=8640)
+{
+    while(1)
+    {
+	PlotField(offset,refresh_count);
+	c1->Clear();
+       // Clear canvas and start from afresh when too many data pointrs on the canvas(say everyday).
+    }    
 }
