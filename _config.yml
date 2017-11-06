@@ -1,0 +1,8 @@
+title: n3He Software
+description: Software for the n3He Experiment at SNS
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-architect
+
+gems:
+  - jekyll-mentions
