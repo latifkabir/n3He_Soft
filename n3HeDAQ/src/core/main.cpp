@@ -44,7 +44,7 @@ int main(int argc,char *argv[])
         arg4=atof(argv[4]);
     }
 
-//make a list of all available options and command and assign a number for that
+    //make a list of all available options and command and assign a number for that
     string list[]={"help","start","daq","config","gui","auto"};
     if(argc>1)
     {
@@ -59,7 +59,7 @@ int main(int argc,char *argv[])
     }
 
 
-//Switch to the option or command specified.
+    //Switch to the option or command specified.
     if(argc<2)
     {
 	DefaultIns();

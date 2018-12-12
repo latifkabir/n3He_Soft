@@ -26,7 +26,7 @@ If you do NOT have local version of ROOT, rather it's installed under root accou
 
 10. Try running example analysis scripts in "analysis" directory.
 
-11. To make life easier it's convenient to put the following command into your ~/.bash_profile or ~/.bashrc file:
+11. As an alterantive to step-3, it's convenient to put the following command into your ~/.bash_profile or ~/.bashrc file:
 
  
 ```

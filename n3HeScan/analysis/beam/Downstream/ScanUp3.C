@@ -52,8 +52,9 @@ void ScanUp3()
    dt->GetXaxis()->SetTitle("X Displacement(Steps)");
    dt->GetYaxis()->SetTitle("Y Displacement(Steps)");
    dt->GetZaxis()->SetTitle("Average Intensity");
-   dt->Draw("surf1");
-   // dt->Draw("AP");
+   // dt->Draw("surf1");
+   //dt->Draw("AP");
+   dt->Draw("lego2");
 
 
 
